@@ -9,11 +9,11 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * 物料 查询 对象
+ * Goods  查询 对象
  *
  * @author zcc
  */
-@ApiModel(description="物料 查询 对象")
+@ApiModel(description="Goods  查询 对象")
 @Data
 public class ItemQuery {
     @ApiModelProperty("搜索内容")
@@ -34,13 +34,13 @@ public class ItemQuery {
     @ApiModelProperty("所属货架 精确匹配")
     private Long rackId;
 
-    @ApiModelProperty("所属库区 精确匹配")
+    @ApiModelProperty("Area 精确匹配")
     private Long areaId;
 
-    @ApiModelProperty("所属仓库 精确匹配")
+    @ApiModelProperty("Warehouse 精确匹配")
     private Long warehouseId;
 
-    @ApiModelProperty("安全库存 精确匹配")
+    @ApiModelProperty("安全Quantity 精确匹配")
     private BigDecimal quantity;
 
     @ApiModelProperty("有效期 精确匹配")

@@ -25,7 +25,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * 物料Service业务层处理
+ * Goods Service业务层处理
  *
  * @author zcc
  */
@@ -79,21 +79,21 @@ public class ItemService {
     }
 
     /**
-     * 查询物料
+     * 查询Goods
      *
-     * @param id 物料主键
-     * @return 物料
+     * @param id Goods 主键
+     * @return Goods
      */
     public Item selectById(Long id) {
         return itemMapper.selectById(id);
     }
 
     /**
-     * 查询物料列表
+     * 查询Goods 列表
      *
      * @param query 查询条件
      * @param page  分页条件
-     * @return 物料
+     * @return Goods
      */
     public List<Item> selectList(ItemQuery query, Pageable page) {
         if (page != null) {
@@ -158,9 +158,9 @@ public class ItemService {
     }
 
     /**
-     * 新增物料
+     * 新增Goods
      *
-     * @param item 物料
+     * @param item Goods
      * @return 结果
      */
     public int insert(Item item) {
@@ -170,9 +170,9 @@ public class ItemService {
     }
 
     /**
-     * 修改物料
+     * 修改Goods
      *
-     * @param item 物料
+     * @param item Goods
      * @return 结果
      */
     public int update(Item item) {
@@ -180,9 +180,9 @@ public class ItemService {
     }
 
     /**
-     * 批量删除物料
+     * 批量删除Goods
      *
-     * @param ids 需要删除的物料主键
+     * @param ids 需要删除的Goods 主键
      * @return 结果
      */
     public int deleteByIds(Long[] ids) {
@@ -190,9 +190,9 @@ public class ItemService {
     }
 
     /**
-     * 删除物料信息
+     * 删除Goods 信息
      *
-     * @param id 物料主键
+     * @param id Goods 主键
      * @return 结果
      */
     public int deleteById(Long id) {
@@ -201,10 +201,10 @@ public class ItemService {
     }
 
     /**
-     * 查询物料列表
+     * 查询Goods 列表
      *
-     * @param ids 物料主键集合
-     * @return 物料列表
+     * @param ids Goods 主键集合
+     * @return Goods 列表
      */
     public List<Item> selectByIdIn(Collection<Long> ids) {
         // 如果主键集合为空，直接返回空集合
@@ -231,9 +231,9 @@ public class ItemService {
     }
 
     /**
-     * 注入物料类别名称
+     * 注入Goods 类别名称
      *
-     * @param res 物料
+     * @param res Goods
      */
     public void injectTypeName(List<Item> res) {
         if (CollUtil.isEmpty(res)) {
@@ -256,7 +256,7 @@ public class ItemService {
 
     /**
      * 注入仓库名称
-     * @param res 物料
+     * @param res Goods
      */
     public void injectWarehouseName(List<Item> res){
         if (CollUtil.isEmpty(res)){
@@ -273,7 +273,7 @@ public class ItemService {
 
     /**
      * 注入库区名称
-     * @param res 物料
+     * @param res Goods
      */
     public void injectAreaName(List<Item> res){
         if (CollUtil.isEmpty(res)){
@@ -289,7 +289,7 @@ public class ItemService {
     }
 
     /**
-     * 查询过期物料
+     * 查询过期Goods
      * @param page 分页条件
      * @return 结果
      */

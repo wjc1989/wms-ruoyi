@@ -191,7 +191,7 @@ public class ReceiptOrderService {
         QueryWrapper<ReceiptOrderDetail> qw = new QueryWrapper<>();
         qw.eq("receipt_order_id", receiptOrder.getId());
 
-        // 新旧入库单详情对比， 生成 库存记录修改
+        // 新旧入库单详情对比， 生成 Quantity记录修改
         List<ReceiptOrderDetailVO> details = receiptOrder.getDetails();
         Map<Long, ReceiptOrderDetail> dbDetailMap = receiptOrderDetailMapper.selectList(qw).stream().collect(Collectors.toMap(ReceiptOrderDetail::getId, it -> it));
         List<InventoryHistory> adds = new ArrayList<>();
@@ -204,7 +204,7 @@ public class ReceiptOrderService {
             }
             // 新增时， status一定是未入库， 所以这个地方必定有值
             ReceiptOrderDetail dbDetail = dbDetailMap.get(it.getId());
-            // 如果上次的状态不是部分入库或者全部入库，则本次的库存变化为本次的全部
+            // 如果上次的状态不是部分入库或者全部入库，则本次的Quantity变化为本次的全部
             Integer status1 = dbDetail.getReceiptOrderStatus();
             BigDecimal added;
             if (status1 != ReceiptOrderConstant.PART_IN && status1 != ReceiptOrderConstant.ALL_IN) {
@@ -310,19 +310,19 @@ public class ReceiptOrderService {
                 continue;
             }
 
-            // 3. 查询库存记录
+            // 3. 查询Quantity记录
             List<InventoryHistory> inventoryHistories = inventoryHistoryService.selectByForm(receiptOrder.getId(), receiptOrder.getReceiptOrderType());
 
-            // 翻转库存记录的数量
+            // 翻转Quantity记录的数量
             inventoryHistories.forEach(it -> {
                 it.setQuantity(it.getQuantity().negate());
-                log.info("回滚库存:{} 数量：{}", it.getWarehouseId() + "_" + it.getAreaId() + "_" + it.getRackId() + "_" + it.getItemId(), it.getQuantity());
+                log.info("回滚Quantity:{} 数量：{}", it.getWarehouseId() + "_" + it.getAreaId() + "_" + it.getRackId() + "_" + it.getItemId(), it.getQuantity());
             });
 
-            // 4. 回滚库存
+            // 4. 回滚Quantity
             inventoryService.batchUpdate1(inventoryHistories);
 
-            // 5. 删除库存记录
+            // 5. 删除Quantity记录
             inventoryHistoryService.deleteByForm(receiptOrder.getId(), receiptOrder.getReceiptOrderType());
 
             // todo 6. 回滚供应商流水

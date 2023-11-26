@@ -23,12 +23,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * 物料类型表Controller
+ * Goods 类型表Controller
  *
  * @author zhangcheng
  * @date 2023-04-03
  */
-@Api(description = "物料类型表接口列表")
+@Api(description = "Goods 类型表接口列表")
 @RestController
 @RequestMapping("/wms/itemType")
 public class ItemTypeController extends BaseController {
@@ -37,7 +37,7 @@ public class ItemTypeController extends BaseController {
     @Autowired
     private ItemTypeConvert convert;
 
-    @ApiOperation("查询物料类型表列表")
+    @ApiOperation("查询Goods 类型表列表")
     @PreAuthorize("@ss.hasPermi('wms:itemType:list')")
     @PostMapping("/list")
     public ResponseEntity<Page<ItemType>> list(@RequestBody ItemTypeQuery query, Pageable page) {
@@ -46,7 +46,7 @@ public class ItemTypeController extends BaseController {
     }
 
     /**
-     * 查询物料类型表列表
+     * 查询Goods 类型表列表
      */
     @PreAuthorize("@ss.hasPermi('wms:itemType:list')")
     @GetMapping("/noPageList")
@@ -55,14 +55,14 @@ public class ItemTypeController extends BaseController {
         return AjaxResult.success(depts);
     }
 
-    @ApiOperation("导出物料类型表列表")
+    @ApiOperation("导出Goods 类型表列表")
     @PreAuthorize("@ss.hasPermi('wms:itemType:export')")
-    @Log(title = "物料类型表", businessType = BusinessType.EXPORT)
+    @Log(title = "Goods 类型表", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
     public ResponseEntity<String> export(ItemTypeQuery query) {
         List<ItemType> list = service.selectList(query, null);
         ExcelUtil<ItemTypeVO> util = new ExcelUtil<>(ItemTypeVO.class);
-        return ResponseEntity.ok(util.writeExcel(convert.dos2vos(list), "物料类型表数据"));
+        return ResponseEntity.ok(util.writeExcel(convert.dos2vos(list), "Goods 类型表数据"));
     }
 
     /**
@@ -74,32 +74,32 @@ public class ItemTypeController extends BaseController {
         return AjaxResult.success(service.buildItemTypeTreeSelect(itemTypes));
     }
 
-    @ApiOperation("获取物料类型表详细信息")
+    @ApiOperation("获取Goods 类型表详细信息")
     @PreAuthorize("@ss.hasPermi('wms:itemType:query')")
     @GetMapping(value = "/{itemTypeId}")
     public ResponseEntity<ItemType> getInfo(@PathVariable("itemTypeId") Long itemTypeId) {
         return ResponseEntity.ok(service.selectByItemTypeId(itemTypeId));
     }
 
-    @ApiOperation("新增物料类型表")
+    @ApiOperation("新增Goods 类型表")
     @PreAuthorize("@ss.hasPermi('wms:itemType:add')")
-    @Log(title = "物料类型表", businessType = BusinessType.INSERT)
+    @Log(title = "Goods 类型表", businessType = BusinessType.INSERT)
     @PostMapping
     public ResponseEntity<Integer> add(@RequestBody ItemType itemType) {
         return ResponseEntity.ok(service.insert(itemType));
     }
 
-    @ApiOperation("修改物料类型表")
+    @ApiOperation("修改Goods 类型表")
     @PreAuthorize("@ss.hasPermi('wms:itemType:edit')")
-    @Log(title = "物料类型表", businessType = BusinessType.UPDATE)
+    @Log(title = "Goods 类型表", businessType = BusinessType.UPDATE)
     @PutMapping
     public ResponseEntity<Integer> edit(@RequestBody ItemType itemType) {
         return ResponseEntity.ok(service.update(itemType));
     }
 
-    @ApiOperation("删除物料类型表")
+    @ApiOperation("删除Goods 类型表")
     @PreAuthorize("@ss.hasPermi('wms:itemType:remove')")
-    @Log(title = "物料类型表", businessType = BusinessType.DELETE)
+    @Log(title = "Goods 类型表", businessType = BusinessType.DELETE)
     @DeleteMapping("/{itemTypeIds}")
     public ResponseEntity<Integer> remove(@PathVariable Long[] itemTypeIds) {
         return ResponseEntity.ok(service.deleteByItemTypeIds(itemTypeIds));

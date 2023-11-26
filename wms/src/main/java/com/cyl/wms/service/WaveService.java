@@ -207,24 +207,24 @@ public class WaveService {
 
         List<ShipmentOrderDetail> allocationDetails = new ArrayList<>();
 
-        //collect分配库存
+        //collect分配Quantity
         collect.forEach((itemId, quantity) -> {
-            log.info("波次单分配仓库分配仓库,波次单id:{},物料id：{},数量：{}", id, itemId, quantity);
+            log.info("波次单分配仓库分配仓库,波次单id:{},Goods id：{},数量：{}", id, itemId, quantity);
             List<ShipmentOrderDetail> shipmentOrderDetails = inventoryService.
                     allocatedInventory(itemId, quantity, type);
             allocationDetails.addAll(shipmentOrderDetails);
         });
 
-        log.info("分配库存详情\n{}", allocationDetails);
+        log.info("分配Quantity详情\n{}", allocationDetails);
         List<ShipmentOrderDetailVO> list = shipmentOrderDetailService.toVos(allocationDetails);
         List<ShipmentOrderDetailVO> allocatedDetails = new ArrayList<>();
 
-        //2.更新原始库存
+        //2.更新原始Quantity
         originalDetails.forEach(originalOrder -> {
             Long itemId = originalOrder.getItemId();
             BigDecimal planQuantity = originalOrder.getPlanQuantity();
-            // 从list里面取出相同物料得库存记录，需要取planQuantity数量，
-            // 如果planQuantity数量小于库存数量，需要继续取下一个库存记录，直到planQuantity为0。
+            // 从list里面取出相同Goods 得Quantity记录，需要取planQuantity数量，
+            // 如果planQuantity数量小于Quantity数量，需要继续取下一个Quantity记录，直到planQuantity为0。
             // 已经被使用得list记录需要从list中移除
             for (int i = 0; i < list.size() && planQuantity.compareTo(BigDecimal.ZERO) > 0; i++) {
                 ShipmentOrderDetailVO availableDetail = list.get(i);
@@ -253,7 +253,7 @@ public class WaveService {
         //log.info("波次单分配仓库分配仓库,list:{}", list);
         //todo 2.针对波次分配失败的打包创建子波次(当前不具备拆分子波次功能)
         shipmentOrderFrom.setAllocationDetails(allocatedDetails);
-        //log.info("波次单分配仓库分配仓库,originalDetails:{},分配库存详情\n{}", originalDetails, allocatedDetails);
+        //log.info("波次单分配仓库分配仓库,originalDetails:{},分配Quantity详情\n{}", originalDetails, allocatedDetails);
         return shipmentOrderFrom;
     }
 
@@ -263,7 +263,7 @@ public class WaveService {
      * */
     private static List<ShipmentOrderDetailVO> aggregatedShipmentOrderDetailVOS(List<ShipmentOrderDetailVO> originalDetail) {
         // 单个出库单分配后库区，还可以波次？ 可以，这一步就是重新聚合订单分散得拣货数据。
-        // 聚合出库单，防止用户先前分配过库存。如果分配过库存，需要把分配过的库存加回来。保留原始订单信息
+        // 聚合出库单，防止用户先前分配过Quantity。如果分配过Quantity，需要把分配过的Quantity加回来。保留原始订单信息
         Map<String, ShipmentOrderDetailVO> aggregatedDetails = new HashMap<>();
         originalDetail.forEach(vo -> {
             String key = vo.getItemId() + "_" + vo.getOrderNo();

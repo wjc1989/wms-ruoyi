@@ -60,11 +60,11 @@ public class ShipmentOrder extends BaseAudit {
     @Excel(name = "审核时间", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime checkTime;
 
-    @ApiModelProperty("备注")
-    @Excel(name = "备注")
+    @ApiModelProperty("Remark")
+    @Excel(name = "Remark")
     private String remark;
 
-    @ApiModelProperty("删除标识")
+    @ApiModelProperty("Delete Flag")
     private Integer delFlag;
 
     @ApiModelProperty("波次号")

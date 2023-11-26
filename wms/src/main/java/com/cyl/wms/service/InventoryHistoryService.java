@@ -22,7 +22,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * 库存记录Service业务层处理
+ * Quantity记录Service业务层处理
  *
  * @author zcc
  */
@@ -36,20 +36,20 @@ public class InventoryHistoryService {
     private InventoryService inventoryService;
 
     /**
-     * 查询库存记录
+     * 查询Quantity记录
      *
-     * @param id 库存记录主键
-     * @return 库存记录
+     * @param id Quantity记录主键
+     * @return Quantity记录
      */
     public InventoryHistory selectById(Long id) {
         return inventoryHistoryMapper.selectById(id);
     }
 
     /**
-     * 查询库存记录列表
+     * 查询Quantity记录列表
      *
      * @param query 查询条件
-     * @return 库存记录
+     * @return Quantity记录
      */
     public List<InventoryHistoryVO> selectList(InventoryHistoryQuery query) {
         List<InventoryHistory> list = queryInventoryHistories(query);
@@ -101,9 +101,9 @@ public class InventoryHistoryService {
     }
 
     /**
-     * 新增库存记录
+     * 新增Quantity记录
      *
-     * @param inventoryHistory 库存记录
+     * @param inventoryHistory Quantity记录
      * @return 结果
      */
     public int insert(InventoryHistory inventoryHistory) {
@@ -113,9 +113,9 @@ public class InventoryHistoryService {
     }
 
     /**
-     * 修改库存记录
+     * 修改Quantity记录
      *
-     * @param inventoryHistory 库存记录
+     * @param inventoryHistory Quantity记录
      * @return 结果
      */
     public int update(InventoryHistory inventoryHistory) {
@@ -123,9 +123,9 @@ public class InventoryHistoryService {
     }
 
     /**
-     * 批量删除库存记录
+     * 批量删除Quantity记录
      *
-     * @param ids 需要删除的库存记录主键
+     * @param ids 需要删除的Quantity记录主键
      * @return 结果
      */
     public int deleteByIds(Long[] ids) {
@@ -133,9 +133,9 @@ public class InventoryHistoryService {
     }
 
     /**
-     * 删除库存记录信息
+     * 删除Quantity记录信息
      *
-     * @param id 库存记录主键
+     * @param id Quantity记录主键
      * @return 结果
      */
     public int deleteById(Long id) {
@@ -144,7 +144,7 @@ public class InventoryHistoryService {
     }
 
     /**
-     * 删除库存记录信息
+     * 删除Quantity记录信息
      *
      * @param formId   单据id
      * @param formType 单据类型
@@ -161,7 +161,7 @@ public class InventoryHistoryService {
     }
 
     /**
-     * 查询库存记录信息
+     * 查询Quantity记录信息
      *
      * @param formId   单据id
      * @param formType 单据类型
@@ -178,9 +178,9 @@ public class InventoryHistoryService {
     }
 
     /**
-     * 批量新增库存记录
+     * 批量新增Quantity记录
      *
-     * @param list 库存记录列表
+     * @param list Quantity记录列表
      * @return 结果
      */
     public int batchInsert(List<InventoryHistory> list) {

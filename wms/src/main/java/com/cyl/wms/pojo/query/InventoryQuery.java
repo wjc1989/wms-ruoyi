@@ -7,31 +7,31 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 /**
- * 库存 查询 对象
+ * Quantity 查询 对象
  *
  * @author zcc
  */
-@ApiModel(description = "库存 查询 对象")
+@ApiModel(description = "Quantity 查询 对象")
 @Data
 public class InventoryQuery implements InventoryPanelType {
-    @ApiModelProperty("物料ID 精确匹配")
+    @ApiModelProperty("Goods ID")
     private Long itemId;
 
-    @ApiModelProperty("货架id 精确匹配")
+    @ApiModelProperty("Shelves")
     private Long warehouseId;
 
-    @ApiModelProperty("看板类型")
+    @ApiModelProperty("Dashboard Type")
     private Long panelType;
 
-    @ApiModelProperty("区 id")
+    @ApiModelProperty("Area ID")
     private Long areaId;
 
-    @ApiModelProperty("货架 id")
+    @ApiModelProperty("Shelves ID")
     private Long rackId;
 
-    @ApiModelProperty("库存 起始值")
+    @ApiModelProperty("Quantity Begin")
     private BigDecimal quantityStart;
-    @ApiModelProperty("库存 结束值")
+    @ApiModelProperty("Quantity End")
     private BigDecimal quantityEnd;
 
 }

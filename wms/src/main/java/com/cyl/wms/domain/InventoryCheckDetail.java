@@ -8,11 +8,11 @@ import com.ruoyi.common.core.domain.BaseAudit;
 import lombok.Data;
 import com.baomidou.mybatisplus.annotation.TableName;
 /**
- * 库存盘点单据详情对象 wms_inventory_check_detail
- * 
+ * Quantity盘点单据详情对象 wms_inventory_check_detail
+ *
  * @author zcc
  */
-@ApiModel(description="库存盘点单据详情对象")
+@ApiModel(description="Quantity盘点单据详情对象")
 @Data
 @TableName("wms_inventory_check_detail")
 public class InventoryCheckDetail extends BaseAudit {
@@ -21,39 +21,39 @@ public class InventoryCheckDetail extends BaseAudit {
     @ApiModelProperty("ID")
     private Long id;
 
-    @ApiModelProperty("库存盘点单")
-    @Excel(name = "库存盘点单")
+    @ApiModelProperty("Quantity盘点单")
+    @Excel(name = "Quantity盘点单")
     private Long inventoryCheckId;
 
-    @ApiModelProperty("物料")
-    @Excel(name = "物料")
+    @ApiModelProperty("Goods ")
+    @Excel(name = "Goods ")
     private Long itemId;
 
-    @ApiModelProperty("库存数量")
-    @Excel(name = "库存数量")
+    @ApiModelProperty("Quantity数量")
+    @Excel(name = "Quantity数量")
     private BigDecimal quantity;
 
     @ApiModelProperty("盘点数量")
     @Excel(name = "盘点数量")
     private BigDecimal checkQuantity;
 
-    @ApiModelProperty("所属仓库")
-    @Excel(name = "所属仓库")
+    @ApiModelProperty("Warehouse")
+    @Excel(name = "Warehouse")
     private Long warehouseId;
 
-    @ApiModelProperty("所属库区")
-    @Excel(name = "所属库区")
+    @ApiModelProperty("Area")
+    @Excel(name = "Area")
     private Long areaId;
 
     @ApiModelProperty("货架")
     @Excel(name = "货架")
     private Long rackId;
 
-    @ApiModelProperty("删除标识")
+    @ApiModelProperty("Delete Flag")
     private Integer delFlag;
 
-    @ApiModelProperty("备注")
-    @Excel(name = "备注")
+    @ApiModelProperty("Remark")
+    @Excel(name = "Remark")
     private String remark;
 
 }

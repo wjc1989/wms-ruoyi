@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 
 import java.util.List;
 /**
- * 库存结算明细  DO <=> DTO <=> VO / BO / Query
+ * Quantity结算明细  DO <=> DTO <=> VO / BO / Query
  *
  * @author zcc
  */

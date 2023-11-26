@@ -33,8 +33,8 @@ public class ReceiptOrderVO extends BaseAudit {
    /** 入库状态 */
     @Excel(name = "入库状态")
     private Integer receiptOrderStatus;
-   /** 备注 */
-    @Excel(name = "备注")
+   /** Remark */
+    @Excel(name = "Remark")
     private String remark;
     private Integer detailCount;
 

@@ -19,7 +19,7 @@ public class WarehouseVO extends BaseAudit {
    /** 仓库名称 */
     @Excel(name = "仓库名称")
     private String warehouseName;
-   /** 备注 */
-    @Excel(name = "备注")
+   /** Remark */
+    @Excel(name = "Remark")
     private String remark;
 }

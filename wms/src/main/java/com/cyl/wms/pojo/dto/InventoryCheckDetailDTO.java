@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import com.ruoyi.common.core.domain.BaseAudit;
 import lombok.Data;
 /**
- * 库存盘点单据详情 DTO 对象
+ * Quantity盘点单据详情 DTO 对象
  *
  * @author zcc
  */

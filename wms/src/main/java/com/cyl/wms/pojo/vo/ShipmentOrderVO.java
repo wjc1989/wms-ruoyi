@@ -60,9 +60,9 @@ public class ShipmentOrderVO extends BaseAudit {
   @Excel(name = "审核时间", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss")
   private LocalDateTime checkTime;
   /**
-   * 备注
+   * Remark
    */
-  @Excel(name = "备注")
+  @Excel(name = "Remark")
   private String remark;
 
   @Excel(name = "波次号")

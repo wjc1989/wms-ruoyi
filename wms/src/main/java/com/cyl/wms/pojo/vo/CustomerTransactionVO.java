@@ -35,8 +35,8 @@ public class CustomerTransactionVO  {
    /** 出库单号 */
     @Excel(name = "出库单号")
     private Long shipmentOrderId;
-   /** 备注 */
-    @Excel(name = "备注")
+   /** Remark */
+    @Excel(name = "Remark")
     private String remark;
    /** 创建时间 */
     private LocalDateTime createTime;

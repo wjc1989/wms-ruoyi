@@ -199,19 +199,19 @@ public class ShipmentOrderService {
                 continue;
             }
 
-            // 3. 查询库存记录
+            // 3. 查询Quantity记录
             List<InventoryHistory> inventoryHistories = inventoryHistoryService.selectByForm(shipmentOrder.getId(), shipmentOrder.getShipmentOrderType());
 
-            // 翻转库存记录的数量
+            // 翻转Quantity记录的数量
             inventoryHistories.forEach(it -> {
                 it.setQuantity(it.getQuantity().negate());
-                log.info("回滚库存:{} 数量：{}", it.getWarehouseId() + "_" + it.getAreaId() + "_" + it.getRackId() + "_" + it.getItemId(), it.getQuantity());
+                log.info("回滚Quantity:{} 数量：{}", it.getWarehouseId() + "_" + it.getAreaId() + "_" + it.getRackId() + "_" + it.getItemId(), it.getQuantity());
             });
 
-            // 4. 回滚库存
+            // 4. 回滚Quantity
             inventoryService.batchUpdate1(inventoryHistories);
 
-            // 5. 删除库存记录
+            // 5. 删除Quantity记录
             inventoryHistoryService.deleteByForm(shipmentOrder.getId(), shipmentOrder.getShipmentOrderType());
 
             // todo 6. 回滚供应商流水
@@ -252,7 +252,7 @@ public class ShipmentOrderService {
         QueryWrapper<ShipmentOrderDetail> qw = new QueryWrapper<>();
         qw.eq("shipment_order_id", order.getId());
 
-        // 新旧出库单详情对比， 生成 库存记录修改
+        // 新旧出库单详情对比， 生成 Quantity记录修改
         List<ShipmentOrderDetailVO> details = order.getDetails();
         Map<Long, ShipmentOrderDetail> dbDetailMap = shipmentOrderDetailMapper.selectList(qw).stream().collect(Collectors.toMap(ShipmentOrderDetail::getId, it -> it));
         List<InventoryHistory> adds = new ArrayList<>();
@@ -265,7 +265,7 @@ public class ShipmentOrderService {
             }
             // 新增时， status一定是未出库， 所以这个地方必定有值
             ShipmentOrderDetail dbDetail = dbDetailMap.get(it.getId());
-            // 如果上次的状态不是部分出库或者全部出库，则本次的库存变化为本次的全部
+            // 如果上次的状态不是部分出库或者全部出库，则本次的Quantity变化为本次的全部
             Integer status1 = dbDetail.getShipmentOrderStatus();
             BigDecimal added;
 
@@ -280,7 +280,7 @@ public class ShipmentOrderService {
                 }
                 added = after.subtract(before);
             }
-            //判断库存是否足够出库
+            //判断Quantity是否足够出库
             inventoryService.checkInventory(it.getItemId(), it.getWarehouseId(), it.getAreaId(), it.getRackId(), added);
 
             // 1. 前一次的实际数量是 0
@@ -357,11 +357,11 @@ public class ShipmentOrderService {
     }
 
     /*
-     * 单个订单分配仓库(填充详情单的仓库id,库区id,货架id)
+     * 单个订单分配仓库(填充详情单的仓库id,库区id,Shelves)
      * @param id 出库单id
      * 1.根据出库单id查询出库单详情
      * 2.根据出库单详情的商品id，数量
-     * 3.根据库存分配规则分配库存
+     * 3.根据Quantity分配规则分配Quantity
      * 4.修改出库单详情
      * 5.修改出库单
      * */
@@ -380,7 +380,7 @@ public class ShipmentOrderService {
         log.info("出库单详情\n{}", shipmentOrderDetails);
         // 3.获取出库单详情的商品id，数量
         shipmentOrderDetails.forEach(shipmentOrderDetail -> {
-            // 4.根据库存分配规则分配库存
+            // 4.根据Quantity分配规则分配Quantity
             List<ShipmentOrderDetail> shipmentOrderDetail1 = inventoryService.allocatedInventory(shipmentOrderDetail.getItemId(),
                     shipmentOrderDetail.getPlanQuantity(), type);
             allocationDetails.addAll(shipmentOrderDetail1);
@@ -394,7 +394,7 @@ public class ShipmentOrderService {
         // 6.修改出库单
         shipmentOrderDetailService.deleteByOrderId(shipmentOrder.getId());
         shipmentOrderDetailMapper.batchInsert(allocationDetails);
-//        log.info("分配库存详情\n{}", allocationDetails);
+//        log.info("分配Quantity详情\n{}", allocationDetails);
 
     }
 

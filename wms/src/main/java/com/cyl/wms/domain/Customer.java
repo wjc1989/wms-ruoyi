@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 
 /**
  * 客户对象 wms_customer
- * 
+ *
  * @author zcc
  */
 @ApiModel(description="客户对象")
@@ -67,11 +67,11 @@ public class Customer extends BaseAudit {
     @Excel(name = "Email")
     private String email;
 
-    @ApiModelProperty("备注")
-    @Excel(name = "备注")
+    @ApiModelProperty("Remark")
+    @Excel(name = "Remark")
     private String remark;
 
-    @ApiModelProperty("删除标识")
+    @ApiModelProperty("Delete Flag")
     private Integer delFlag;
 
 }

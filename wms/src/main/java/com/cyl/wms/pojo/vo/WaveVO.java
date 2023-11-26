@@ -19,7 +19,7 @@ public class WaveVO extends BaseAudit {
    /** 状态 */
     @Excel(name = "状态")
     private String status;
-   /** 备注 */
-    @Excel(name = "备注")
+   /** Remark */
+    @Excel(name = "Remark")
     private String remark;
 }

@@ -28,12 +28,12 @@ import com.cyl.wms.service.InventoryHistoryService;
 import com.cyl.wms.pojo.vo.InventoryHistoryVO;
 import com.ruoyi.common.utils.poi.ExcelUtil;
 /**
- * 库存记录Controller
- * 
+ * Quantity记录Controller
+ *
  * @author zcc
  * @date 2022-08-05
  */
-@Api(description ="库存记录接口列表")
+@Api(description ="Quantity记录接口列表")
 @RestController
 @RequestMapping("/wms/inventoryHistory")
 public class InventoryHistoryController extends BaseController {
@@ -42,49 +42,49 @@ public class InventoryHistoryController extends BaseController {
     @Autowired
     private InventoryHistoryConvert convert;
 
-    @ApiOperation("查询库存记录列表")
+    @ApiOperation("查询Quantity记录列表")
     @PreAuthorize("@ss.hasPermi('wms:inventoryHistory:list')")
     @PostMapping("/list")
     public ResponseEntity<Page<InventoryHistoryVO>> list(@RequestBody InventoryHistoryQuery query, Pageable page) {
         return ResponseEntity.ok(service.selectList(query, page));
     }
 
-    @ApiOperation("导出库存记录列表")
+    @ApiOperation("导出Quantity记录列表")
     @PreAuthorize("@ss.hasPermi('wms:inventoryHistory:export')")
-    @Log(title = "库存记录", businessType = BusinessType.EXPORT)
+    @Log(title = "Quantity记录", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
     public ResponseEntity<String> export(InventoryHistoryQuery query) {
         List<InventoryHistoryVO> list = service.selectList(query);
         ExcelUtil<InventoryHistoryVO> util = new ExcelUtil<>(InventoryHistoryVO.class);
-        return ResponseEntity.ok(util.writeExcel(list, "库存记录数据"));
+        return ResponseEntity.ok(util.writeExcel(list, "Quantity记录数据"));
     }
 
-    @ApiOperation("获取库存记录详细信息")
+    @ApiOperation("获取Quantity记录详细信息")
     @PreAuthorize("@ss.hasPermi('wms:inventoryHistory:query')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<InventoryHistory> getInfo(@PathVariable("id") Long id) {
         return ResponseEntity.ok(service.selectById(id));
     }
 
-    @ApiOperation("新增库存记录")
+    @ApiOperation("新增Quantity记录")
     @PreAuthorize("@ss.hasPermi('wms:inventoryHistory:add')")
-    @Log(title = "库存记录", businessType = BusinessType.INSERT)
+    @Log(title = "Quantity记录", businessType = BusinessType.INSERT)
     @PostMapping
     public ResponseEntity<Integer> add(@RequestBody InventoryHistory inventoryHistory) {
         return ResponseEntity.ok(service.insert(inventoryHistory));
     }
 
-    @ApiOperation("修改库存记录")
+    @ApiOperation("修改Quantity记录")
     @PreAuthorize("@ss.hasPermi('wms:inventoryHistory:edit')")
-    @Log(title = "库存记录", businessType = BusinessType.UPDATE)
+    @Log(title = "Quantity记录", businessType = BusinessType.UPDATE)
     @PutMapping
     public ResponseEntity<Integer> edit(@RequestBody InventoryHistory inventoryHistory) {
         return ResponseEntity.ok(service.update(inventoryHistory));
     }
 
-    @ApiOperation("删除库存记录")
+    @ApiOperation("删除Quantity记录")
     @PreAuthorize("@ss.hasPermi('wms:inventoryHistory:remove')")
-    @Log(title = "库存记录", businessType = BusinessType.DELETE)
+    @Log(title = "Quantity记录", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{ids}")
     public ResponseEntity<Integer> remove(@PathVariable Long[] ids) {
         return ResponseEntity.ok(service.deleteByIds(ids));

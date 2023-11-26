@@ -32,11 +32,11 @@ public class Wave extends BaseAudit {
     @Excel(name = "状态")
     private String status;
 
-    @ApiModelProperty("备注")
-    @Excel(name = "备注")
+    @ApiModelProperty("Remark")
+    @Excel(name = "Remark")
     private String remark;
 
-    @ApiModelProperty("删除标识")
+    @ApiModelProperty("Delete Flag")
     private Integer delFlag;
 
     @ApiModelProperty("类型")

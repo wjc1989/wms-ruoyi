@@ -41,7 +41,7 @@ public class HttpStatus {
      */
     public static final int NOT_MODIFIED = 304;
     /**
-     * 库存不足
+     * Quantity不足
      */
     public static final int INVENTORY_SHORTAGE = 398;
     /**

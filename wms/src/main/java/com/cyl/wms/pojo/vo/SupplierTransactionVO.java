@@ -35,8 +35,8 @@ public class SupplierTransactionVO  {
    /** 入库单号 */
     @Excel(name = "入库单号")
     private Long receiptOrderId;
-   /** 备注 */
-    @Excel(name = "备注")
+   /** Remark */
+    @Excel(name = "Remark")
     private String remark;
    /** 创建时间 */
     private LocalDateTime createTime;

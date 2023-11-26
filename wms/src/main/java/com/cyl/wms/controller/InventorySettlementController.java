@@ -22,12 +22,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 /**
- * 库存结算单Controller
- * 
+ * Quantity结算单Controller
+ *
  * @author zcc
  * @date 2023-04-18
  */
-@Api(description ="库存结算单接口列表")
+@Api(description ="Quantity结算单接口列表")
 @RestController
 @RequestMapping("/wms/inventorySettlement")
 public class InventorySettlementController extends BaseController {
@@ -36,7 +36,7 @@ public class InventorySettlementController extends BaseController {
     @Autowired
     private InventorySettlementConvert convert;
 
-    @ApiOperation("查询库存结算单列表")
+    @ApiOperation("查询Quantity结算单列表")
     @PreAuthorize("@ss.hasPermi('wms:inventorySettlement:list')")
     @PostMapping("/list")
     public ResponseEntity<Page<InventorySettlement>> list(@RequestBody InventorySettlementQuery query, Pageable page) {
@@ -44,49 +44,49 @@ public class InventorySettlementController extends BaseController {
         return ResponseEntity.ok(new PageImpl<>(list, page, ((com.github.pagehelper.Page)list).getTotal()));
     }
 
-    @ApiOperation("导出库存结算单列表")
+    @ApiOperation("导出Quantity结算单列表")
     @PreAuthorize("@ss.hasPermi('wms:inventorySettlement:export')")
-    @Log(title = "库存结算单", businessType = BusinessType.EXPORT)
+    @Log(title = "Quantity结算单", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
     public ResponseEntity<String> export(InventorySettlementQuery query) {
         List<InventorySettlement> list = service.selectList(query, null);
         ExcelUtil<InventorySettlementVO> util = new ExcelUtil<>(InventorySettlementVO.class);
-        return ResponseEntity.ok(util.writeExcel(convert.dos2vos(list), "库存结算单数据"));
+        return ResponseEntity.ok(util.writeExcel(convert.dos2vos(list), "Quantity结算单数据"));
     }
 
-    @ApiOperation("获取库存结算单详细信息")
+    @ApiOperation("获取Quantity结算单详细信息")
     @PreAuthorize("@ss.hasPermi('wms:inventorySettlement:query')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<InventorySettlementFrom> getInfo(@PathVariable("id") Long id) {
         return ResponseEntity.ok(service.selectById(id));
     }
 
-    @ApiOperation("新增库存结算单")
+    @ApiOperation("新增Quantity结算单")
     @PreAuthorize("@ss.hasPermi('wms:inventorySettlement:add')")
-    @Log(title = "库存结算单", businessType = BusinessType.INSERT)
+    @Log(title = "Quantity结算单", businessType = BusinessType.INSERT)
     @PostMapping
     public ResponseEntity<Integer> add(@RequestBody InventorySettlement inventorySettlement) {
         return ResponseEntity.ok(service.insert(inventorySettlement));
     }
 
-    @ApiOperation("修改库存结算单")
+    @ApiOperation("修改Quantity结算单")
     @PreAuthorize("@ss.hasPermi('wms:inventorySettlement:edit')")
-    @Log(title = "库存结算单", businessType = BusinessType.UPDATE)
+    @Log(title = "Quantity结算单", businessType = BusinessType.UPDATE)
     @PutMapping
     public ResponseEntity<Integer> edit(@RequestBody InventorySettlement inventorySettlement) {
         return ResponseEntity.ok(service.update(inventorySettlement));
     }
 
-    @ApiOperation("删除库存结算单")
+    @ApiOperation("删除Quantity结算单")
     @PreAuthorize("@ss.hasPermi('wms:inventorySettlement:remove')")
-    @Log(title = "库存结算单", businessType = BusinessType.DELETE)
+    @Log(title = "Quantity结算单", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{ids}")
     public ResponseEntity<Integer> remove(@PathVariable Long[] ids) {
         return ResponseEntity.ok(service.deleteByIds(ids));
     }
     @ApiOperation("新增或更新结算单据以及结算单据明细")
     @PreAuthorize("@ss.hasPermi('wms:inventorySettlement:edit')")
-    @Log(title = "库存结算单据", businessType = BusinessType.INSERT)
+    @Log(title = "Quantity结算单据", businessType = BusinessType.INSERT)
     @PostMapping("add-or-update")
     public ResponseEntity<Integer> addOrUpdate(@RequestBody InventorySettlementFrom inventorySettlementFrom) {
         return ResponseEntity.ok(service.addOrUpdate(inventorySettlementFrom));

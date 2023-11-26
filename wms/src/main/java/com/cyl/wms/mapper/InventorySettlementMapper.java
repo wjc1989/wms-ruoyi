@@ -7,16 +7,16 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
- * 库存结算单Mapper接口
+ * Quantity结算单Mapper接口
  *
  * @author zcc
  */
 public interface InventorySettlementMapper extends BaseMapper<InventorySettlement> {
     /**
-     * 查询库存结算单列表
+     * 查询Quantity结算单列表
      *
-     * @param inventorySettlement 库存结算单
-     * @return 库存结算单集合
+     * @param inventorySettlement Quantity结算单
+     * @return Quantity结算单集合
      */
     List<InventorySettlement> selectByEntity(InventorySettlement inventorySettlement);
 

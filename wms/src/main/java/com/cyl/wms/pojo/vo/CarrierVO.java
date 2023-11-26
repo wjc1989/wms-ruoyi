@@ -37,7 +37,7 @@ public class CarrierVO extends BaseAudit {
    /** Email */
     @Excel(name = "Email")
     private String email;
-   /** 备注 */
-    @Excel(name = "备注")
+   /** Remark */
+    @Excel(name = "Remark")
     private String remark;
 }

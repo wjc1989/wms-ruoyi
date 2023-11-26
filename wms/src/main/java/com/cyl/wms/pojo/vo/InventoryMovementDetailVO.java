@@ -9,7 +9,7 @@ import com.ruoyi.common.core.domain.BaseAudit;
 import lombok.Data;
 
 /**
- * 库存移动详情 数据视图对象
+ * Quantity移动详情 数据视图对象
  *
  * @author zcc
  */
@@ -20,14 +20,14 @@ public class InventoryMovementDetailVO extends BaseAudit {
    */
   private Long id;
   /**
-   * 库存移动Id
+   * Quantity移动Id
    */
-  @Excel(name = "库存移动Id")
+  @Excel(name = "Quantity移动Id")
   private Long inventoryMovementId;
   /**
-   * 物料
+   * Goods
    */
-  @Excel(name = "物料")
+  @Excel(name = "Goods ")
   private Long itemId;
   /**
    * 计划数量
@@ -40,9 +40,9 @@ public class InventoryMovementDetailVO extends BaseAudit {
   @Excel(name = "实际数量")
   private BigDecimal realQuantity;
   /**
-   * 备注
+   * Remark
    */
-  @Excel(name = "备注")
+  @Excel(name = "Remark")
   private String remark;
   /**
    * 源货架

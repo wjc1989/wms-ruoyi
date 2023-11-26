@@ -12,11 +12,11 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 /**
- * 库存对象 wms_inventory
+ * Quantity wms_inventory
  *
  * @author zcc
  */
-@ApiModel(description = "库存对象")
+@ApiModel(description = "Quantity")
 @Data
 @TableName("wms_inventory")
 public class Inventory extends BaseAudit implements PlaceAndItem {
@@ -25,31 +25,31 @@ public class Inventory extends BaseAudit implements PlaceAndItem {
     @ApiModelProperty("ID")
     private Long id;
 
-    @ApiModelProperty("物料ID")
-    @Excel(name = "物料ID")
+    @ApiModelProperty("Goods NO.")
+    @Excel(name = "Goods NO.")
     private Long itemId;
 
-    @ApiModelProperty("所属仓库")
-    @Excel(name = "所属仓库")
+    @ApiModelProperty("Warehouse")
+    @Excel(name = "Warehouse")
     private Long warehouseId;
 
-    @ApiModelProperty("所属库区")
-    @Excel(name = "所属库区")
+    @ApiModelProperty("Area")
+    @Excel(name = "Area")
     private Long areaId;
 
-    @ApiModelProperty("货架id")
-    @Excel(name = "货架id")
+    @ApiModelProperty("Shelves")
+    @Excel(name = "Shelves")
     private Long rackId;
 
-    @ApiModelProperty("库存")
-    @Excel(name = "库存")
+    @ApiModelProperty("Quantity")
+    @Excel(name = "Quantity")
     private BigDecimal quantity;
 
-    @ApiModelProperty("备注")
-    @Excel(name = "备注")
+    @ApiModelProperty("Remark")
+    @Excel(name = "Remark")
     private String remark;
 
-    @ApiModelProperty("删除标识")
+    @ApiModelProperty("Delete Flag")
     private Integer delFlag;
 
     @TableField(exist = false)

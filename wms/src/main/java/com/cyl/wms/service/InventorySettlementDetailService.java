@@ -24,7 +24,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * 库存结算明细Service业务层处理
+ * Quantity结算明细Service业务层处理
  *
  * @author zcc
  */
@@ -40,21 +40,21 @@ public class InventorySettlementDetailService {
     private InventoryHistoryMapper inventoryHistoryMapper;
 
     /**
-     * 查询库存结算明细
+     * 查询Quantity结算明细
      *
-     * @param id 库存结算明细主键
-     * @return 库存结算明细
+     * @param id Quantity结算明细主键
+     * @return Quantity结算明细
      */
     public InventorySettlementDetail selectById(Long id) {
         return inventorySettlementDetailMapper.selectById(id);
     }
 
     /**
-     * 查询库存结算明细列表
+     * 查询Quantity结算明细列表
      *
      * @param query 查询条件
      * @param page  分页条件
-     * @return 库存结算明细
+     * @return Quantity结算明细
      */
     public List<InventorySettlementDetail> selectList(InventorySettlementDetailQuery query, Pageable page) {
         if (page != null) {
@@ -130,9 +130,9 @@ public class InventorySettlementDetailService {
     }
 
     /**
-     * 新增库存结算明细
+     * 新增Quantity结算明细
      *
-     * @param inventorySettlementDetail 库存结算明细
+     * @param inventorySettlementDetail Quantity结算明细
      * @return 结果
      */
     public int insert(InventorySettlementDetail inventorySettlementDetail) {
@@ -142,9 +142,9 @@ public class InventorySettlementDetailService {
     }
 
     /**
-     * 修改库存结算明细
+     * 修改Quantity结算明细
      *
-     * @param inventorySettlementDetail 库存结算明细
+     * @param inventorySettlementDetail Quantity结算明细
      * @return 结果
      */
     public int update(InventorySettlementDetail inventorySettlementDetail) {
@@ -152,9 +152,9 @@ public class InventorySettlementDetailService {
     }
 
     /**
-     * 批量删除库存结算明细
+     * 批量删除Quantity结算明细
      *
-     * @param ids 需要删除的库存结算明细主键
+     * @param ids 需要删除的Quantity结算明细主键
      * @return 结果
      */
     public int deleteByIds(Long[] ids) {
@@ -162,9 +162,9 @@ public class InventorySettlementDetailService {
     }
 
     /**
-     * 删除库存结算明细信息
+     * 删除Quantity结算明细信息
      *
-     * @param id 库存结算明细主键
+     * @param id Quantity结算明细主键
      * @return 结果
      */
     public int deleteById(Long id) {
@@ -173,14 +173,14 @@ public class InventorySettlementDetailService {
     }
 
     /**
-     * 生成库存结算明细
+     * 生成Quantity结算明细
      *
      * @param query 查询条件
      * @return 结果
      */
     public List<InventorySettlementDetail> listByTime(InventorySettlementDetailQuery query) {
 
-        //获取本结算周期的库存历史记录表
+        //获取本结算周期的Quantity历史记录表
         LambdaQueryWrapper<InventoryHistory> qw = new LambdaQueryWrapper<>();
         qw.eq(InventoryHistory::getDelFlag, 0);
         if (query.getStartTime() != null) {
@@ -188,7 +188,7 @@ public class InventorySettlementDetailService {
         }
         List<InventoryHistory> inventoryHistories = inventoryHistoryMapper.selectList(qw);
 
-        //按照物料id_仓库id_库区id 分组
+        //按照Goods id_仓库id_库区id 分组
         Map<String, List<InventoryHistory>> inventoryHistoryMap = inventoryHistories
                 .stream().collect(Collectors.groupingBy(it -> it.getItemId() + "_" + it.getWarehouseId() + "_" + it.getAreaId()));
 
@@ -198,14 +198,14 @@ public class InventorySettlementDetailService {
         settlementDetailLambdaQueryWrapper.eq(InventorySettlementDetail::getSettlementType, query.getSettlementType());
         settlementDetailLambdaQueryWrapper.orderByDesc(InventorySettlementDetail::getCreateTime);
         List<InventorySettlementDetail> inventorySettlementDetails = inventorySettlementDetailMapper.selectList(settlementDetailLambdaQueryWrapper);
-        //按照物料id_仓库id_库区id 分组
+        //按照Goods id_仓库id_库区id 分组
         Map<String, List<InventorySettlementDetail>> previousInventorySettlementDetails = inventorySettlementDetails
                 .stream().collect(Collectors.groupingBy(it -> it.getItemId() + "_" + it.getWarehouseId() + "_" + it.getAreaId()));
 
 
         List<InventorySettlementDetail> list = new LinkedList<>();
         List<InventoryVO> inventoryList = inventoryService.queryValidAll();
-        log.info("有效库存：{}", inventoryList);
+        log.info("有效Quantity：{}", inventoryList);
         inventoryList.forEach(inventoryVO -> {
 
 
@@ -215,15 +215,15 @@ public class InventorySettlementDetailService {
                 inventoryHistories1 = new ArrayList<>();
             }
 
-            //获取入库的库存变化总和
+            //获取入库的Quantity变化总和
             List<Integer> receipt = Arrays.asList(ReceiptOrderConstant.PURCHASE, ReceiptOrderConstant.OUTSOURCING, ReceiptOrderConstant.RETURN);
             BigDecimal enter = inventoryHistories1.stream().filter(it -> receipt.contains(it.getFormType())).map(InventoryHistory::getQuantity).reduce(BigDecimal.ZERO, BigDecimal::add);
 
-            //获取出库的库存变化总和
+            //获取出库的Quantity变化总和
             List<Integer> shipment = Arrays.asList(ShipmentOrderConstant.SALE, ShipmentOrderConstant.OUTSOURCING, ShipmentOrderConstant.DEPT, ShipmentOrderConstant.CHECK_OUT);
             BigDecimal out = inventoryHistories1.stream().filter(it -> shipment.contains(it.getFormType())).map(InventoryHistory::getQuantity).reduce(BigDecimal.ZERO, BigDecimal::add);
 
-            //获取盘库的库存变化总和
+            //获取盘库的Quantity变化总和
             List<Integer> check = Arrays.asList(ReceiptOrderConstant.CHECK_IN, ShipmentOrderConstant.CHECK_OUT);
             BigDecimal currCheck = inventoryHistories1.stream().filter(it -> check.contains(it.getFormType())).map(InventoryHistory::getQuantity).reduce(BigDecimal.ZERO, BigDecimal::add);
 
@@ -235,7 +235,7 @@ public class InventorySettlementDetailService {
             }
 
             if (inventoryVO.getItemId() == null) {
-                System.out.println("物料id为空" + inventoryVO);
+                System.out.println("Goods id为空" + inventoryVO);
                 return;
             }
             InventorySettlementDetail inventorySettlementDetail = new InventorySettlementDetail();
@@ -251,7 +251,7 @@ public class InventorySettlementDetailService {
             inventorySettlementDetail.setCurrentEnter(enter);
             inventorySettlementDetail.setCurrentCheck(currCheck);
             inventorySettlementDetail.setPreviousBalance(previousBalance);
-            log.info("库存结算明细：{}", inventorySettlementDetail);
+            log.info("Quantity结算明细：{}", inventorySettlementDetail);
             list.add(inventorySettlementDetail);
         });
         return list;

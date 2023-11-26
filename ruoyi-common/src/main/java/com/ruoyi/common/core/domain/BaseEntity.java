@@ -18,7 +18,7 @@ public abstract class BaseEntity extends BaseAudit implements Serializable, IQue
     private String searchValue;
 
     /**
-     * 备注
+     * Remark
      */
     private String remark;
 

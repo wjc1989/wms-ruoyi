@@ -95,9 +95,9 @@ public class WaveForReceiptService {
 
         List<Inventory> inventoryList = new ArrayList<>();
 
-        //collect分配库存
+        //collect分配Quantity
         collect.forEach((itemId, quantity) -> {
-            log.info("波次单分配仓库,波次单id:{},物料id：{},数量：{}", id, itemId, quantity);
+            log.info("波次单分配仓库,波次单id:{},Goods id：{},数量：{}", id, itemId, quantity);
             Inventory inventory = inventoryService.
                     allocatedInventoryForReceipt(itemId, quantity, type);
             inventoryList.add(inventory);
@@ -266,7 +266,7 @@ public class WaveForReceiptService {
 
     private static List<ReceiptOrderDetailVO> aggregatedReceiptOrderDetailVOS(List<ReceiptOrderDetailVO> originalDetail) {
         // 单个入库单分配后库区，还可以波次？ 可以，这一步就是重新聚合订单分散得拣货数据。
-        // 聚合入库单，防止用户先前分配过库存。如果分配过库存，需要把分配过的库存加回来。保留原始订单信息
+        // 聚合入库单，防止用户先前分配过Quantity。如果分配过Quantity，需要把分配过的Quantity加回来。保留原始订单信息
         Map<String, ReceiptOrderDetailVO> aggregatedDetails = new HashMap<>();
         originalDetail.forEach(vo -> {
             String key = vo.getItemId() + "_" + vo.getOrderNo();

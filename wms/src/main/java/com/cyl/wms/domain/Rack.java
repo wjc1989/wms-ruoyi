@@ -8,7 +8,7 @@ import lombok.Data;
 import com.baomidou.mybatisplus.annotation.TableName;
 /**
  * 货架对象 wms_rack
- * 
+ *
  * @author zcc
  */
 @ApiModel(description="货架对象")
@@ -32,15 +32,15 @@ public class Rack extends BaseAudit {
     @Excel(name = "所属货区")
     private Long areaId;
 
-    @ApiModelProperty("所属仓库")
-    @Excel(name = "所属仓库")
+    @ApiModelProperty("Warehouse")
+    @Excel(name = "Warehouse")
     private Long warehouseId;
 
-    @ApiModelProperty("备注")
-    @Excel(name = "备注")
+    @ApiModelProperty("Remark")
+    @Excel(name = "Remark")
     private String remark;
 
-    @ApiModelProperty("删除标识")
+    @ApiModelProperty("Delete Flag")
     private Integer delFlag;
 
 }

@@ -16,7 +16,7 @@ public class ShipmentOrderDetailQuery {
     @ApiModelProperty("出库单 精确匹配")
     private Long shipmentOrderId;
 
-    @ApiModelProperty("物料 精确匹配")
+    @ApiModelProperty("Goods  精确匹配")
     private Long itemId;
 
     @ApiModelProperty("计划数量 精确匹配")

@@ -13,40 +13,40 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * 库存Mapper接口
+ * QuantityMapper接口
  *
  * @author zcc
  */
 public interface InventoryMapper extends BaseMapper<Inventory> {
     /**
-     * 查询库存
+     * 查询Quantity
      *
-     * @param queryWrapper 库存
-     * @return 库存集合
+     * @param queryWrapper Quantity
+     * @return Quantity集合
      */
     List<Inventory> selectListGroupByWarehouseId(@Param(Constants.WRAPPER) Wrapper<Inventory> queryWrapper);
 
     /**
-     * 查询库存
+     * 查询Quantity
      *
-     * @param queryWrapper 库存
-     * @return 库存集合
+     * @param queryWrapper Quantity
+     * @return Quantity集合
      */
     List<Inventory> selectListGroupByAreaId(@Param(Constants.WRAPPER) QueryWrapper<Inventory> queryWrapper);
 
     /**
-     * 查询库存
+     * 查询Quantity
      *
-     * @param queryWrapper 库存
-     * @return 库存集合
+     * @param queryWrapper Quantity
+     * @return Quantity集合
      */
     List<Inventory> selectListGroupByItemTypeId(@Param(Constants.WRAPPER) QueryWrapper<Inventory> queryWrapper);
 
     /**
-     * 查询库存列表
+     * 查询Quantity列表
      *
-     * @param inventory 库存
-     * @return 库存集合
+     * @param inventory Quantity
+     * @return Quantity集合
      */
     List<Inventory> selectByEntity(Inventory inventory);
 
@@ -71,7 +71,7 @@ public interface InventoryMapper extends BaseMapper<Inventory> {
     List<Inventory> selectWarning();
 
     /**
-     * 查询所有有效的物料(仓库，物料未被删除)
+     * 查询所有有效的Goods (仓库，Goods 未被删除)
      *
      */
     List<Inventory> selectValidAll();

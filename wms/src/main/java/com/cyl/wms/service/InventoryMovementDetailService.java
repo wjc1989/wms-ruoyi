@@ -19,7 +19,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * 库存移动详情Service业务层处理
+ * Quantity移动详情Service业务层处理
  *
  * @author zcc
  */
@@ -31,21 +31,21 @@ public class InventoryMovementDetailService {
     private InventoryMovementDetailConvert convert;
 
     /**
-     * 查询库存移动详情
+     * 查询Quantity移动详情
      *
-     * @param id 库存移动详情主键
-     * @return 库存移动详情
+     * @param id Quantity移动详情主键
+     * @return Quantity移动详情
      */
     public InventoryMovementDetail selectById(Long id) {
         return inventoryMovementDetailMapper.selectById(id);
     }
 
     /**
-     * 查询库存移动详情列表
+     * 查询Quantity移动详情列表
      *
      * @param query 查询条件
      * @param page  分页条件
-     * @return 库存移动详情
+     * @return Quantity移动详情
      */
     public List<InventoryMovementDetail> selectList(InventoryMovementDetailQuery query, Pageable page) {
         if (page != null) {
@@ -130,9 +130,9 @@ public class InventoryMovementDetailService {
     }
 
     /**
-     * 新增库存移动详情
+     * 新增Quantity移动详情
      *
-     * @param inventoryMovementDetail 库存移动详情
+     * @param inventoryMovementDetail Quantity移动详情
      * @return 结果
      */
     public int insert(InventoryMovementDetail inventoryMovementDetail) {
@@ -142,9 +142,9 @@ public class InventoryMovementDetailService {
     }
 
     /**
-     * 修改库存移动详情
+     * 修改Quantity移动详情
      *
-     * @param inventoryMovementDetail 库存移动详情
+     * @param inventoryMovementDetail Quantity移动详情
      * @return 结果
      */
     public int update(InventoryMovementDetail inventoryMovementDetail) {
@@ -152,9 +152,9 @@ public class InventoryMovementDetailService {
     }
 
     /**
-     * 批量删除库存移动详情
+     * 批量删除Quantity移动详情
      *
-     * @param ids 需要删除的库存移动详情主键
+     * @param ids 需要删除的Quantity移动详情主键
      * @return 结果
      */
     public int deleteByIds(Long[] ids) {
@@ -162,9 +162,9 @@ public class InventoryMovementDetailService {
     }
 
     /**
-     * 删除库存移动详情信息
+     * 删除Quantity移动详情信息
      *
-     * @param id 库存移动详情主键
+     * @param id Quantity移动详情主键
      * @return 结果
      */
     public int deleteById(Long id) {
@@ -173,9 +173,9 @@ public class InventoryMovementDetailService {
     }
 
     /**
-     * 逻辑删除 库存移动详情信息
+     * 逻辑删除 Quantity移动详情信息
      *
-     * @param inventoryMovement 库存移动单
+     * @param inventoryMovement Quantity移动单
      */
     public void updateDelFlag(InventoryMovement inventoryMovement) {
         LambdaUpdateWrapper<InventoryMovementDetail> updateWrapper = new LambdaUpdateWrapper<InventoryMovementDetail>()

@@ -37,7 +37,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * 库存移动Service业务层处理
+ * Quantity移动Service业务层处理
  *
  * @author zcc
  */
@@ -63,10 +63,10 @@ public class InventoryMovementService {
 
 
     /**
-     * 查询库存移动
+     * 查询Quantity移动
      *
-     * @param id 库存移动主键
-     * @return 库存移动
+     * @param id Quantity移动主键
+     * @return Quantity移动
      */
     public InventoryMovementFrom selectById(Long id) {
 
@@ -92,11 +92,11 @@ public class InventoryMovementService {
     }
 
     /**
-     * 查询库存移动列表
+     * 查询Quantity移动列表
      *
      * @param query 查询条件
      * @param page  分页条件
-     * @return 库存移动
+     * @return Quantity移动
      */
     public Page<InventoryMovementVO> selectList(InventoryMovementQuery query, Pageable page) {
         if (page != null) {
@@ -134,9 +134,9 @@ public class InventoryMovementService {
     }
 
     /**
-     * 新增库存移动
+     * 新增Quantity移动
      *
-     * @param inventoryMovement 库存移动
+     * @param inventoryMovement Quantity移动
      * @return 结果
      */
     public int insert(InventoryMovement inventoryMovement) {
@@ -146,9 +146,9 @@ public class InventoryMovementService {
     }
 
     /**
-     * 修改库存移动
+     * 修改Quantity移动
      *
-     * @param inventoryMovement 库存移动
+     * @param inventoryMovement Quantity移动
      * @return 结果
      */
     public int update(InventoryMovement inventoryMovement) {
@@ -156,9 +156,9 @@ public class InventoryMovementService {
     }
 
     /**
-     * 批量删除库存移动
+     * 批量删除Quantity移动
      *
-     * @param ids 需要删除的库存移动主键
+     * @param ids 需要删除的Quantity移动主键
      * @return 结果
      */
     @Transactional
@@ -180,21 +180,21 @@ public class InventoryMovementService {
                 continue;
             }
 
-            // 3. 查询库存记录
+            // 3. 查询Quantity记录
             List<InventoryHistory> inventoryHistories = inventoryHistoryService.selectByForm(inventoryMovement.getId(),
                     InventoryMovementConstant.IN_TYPE, InventoryMovementConstant.OUT_TYPE);
 
-            // 翻转库存记录的数量
+            // 翻转Quantity记录的数量
             inventoryHistories.forEach(it -> {
                 it.setQuantity(it.getQuantity().negate());
-                log.info("删除移库单：{} 回滚库存:{} 数量：{}", inventoryMovement.getInventoryMovementNo(),
+                log.info("删除移库单：{} 回滚Quantity:{} 数量：{}", inventoryMovement.getInventoryMovementNo(),
                         it.getWarehouseId() + "_" + it.getAreaId() + "_" + it.getRackId() + "_" + it.getItemId(), it.getQuantity());
             });
 
-            // 4. 回滚库存
+            // 4. 回滚Quantity
             inventoryService.batchUpdate1(inventoryHistories);
 
-            // 5. 删除库存记录
+            // 5. 删除Quantity记录
             inventoryHistoryService.deleteByForm(inventoryMovement.getId(), InventoryMovementConstant.IN_TYPE, InventoryMovementConstant.OUT_TYPE);
 
             // todo 6. 回滚供应商流水
@@ -204,9 +204,9 @@ public class InventoryMovementService {
     }
 
     /**
-     * 删除库存移动信息
+     * 删除Quantity移动信息
      *
-     * @param id 库存移动主键
+     * @param id Quantity移动主键
      * @return 结果
      */
     public int deleteById(Long id) {
@@ -229,7 +229,7 @@ public class InventoryMovementService {
         QueryWrapper<InventoryMovementDetail> qw = new QueryWrapper<>();
         qw.eq("inventory_movement_id", order.getId());
 
-        // 新旧详情对比， 生成 库存记录修改
+        // 新旧详情对比， 生成 Quantity记录修改
         List<InventoryMovementDetailVO> details = order.getDetails();
         Map<Long, InventoryMovementDetail> dbDetailMap = inventoryMovementDetailMapper.selectList(qw).stream().collect(Collectors.toMap(InventoryMovementDetail::getId, it -> it));
         List<InventoryHistory> inList = new ArrayList<>();
@@ -243,7 +243,7 @@ public class InventoryMovementService {
             }
             // 新增时， status一定是未操作， 所以这个地方必定有值
             InventoryMovementDetail dbDetail = dbDetailMap.get(it.getId());
-            // 如果上次的状态不是部分移动或者全部移动，则本次的库存变化为本次的全部
+            // 如果上次的状态不是部分移动或者全部移动，则本次的Quantity变化为本次的全部
             Integer status1 = dbDetail.getMoveStatus();
             BigDecimal added;
 
@@ -258,7 +258,7 @@ public class InventoryMovementService {
                 }
                 added = after.subtract(before);
             }
-            //判断库存是否足够出库
+            //判断Quantity是否足够出库
             inventoryService.checkInventory(it.getItemId(), it.getSourceWarehouseId(), it.getSourceAreaId(), it.getSourceRackId(), added);
 
             // 1. 创建移库日志

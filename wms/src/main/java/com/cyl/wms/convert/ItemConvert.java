@@ -6,7 +6,7 @@ import com.cyl.wms.pojo.dto.ItemDTO;
 import com.cyl.wms.pojo.vo.ItemVO;
 import java.util.List;
 /**
- * 物料  DO <=> DTO <=> VO / BO / Query
+ * Goods   DO <=> DTO <=> VO / BO / Query
  *
  * @author zcc
  */

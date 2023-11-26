@@ -8,7 +8,7 @@ import lombok.Data;
 import com.baomidou.mybatisplus.annotation.TableName;
 /**
  * 仓库对象 wms_warehouse
- * 
+ *
  * @author zcc
  */
 @ApiModel(description="仓库对象")
@@ -28,11 +28,11 @@ public class Warehouse extends BaseAudit {
     @Excel(name = "仓库名称")
     private String warehouseName;
 
-    @ApiModelProperty("删除标识")
+    @ApiModelProperty("Delete Flag")
     private Integer delFlag;
 
-    @ApiModelProperty("备注")
-    @Excel(name = "备注")
+    @ApiModelProperty("Remark")
+    @Excel(name = "Remark")
     private String remark;
 
 }

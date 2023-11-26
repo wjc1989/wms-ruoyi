@@ -53,8 +53,8 @@ public class SupplierTransaction {
     @Excel(name = "入库单号")
     private int receiptOrderId;
 
-    @ApiModelProperty("备注")
-    @Excel(name = "备注")
+    @ApiModelProperty("Remark")
+    @Excel(name = "Remark")
     private String remark;
 
     @ApiModelProperty("删除标志")

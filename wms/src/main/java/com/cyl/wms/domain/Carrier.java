@@ -8,7 +8,7 @@ import lombok.Data;
 import com.baomidou.mybatisplus.annotation.TableName;
 /**
  * 承运商对象 wms_carrier
- * 
+ *
  * @author zcc
  */
 @ApiModel(description="承运商对象")
@@ -52,11 +52,11 @@ public class Carrier extends BaseAudit {
     @Excel(name = "Email")
     private String email;
 
-    @ApiModelProperty("备注")
-    @Excel(name = "备注")
+    @ApiModelProperty("Remark")
+    @Excel(name = "Remark")
     private String remark;
 
-    @ApiModelProperty("删除标识")
+    @ApiModelProperty("Delete Flag")
     private Integer delFlag;
 
 }

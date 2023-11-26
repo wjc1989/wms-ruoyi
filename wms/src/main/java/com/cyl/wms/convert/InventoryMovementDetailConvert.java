@@ -10,7 +10,7 @@ import org.mapstruct.Mapping;
 import java.util.List;
 
 /**
- * 库存移动详情  DO <=> DTO <=> VO / BO / Query
+ * Quantity移动详情  DO <=> DTO <=> VO / BO / Query
  *
  * @author zcc
  */

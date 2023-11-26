@@ -9,11 +9,11 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 /**
- * 库存结算明细对象 wms_inventory_settlement_detail
- * 
+ * Quantity结算明细对象 wms_inventory_settlement_detail
+ *
  * @author zcc
  */
-@ApiModel(description="库存结算明细对象")
+@ApiModel(description="Quantity结算明细对象")
 @Data
 @TableName("wms_inventory_settlement_detail")
 public class InventorySettlementDetail extends BaseAudit {
@@ -30,8 +30,8 @@ public class InventorySettlementDetail extends BaseAudit {
     @Excel(name = "结算类型,1:月结，2:年结")
     private Integer settlementType;
 
-    @ApiModelProperty("物料id")
-    @Excel(name = "物料id")
+    @ApiModelProperty("Goods id")
+    @Excel(name = "Goods id")
     private Long itemId;
 
     @ApiModelProperty("编号")
@@ -86,11 +86,11 @@ public class InventorySettlementDetail extends BaseAudit {
     @Excel(name = "本期结存")
     private BigDecimal currentBalance;
 
-    @ApiModelProperty("删除标识")
+    @ApiModelProperty("Delete Flag")
     private Integer delFlag;
 
-    @ApiModelProperty("备注")
-    @Excel(name = "备注")
+    @ApiModelProperty("Remark")
+    @Excel(name = "Remark")
     private String remark;
 
 }

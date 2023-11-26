@@ -1,7 +1,7 @@
 package com.cyl.wms.pojo.query;
 
 /*
- * 库存看盘类型
+ * Quantity看盘类型
  * */
 public interface InventoryPanelType {
     // 仓库

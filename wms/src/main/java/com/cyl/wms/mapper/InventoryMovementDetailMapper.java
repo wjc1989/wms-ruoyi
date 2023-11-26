@@ -9,16 +9,16 @@ import org.apache.ibatis.annotations.Param;
 import com.cyl.wms.domain.InventoryMovementDetail;
 
 /**
- * 库存移动详情Mapper接口
+ * Quantity移动详情Mapper接口
  *
  * @author zcc
  */
 public interface InventoryMovementDetailMapper extends BaseMapper<InventoryMovementDetail> {
   /**
-   * 查询库存移动详情列表
+   * 查询Quantity移动详情列表
    *
-   * @param inventoryMovementDetail 库存移动详情
-   * @return 库存移动详情集合
+   * @param inventoryMovementDetail Quantity移动详情
+   * @return Quantity移动详情集合
    */
   List<InventoryMovementDetail> selectByEntity(InventoryMovementDetail inventoryMovementDetail);
 

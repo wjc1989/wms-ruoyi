@@ -5,7 +5,7 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 /**
- * 库存结算明细 DTO 对象
+ * Quantity结算明细 DTO 对象
  *
  * @author zcc
  */

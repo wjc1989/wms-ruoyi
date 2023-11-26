@@ -36,7 +36,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * 库存盘点单据Service业务层处理
+ * Quantity盘点单据Service业务层处理
  *
  *
  * @author zcc
@@ -68,10 +68,10 @@ public class InventoryCheckService {
     @Autowired
     private InventoryCheckConvert convert;
     /**
-     * 查询库存盘点单据
+     * 查询Quantity盘点单据
      *
-     * @param id 库存盘点单据主键
-     * @return 库存盘点单据
+     * @param id Quantity盘点单据主键
+     * @return Quantity盘点单据
      */
     public InventoryCheckFrom selectById(Long id) {
         InventoryCheck inventoryCheck = inventoryCheckMapper.selectById(id);
@@ -116,11 +116,11 @@ public class InventoryCheckService {
     }
 
     /**
-     * 查询库存盘点单据列表
+     * 查询Quantity盘点单据列表
      *
      * @param query 查询条件
      * @param page 分页条件
-     * @return 库存盘点单据
+     * @return Quantity盘点单据
      */
     public List<InventoryCheck> selectList(InventoryCheckQuery query, Pageable page) {
         if (page != null) {
@@ -176,9 +176,9 @@ public class InventoryCheckService {
     }
 
     /**
-     * 新增库存盘点单据
+     * 新增Quantity盘点单据
      *
-     * @param inventoryCheck 库存盘点单据
+     * @param inventoryCheck Quantity盘点单据
      * @return 结果
      */
     public int insert(InventoryCheck inventoryCheck) {
@@ -188,9 +188,9 @@ public class InventoryCheckService {
     }
 
     /**
-     * 修改库存盘点单据
+     * 修改Quantity盘点单据
      *
-     * @param inventoryCheck 库存盘点单据
+     * @param inventoryCheck Quantity盘点单据
      * @return 结果
      */
     public int update(InventoryCheck inventoryCheck) {
@@ -198,9 +198,9 @@ public class InventoryCheckService {
     }
 
     /**
-     * 批量删除库存盘点单据
+     * 批量删除Quantity盘点单据
      *
-     * @param ids 需要删除的库存盘点单据主键
+     * @param ids 需要删除的Quantity盘点单据主键
      * @return 结果
      */
     public int deleteByIds(Long[] ids) {
@@ -208,9 +208,9 @@ public class InventoryCheckService {
     }
 
     /**
-     * 删除库存盘点单据信息
+     * 删除Quantity盘点单据信息
      *
-     * @param id 库存盘点单据主键
+     * @param id Quantity盘点单据主键
      * @return 结果
      */
     public int deleteById(Long id) {
@@ -258,7 +258,7 @@ public class InventoryCheckService {
             // 4.2 保存明细单
             saveDetails(inventoryCheckFrom.getId(), inventoryCheckFrom.getDetails());
 
-            // 4.3 操作库存流水，物料库存
+            // 4.3 操作Quantity流水，Goods Quantity
             saveInventory(inventoryCheckFrom.getId(), inventoryCheckFrom.getDetails());
         }
 
@@ -267,7 +267,7 @@ public class InventoryCheckService {
     }
 
     /**
-     * 操作库存流水，物料库存
+     * 操作Quantity流水，Goods Quantity
      *
      * @param inventoryCheckId 操作单
      * @param details          盘点单据详情

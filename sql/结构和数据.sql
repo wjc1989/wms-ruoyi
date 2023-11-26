@@ -25,7 +25,7 @@ CREATE TABLE `gen_table`  (
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '更新者',
   `update_time` datetime(3) NULL DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Remark',
   PRIMARY KEY (`table_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 921 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '代码生成业务表' ROW_FORMAT = Dynamic;
 
@@ -63,44 +63,44 @@ CREATE TABLE `gen_table_column`  (
 -- Records of gen_table_column
 -- ----------------------------
 INSERT INTO `gen_table_column` VALUES (10878, '865', 'id', 'ID', 'bigint(20)', 'Long', 'id', '1', '1', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 1, -1, '2022-10-10 21:08:56', NULL, NULL);
-INSERT INTO `gen_table_column` VALUES (10879, '865', 'form_id', '操作id（出库、入库、库存移动表单id）', 'bigint(20)', 'Long', 'formId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 2, -1, '2022-10-10 21:08:56', NULL, NULL);
+INSERT INTO `gen_table_column` VALUES (10879, '865', 'form_id', '操作id（出库、入库、Quantity移动表单id）', 'bigint(20)', 'Long', 'formId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 2, -1, '2022-10-10 21:08:56', NULL, NULL);
 INSERT INTO `gen_table_column` VALUES (10880, '865', 'form_type', '操作类型', 'int(11)', 'Integer', 'formType', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'select', '', 3, -1, '2022-10-10 21:08:56', NULL, NULL);
-INSERT INTO `gen_table_column` VALUES (10881, '865', 'item_id', '物料ID', 'bigint(20)', 'Long', 'itemId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 4, -1, '2022-10-10 21:08:56', NULL, NULL);
-INSERT INTO `gen_table_column` VALUES (10882, '865', 'rack_id', '货架id', 'bigint(20)', 'Long', 'rackId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 5, -1, '2022-10-10 21:08:56', NULL, NULL);
-INSERT INTO `gen_table_column` VALUES (10883, '865', 'quantity', '库存变化', 'decimal(20,2)', 'BigDecimal', 'quantity', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 6, -1, '2022-10-10 21:08:56', NULL, NULL);
-INSERT INTO `gen_table_column` VALUES (10884, '865', 'remark', '备注', 'varchar(255)', 'String', 'remark', '0', '0', NULL, '1', '1', '1', NULL, 'EQ', 'input', '', 7, -1, '2022-10-10 21:08:56', NULL, NULL);
-INSERT INTO `gen_table_column` VALUES (10885, '865', 'del_flag', '删除标识', 'tinyint(4)', 'Integer', 'delFlag', '0', '0', '1', '1', NULL, NULL, NULL, 'EQ', 'input', '', 8, -1, '2022-10-10 21:08:56', NULL, NULL);
+INSERT INTO `gen_table_column` VALUES (10881, '865', 'item_id', 'Goods ID', 'bigint(20)', 'Long', 'itemId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 4, -1, '2022-10-10 21:08:56', NULL, NULL);
+INSERT INTO `gen_table_column` VALUES (10882, '865', 'rack_id', 'Shelves', 'bigint(20)', 'Long', 'rackId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 5, -1, '2022-10-10 21:08:56', NULL, NULL);
+INSERT INTO `gen_table_column` VALUES (10883, '865', 'quantity', 'Quantity变化', 'decimal(20,2)', 'BigDecimal', 'quantity', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 6, -1, '2022-10-10 21:08:56', NULL, NULL);
+INSERT INTO `gen_table_column` VALUES (10884, '865', 'remark', 'Remark', 'varchar(255)', 'String', 'remark', '0', '0', NULL, '1', '1', '1', NULL, 'EQ', 'input', '', 7, -1, '2022-10-10 21:08:56', NULL, NULL);
+INSERT INTO `gen_table_column` VALUES (10885, '865', 'del_flag', 'Delete Flag', 'tinyint(4)', 'Integer', 'delFlag', '0', '0', '1', '1', NULL, NULL, NULL, 'EQ', 'input', '', 8, -1, '2022-10-10 21:08:56', NULL, NULL);
 INSERT INTO `gen_table_column` VALUES (10886, '865', 'create_by', '创建人', 'bigint(20)', 'Long', 'createBy', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 9, -1, '2022-10-10 21:08:56', NULL, NULL);
 INSERT INTO `gen_table_column` VALUES (10887, '865', 'create_time', '创建时间', 'datetime(3)', 'LocalDateTime', 'createTime', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'datetime', '', 10, -1, '2022-10-10 21:08:56', NULL, NULL);
 INSERT INTO `gen_table_column` VALUES (10888, '865', 'update_by', '修改人', 'bigint(20)', 'Long', 'updateBy', '0', '0', NULL, '1', '1', NULL, NULL, 'EQ', 'input', '', 11, -1, '2022-10-10 21:08:56', NULL, NULL);
 INSERT INTO `gen_table_column` VALUES (10889, '865', 'update_time', '修改时间', 'datetime(3)', 'LocalDateTime', 'updateTime', '0', '0', NULL, '1', '1', NULL, NULL, 'EQ', 'datetime', '', 12, -1, '2022-10-10 21:08:56', NULL, NULL);
-INSERT INTO `gen_table_column` VALUES (10890, '865', 'warehouseId', '所属仓库', 'bigint(20)', 'Long', 'warehouseid', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 13, -1, '2022-10-10 21:08:56', NULL, NULL);
-INSERT INTO `gen_table_column` VALUES (10891, '865', 'areaId', '所属库区', 'bigint(20)', 'Long', 'areaid', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 14, -1, '2022-10-10 21:08:56', NULL, NULL);
+INSERT INTO `gen_table_column` VALUES (10890, '865', 'warehouseId', 'Warehouse', 'bigint(20)', 'Long', 'warehouseid', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 13, -1, '2022-10-10 21:08:56', NULL, NULL);
+INSERT INTO `gen_table_column` VALUES (10891, '865', 'areaId', 'Area', 'bigint(20)', 'Long', 'areaid', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 14, -1, '2022-10-10 21:08:56', NULL, NULL);
 INSERT INTO `gen_table_column` VALUES (10892, '866', 'id', 'ID', 'bigint(20)', 'Long', 'id', '1', '1', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 1, -1, '2022-10-10 22:30:47', NULL, NULL);
-INSERT INTO `gen_table_column` VALUES (10893, '866', 'item_id', '物料ID', 'bigint(20)', 'Long', 'itemId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 2, -1, '2022-10-10 22:30:47', NULL, NULL);
-INSERT INTO `gen_table_column` VALUES (10894, '866', 'rack_id', '货架id', 'bigint(20)', 'Long', 'rackId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 3, -1, '2022-10-10 22:30:47', NULL, NULL);
-INSERT INTO `gen_table_column` VALUES (10895, '866', 'quantity', '库存', 'decimal(20,2)', 'BigDecimal', 'quantity', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 4, -1, '2022-10-10 22:30:47', NULL, NULL);
-INSERT INTO `gen_table_column` VALUES (10896, '866', 'remark', '备注', 'varchar(255)', 'String', 'remark', '0', '0', NULL, '1', '1', '1', NULL, 'EQ', 'input', '', 5, -1, '2022-10-10 22:30:47', NULL, NULL);
-INSERT INTO `gen_table_column` VALUES (10897, '866', 'del_flag', '删除标识', 'tinyint(4)', 'Integer', 'delFlag', '0', '0', '1', '1', NULL, NULL, NULL, 'EQ', 'input', '', 6, -1, '2022-10-10 22:30:48', NULL, NULL);
+INSERT INTO `gen_table_column` VALUES (10893, '866', 'item_id', 'Goods ID', 'bigint(20)', 'Long', 'itemId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 2, -1, '2022-10-10 22:30:47', NULL, NULL);
+INSERT INTO `gen_table_column` VALUES (10894, '866', 'rack_id', 'Shelves', 'bigint(20)', 'Long', 'rackId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 3, -1, '2022-10-10 22:30:47', NULL, NULL);
+INSERT INTO `gen_table_column` VALUES (10895, '866', 'quantity', 'Quantity', 'decimal(20,2)', 'BigDecimal', 'quantity', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 4, -1, '2022-10-10 22:30:47', NULL, NULL);
+INSERT INTO `gen_table_column` VALUES (10896, '866', 'remark', 'Remark', 'varchar(255)', 'String', 'remark', '0', '0', NULL, '1', '1', '1', NULL, 'EQ', 'input', '', 5, -1, '2022-10-10 22:30:47', NULL, NULL);
+INSERT INTO `gen_table_column` VALUES (10897, '866', 'del_flag', 'Delete Flag', 'tinyint(4)', 'Integer', 'delFlag', '0', '0', '1', '1', NULL, NULL, NULL, 'EQ', 'input', '', 6, -1, '2022-10-10 22:30:48', NULL, NULL);
 INSERT INTO `gen_table_column` VALUES (10898, '866', 'create_by', '创建人', 'bigint(20)', 'Long', 'createBy', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 7, -1, '2022-10-10 22:30:48', NULL, NULL);
 INSERT INTO `gen_table_column` VALUES (10899, '866', 'create_time', '创建时间', 'datetime(3)', 'LocalDateTime', 'createTime', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'datetime', '', 8, -1, '2022-10-10 22:30:48', NULL, NULL);
 INSERT INTO `gen_table_column` VALUES (10900, '866', 'update_by', '修改人', 'bigint(20)', 'Long', 'updateBy', '0', '0', NULL, '1', '1', NULL, NULL, 'EQ', 'input', '', 9, -1, '2022-10-10 22:30:48', NULL, NULL);
 INSERT INTO `gen_table_column` VALUES (10901, '866', 'update_time', '修改时间', 'datetime(3)', 'LocalDateTime', 'updateTime', '0', '0', NULL, '1', '1', NULL, NULL, 'EQ', 'datetime', '', 10, -1, '2022-10-10 22:30:48', NULL, NULL);
-INSERT INTO `gen_table_column` VALUES (10902, '866', 'warehouse_id', '所属仓库', 'bigint(20)', 'Long', 'warehouseId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 11, -1, '2022-10-10 22:30:48', NULL, NULL);
-INSERT INTO `gen_table_column` VALUES (10903, '866', 'area_id', '所属库区', 'bigint(20)', 'Long', 'areaId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 12, -1, '2022-10-10 22:30:48', NULL, NULL);
+INSERT INTO `gen_table_column` VALUES (10902, '866', 'warehouse_id', 'Warehouse', 'bigint(20)', 'Long', 'warehouseId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 11, -1, '2022-10-10 22:30:48', NULL, NULL);
+INSERT INTO `gen_table_column` VALUES (10903, '866', 'area_id', 'Area', 'bigint(20)', 'Long', 'areaId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 12, -1, '2022-10-10 22:30:48', NULL, NULL);
 INSERT INTO `gen_table_column` VALUES (11462, '908', 'id', 'ID', 'int(11)', 'Integer', 'id', '1', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 1, 1, '2022-12-01 11:28:35', NULL, '2022-12-01 11:29:24.000');
 INSERT INTO `gen_table_column` VALUES (11463, '908', 'name', 'NAME', 'varchar(255)', 'String', 'name', '0', '0', NULL, '1', '1', '1', '1', 'LIKE', 'input', '', 2, 1, '2022-12-01 11:28:35', NULL, '2022-12-01 11:29:24.000');
 INSERT INTO `gen_table_column` VALUES (11464, '908', 'remark', 'REMARK', 'varchar(255)', 'String', 'remark', '0', '0', NULL, '1', '1', '1', NULL, 'EQ', 'input', '', 3, 1, '2022-12-01 11:28:35', NULL, '2022-12-01 11:29:24.000');
 INSERT INTO `gen_table_column` VALUES (11628, '920', 'id', 'ID', 'bigint(20)', 'Long', 'id', '1', '1', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 1, 1, '2023-05-26 10:54:12', NULL, NULL);
 INSERT INTO `gen_table_column` VALUES (11629, '920', 'inventory_movement_no', '编号', 'varchar(30)', 'String', 'inventoryMovementNo', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 2, 1, '2023-05-26 10:54:12', NULL, NULL);
-INSERT INTO `gen_table_column` VALUES (11630, '920', 'source_rack_id', '原货架Id', 'bigint(20)', 'Long', 'sourceRackId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 3, 1, '2023-05-26 10:54:12', NULL, NULL);
+INSERT INTO `gen_table_column` VALUES (11630, '920', 'source_rack_id', '原Shelves', 'bigint(20)', 'Long', 'sourceRackId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 3, 1, '2023-05-26 10:54:12', NULL, NULL);
 INSERT INTO `gen_table_column` VALUES (11631, '920', 'target_rack_id', '目标货架', 'bigint(20)', 'Long', 'targetRackId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 4, 1, '2023-05-26 10:54:12', NULL, NULL);
 INSERT INTO `gen_table_column` VALUES (11632, '920', 'status', '状态', 'tinyint(4)', 'Integer', 'status', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'radio', '', 5, 1, '2023-05-26 10:54:12', NULL, NULL);
 INSERT INTO `gen_table_column` VALUES (11633, '920', 'check_status', '审核状态', 'tinyint(4)', 'Integer', 'checkStatus', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'radio', '', 6, 1, '2023-05-26 10:54:12', NULL, NULL);
 INSERT INTO `gen_table_column` VALUES (11634, '920', 'check_user_id', '审核人', 'bigint(20)', 'Long', 'checkUserId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 7, 1, '2023-05-26 10:54:12', NULL, NULL);
 INSERT INTO `gen_table_column` VALUES (11635, '920', 'check_time', '审核时间', 'datetime(3)', 'LocalDateTime', 'checkTime', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'datetime', '', 8, 1, '2023-05-26 10:54:12', NULL, NULL);
-INSERT INTO `gen_table_column` VALUES (11636, '920', 'remark', '备注', 'varchar(255)', 'String', 'remark', '0', '0', NULL, '1', '1', '1', NULL, 'EQ', 'input', '', 9, 1, '2023-05-26 10:54:12', NULL, NULL);
-INSERT INTO `gen_table_column` VALUES (11637, '920', 'del_flag', '删除标识', 'tinyint(4)', 'Integer', 'delFlag', '0', '0', '1', '1', NULL, NULL, NULL, 'EQ', 'input', '', 10, 1, '2023-05-26 10:54:12', NULL, NULL);
+INSERT INTO `gen_table_column` VALUES (11636, '920', 'remark', 'Remark', 'varchar(255)', 'String', 'remark', '0', '0', NULL, '1', '1', '1', NULL, 'EQ', 'input', '', 9, 1, '2023-05-26 10:54:12', NULL, NULL);
+INSERT INTO `gen_table_column` VALUES (11637, '920', 'del_flag', 'Delete Flag', 'tinyint(4)', 'Integer', 'delFlag', '0', '0', '1', '1', NULL, NULL, NULL, 'EQ', 'input', '', 10, 1, '2023-05-26 10:54:12', NULL, NULL);
 INSERT INTO `gen_table_column` VALUES (11638, '920', 'create_by', '创建人', 'bigint(20)', 'Long', 'createBy', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 11, 1, '2023-05-26 10:54:12', NULL, NULL);
 INSERT INTO `gen_table_column` VALUES (11639, '920', 'create_time', '创建时间', 'datetime(3)', 'LocalDateTime', 'createTime', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'datetime', '', 12, 1, '2023-05-26 10:54:12', NULL, NULL);
 INSERT INTO `gen_table_column` VALUES (11640, '920', 'update_by', '修改人', 'bigint(20)', 'Long', 'updateBy', '0', '0', NULL, '1', '1', NULL, NULL, 'EQ', 'input', '', 13, 1, '2023-05-26 10:54:12', NULL, NULL);
@@ -135,7 +135,7 @@ CREATE TABLE `sys_config`  (
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '更新者',
   `update_time` datetime(3) NULL DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Remark',
   PRIMARY KEY (`config_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 100 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '参数配置表' ROW_FORMAT = Dynamic;
 
@@ -202,7 +202,7 @@ CREATE TABLE `sys_dict_data`  (
   `create_time` datetime(3) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '更新者',
   `update_time` datetime(3) NULL DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Remark',
   PRIMARY KEY (`dict_code`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 250 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '字典数据表' ROW_FORMAT = Dynamic;
 
@@ -237,7 +237,7 @@ INSERT INTO `sys_dict_data` VALUES (25, 8, '生成代码', '8', 'sys_oper_type',
 INSERT INTO `sys_dict_data` VALUES (26, 9, '清空数据', '9', 'sys_oper_type', '', 'danger', 'N', '0', 1, '2022-06-17 17:20:29.000', NULL, NULL, '清空操作');
 INSERT INTO `sys_dict_data` VALUES (27, 1, '成功', '0', 'sys_common_status', '', 'primary', 'N', '0', 1, '2022-06-17 17:20:29.000', NULL, NULL, '正常状态');
 INSERT INTO `sys_dict_data` VALUES (28, 2, '失败', '1', 'sys_common_status', '', 'danger', 'N', '0', 1, '2022-06-17 17:20:29.000', NULL, NULL, '停用状态');
-INSERT INTO `sys_dict_data` VALUES (100, 0, '原物料', '原物料', 'wms_item_type', NULL, 'default', 'N', '0', 1, '2022-08-18 15:49:33.000', NULL, NULL, NULL);
+INSERT INTO `sys_dict_data` VALUES (100, 0, '原Goods ', '原Goods ', 'wms_item_type', NULL, 'default', 'N', '0', 1, '2022-08-18 15:49:33.000', NULL, NULL, NULL);
 INSERT INTO `sys_dict_data` VALUES (101, 1, '半成品', '半成品', 'wms_item_type', NULL, 'default', 'N', '0', 1, '2022-08-18 15:49:58.000', NULL, NULL, NULL);
 INSERT INTO `sys_dict_data` VALUES (102, 2, '产成品', '产成品', 'wms_item_type', NULL, 'default', 'N', '0', 1, '2022-08-18 15:50:15.000', NULL, NULL, NULL);
 INSERT INTO `sys_dict_data` VALUES (103, 3, '原辅料', '原辅料', 'wms_item_type', NULL, 'default', 'N', '0', 1, '2022-08-18 15:50:35.000', NULL, NULL, NULL);
@@ -286,7 +286,7 @@ INSERT INTO `sys_dict_data` VALUES (147, 1, '盘盈入库', '32', 'wms_check_typ
 INSERT INTO `sys_dict_data` VALUES (148, 0, '盘亏出库', '31', 'wms_check_type', NULL, 'default', 'N', '0', 1, '2023-07-25 05:30:52.000', NULL, NULL, NULL);
 INSERT INTO `sys_dict_data` VALUES (149, 0, '仓库', '5', 'wms_inventory_panel_type', NULL, 'default', 'N', '0', 1, '2023-07-28 07:15:00.000', NULL, NULL, NULL);
 INSERT INTO `sys_dict_data` VALUES (150, 1, '库区', '10', 'wms_inventory_panel_type', NULL, 'default', 'N', '0', 1, '2023-07-28 07:15:10.000', NULL, NULL, NULL);
-INSERT INTO `sys_dict_data` VALUES (152, 3, '物料', '20', 'wms_inventory_panel_type', NULL, 'default', 'N', '0', 1, '2023-07-28 07:18:05.000', NULL, NULL, NULL);
+INSERT INTO `sys_dict_data` VALUES (152, 3, 'Goods ', '20', 'wms_inventory_panel_type', NULL, 'default', 'N', '0', 1, '2023-07-28 07:18:05.000', NULL, NULL, NULL);
 INSERT INTO `sys_dict_data` VALUES (245, 0, '结算中', '11', 'wms_settlement_status', NULL, 'default', 'N', '0', 1, '2023-08-02 13:34:40.000', NULL, NULL, NULL);
 INSERT INTO `sys_dict_data` VALUES (246, 0, '已结算', '22', 'wms_settlement_status', NULL, 'default', 'N', '0', 1, '2023-08-02 13:34:48.000', NULL, NULL, NULL);
 INSERT INTO `sys_dict_data` VALUES (247, 0, '未开始', '1', 'wms_wave_status', NULL, 'info', 'N', '0', 1, '2023-08-28 15:00:16.000', 1, '2023-08-28 15:00:58.000', NULL);
@@ -306,7 +306,7 @@ CREATE TABLE `sys_dict_type`  (
   `create_time` datetime(3) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '更新者',
   `update_time` datetime(3) NULL DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Remark',
   PRIMARY KEY (`dict_id`) USING BTREE,
   UNIQUE INDEX `dict_type`(`dict_type`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 117 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '字典类型表' ROW_FORMAT = Dynamic;
@@ -324,7 +324,7 @@ INSERT INTO `sys_dict_type` VALUES (7, '通知类型', 'sys_notice_type', '0', 1
 INSERT INTO `sys_dict_type` VALUES (8, '通知状态', 'sys_notice_status', '0', 1, '2022-06-17 17:20:28.000', NULL, NULL, '通知状态列表');
 INSERT INTO `sys_dict_type` VALUES (9, '操作类型', 'sys_oper_type', '0', 1, '2022-06-17 17:20:28.000', NULL, NULL, '操作类型列表');
 INSERT INTO `sys_dict_type` VALUES (10, '系统状态', 'sys_common_status', '0', 1, '2022-06-17 17:20:28.000', NULL, NULL, '登录状态列表');
-INSERT INTO `sys_dict_type` VALUES (100, '物料分类', 'wms_item_type', '0', 1, '2022-08-18 15:47:49.000', NULL, NULL, NULL);
+INSERT INTO `sys_dict_type` VALUES (100, 'Goods 分类', 'wms_item_type', '0', 1, '2022-08-18 15:47:49.000', NULL, NULL, NULL);
 INSERT INTO `sys_dict_type` VALUES (101, '承运商级别', 'wms_carrier_level', '0', 1, '2022-08-18 17:50:40.000', NULL, NULL, NULL);
 INSERT INTO `sys_dict_type` VALUES (102, '供应商级别', 'wms_supplier_level', '0', 1, '2022-08-18 18:05:02.000', NULL, NULL, NULL);
 INSERT INTO `sys_dict_type` VALUES (103, '入库类型', 'wms_receipt_type', '0', 1, '2022-08-21 15:03:58.000', NULL, NULL, NULL);
@@ -336,10 +336,10 @@ INSERT INTO `sys_dict_type` VALUES (108, '移库状态', 'wms_movement_status', 
 INSERT INTO `sys_dict_type` VALUES (109, '盘点单据状态', 'wms_check_status', '0', 1, '2023-04-26 11:17:35.000', NULL, NULL, NULL);
 INSERT INTO `sys_dict_type` VALUES (110, '供应商账号交易类型', 'wms_supplier_transaction_type', '0', 1, '2023-05-04 12:52:59.000', NULL, NULL, '1:结款；2:应付；3:入库单');
 INSERT INTO `sys_dict_type` VALUES (111, '客户账户交易类型', 'wms_customer_transaction_type', '0', 1, '2023-05-04 16:58:45.000', NULL, NULL, '1:结款；2:应付；3:出库单');
-INSERT INTO `sys_dict_type` VALUES (112, '库存操作类型', 'wms_inventory_oper_type', '0', 1, '2023-05-05 10:23:28.000', NULL, NULL, NULL);
+INSERT INTO `sys_dict_type` VALUES (112, 'Quantity操作类型', 'wms_inventory_oper_type', '0', 1, '2023-05-05 10:23:28.000', NULL, NULL, NULL);
 INSERT INTO `sys_dict_type` VALUES (113, '盘点类型', 'wms_check_type', '0', 1, '2023-07-25 05:29:44.000', NULL, NULL, NULL);
-INSERT INTO `sys_dict_type` VALUES (114, '库存看板类型', 'wms_inventory_panel_type', '0', 1, '2023-07-28 07:12:50.000', NULL, NULL, NULL);
-INSERT INTO `sys_dict_type` VALUES (115, '库存结算状态', 'wms_settlement_status', '0', 1, '2023-08-02 13:34:27.000', NULL, NULL, NULL);
+INSERT INTO `sys_dict_type` VALUES (114, 'Quantity看板类型', 'wms_inventory_panel_type', '0', 1, '2023-07-28 07:12:50.000', NULL, NULL, NULL);
+INSERT INTO `sys_dict_type` VALUES (115, 'Quantity结算状态', 'wms_settlement_status', '0', 1, '2023-08-02 13:34:27.000', NULL, NULL, NULL);
 INSERT INTO `sys_dict_type` VALUES (116, '波次作业状态', 'wms_wave_status', '0', 1, '2023-08-28 14:59:32.000', NULL, NULL, NULL);
 
 -- ----------------------------
@@ -359,7 +359,7 @@ CREATE TABLE `sys_job`  (
   `create_time` datetime(3) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '更新者',
   `update_time` datetime(3) NULL DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '备注信息',
+  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT 'Remark信息',
   PRIMARY KEY (`job_id`, `job_name`, `job_group`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 100 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '定时任务调度表' ROW_FORMAT = Dynamic;
 
@@ -426,7 +426,7 @@ CREATE TABLE `sys_menu`  (
   `create_time` datetime(3) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '更新者',
   `update_time` datetime(3) NULL DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '备注',
+  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT 'Remark',
   PRIMARY KEY (`menu_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 2252 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '菜单权限表' ROW_FORMAT = Dynamic;
 
@@ -539,36 +539,36 @@ INSERT INTO `sys_menu` VALUES (2116, '发货记录新增', 2114, 2, '', '', NULL
 INSERT INTO `sys_menu` VALUES (2117, '发货记录修改', 2114, 3, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:delivery:edit', '#', 1, '2022-07-29 16:31:18.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2118, '发货记录删除', 2114, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:delivery:remove', '#', 1, '2022-07-29 16:31:18.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2119, '发货记录导出', 2114, 5, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:delivery:export', '#', 1, '2022-07-29 16:31:18.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2120, '库存看板', 0, 1, 'inventory', 'wms/inventory/index', NULL, 1, 0, 'C', '0', '0', 'wms:inventory:list', 'chart', 1, '2022-07-29 16:34:37.000', 1, '2023-08-02 10:36:49.000', '库存菜单');
-INSERT INTO `sys_menu` VALUES (2121, '库存查询', 2120, 1, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventory:query', '#', 1, '2022-07-29 16:34:37.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2122, '库存新增', 2120, 2, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventory:add', '#', 1, '2022-07-29 16:34:37.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2123, '库存修改', 2120, 3, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventory:edit', '#', 1, '2022-07-29 16:34:37.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2124, '库存删除', 2120, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventory:remove', '#', 1, '2022-07-29 16:34:37.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2125, '库存导出', 2120, 5, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventory:export', '#', 1, '2022-07-29 16:34:37.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2126, '出入记录', 2197, 4, 'inventoryHistory', 'wms/inventoryHistory/index', NULL, 1, 0, 'C', '0', '0', 'wms:inventoryHistory:list', '#', 1, '2022-07-29 16:34:45.000', 1, '2023-08-02 10:47:06.000', '库存记录菜单');
-INSERT INTO `sys_menu` VALUES (2127, '库存记录查询', 2126, 1, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryHistory:query', '#', 1, '2022-07-29 16:34:46.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2128, '库存记录新增', 2126, 2, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryHistory:add', '#', 1, '2022-07-29 16:34:46.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2129, '库存记录修改', 2126, 3, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryHistory:edit', '#', 1, '2022-07-29 16:34:46.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2130, '库存记录删除', 2126, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryHistory:remove', '#', 1, '2022-07-29 16:34:46.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2131, '库存记录导出', 2126, 5, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryHistory:export', '#', 1, '2022-07-29 16:34:46.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2132, '移库', 2192, 6, 'inventoryMovement', 'wms/inventoryMovement/index', NULL, 1, 0, 'C', '0', '0', 'wms:inventoryMovement:list', '#', 1, '2022-07-29 16:34:54.000', 1, '2022-10-30 22:07:05.000', '库存移动菜单');
-INSERT INTO `sys_menu` VALUES (2133, '库存移动查询', 2132, 1, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryMovement:query', '#', 1, '2022-07-29 16:34:54.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2134, '库存移动新增', 2132, 2, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryMovement:add', '#', 1, '2022-07-29 16:34:54.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2135, '库存移动修改', 2132, 3, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryMovement:edit', '#', 1, '2022-07-29 16:34:54.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2136, '库存移动删除', 2132, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryMovement:remove', '#', 1, '2022-07-29 16:34:54.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2137, '库存移动导出', 2132, 5, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryMovement:export', '#', 1, '2022-07-29 16:34:54.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2138, '库存移动详情', 2192, 100, 'inventoryMovementDetail', 'wms/inventoryMovementDetail/index', NULL, 1, 0, 'C', '1', '0', 'wms:inventoryMovementDetail:list', '#', 1, '2022-07-29 16:35:04.000', 1, '2022-10-30 22:05:06.000', '库存移动详情菜单');
-INSERT INTO `sys_menu` VALUES (2139, '库存移动详情查询', 2138, 1, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryMovementDetail:query', '#', 1, '2022-07-29 16:35:04.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2140, '库存移动详情新增', 2138, 2, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryMovementDetail:add', '#', 1, '2022-07-29 16:35:04.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2141, '库存移动详情修改', 2138, 3, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryMovementDetail:edit', '#', 1, '2022-07-29 16:35:04.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2142, '库存移动详情删除', 2138, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryMovementDetail:remove', '#', 1, '2022-07-29 16:35:04.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2143, '库存移动详情导出', 2138, 5, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryMovementDetail:export', '#', 1, '2022-07-29 16:35:04.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2144, '物料', 0, 4, 'item', '', NULL, 1, 0, 'M', '0', '0', '', 'shopping', 1, '2022-07-29 16:35:13.000', 1, '2023-08-02 10:44:51.000', '物料菜单');
-INSERT INTO `sys_menu` VALUES (2145, '物料查询', 2216, 1, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:item:query', '#', 1, '2022-07-29 16:35:13.000', 1, '2023-04-26 17:34:01.000', '');
-INSERT INTO `sys_menu` VALUES (2146, '物料新增', 2216, 2, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:item:add', '#', 1, '2022-07-29 16:35:13.000', 1, '2023-04-26 17:34:18.000', '');
-INSERT INTO `sys_menu` VALUES (2147, '物料修改', 2216, 3, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:item:edit', '#', 1, '2022-07-29 16:35:13.000', 1, '2023-04-26 17:34:25.000', '');
-INSERT INTO `sys_menu` VALUES (2148, '物料删除', 2216, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:item:remove', '#', 1, '2022-07-29 16:35:13.000', 1, '2023-04-26 17:34:33.000', '');
-INSERT INTO `sys_menu` VALUES (2149, '物料导出', 2216, 5, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:item:export', '#', 1, '2022-07-29 16:35:13.000', 1, '2023-04-26 17:34:41.000', '');
+INSERT INTO `sys_menu` VALUES (2120, 'Quantity看板', 0, 1, 'inventory', 'wms/inventory/index', NULL, 1, 0, 'C', '0', '0', 'wms:inventory:list', 'chart', 1, '2022-07-29 16:34:37.000', 1, '2023-08-02 10:36:49.000', 'Quantity菜单');
+INSERT INTO `sys_menu` VALUES (2121, 'Quantity查询', 2120, 1, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventory:query', '#', 1, '2022-07-29 16:34:37.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2122, 'Quantity新增', 2120, 2, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventory:add', '#', 1, '2022-07-29 16:34:37.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2123, 'Quantity修改', 2120, 3, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventory:edit', '#', 1, '2022-07-29 16:34:37.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2124, 'Quantity删除', 2120, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventory:remove', '#', 1, '2022-07-29 16:34:37.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2125, 'Quantity导出', 2120, 5, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventory:export', '#', 1, '2022-07-29 16:34:37.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2126, '出入记录', 2197, 4, 'inventoryHistory', 'wms/inventoryHistory/index', NULL, 1, 0, 'C', '0', '0', 'wms:inventoryHistory:list', '#', 1, '2022-07-29 16:34:45.000', 1, '2023-08-02 10:47:06.000', 'Quantity记录菜单');
+INSERT INTO `sys_menu` VALUES (2127, 'Quantity记录查询', 2126, 1, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryHistory:query', '#', 1, '2022-07-29 16:34:46.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2128, 'Quantity记录新增', 2126, 2, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryHistory:add', '#', 1, '2022-07-29 16:34:46.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2129, 'Quantity记录修改', 2126, 3, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryHistory:edit', '#', 1, '2022-07-29 16:34:46.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2130, 'Quantity记录删除', 2126, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryHistory:remove', '#', 1, '2022-07-29 16:34:46.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2131, 'Quantity记录导出', 2126, 5, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryHistory:export', '#', 1, '2022-07-29 16:34:46.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2132, '移库', 2192, 6, 'inventoryMovement', 'wms/inventoryMovement/index', NULL, 1, 0, 'C', '0', '0', 'wms:inventoryMovement:list', '#', 1, '2022-07-29 16:34:54.000', 1, '2022-10-30 22:07:05.000', 'Quantity移动菜单');
+INSERT INTO `sys_menu` VALUES (2133, 'Quantity移动查询', 2132, 1, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryMovement:query', '#', 1, '2022-07-29 16:34:54.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2134, 'Quantity移动新增', 2132, 2, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryMovement:add', '#', 1, '2022-07-29 16:34:54.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2135, 'Quantity移动修改', 2132, 3, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryMovement:edit', '#', 1, '2022-07-29 16:34:54.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2136, 'Quantity移动删除', 2132, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryMovement:remove', '#', 1, '2022-07-29 16:34:54.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2137, 'Quantity移动导出', 2132, 5, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryMovement:export', '#', 1, '2022-07-29 16:34:54.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2138, 'Quantity移动详情', 2192, 100, 'inventoryMovementDetail', 'wms/inventoryMovementDetail/index', NULL, 1, 0, 'C', '1', '0', 'wms:inventoryMovementDetail:list', '#', 1, '2022-07-29 16:35:04.000', 1, '2022-10-30 22:05:06.000', 'Quantity移动详情菜单');
+INSERT INTO `sys_menu` VALUES (2139, 'Quantity移动详情查询', 2138, 1, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryMovementDetail:query', '#', 1, '2022-07-29 16:35:04.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2140, 'Quantity移动详情新增', 2138, 2, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryMovementDetail:add', '#', 1, '2022-07-29 16:35:04.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2141, 'Quantity移动详情修改', 2138, 3, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryMovementDetail:edit', '#', 1, '2022-07-29 16:35:04.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2142, 'Quantity移动详情删除', 2138, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryMovementDetail:remove', '#', 1, '2022-07-29 16:35:04.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2143, 'Quantity移动详情导出', 2138, 5, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryMovementDetail:export', '#', 1, '2022-07-29 16:35:04.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2144, 'Goods ', 0, 4, 'item', '', NULL, 1, 0, 'M', '0', '0', '', 'shopping', 1, '2022-07-29 16:35:13.000', 1, '2023-08-02 10:44:51.000', 'Goods 菜单');
+INSERT INTO `sys_menu` VALUES (2145, 'Goods 查询', 2216, 1, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:item:query', '#', 1, '2022-07-29 16:35:13.000', 1, '2023-04-26 17:34:01.000', '');
+INSERT INTO `sys_menu` VALUES (2146, 'Goods 新增', 2216, 2, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:item:add', '#', 1, '2022-07-29 16:35:13.000', 1, '2023-04-26 17:34:18.000', '');
+INSERT INTO `sys_menu` VALUES (2147, 'Goods 修改', 2216, 3, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:item:edit', '#', 1, '2022-07-29 16:35:13.000', 1, '2023-04-26 17:34:25.000', '');
+INSERT INTO `sys_menu` VALUES (2148, 'Goods 删除', 2216, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:item:remove', '#', 1, '2022-07-29 16:35:13.000', 1, '2023-04-26 17:34:33.000', '');
+INSERT INTO `sys_menu` VALUES (2149, 'Goods 导出', 2216, 5, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:item:export', '#', 1, '2022-07-29 16:35:13.000', 1, '2023-04-26 17:34:41.000', '');
 INSERT INTO `sys_menu` VALUES (2150, '货架', 2193, 3, 'rack', 'wms/rack/index', NULL, 1, 0, 'C', '0', '0', 'wms:rack:list', '#', 1, '2022-07-29 16:35:22.000', 1, '2022-10-30 22:18:04.000', '货架菜单');
 INSERT INTO `sys_menu` VALUES (2151, '货架查询', 2150, 1, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:rack:query', '#', 1, '2022-07-29 16:35:22.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2152, '货架新增', 2150, 2, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:rack:add', '#', 1, '2022-07-29 16:35:22.000', 0, NULL, '');
@@ -616,32 +616,32 @@ INSERT INTO `sys_menu` VALUES (2193, '仓库/库区/货架', 0, 4, 'basic', NULL
 INSERT INTO `sys_menu` VALUES (2194, '发货/入库', 2192, 2, 'receiptOrder/status', 'wms/receiptOrder/status', NULL, 1, 0, 'C', '1', '0', 'wms:receiptOrder:status', '#', 1, '2022-09-27 14:16:42.000', 1, '2022-09-27 14:17:19.000', '');
 INSERT INTO `sys_menu` VALUES (2195, '编辑出库单', 2192, 2, 'shipmentOrder/edit', 'wms/shipmentOrder/edit', NULL, 1, 0, 'C', '1', '0', 'wms:shipmentOrder:add', '#', 1, '2022-10-20 16:38:26.000', 1, '2022-10-24 18:47:03.000', '');
 INSERT INTO `sys_menu` VALUES (2196, '发货/出库', 2192, 2, 'shipmentOrder/status', 'wms/shipmentOrder/status', NULL, 1, 0, 'C', '1', '0', 'wms:shipmentOrder:status', '#', 1, '2022-10-20 18:25:10.000', 1, '2022-10-24 18:47:15.000', '');
-INSERT INTO `sys_menu` VALUES (2197, '库存记录', 0, 7, 'report', NULL, NULL, 1, 0, 'M', '0', '0', '', 'monitor', 1, '2022-10-30 22:08:28.000', 1, '2023-08-02 10:46:37.000', '');
+INSERT INTO `sys_menu` VALUES (2197, 'Quantity记录', 0, 7, 'report', NULL, NULL, 1, 0, 'M', '0', '0', '', 'monitor', 1, '2022-10-30 22:08:28.000', 1, '2023-08-02 10:46:37.000', '');
 INSERT INTO `sys_menu` VALUES (2198, '客户/供应商/承运商', 0, 6, 'relation', NULL, NULL, 1, 0, 'M', '0', '0', '', 'peoples', 1, '2022-10-30 22:20:24.000', 1, '2023-08-02 10:46:07.000', '');
 INSERT INTO `sys_menu` VALUES (2199, '编辑移库', 2192, 3, 'inventoryMovement/edit', 'wms/inventoryMovement/edit', NULL, 1, 0, 'C', '1', '0', 'wms:inventoryMovement:edit', '#', 1, '2022-11-02 15:13:46.000', 1, '2022-11-02 15:14:49.000', '');
 INSERT INTO `sys_menu` VALUES (2200, '移库操作', 2192, 4, 'inventoryMovement/status', 'wms/inventoryMovement/status', NULL, 1, 0, 'C', '1', '0', 'wms:inventoryMovement:status', '#', 1, '2022-11-02 15:15:57.000', NULL, NULL, '');
-INSERT INTO `sys_menu` VALUES (2201, '库存盘点', 0, 3, 'inventoryCheck', 'wms/inventoryCheck/index', NULL, 1, 0, 'C', '0', '0', 'wms:inventoryCheck:list', 'example', 1, '2023-04-20 13:24:37.000', 1, '2023-08-02 10:38:35.000', '');
-INSERT INTO `sys_menu` VALUES (2202, '库存盘点单据查询', 2201, 1, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:inventoryCheck:query', '#', 1, '2023-04-26 14:16:50.000', NULL, NULL, '');
-INSERT INTO `sys_menu` VALUES (2203, '库存盘点单据新增', 2201, 2, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:inventoryCheck:add', '#', 1, '2023-04-26 14:17:20.000', NULL, NULL, '');
-INSERT INTO `sys_menu` VALUES (2204, '库存盘点单据修改', 2201, 3, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:inventoryCheck:edit', '#', 1, '2023-04-26 14:17:49.000', NULL, NULL, '');
-INSERT INTO `sys_menu` VALUES (2205, '库存盘点单据删除', 2201, 4, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:inventoryCheck:remove', '#', 1, '2023-04-26 14:18:11.000', NULL, NULL, '');
-INSERT INTO `sys_menu` VALUES (2206, '库存盘点单据导出', 2201, 5, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:inventoryCheck:export', '#', 1, '2023-04-26 14:18:28.000', NULL, NULL, '');
+INSERT INTO `sys_menu` VALUES (2201, 'Quantity盘点', 0, 3, 'inventoryCheck', 'wms/inventoryCheck/index', NULL, 1, 0, 'C', '0', '0', 'wms:inventoryCheck:list', 'example', 1, '2023-04-20 13:24:37.000', 1, '2023-08-02 10:38:35.000', '');
+INSERT INTO `sys_menu` VALUES (2202, 'Quantity盘点单据查询', 2201, 1, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:inventoryCheck:query', '#', 1, '2023-04-26 14:16:50.000', NULL, NULL, '');
+INSERT INTO `sys_menu` VALUES (2203, 'Quantity盘点单据新增', 2201, 2, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:inventoryCheck:add', '#', 1, '2023-04-26 14:17:20.000', NULL, NULL, '');
+INSERT INTO `sys_menu` VALUES (2204, 'Quantity盘点单据修改', 2201, 3, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:inventoryCheck:edit', '#', 1, '2023-04-26 14:17:49.000', NULL, NULL, '');
+INSERT INTO `sys_menu` VALUES (2205, 'Quantity盘点单据删除', 2201, 4, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:inventoryCheck:remove', '#', 1, '2023-04-26 14:18:11.000', NULL, NULL, '');
+INSERT INTO `sys_menu` VALUES (2206, 'Quantity盘点单据导出', 2201, 5, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:inventoryCheck:export', '#', 1, '2023-04-26 14:18:28.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (2207, '盘库', 0, 5, '/check', NULL, NULL, 1, 0, 'M', '1', '0', NULL, 'checkbox', 1, '2023-04-26 14:19:57.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (2208, '编辑盘点单', 2207, 0, 'edit', 'wms/inventoryCheck/edit', NULL, 1, 0, 'C', '1', '0', 'wms:inventoryCheck:list', 'checkbox', 1, '2023-04-26 14:20:43.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (2209, '查看盘点单', 2207, 1, 'status', 'wms/inventoryCheck/status', NULL, 1, 0, 'C', '1', '0', NULL, '#', 1, '2023-04-26 14:22:09.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (2210, '盘点单据详情', 2207, 1, 'inventoryCheckDetail', 'wms/inventoryCheckDetail/ind', NULL, 1, 0, 'C', '1', '0', 'wms:inventoryCheckDetail:list', '#', 1, '2023-04-26 14:22:47.000', NULL, NULL, '');
-INSERT INTO `sys_menu` VALUES (2211, '库存盘点单据详情查询', 2210, 1, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:inventoryCheckDetail:query', '#', 1, '2023-04-26 14:23:19.000', NULL, NULL, '');
-INSERT INTO `sys_menu` VALUES (2212, '库存盘点单据详情新增', 2210, 2, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:inventoryCheckDetail:add', '#', 1, '2023-04-26 14:23:45.000', NULL, NULL, '');
-INSERT INTO `sys_menu` VALUES (2213, '库存盘点单据详情修改', 2210, 3, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:inventoryCheckDetail:edit', '#', 1, '2023-04-26 14:24:16.000', NULL, NULL, '');
-INSERT INTO `sys_menu` VALUES (2214, '库存盘点单据详情删除', 2210, 4, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:inventoryCheckDetail:remove', '#', 1, '2023-04-26 14:24:36.000', NULL, NULL, '');
-INSERT INTO `sys_menu` VALUES (2215, '库存盘点单据详情导出', 2210, 5, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:inventoryCheckDetail:export', '#', 1, '2023-04-26 14:24:56.000', NULL, NULL, '');
-INSERT INTO `sys_menu` VALUES (2216, '物料管理', 2144, 2, 'item', 'wms/item/index', NULL, 1, 0, 'C', '0', '0', 'wms:item:list', 'dict', 1, '2023-04-26 17:33:32.000', NULL, NULL, '');
+INSERT INTO `sys_menu` VALUES (2211, 'Quantity盘点单据详情查询', 2210, 1, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:inventoryCheckDetail:query', '#', 1, '2023-04-26 14:23:19.000', NULL, NULL, '');
+INSERT INTO `sys_menu` VALUES (2212, 'Quantity盘点单据详情新增', 2210, 2, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:inventoryCheckDetail:add', '#', 1, '2023-04-26 14:23:45.000', NULL, NULL, '');
+INSERT INTO `sys_menu` VALUES (2213, 'Quantity盘点单据详情修改', 2210, 3, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:inventoryCheckDetail:edit', '#', 1, '2023-04-26 14:24:16.000', NULL, NULL, '');
+INSERT INTO `sys_menu` VALUES (2214, 'Quantity盘点单据详情删除', 2210, 4, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:inventoryCheckDetail:remove', '#', 1, '2023-04-26 14:24:36.000', NULL, NULL, '');
+INSERT INTO `sys_menu` VALUES (2215, 'Quantity盘点单据详情导出', 2210, 5, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:inventoryCheckDetail:export', '#', 1, '2023-04-26 14:24:56.000', NULL, NULL, '');
+INSERT INTO `sys_menu` VALUES (2216, 'Goods 管理', 2144, 2, 'item', 'wms/item/index', NULL, 1, 0, 'C', '0', '0', 'wms:item:list', 'dict', 1, '2023-04-26 17:33:32.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (2217, '分类管理', 2144, 1, 'itemType', 'wms/itemType/index', NULL, 1, 0, 'C', '0', '0', 'wms:itemType:list', 'dict', 1, '2023-04-26 17:35:52.000', NULL, NULL, '');
-INSERT INTO `sys_menu` VALUES (2218, '物料类型表查询', 2217, 1, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:itemType:query', '#', 1, '2023-04-26 17:36:20.000', NULL, NULL, '');
-INSERT INTO `sys_menu` VALUES (2219, '物料类型表新增', 2217, 2, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:itemType:add', '#', 1, '2023-04-26 17:36:49.000', NULL, NULL, '');
-INSERT INTO `sys_menu` VALUES (2220, '物料类型表修改', 2217, 3, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:itemType:edit', '#', 1, '2023-04-26 17:37:06.000', NULL, NULL, '');
-INSERT INTO `sys_menu` VALUES (2221, '物料类型表删除', 2217, 4, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:itemType:remove', '#', 1, '2023-04-26 17:37:25.000', NULL, NULL, '');
-INSERT INTO `sys_menu` VALUES (2222, '物料类型表导出', 2217, 5, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:itemType:export', '#', 1, '2023-04-26 17:37:42.000', NULL, NULL, '');
+INSERT INTO `sys_menu` VALUES (2218, 'Goods 类型表查询', 2217, 1, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:itemType:query', '#', 1, '2023-04-26 17:36:20.000', NULL, NULL, '');
+INSERT INTO `sys_menu` VALUES (2219, 'Goods 类型表新增', 2217, 2, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:itemType:add', '#', 1, '2023-04-26 17:36:49.000', NULL, NULL, '');
+INSERT INTO `sys_menu` VALUES (2220, 'Goods 类型表修改', 2217, 3, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:itemType:edit', '#', 1, '2023-04-26 17:37:06.000', NULL, NULL, '');
+INSERT INTO `sys_menu` VALUES (2221, 'Goods 类型表删除', 2217, 4, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:itemType:remove', '#', 1, '2023-04-26 17:37:25.000', NULL, NULL, '');
+INSERT INTO `sys_menu` VALUES (2222, 'Goods 类型表导出', 2217, 5, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:itemType:export', '#', 1, '2023-04-26 17:37:42.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (2223, '供应商账户流水', 2198, 1, 'supplierTransaction', 'wms/supplierTransaction/index', NULL, 1, 0, 'C', '1', '0', 'wms:supplierTransaction:list', '#', 1, '2023-05-04 13:39:35.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (2224, '供应商账户流水查询', 2223, 1, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:supplierTransaction:query', '#', 1, '2023-05-04 13:39:55.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (2225, '供应商账户流水新增', 2223, 2, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:supplierTransaction:add', '#', 1, '2023-05-04 13:40:18.000', NULL, NULL, '');
@@ -654,15 +654,15 @@ INSERT INTO `sys_menu` VALUES (2231, '客户账户流水新增', 2229, 2, '', NU
 INSERT INTO `sys_menu` VALUES (2232, '客户账户流水修改', 2229, 3, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:customerTransaction:edit', '#', 1, '2023-05-04 16:57:02.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (2233, '客户账户流水删除', 2229, 4, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:customerTransaction:remove', '#', 1, '2023-05-04 16:57:27.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (2234, '客户账户流水导出', 2229, 5, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:customerTransaction:export', '#', 1, '2023-05-04 16:57:56.000', NULL, NULL, '');
-INSERT INTO `sys_menu` VALUES (2235, '库存结算', 0, 11, 'settlement', NULL, NULL, 1, 0, 'M', '0', '0', NULL, 'log', 1, '2023-08-02 13:05:35.000', NULL, NULL, '');
-INSERT INTO `sys_menu` VALUES (2236, '库存年结', 2235, 7, 'inventorySettlementYear', 'wms/inventorySettlement/index', '{\"settlementType\": 2}', 1, 0, 'C', '0', '0', 'wms:inventorySettlement:list', 'skill', 1, '2023-04-20 16:10:49.000', 1, '2023-04-21 12:10:29.000', '');
+INSERT INTO `sys_menu` VALUES (2235, 'Quantity结算', 0, 11, 'settlement', NULL, NULL, 1, 0, 'M', '0', '0', NULL, 'log', 1, '2023-08-02 13:05:35.000', NULL, NULL, '');
+INSERT INTO `sys_menu` VALUES (2236, 'Quantity年结', 2235, 7, 'inventorySettlementYear', 'wms/inventorySettlement/index', '{\"settlementType\": 2}', 1, 0, 'C', '0', '0', 'wms:inventorySettlement:list', 'skill', 1, '2023-04-20 16:10:49.000', 1, '2023-04-21 12:10:29.000', '');
 INSERT INTO `sys_menu` VALUES (2237, '查看结算单', 2235, 2, 'inventorySettlement/status', 'wms/inventorySettlement/status', NULL, 1, 0, 'C', '1', '0', 'wms:inventorySettlement:edit', 'chart', 1, '2023-04-21 12:32:16.000', 1, '2023-04-21 12:32:26.000', '');
-INSERT INTO `sys_menu` VALUES (2238, '库存月结', 2235, 5, 'inventorySettlementMonth', 'wms/inventorySettlement/index', '{\"settlementType\": 1}', 1, 0, 'C', '0', '0', 'wms:inventorySettlement:list', 'documentation', 1, '2023-04-18 19:33:07.000', 1, '2023-04-21 12:10:23.000', '库存结算单菜单');
-INSERT INTO `sys_menu` VALUES (2239, '库存结算单查询', 2235, 1, '#', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventorySettlement:query', '#', 1, '2023-04-18 19:33:08.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2240, '库存结算单新增', 2235, 2, '#', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventorySettlement:add', '#', 1, '2023-04-18 19:33:08.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2241, '编辑库存结算', 2235, 3, 'inventorySettlement/edit', 'wms/inventorySettlement/edit', NULL, 1, 0, 'C', '1', '0', 'wms:inventorySettlement:edit', '#', 1, '2023-04-18 19:33:08.000', 1, '2023-04-20 16:05:52.000', '');
-INSERT INTO `sys_menu` VALUES (2242, '库存结算单删除', 2235, 4, '#', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventorySettlement:remove', '#', 1, '2023-04-18 19:33:08.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2243, '库存结算单导出', 2235, 5, '#', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventorySettlement:export', '#', 1, '2023-04-18 19:33:08.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2238, 'Quantity月结', 2235, 5, 'inventorySettlementMonth', 'wms/inventorySettlement/index', '{\"settlementType\": 1}', 1, 0, 'C', '0', '0', 'wms:inventorySettlement:list', 'documentation', 1, '2023-04-18 19:33:07.000', 1, '2023-04-21 12:10:23.000', 'Quantity结算单菜单');
+INSERT INTO `sys_menu` VALUES (2239, 'Quantity结算单查询', 2235, 1, '#', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventorySettlement:query', '#', 1, '2023-04-18 19:33:08.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2240, 'Quantity结算单新增', 2235, 2, '#', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventorySettlement:add', '#', 1, '2023-04-18 19:33:08.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2241, '编辑Quantity结算', 2235, 3, 'inventorySettlement/edit', 'wms/inventorySettlement/edit', NULL, 1, 0, 'C', '1', '0', 'wms:inventorySettlement:edit', '#', 1, '2023-04-18 19:33:08.000', 1, '2023-04-20 16:05:52.000', '');
+INSERT INTO `sys_menu` VALUES (2242, 'Quantity结算单删除', 2235, 4, '#', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventorySettlement:remove', '#', 1, '2023-04-18 19:33:08.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2243, 'Quantity结算单导出', 2235, 5, '#', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventorySettlement:export', '#', 1, '2023-04-18 19:33:08.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2244, '波次', 2192, 1, 'wave', 'wms/wave/index', NULL, 1, 0, 'C', '1', '0', 'wms:wave:list', '#', 1, '2023-08-16 05:24:03.000', 1, '2023-08-16 09:09:00.000', '波次菜单');
 INSERT INTO `sys_menu` VALUES (2245, '波次查询', 2244, 1, '#', '', NULL, 1, 0, 'F', '0', '0', 'wms:wave:query', '#', 1, '2023-08-16 05:24:03.000', 1, NULL, '');
 INSERT INTO `sys_menu` VALUES (2246, '波次新增', 2244, 2, '#', '', NULL, 1, 0, 'F', '0', '0', 'wms:wave:add', '#', 1, '2023-08-16 05:24:03.000', 1, NULL, '');
@@ -686,7 +686,7 @@ CREATE TABLE `sys_notice`  (
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '更新者',
   `update_time` datetime(3) NULL DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Remark',
   PRIMARY KEY (`notice_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '通知公告表' ROW_FORMAT = Dynamic;
 
@@ -734,7 +734,7 @@ CREATE TABLE `sys_post`  (
   `create_time` datetime(3) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '更新者',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Remark',
   PRIMARY KEY (`post_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '岗位信息表' ROW_FORMAT = Dynamic;
 
@@ -764,7 +764,7 @@ CREATE TABLE `sys_role`  (
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '更新者',
   `update_time` datetime(3) NULL DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Remark',
   PRIMARY KEY (`role_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 102 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色信息表' ROW_FORMAT = Dynamic;
 
@@ -1164,7 +1164,7 @@ CREATE TABLE `sys_user`  (
   `create_time` datetime(3) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '更新者',
   `update_time` datetime(3) NULL DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Remark',
   PRIMARY KEY (`user_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 119 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户信息表' ROW_FORMAT = Dynamic;
 
@@ -1217,9 +1217,9 @@ CREATE TABLE `wms_area`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `area_no` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '编号',
   `area_name` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '名称',
-  `warehouse_id` bigint(20) NOT NULL COMMENT '所属仓库ID',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
-  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT '删除标识',
+  `warehouse_id` bigint(20) NOT NULL COMMENT 'WarehouseID',
+  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Remark',
+  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT 'Delete Flag',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
   `create_time` datetime(3) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '修改人',
@@ -1241,8 +1241,8 @@ CREATE TABLE `wms_carrier`  (
   `contact` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '联系人',
   `level` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '级别',
   `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Email',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
-  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT '删除标识',
+  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Remark',
+  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT 'Delete Flag',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
   `create_time` datetime(3) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '修改人',
@@ -1268,8 +1268,8 @@ CREATE TABLE `wms_customer`  (
   `customer_person` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '联系人',
   `customer_level` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '级别',
   `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Email',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
-  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT '删除标识',
+  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Remark',
+  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT 'Delete Flag',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
   `create_time` datetime(3) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '修改人',
@@ -1290,7 +1290,7 @@ CREATE TABLE `wms_customer_transaction`  (
   `previous_balance` decimal(18, 2) NOT NULL COMMENT '上期余额',
   `current_balance` decimal(18, 2) NOT NULL COMMENT '当前余额',
   `shipment_order_id` bigint(20) NULL DEFAULT NULL COMMENT '出库单号',
-  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Remark',
   `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT '删除标志',
   `create_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
   `update_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间',
@@ -1308,8 +1308,8 @@ CREATE TABLE `wms_delivery`  (
   `carrier_id` bigint(20) NULL DEFAULT NULL COMMENT '承运商Id',
   `delivery_date` datetime(3) NULL DEFAULT NULL COMMENT '发货日期',
   `tracking_no` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '快递单号',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
-  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT '删除标识',
+  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Remark',
+  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT 'Delete Flag',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
   `create_time` datetime(3) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '修改人',
@@ -1323,19 +1323,19 @@ CREATE TABLE `wms_delivery`  (
 DROP TABLE IF EXISTS `wms_inventory`;
 CREATE TABLE `wms_inventory`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `item_id` bigint(20) NOT NULL COMMENT '物料ID',
-  `rack_id` bigint(20) NULL DEFAULT NULL COMMENT '货架id',
-  `quantity` decimal(20, 2) NULL DEFAULT NULL COMMENT '库存',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
-  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT '删除标识',
+  `item_id` bigint(20) NOT NULL COMMENT 'Goods ID',
+  `rack_id` bigint(20) NULL DEFAULT NULL COMMENT 'Shelves',
+  `quantity` decimal(20, 2) NULL DEFAULT NULL COMMENT 'Quantity',
+  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Remark',
+  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT 'Delete Flag',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
   `create_time` datetime(3) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '修改人',
   `update_time` datetime(3) NULL DEFAULT NULL COMMENT '修改时间',
-  `warehouse_id` bigint(20) NULL DEFAULT NULL COMMENT '所属仓库',
-  `area_id` bigint(20) NULL DEFAULT NULL COMMENT '所属库区',
+  `warehouse_id` bigint(20) NULL DEFAULT NULL COMMENT 'Warehouse',
+  `area_id` bigint(20) NULL DEFAULT NULL COMMENT 'Area',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 918 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '库存' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 918 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = 'Quantity' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for wms_inventory_check
@@ -1343,25 +1343,25 @@ CREATE TABLE `wms_inventory`  (
 DROP TABLE IF EXISTS `wms_inventory_check`;
 CREATE TABLE `wms_inventory_check`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `inventory_check_no` varchar(22) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '库存盘点单号，系统自动生成',
-  `inventory_check_type` int(11) NULL DEFAULT NULL COMMENT '库存盘点类型',
-  `inventory_check_status` tinyint(4) NULL DEFAULT 11 COMMENT '库存盘点单状态11：盘点中 22：已完成',
+  `inventory_check_no` varchar(22) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Quantity盘点单号，系统自动生成',
+  `inventory_check_type` int(11) NULL DEFAULT NULL COMMENT 'Quantity盘点类型',
+  `inventory_check_status` tinyint(4) NULL DEFAULT 11 COMMENT 'Quantity盘点单状态11：盘点中 22：已完成',
   `inventory_check_total` decimal(20, 2) NULL DEFAULT NULL COMMENT '盈亏数',
   `check_status` tinyint(4) NULL DEFAULT NULL COMMENT '审核状态',
   `check_user_id` bigint(20) NULL DEFAULT NULL COMMENT '审核人',
   `check_time` datetime(3) NULL DEFAULT NULL COMMENT '审核时间',
-  `warehouse_id` bigint(20) NULL DEFAULT NULL COMMENT '所属仓库',
-  `area_id` bigint(20) NULL DEFAULT NULL COMMENT '所属库区',
+  `warehouse_id` bigint(20) NULL DEFAULT NULL COMMENT 'Warehouse',
+  `area_id` bigint(20) NULL DEFAULT NULL COMMENT 'Area',
   `rack_id` bigint(20) NULL DEFAULT NULL COMMENT '货架',
   `attachment` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '附件文件',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
-  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT '删除标识',
+  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Remark',
+  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT 'Delete Flag',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
   `create_time` datetime(3) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '修改人',
   `update_time` datetime(3) NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 340 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '库存盘点单据' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 340 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = 'Quantity盘点单据' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for wms_inventory_check_detail
@@ -1369,21 +1369,21 @@ CREATE TABLE `wms_inventory_check`  (
 DROP TABLE IF EXISTS `wms_inventory_check_detail`;
 CREATE TABLE `wms_inventory_check_detail`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `inventory_check_id` bigint(20) NULL DEFAULT NULL COMMENT '库存盘点单',
-  `item_id` bigint(20) NOT NULL COMMENT '物料',
-  `quantity` decimal(20, 2) NULL DEFAULT NULL COMMENT '库存数量',
+  `inventory_check_id` bigint(20) NULL DEFAULT NULL COMMENT 'Quantity盘点单',
+  `item_id` bigint(20) NOT NULL COMMENT 'Goods ',
+  `quantity` decimal(20, 2) NULL DEFAULT NULL COMMENT 'Quantity数量',
   `check_quantity` decimal(20, 2) NULL DEFAULT NULL COMMENT '盘点数量',
-  `warehouse_id` bigint(20) NULL DEFAULT NULL COMMENT '所属仓库',
-  `area_id` bigint(20) NULL DEFAULT NULL COMMENT '所属库区',
+  `warehouse_id` bigint(20) NULL DEFAULT NULL COMMENT 'Warehouse',
+  `area_id` bigint(20) NULL DEFAULT NULL COMMENT 'Area',
   `rack_id` bigint(20) NULL DEFAULT NULL COMMENT '货架',
-  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT '删除标识',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT 'Delete Flag',
+  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Remark',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
   `create_time` datetime(3) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '修改人',
   `update_time` datetime(3) NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1157 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '库存盘点单据详情' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1157 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = 'Quantity盘点单据详情' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for wms_inventory_history
@@ -1391,21 +1391,21 @@ CREATE TABLE `wms_inventory_check_detail`  (
 DROP TABLE IF EXISTS `wms_inventory_history`;
 CREATE TABLE `wms_inventory_history`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `form_id` bigint(20) NULL DEFAULT NULL COMMENT '操作id（出库、入库、库存移动表单id）',
+  `form_id` bigint(20) NULL DEFAULT NULL COMMENT '操作id（出库、入库、Quantity移动表单id）',
   `form_type` int(11) NULL DEFAULT NULL COMMENT '操作类型',
-  `item_id` bigint(20) NULL DEFAULT NULL COMMENT '物料ID',
-  `rack_id` bigint(20) NULL DEFAULT NULL COMMENT '货架id',
-  `quantity` decimal(20, 2) NULL DEFAULT NULL COMMENT '库存变化',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
-  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT '删除标识',
+  `item_id` bigint(20) NULL DEFAULT NULL COMMENT 'Goods ID',
+  `rack_id` bigint(20) NULL DEFAULT NULL COMMENT 'Shelves',
+  `quantity` decimal(20, 2) NULL DEFAULT NULL COMMENT 'Quantity变化',
+  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Remark',
+  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT 'Delete Flag',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
   `create_time` datetime(3) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '修改人',
   `update_time` datetime(3) NULL DEFAULT NULL COMMENT '修改时间',
-  `warehouse_id` bigint(20) NULL DEFAULT NULL COMMENT '所属仓库',
-  `area_id` bigint(20) NULL DEFAULT NULL COMMENT '所属库区',
+  `warehouse_id` bigint(20) NULL DEFAULT NULL COMMENT 'Warehouse',
+  `area_id` bigint(20) NULL DEFAULT NULL COMMENT 'Area',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1845 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '库存记录' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1845 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = 'Quantity记录' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for wms_inventory_movement
@@ -1414,20 +1414,20 @@ DROP TABLE IF EXISTS `wms_inventory_movement`;
 CREATE TABLE `wms_inventory_movement`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `inventory_movement_no` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '编号',
-  `source_rack_id` bigint(20) NULL DEFAULT NULL COMMENT '原货架Id',
+  `source_rack_id` bigint(20) NULL DEFAULT NULL COMMENT '原Shelves',
   `target_rack_id` bigint(20) NULL DEFAULT NULL COMMENT '目标货架',
   `status` tinyint(4) NULL DEFAULT NULL COMMENT '状态',
   `check_status` tinyint(4) NULL DEFAULT NULL COMMENT '审核状态',
   `check_user_id` bigint(20) NULL DEFAULT NULL COMMENT '审核人',
   `check_time` datetime(3) NULL DEFAULT NULL COMMENT '审核时间',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
-  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT '删除标识',
+  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Remark',
+  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT 'Delete Flag',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
   `create_time` datetime(3) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '修改人',
   `update_time` datetime(3) NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 236 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '库存移动' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 236 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = 'Quantity移动' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for wms_inventory_movement_detail
@@ -1435,12 +1435,12 @@ CREATE TABLE `wms_inventory_movement`  (
 DROP TABLE IF EXISTS `wms_inventory_movement_detail`;
 CREATE TABLE `wms_inventory_movement_detail`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `inventory_movement_id` bigint(20) NULL DEFAULT NULL COMMENT '库存移动Id',
-  `item_id` bigint(20) NULL DEFAULT NULL COMMENT '物料',
+  `inventory_movement_id` bigint(20) NULL DEFAULT NULL COMMENT 'Quantity移动Id',
+  `item_id` bigint(20) NULL DEFAULT NULL COMMENT 'Goods ',
   `plan_quantity` decimal(20, 2) NULL DEFAULT NULL COMMENT '计划数量',
   `real_quantity` decimal(20, 2) NULL DEFAULT NULL COMMENT '实际数量',
-  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT '删除标识',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT 'Delete Flag',
+  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Remark',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
   `create_time` datetime(3) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '修改人',
@@ -1453,7 +1453,7 @@ CREATE TABLE `wms_inventory_movement_detail`  (
   `target_warehouse_id` bigint(20) NULL DEFAULT NULL COMMENT '目标仓库',
   `target_area_id` bigint(20) NULL DEFAULT NULL COMMENT '目标库区',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 496 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '库存移动详情' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 496 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = 'Quantity移动详情' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for wms_inventory_settlement
@@ -1461,19 +1461,19 @@ CREATE TABLE `wms_inventory_movement_detail`  (
 DROP TABLE IF EXISTS `wms_inventory_settlement`;
 CREATE TABLE `wms_inventory_settlement`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `inventory_settlement_no` varchar(22) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '库存结算单号',
-  `inventory_settlement_status` tinyint(4) NULL DEFAULT 11 COMMENT '库存结算单状态11：结算中 22：已完成',
-  `inventory_settlement_start_time` datetime(0) NULL DEFAULT NULL COMMENT '库存结算周期开始时间',
-  `inventory_settlement_end_time` datetime(0) NULL DEFAULT NULL COMMENT '库存结算周期结束时间',
+  `inventory_settlement_no` varchar(22) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Quantity结算单号',
+  `inventory_settlement_status` tinyint(4) NULL DEFAULT 11 COMMENT 'Quantity结算单状态11：结算中 22：已完成',
+  `inventory_settlement_start_time` datetime(0) NULL DEFAULT NULL COMMENT 'Quantity结算周期开始时间',
+  `inventory_settlement_end_time` datetime(0) NULL DEFAULT NULL COMMENT 'Quantity结算周期结束时间',
   `settlement_type` int(11) NOT NULL COMMENT '结算类型,1:月结，2:年结',
-  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT '删除标识',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT 'Delete Flag',
+  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Remark',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
   `create_time` datetime(3) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '修改人',
   `update_time` datetime(3) NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '库存结算单' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = 'Quantity结算单' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for wms_inventory_settlement_detail
@@ -1483,7 +1483,7 @@ CREATE TABLE `wms_inventory_settlement_detail`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `settlement_id` bigint(20) NOT NULL COMMENT '结算单id',
   `settlement_type` int(11) NULL DEFAULT NULL COMMENT '结算类型,1:月结，2:年结',
-  `item_id` bigint(20) NOT NULL COMMENT '物料id',
+  `item_id` bigint(20) NOT NULL COMMENT 'Goods id',
   `item_no` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '编号',
   `item_name` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '名称',
   `warehouse_id` bigint(20) NULL DEFAULT NULL COMMENT '仓库id',
@@ -1497,14 +1497,14 @@ CREATE TABLE `wms_inventory_settlement_detail`  (
   `current_out` decimal(20, 2) NULL DEFAULT NULL COMMENT '本期出库',
   `current_check` decimal(20, 2) NULL DEFAULT NULL COMMENT '本期盘点',
   `current_balance` decimal(20, 2) NULL DEFAULT NULL COMMENT '本期结存',
-  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT '删除标识',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT 'Delete Flag',
+  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Remark',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
   `create_time` datetime(3) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '修改人',
   `update_time` datetime(3) NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3188 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '库存结算明细' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3188 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = 'Quantity结算明细' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for wms_item
@@ -1519,39 +1519,39 @@ CREATE TABLE `wms_item`  (
   `unit` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '单位类别',
   `unit_price` decimal(10, 2) NULL DEFAULT NULL COMMENT '单价',
   `rack_id` bigint(20) NULL DEFAULT NULL COMMENT '所属货架',
-  `area_id` bigint(20) NULL DEFAULT NULL COMMENT '所属库区',
-  `warehouse_id` bigint(20) NULL DEFAULT NULL COMMENT '所属仓库',
-  `quantity` decimal(20, 2) NULL DEFAULT NULL COMMENT '安全库存',
+  `area_id` bigint(20) NULL DEFAULT NULL COMMENT 'Area',
+  `warehouse_id` bigint(20) NULL DEFAULT NULL COMMENT 'Warehouse',
+  `quantity` decimal(20, 2) NULL DEFAULT NULL COMMENT '安全Quantity',
   `production_date` datetime(3) NULL DEFAULT NULL COMMENT '生产日期',
   `expiry_date` datetime(3) NULL DEFAULT NULL COMMENT '有效期',
   `batch` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '批次',
-  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT '删除标识',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT 'Delete Flag',
+  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Remark',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
   `create_time` datetime(3) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '修改人',
   `update_time` datetime(3) NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 417 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '物料' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 417 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = 'Goods ' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for wms_item_type
 -- ----------------------------
 DROP TABLE IF EXISTS `wms_item_type`;
 CREATE TABLE `wms_item_type`  (
-  `item_type_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '物料类型id',
-  `parent_id` bigint(20) NULL DEFAULT 0 COMMENT '父物料类型id',
+  `item_type_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'Goods 类型id',
+  `parent_id` bigint(20) NULL DEFAULT 0 COMMENT '父Goods 类型id',
   `ancestors` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '祖级列表',
-  `type_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '物料类型名称',
+  `type_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT 'Goods 类型名称',
   `order_num` int(11) NULL DEFAULT 0 COMMENT '显示顺序',
-  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '物料类型状态（0正常 1停用）',
+  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT 'Goods 类型状态（0正常 1停用）',
   `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建者',
   `create_time` datetime(3) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '更新者',
   `update_time` datetime(3) NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`item_type_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 442 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '物料类型表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 442 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = 'Goods 类型表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for wms_rack
@@ -1561,10 +1561,10 @@ CREATE TABLE `wms_rack`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `rack_no` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '编号',
   `rack_name` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '名称',
-  `area_id` bigint(20) NOT NULL COMMENT '所属库区',
-  `warehouse_id` bigint(20) NOT NULL COMMENT '所属仓库',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
-  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT '删除标识',
+  `area_id` bigint(20) NOT NULL COMMENT 'Area',
+  `warehouse_id` bigint(20) NOT NULL COMMENT 'Warehouse',
+  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Remark',
+  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT 'Delete Flag',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
   `create_time` datetime(3) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '修改人',
@@ -1584,8 +1584,8 @@ CREATE TABLE `wms_receipt_order`  (
   `order_no` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '订单号',
   `payable_amount` decimal(10, 2) NULL DEFAULT NULL COMMENT '订单金额',
   `receipt_order_status` tinyint(4) NULL DEFAULT NULL COMMENT '入库状态',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
-  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT '删除标识',
+  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Remark',
+  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT 'Delete Flag',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
   `create_time` datetime(3) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '修改人',
@@ -1601,19 +1601,19 @@ DROP TABLE IF EXISTS `wms_receipt_order_detail`;
 CREATE TABLE `wms_receipt_order_detail`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `receipt_order_id` bigint(20) NULL DEFAULT NULL COMMENT '入库单号',
-  `item_id` bigint(20) NULL DEFAULT NULL COMMENT '物料',
+  `item_id` bigint(20) NULL DEFAULT NULL COMMENT 'Goods ',
   `plan_quantity` decimal(20, 2) NULL DEFAULT NULL COMMENT '计划数量',
   `real_quantity` decimal(20, 2) NULL DEFAULT NULL COMMENT '实际数量',
   `rack_id` bigint(20) NULL DEFAULT NULL COMMENT '所属货架',
   `money` decimal(10, 2) NULL DEFAULT NULL COMMENT '金额',
-  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT '删除标识',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT 'Delete Flag',
+  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Remark',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
   `create_time` datetime(3) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '修改人',
   `update_time` datetime(3) NULL DEFAULT NULL COMMENT '修改时间',
-  `warehouse_id` bigint(20) NULL DEFAULT NULL COMMENT '所属仓库',
-  `area_id` bigint(20) NULL DEFAULT NULL COMMENT '所属库区',
+  `warehouse_id` bigint(20) NULL DEFAULT NULL COMMENT 'Warehouse',
+  `area_id` bigint(20) NULL DEFAULT NULL COMMENT 'Area',
   `receipt_order_status` tinyint(4) NULL DEFAULT NULL COMMENT '入库状态',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 6044 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '入库单详情' ROW_FORMAT = Dynamic;
@@ -1634,8 +1634,8 @@ CREATE TABLE `wms_shipment_order`  (
   `check_user_id` bigint(20) NULL DEFAULT NULL COMMENT '审核人',
   `check_time` datetime(3) NULL DEFAULT NULL COMMENT '审核时间',
   `wave_no` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '波次号',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
-  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT '删除标识',
+  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Remark',
+  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT 'Delete Flag',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
   `create_time` datetime(3) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '修改人',
@@ -1650,19 +1650,19 @@ DROP TABLE IF EXISTS `wms_shipment_order_detail`;
 CREATE TABLE `wms_shipment_order_detail`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `shipment_order_id` bigint(20) NULL DEFAULT NULL COMMENT '出库单',
-  `item_id` bigint(20) NULL DEFAULT NULL COMMENT '物料',
+  `item_id` bigint(20) NULL DEFAULT NULL COMMENT 'Goods ',
   `plan_quantity` decimal(20, 2) NULL DEFAULT NULL COMMENT '计划数量',
   `real_quantity` decimal(20, 2) NULL DEFAULT NULL COMMENT '实际数量',
   `rack_id` bigint(20) NULL DEFAULT NULL COMMENT '货架',
   `money` decimal(10, 2) NULL DEFAULT NULL COMMENT '金额',
-  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT '删除标识',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT 'Delete Flag',
+  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Remark',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
   `create_time` datetime(3) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '修改人',
   `update_time` datetime(3) NULL DEFAULT NULL COMMENT '修改时间',
-  `warehouse_id` bigint(20) NULL DEFAULT NULL COMMENT '所属仓库',
-  `area_id` bigint(20) NULL DEFAULT NULL COMMENT '所属库区',
+  `warehouse_id` bigint(20) NULL DEFAULT NULL COMMENT 'Warehouse',
+  `area_id` bigint(20) NULL DEFAULT NULL COMMENT 'Area',
   `shipment_order_status` tinyint(4) NULL DEFAULT NULL COMMENT '出库状态',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 2308 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '出库单详情' ROW_FORMAT = Dynamic;
@@ -1684,8 +1684,8 @@ CREATE TABLE `wms_supplier`  (
   `contact` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '联系人',
   `level` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '级别',
   `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Email',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
-  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT '删除标识',
+  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Remark',
+  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT 'Delete Flag',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
   `create_time` datetime(3) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '修改人',
@@ -1707,7 +1707,7 @@ CREATE TABLE `wms_supplier_transaction`  (
   `previous_balance` decimal(18, 2) NOT NULL COMMENT '上期余额',
   `current_balance` decimal(18, 2) NOT NULL COMMENT '当前余额',
   `receipt_order_id` bigint(20) NULL DEFAULT NULL COMMENT '入库单号',
-  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Remark',
   `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT '删除标志',
   `create_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
   `update_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间',
@@ -1723,8 +1723,8 @@ CREATE TABLE `wms_warehouse`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `warehouse_no` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '编号',
   `warehouse_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '名称',
-  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT '删除标识',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT 'Delete Flag',
+  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Remark',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
   `create_time` datetime(3) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '修改人',
@@ -1740,8 +1740,8 @@ CREATE TABLE `wms_wave`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `wave_no` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '波次号',
   `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '状态',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
-  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT '删除标识',
+  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Remark',
+  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT 'Delete Flag',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
   `create_time` datetime(3) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '修改人',

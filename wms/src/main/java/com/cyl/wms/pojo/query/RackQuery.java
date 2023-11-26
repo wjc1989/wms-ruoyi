@@ -21,7 +21,7 @@ public class RackQuery {
     @ApiModelProperty("所属货区 精确匹配")
     private Long areaId;
 
-    @ApiModelProperty("所属仓库 精确匹配")
+    @ApiModelProperty("Warehouse 精确匹配")
     private Long warehouseId;
 
 }

@@ -37,7 +37,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
- * 库存Service业务层处理
+ * QuantityService业务层处理
  *
  * @author zcc
  */
@@ -62,21 +62,21 @@ public class InventoryService {
     private ISysDictDataService sysDictDataService;
 
     /**
-     * 查询库存
+     * 查询Quantity
      *
-     * @param id 库存主键
-     * @return 库存
+     * @param id Quantity主键
+     * @return Quantity
      */
     public Inventory selectById(Long id) {
         return inventoryMapper.selectById(id);
     }
 
     /**
-     * 查询库存列表
+     * 查询Quantity列表
      *
      * @param query 查询条件
      * @param page  分页条件
-     * @return 库存
+     * @return Quantity
      */
     public List<Inventory> selectList(InventoryQuery query, Pageable page) {
         if (page != null) {
@@ -107,9 +107,9 @@ public class InventoryService {
     }
 
     /**
-     * 新增库存
+     * 新增Quantity
      *
-     * @param inventory 库存
+     * @param inventory Quantity
      * @return 结果
      */
     public int insert(Inventory inventory) {
@@ -128,9 +128,9 @@ public class InventoryService {
     }
 
     /**
-     * 修改库存
+     * 修改Quantity
      *
-     * @param inventory 库存
+     * @param inventory Quantity
      * @return 结果
      */
     public int update(Inventory inventory) {
@@ -138,9 +138,9 @@ public class InventoryService {
     }
 
     /**
-     * 批量删除库存
+     * 批量删除Quantity
      *
-     * @param ids 需要删除的库存主键
+     * @param ids 需要删除的Quantity主键
      * @return 结果
      */
     public int deleteByIds(Long[] ids) {
@@ -148,9 +148,9 @@ public class InventoryService {
     }
 
     /**
-     * 删除库存信息
+     * 删除Quantity信息
      *
-     * @param id 库存主键
+     * @param id Quantity主键
      * @return 结果
      */
     public int deleteById(Long id) {
@@ -170,7 +170,7 @@ public class InventoryService {
             qw.eq("wi.del_flag", 0);
             items = inventoryMapper.selectListGroupByItemTypeId(qw);
         } else {
-            // 物料
+            // Goods
             qw.eq("del_flag", 0);
             qw.orderBy(true, false, "item_id");
             items = inventoryMapper.selectList(qw);
@@ -181,7 +181,7 @@ public class InventoryService {
         return items;
     }
 
-    private void injectItemType(List<InventoryVO> items) {
+    public void injectItemType(List<InventoryVO> items) {
         if (CollUtil.isEmpty(items)) {
             return;
         }
@@ -211,7 +211,7 @@ public class InventoryService {
     }
 
     /*
-     * 根据物料id查询库存
+     * 根据Goods id查询Quantity
      * */
     public Inventory queryInventoryByItemId(Long itemId, Long warehouseId, Long areaId, Long rackId) {
         QueryWrapper<Inventory> qw = new QueryWrapper<>();
@@ -226,7 +226,7 @@ public class InventoryService {
     }
 
     /*
-     * 判断库存是否足够出库
+     * 判断Quantity是否足够出库
      * */
     public void checkInventory(Long itemId, Long warehouseId, Long areaId, Long rackId, BigDecimal added) {
         HashMap<String, Object> map = new HashMap<>();
@@ -234,11 +234,11 @@ public class InventoryService {
         Inventory inventory = this.queryInventoryByItemId(itemId, warehouseId, areaId, rackId);
         if (inventory == null) {
             Item item = itemService.selectById(itemId);
-            String msg = "商品：" + item.getItemName() + "(" + item.getItemNo() + ")" + ",<span style='color:red'>库存不存在</span> 无法出库</br>";
+            String msg = "商品：" + item.getItemName() + "(" + item.getItemNo() + ")" + ",<span style='color:red'>Quantity不存在</span> 无法出库</br>";
             throw new WmsServiceException(msg, HttpStatus.INVENTORY_SHORTAGE, map);
         } else if (inventory.getQuantity().compareTo(added) < 0) {
             Item item = itemService.selectById(itemId);
-            String msg = "商品：[<span style='color:red'>" + item.getItemName() + "</span>] 库存不足，无法出库" +
+            String msg = "商品：[<span style='color:red'>" + item.getItemName() + "</span>] Quantity不足，无法出库" +
                     "</br>计划数量：<span >" + added + "</span>";
             throw new WmsServiceException(msg, HttpStatus.INVENTORY_SHORTAGE, map);
         }
@@ -439,7 +439,7 @@ public class InventoryService {
     }
 
     /**
-     * 查询所有有效的物料
+     * 查询所有有效的Goods
      */
     public List<InventoryVO> queryValidAll() {
         List<Inventory> list = inventoryMapper.selectValidAll();
@@ -449,9 +449,9 @@ public class InventoryService {
     }
 
     /**
-     * 注入物料编码和名称
+     * 注入Goods 编码和名称
      *
-     * @param res 物料
+     * @param res Goods
      */
     public void injectItemNoAndItemName(List<Inventory> res) {
         if (CollUtil.isEmpty(res)) {
@@ -470,7 +470,7 @@ public class InventoryService {
     /**
      * 注入仓库名称
      *
-     * @param res 物料
+     * @param res Goods
      */
     public void injectWarehouseName(List<Inventory> res) {
         if (CollUtil.isEmpty(res)) {
@@ -488,7 +488,7 @@ public class InventoryService {
     /**
      * 注入库区名称
      *
-     * @param res 物料
+     * @param res Goods
      */
     public void injectAreaName(List<Inventory> res) {
         if (CollUtil.isEmpty(res)) {
@@ -518,15 +518,15 @@ public class InventoryService {
     }
 
     /**
-     * 逻辑删除 库存记录
+     * 逻辑删除 Quantity记录
      *
-     * @param itemIds 物料ids
+     * @param itemIds Goods ids
      */
     public Integer deleteByItemIds(Long[] itemIds) {
         LambdaQueryWrapper<Inventory> inventoryLambdaQueryWrapper = new LambdaQueryWrapper<>();
         inventoryLambdaQueryWrapper.select(Inventory::getId);
         inventoryLambdaQueryWrapper.in(Inventory::getItemId, Arrays.asList(itemIds));
-        // 物料对应的库存记录id
+        // Goods 对应的Quantity记录id
         List<Long> ids = inventoryMapper.selectList(inventoryLambdaQueryWrapper)
                 .stream().map(Inventory::getId).collect(Collectors.toList());
         if (CollUtil.isEmpty(ids)) {
@@ -537,7 +537,7 @@ public class InventoryService {
     }
 
     /**
-     * 逻辑删除 库存记录
+     * 逻辑删除 Quantity记录
      *
      * @param warehouseIds 仓库ids
      */
@@ -546,7 +546,7 @@ public class InventoryService {
         LambdaQueryWrapper<Inventory> inventoryLambdaQueryWrapper = new LambdaQueryWrapper<>();
         inventoryLambdaQueryWrapper.select(Inventory::getId);
         inventoryLambdaQueryWrapper.in(Inventory::getWarehouseId, Arrays.asList(warehouseIds));
-        // 仓库对应的库存记录id
+        // 仓库对应的Quantity记录id
         List<Long> ids = inventoryMapper.selectList(inventoryLambdaQueryWrapper)
                 .stream().map(Inventory::getId).collect(Collectors.toList());
         if (CollUtil.isEmpty(ids)) {
@@ -557,25 +557,25 @@ public class InventoryService {
     }
 
     /*
-     * 根据库存分配规则分配库存
-     * @param itemId 物料id
+     * 根据Quantity分配规则分配Quantity
+     * @param itemId Goods id
      * @param planQuantity 计划数量
      * */
     public List<ShipmentOrderDetail> allocatedInventory(Long itemId, BigDecimal planQuantity, Integer type) {
         List<Inventory> inventoryList = new ArrayList<>();
         if (type == 1) {
-            //  默认使用仓库库存数量最小优先原则
+            //  默认使用仓库Quantity数量最小优先原则
             inventoryList = inventoryMapper.selectLastInventory(itemId, "asc");
         } else if (type == 2) {
-            //使用仓库库存数量最大优先原则
+            //使用仓库Quantity数量最大优先原则
             inventoryList = inventoryMapper.selectLastInventory(itemId, "desc");
         }
 
         if (CollUtil.isEmpty(inventoryList)) {
-            log.error("库存不足,itemId:{},计划数量：{}", itemId, planQuantity);
-            throw new ServiceException("库存不足", HttpStatus.CONFIRMATION);
+            log.error("Quantity不足,itemId:{},计划数量：{}", itemId, planQuantity);
+            throw new ServiceException("Quantity不足", HttpStatus.CONFIRMATION);
         }
-        // 拆分物料明细
+        // 拆分Goods 明细
         List<ShipmentOrderDetail> shipmentOrderDetailList = new ArrayList<>();
         for (Inventory inventory : inventoryList) {
             ShipmentOrderDetail shipmentOrderDetail = new ShipmentOrderDetail();
@@ -597,9 +597,9 @@ public class InventoryService {
                 break;
             }
         }
-        // 库存不足
+        // Quantity不足
         if (planQuantity.compareTo(BigDecimal.ZERO) > 0) {
-            throw new ServiceException("库存不足", HttpStatus.CONFIRMATION);
+            throw new ServiceException("Quantity不足", HttpStatus.CONFIRMATION);
         }
         return shipmentOrderDetailList;
     }
@@ -607,10 +607,10 @@ public class InventoryService {
     public Inventory allocatedInventoryForReceipt(Long itemId, BigDecimal planQuantity, Integer type) {
         List<Inventory> inventoryList = new ArrayList<>();
         if (type == 1) {
-            //  默认使用仓库库存数量最小优先原则
+            //  默认使用仓库Quantity数量最小优先原则
             inventoryList = inventoryMapper.selectLastInventoryForReceipt(itemId, "asc");
         } else if (type == 2) {
-            //使用仓库库存数量最大优先原则
+            //使用仓库Quantity数量最大优先原则
             inventoryList = inventoryMapper.selectLastInventoryForReceipt(itemId, "desc");
         }
 

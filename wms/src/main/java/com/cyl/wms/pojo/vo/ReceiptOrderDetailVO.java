@@ -9,7 +9,7 @@ import com.ruoyi.common.core.domain.BaseAudit;
 import lombok.Data;
 /**
  * 入库单详情 数据视图对象
- * 
+ *
  * @author zcc
  */
 @Data
@@ -21,8 +21,8 @@ public class ReceiptOrderDetailVO extends BaseAudit {
     private Long receiptOrderId;
     @Excel(name = "订单号")
     private String orderNo;
-   /** 物料 */
-    @Excel(name = "物料")
+   /** Goods  */
+    @Excel(name = "Goods ")
     private Long itemId;
    /** 计划数量 */
     @Excel(name = "计划数量")
@@ -35,14 +35,14 @@ public class ReceiptOrderDetailVO extends BaseAudit {
     private Long rackId;
     @Excel(name = "金额")
     private BigDecimal money;
-   /** 备注 */
-    @Excel(name = "备注")
+   /** Remark */
+    @Excel(name = "Remark")
     private String remark;
-   /** 所属仓库 */
-    @Excel(name = "所属仓库")
+   /** Warehouse */
+    @Excel(name = "Warehouse")
     private Long warehouseId;
-   /** 所属库区 */
-    @Excel(name = "所属库区")
+   /** Area */
+    @Excel(name = "Area")
     private Long areaId;
    /** 入库状态 */
     @Excel(name = "入库状态")

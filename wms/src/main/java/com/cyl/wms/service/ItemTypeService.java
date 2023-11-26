@@ -16,7 +16,7 @@ import com.cyl.wms.domain.ItemType;
 import com.cyl.wms.pojo.query.ItemTypeQuery;
 
 /**
- * 物料类型表Service业务层处理
+ * Goods 类型表Service业务层处理
  *
  *
  * @author zcc
@@ -27,10 +27,10 @@ public class ItemTypeService {
     private ItemTypeMapper itemTypeMapper;
 
     /**
-     * 查询物料类型表
+     * 查询Goods 类型表
      *
-     * @param ids 物料类型表主键
-     * @return 物料类型表
+     * @param ids Goods 类型表主键
+     * @return Goods 类型表
      */
     public List<ItemType> selectByIdIn(Collection<Long> ids) {
         if (ids.isEmpty()){
@@ -42,21 +42,21 @@ public class ItemTypeService {
     }
 
     /**
-     * 查询物料类型表
+     * 查询Goods 类型表
      *
-     * @param itemTypeId 物料类型表主键
-     * @return 物料类型表
+     * @param itemTypeId Goods 类型表主键
+     * @return Goods 类型表
      */
     public ItemType selectByItemTypeId(Long itemTypeId) {
         return itemTypeMapper.selectById(itemTypeId);
     }
 
     /**
-     * 查询物料类型表列表
+     * 查询Goods 类型表列表
      *
      * @param query 查询条件
      * @param page 分页条件
-     * @return 物料类型表
+     * @return Goods 类型表
      */
     public List<ItemType> selectList(ItemTypeQuery query, Pageable page) {
         if (page != null) {
@@ -88,9 +88,9 @@ public class ItemTypeService {
     }
 
     /**
-     * 新增物料类型表
+     * 新增Goods 类型表
      *
-     * @param itemType 物料类型表
+     * @param itemType Goods 类型表
      * @return 结果
      */
     public int insert(ItemType itemType) {
@@ -100,9 +100,9 @@ public class ItemTypeService {
     }
 
     /**
-     * 修改物料类型表
+     * 修改Goods 类型表
      *
-     * @param itemType 物料类型表
+     * @param itemType Goods 类型表
      * @return 结果
      */
     public int update(ItemType itemType) {
@@ -110,9 +110,9 @@ public class ItemTypeService {
     }
 
     /**
-     * 批量删除物料类型表
+     * 批量删除Goods 类型表
      *
-     * @param itemTypeIds 需要删除的物料类型表主键
+     * @param itemTypeIds 需要删除的Goods 类型表主键
      * @return 结果
      */
     public int deleteByItemTypeIds(Long[] itemTypeIds) {
@@ -120,9 +120,9 @@ public class ItemTypeService {
     }
 
     /**
-     * 删除物料类型表信息
+     * 删除Goods 类型表信息
      *
-     * @param itemTypeId 物料类型表主键
+     * @param itemTypeId Goods 类型表主键
      * @return 结果
      */
     public int deleteByItemTypeId(Long itemTypeId) {

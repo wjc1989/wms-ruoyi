@@ -6,17 +6,17 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * 库存移动详情 查询 对象
+ * Quantity移动详情 查询 对象
  *
  * @author zcc
  */
-@ApiModel(description="库存移动详情 查询 对象")
+@ApiModel(description="Quantity移动详情 查询 对象")
 @Data
 public class InventoryMovementDetailQuery {
-    @ApiModelProperty("库存移动Id 精确匹配")
+    @ApiModelProperty("Quantity移动Id 精确匹配")
     private Long inventoryMovementId;
 
-    @ApiModelProperty("物料 精确匹配")
+    @ApiModelProperty("Goods  精确匹配")
     private Long itemId;
 
     @ApiModelProperty("计划数量 精确匹配")

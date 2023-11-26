@@ -19,7 +19,7 @@ import com.cyl.wms.domain.InventoryCheckDetail;
 import com.cyl.wms.pojo.query.InventoryCheckDetailQuery;
 
 /**
- * 库存盘点单据详情Service业务层处理
+ * Quantity盘点单据详情Service业务层处理
  *
  *
  * @author zcc
@@ -33,10 +33,10 @@ public class InventoryCheckDetailService {
     private InventoryCheckDetailConvert convert;
 
     /**
-     * 查询库存盘点单据详情
+     * 查询Quantity盘点单据详情
      *
-     * @param id 库存盘点单据详情主键
-     * @return 库存盘点单据详情
+     * @param id Quantity盘点单据详情主键
+     * @return Quantity盘点单据详情
      */
     public InventoryCheckDetail selectById(Long id) {
         return inventoryCheckDetailMapper.selectById(id);
@@ -61,11 +61,11 @@ public class InventoryCheckDetailService {
     }
 
     /**
-     * 查询库存盘点单据详情列表
+     * 查询Quantity盘点单据详情列表
      *
      * @param query 查询条件
      * @param page 分页条件
-     * @return 库存盘点单据详情
+     * @return Quantity盘点单据详情
      */
     public List<InventoryCheckDetail> selectList(InventoryCheckDetailQuery query, Pageable page) {
         if (page != null) {
@@ -105,9 +105,9 @@ public class InventoryCheckDetailService {
     }
 
     /**
-     * 新增库存盘点单据详情
+     * 新增Quantity盘点单据详情
      *
-     * @param inventoryCheckDetail 库存盘点单据详情
+     * @param inventoryCheckDetail Quantity盘点单据详情
      * @return 结果
      */
     public int insert(InventoryCheckDetail inventoryCheckDetail) {
@@ -117,9 +117,9 @@ public class InventoryCheckDetailService {
     }
 
     /**
-     * 修改库存盘点单据详情
+     * 修改Quantity盘点单据详情
      *
-     * @param inventoryCheckDetail 库存盘点单据详情
+     * @param inventoryCheckDetail Quantity盘点单据详情
      * @return 结果
      */
     public int update(InventoryCheckDetail inventoryCheckDetail) {
@@ -127,9 +127,9 @@ public class InventoryCheckDetailService {
     }
 
     /**
-     * 批量删除库存盘点单据详情
+     * 批量删除Quantity盘点单据详情
      *
-     * @param ids 需要删除的库存盘点单据详情主键
+     * @param ids 需要删除的Quantity盘点单据详情主键
      * @return 结果
      */
     public int deleteByIds(Long[] ids) {
@@ -137,9 +137,9 @@ public class InventoryCheckDetailService {
     }
 
     /**
-     * 删除库存盘点单据详情信息
+     * 删除Quantity盘点单据详情信息
      *
-     * @param id 库存盘点单据详情主键
+     * @param id Quantity盘点单据详情主键
      * @return 结果
      */
     public int deleteById(Long id) {

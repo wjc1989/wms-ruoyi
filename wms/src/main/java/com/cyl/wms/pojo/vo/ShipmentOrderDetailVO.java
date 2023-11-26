@@ -31,9 +31,9 @@ public class ShipmentOrderDetailVO extends BaseAudit {
     @Excel(name = "出库单")
     private Long shipmentOrderId;
     /**
-     * 物料
+     * Goods
      */
-    @Excel(name = "物料")
+    @Excel(name = "Goods ")
     private Long itemId;
     /**
      * 计划数量
@@ -51,26 +51,26 @@ public class ShipmentOrderDetailVO extends BaseAudit {
     @Excel(name = "货架")
     private Long rackId;
     /**
-     * 备注
+     * Remark
      */
-    @Excel(name = "备注")
+    @Excel(name = "Remark")
     private String remark;
 
     /**
-     * 所属仓库
+     * Warehouse
      */
-    @Excel(name = "所属仓库")
+    @Excel(name = "Warehouse")
     private Long warehouseId;
 
     @Excel(name = "金额")
     private BigDecimal money;
 
-    @ApiModelProperty("删除标识")
+    @ApiModelProperty("Delete Flag")
     private Integer delFlag;
     /**
-     * 所属库区
+     * Area
      */
-    @Excel(name = "所属库区")
+    @Excel(name = "Area")
     private Long areaId;
 
     @Excel(name = "出库状态")

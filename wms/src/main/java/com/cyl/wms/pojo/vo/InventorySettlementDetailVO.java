@@ -6,7 +6,7 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 /**
- * 库存结算明细 数据视图对象
+ * Quantity结算明细 数据视图对象
  *
  * @author zcc
  */
@@ -20,8 +20,8 @@ public class InventorySettlementDetailVO extends BaseAudit {
    /** 结算类型,1:月结，2:年结 */
     @Excel(name = "结算类型,1:月结，2:年结")
     private Integer settlementType;
-   /** 物料id */
-    @Excel(name = "物料id")
+   /** Goods id */
+    @Excel(name = "Goods id")
     private Long itemId;
    /** 编号 */
     @Excel(name = "编号")
@@ -62,7 +62,7 @@ public class InventorySettlementDetailVO extends BaseAudit {
    /** 本期结存 */
     @Excel(name = "本期结存")
     private BigDecimal currentBalance;
-   /** 备注 */
-    @Excel(name = "备注")
+   /** Remark */
+    @Excel(name = "Remark")
     private String remark;
 }

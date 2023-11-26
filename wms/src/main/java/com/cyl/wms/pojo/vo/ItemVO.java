@@ -10,8 +10,8 @@ import com.ruoyi.common.core.domain.BaseAudit;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 /**
- * 物料 数据视图对象
- * 
+ * Goods  数据视图对象
+ *
  * @author zcc
  */
 @Data
@@ -36,25 +36,25 @@ public class ItemVO extends BaseAudit {
     private String unit;
    /** 所属货架 */
     private Long rackId;
-   /** 所属库区 */
+   /** Area */
     private Long areaId;
-    /** 所属仓库名称 */
-    @Excel(name = "所属仓库")
+    /** Warehouse名称 */
+    @Excel(name = "Warehouse")
     private String warehouseName;
-    /** 所属库区名称 */
-    @Excel(name = "所属库区")
+    /** Area名称 */
+    @Excel(name = "Area")
     private String areaName;
-   /** 所属仓库 */
+   /** Warehouse */
     private Long warehouseId;
-   /** 安全库存 */
-    @Excel(name = "安全库存")
+   /** 安全Quantity */
+    @Excel(name = "安全Quantity")
     private BigDecimal quantity;
    /** 有效期 */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Excel(name = "有效期", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime expiryDate;
-   /** 备注 */
-    @Excel(name = "备注")
+   /** Remark */
+    @Excel(name = "Remark")
     private String remark;
     private List<Long> place;
     private Integer delFlag;

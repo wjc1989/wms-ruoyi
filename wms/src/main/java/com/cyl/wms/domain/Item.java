@@ -14,11 +14,11 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
- * 物料对象 wms_item
+ * Goods 对象 wms_item
  *
  * @author zcc
  */
-@ApiModel(description = "物料对象")
+@ApiModel(description = "Goods 对象")
 @Data
 @TableName("wms_item")
 public class Item extends BaseAudit {
@@ -47,16 +47,16 @@ public class Item extends BaseAudit {
     @Excel(name = "所属货架")
     private Long rackId;
 
-    @ApiModelProperty("所属库区")
-    @Excel(name = "所属库区")
+    @ApiModelProperty("Area")
+    @Excel(name = "Area")
     private Long areaId;
 
-    @ApiModelProperty("所属仓库")
-    @Excel(name = "所属仓库")
+    @ApiModelProperty("Warehouse")
+    @Excel(name = "Warehouse")
     private Long warehouseId;
 
-    @ApiModelProperty("安全库存")
-    @Excel(name = "安全库存")
+    @ApiModelProperty("安全Quantity")
+    @Excel(name = "安全Quantity")
     private BigDecimal quantity;
 
     @ApiModelProperty("有效期")
@@ -65,11 +65,11 @@ public class Item extends BaseAudit {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime expiryDate;
 
-    @ApiModelProperty("删除标识")
+    @ApiModelProperty("Delete Flag")
     private Integer delFlag;
 
-    @ApiModelProperty("备注")
-    @Excel(name = "备注")
+    @ApiModelProperty("Remark")
+    @Excel(name = "Remark")
     private String remark;
 
 

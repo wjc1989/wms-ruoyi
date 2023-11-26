@@ -9,7 +9,7 @@ import com.cyl.wms.pojo.vo.InventoryMovementVO;
 import java.util.List;
 
 /**
- * 库存移动  DO <=> DTO <=> VO / BO / Query
+ * Quantity移动  DO <=> DTO <=> VO / BO / Query
  *
  * @author zcc
  */

@@ -27,7 +27,7 @@ public class DeliveryVO extends BaseAudit {
    /** 快递单号 */
     @Excel(name = "快递单号")
     private String trackingNo;
-   /** 备注 */
-    @Excel(name = "备注")
+   /** Remark */
+    @Excel(name = "Remark")
     private String remark;
 }

@@ -23,7 +23,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * 库存结算单Service业务层处理
+ * Quantity结算单Service业务层处理
  *
  * @author zcc
  */
@@ -39,10 +39,10 @@ public class InventorySettlementService {
     private InventorySettlementConvert convert;
 
     /**
-     * 查询库存结算单
+     * 查询Quantity结算单
      *
-     * @param id 库存结算单主键
-     * @return 库存结算单
+     * @param id Quantity结算单主键
+     * @return Quantity结算单
      */
     public InventorySettlementFrom selectById(Long id) {
         InventorySettlement inventorySettlement = inventorySettlementMapper.selectById(id);
@@ -61,11 +61,11 @@ public class InventorySettlementService {
     }
 
     /**
-     * 查询库存结算单列表
+     * 查询Quantity结算单列表
      *
      * @param query 查询条件
      * @param page  分页条件
-     * @return 库存结算单
+     * @return Quantity结算单
      */
     public List<InventorySettlement> selectList(InventorySettlementQuery query, Pageable page) {
         if (page != null) {
@@ -90,9 +90,9 @@ public class InventorySettlementService {
     }
 
     /**
-     * 新增库存结算单
+     * 新增Quantity结算单
      *
-     * @param inventorySettlement 库存结算单
+     * @param inventorySettlement Quantity结算单
      * @return 结果
      */
     public int insert(InventorySettlement inventorySettlement) {
@@ -102,9 +102,9 @@ public class InventorySettlementService {
     }
 
     /**
-     * 修改库存结算单
+     * 修改Quantity结算单
      *
-     * @param inventorySettlement 库存结算单
+     * @param inventorySettlement Quantity结算单
      * @return 结果
      */
     public int update(InventorySettlement inventorySettlement) {
@@ -112,9 +112,9 @@ public class InventorySettlementService {
     }
 
     /**
-     * 批量删除库存结算单
+     * 批量删除Quantity结算单
      *
-     * @param ids 需要删除的库存结算单主键
+     * @param ids 需要删除的Quantity结算单主键
      * @return 结果
      */
     public int deleteByIds(Long[] ids) {
@@ -122,9 +122,9 @@ public class InventorySettlementService {
     }
 
     /**
-     * 删除库存结算单信息
+     * 删除Quantity结算单信息
      *
-     * @param id 库存结算单主键
+     * @param id Quantity结算单主键
      * @return 结果
      */
     public int deleteById(Long id) {
@@ -135,7 +135,7 @@ public class InventorySettlementService {
     /**
      * 新增或更新结算单据以及结算单据明细
      *
-     * @param inventorySettlementFrom 库存结算单
+     * @param inventorySettlementFrom Quantity结算单
      * @return 结果
      */
     public int addOrUpdate(InventorySettlementFrom inventorySettlementFrom) {
@@ -167,7 +167,7 @@ public class InventorySettlementService {
     /**
      * 删除明细单
      *
-     * @param inventorySettlementFrom 库存结算单
+     * @param inventorySettlementFrom Quantity结算单
      */
     private void deleteDetails(InventorySettlementFrom inventorySettlementFrom) {
         LambdaQueryWrapper<InventorySettlementDetail> queryWrapper = new LambdaQueryWrapper<>();
@@ -178,7 +178,7 @@ public class InventorySettlementService {
     /**
      * 保存单据明细
      *
-     * @param inventorySettlementFrom 库存结算单
+     * @param inventorySettlementFrom Quantity结算单
      */
     private void saveDetails(InventorySettlementFrom inventorySettlementFrom) {
         Long settlementId = inventorySettlementFrom.getId();

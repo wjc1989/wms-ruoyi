@@ -18,7 +18,7 @@ public class AreaQuery {
     @ApiModelProperty("货区名称 精确匹配")
     private String areaNameLike;
 
-    @ApiModelProperty("所属仓库ID 精确匹配")
+    @ApiModelProperty("WarehouseID 精确匹配")
     private Long warehouseId;
 
 }

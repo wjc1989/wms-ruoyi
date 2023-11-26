@@ -9,11 +9,11 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
- * 库存结算明细 查询 对象
+ * Quantity结算明细 查询 对象
  *
  * @author zcc
  */
-@ApiModel(description="库存结算明细 查询 对象")
+@ApiModel(description="Quantity结算明细 查询 对象")
 @Data
 public class InventorySettlementDetailQuery {
     @ApiModelProperty("结算单id 精确匹配")
@@ -22,7 +22,7 @@ public class InventorySettlementDetailQuery {
     @ApiModelProperty("结算类型,1:月结，2:年结 精确匹配")
     private Integer settlementType;
 
-    @ApiModelProperty("物料id 精确匹配")
+    @ApiModelProperty("Goods id 精确匹配")
     private Long itemId;
 
     @ApiModelProperty("编号 精确匹配")

@@ -7,7 +7,7 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 /**
- * 库存 数据视图对象
+ * Quantity 数据视图对象
  *
  * @author zcc
  */
@@ -18,51 +18,51 @@ public class InventoryVO extends BaseAudit implements AreaAndItemInfo {
      */
     private Long id;
     /**
-     * 物料ID
+     * Goods ID
      */
     private Long itemId;
-    // 物料编号
-    @Excel(name = "物料编码")
+    // Goods 编号
+    @Excel(name = "Goods No.")
     private String itemNo;
-    // 物料名称
-    @Excel(name = "物料名称")
+    // Goods 名称
+    @Excel(name = "Goods Name")
     private String itemName;
-    // 物料类型
-    @Excel(name = "物料类型")
+    // Goods 类型
+    @Excel(name = "Category")
     private String itemTypeName;
     /**
-     * 货架id
+     * Shelves
      */
     private Long rackId;
     // 货架 名称
     private String rackName;
     private Long warehouseId;
     // 仓库 名称
-    @Excel(name = "仓库")
+    @Excel(name = "Wharehouse")
     private String warehouseName;
     private Long areaId;
     // 库区 名称
-    @Excel(name = "库区")
+    @Excel(name = "Area")
     private String areaName;
     /**
-     * 库存
+     * Quantity
      */
-    @Excel(name = "库存")
+    @Excel(name = "Quantity")
     private BigDecimal quantity;
     /**
-     * 备注
+     * Remark
      */
-    @Excel(name = "备注")
+    @Excel(name = "Remark")
     private String remark;
     private BigDecimal saftyQuantity;
 
     /**
-     * 物料删除标识
+     * Goods Delete Flag
      */
     private Integer itemDelFlag;
 
     /**
-     * 仓库删除标识
+     * 仓库Delete Flag
      */
     private Integer warehouseDelFlag;
 }

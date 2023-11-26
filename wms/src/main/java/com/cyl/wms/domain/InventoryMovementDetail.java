@@ -8,11 +8,11 @@ import com.ruoyi.common.core.domain.BaseAudit;
 import lombok.Data;
 import com.baomidou.mybatisplus.annotation.TableName;
 /**
- * 库存移动详情对象 wms_inventory_movement_detail
- * 
+ * Quantity移动详情对象 wms_inventory_movement_detail
+ *
  * @author zcc
  */
-@ApiModel(description="库存移动详情对象")
+@ApiModel(description="Quantity移动详情对象")
 @Data
 @TableName("wms_inventory_movement_detail")
 public class InventoryMovementDetail extends BaseAudit {
@@ -21,12 +21,12 @@ public class InventoryMovementDetail extends BaseAudit {
     @ApiModelProperty("ID")
     private Long id;
 
-    @ApiModelProperty("库存移动Id")
-    @Excel(name = "库存移动Id")
+    @ApiModelProperty("Quantity移动Id")
+    @Excel(name = "Quantity移动Id")
     private Long inventoryMovementId;
 
-    @ApiModelProperty("物料")
-    @Excel(name = "物料")
+    @ApiModelProperty("Goods ")
+    @Excel(name = "Goods ")
     private Long itemId;
 
     @ApiModelProperty("计划数量")
@@ -37,11 +37,11 @@ public class InventoryMovementDetail extends BaseAudit {
     @Excel(name = "实际数量")
     private BigDecimal realQuantity;
 
-    @ApiModelProperty("删除标识")
+    @ApiModelProperty("Delete Flag")
     private Integer delFlag;
 
-    @ApiModelProperty("备注")
-    @Excel(name = "备注")
+    @ApiModelProperty("Remark")
+    @Excel(name = "Remark")
     private String remark;
 
     @ApiModelProperty("源货架")

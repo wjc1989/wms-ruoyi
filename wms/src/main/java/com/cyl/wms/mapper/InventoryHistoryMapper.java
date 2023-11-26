@@ -7,16 +7,16 @@ import org.apache.ibatis.annotations.Param;
 import com.cyl.wms.domain.InventoryHistory;
 
 /**
- * 库存记录Mapper接口
- * 
+ * Quantity记录Mapper接口
+ *
  * @author zcc
  */
 public interface InventoryHistoryMapper extends BaseMapper<InventoryHistory> {
     /**
-     * 查询库存记录列表
+     * 查询Quantity记录列表
      *
-     * @param inventoryHistory 库存记录
-     * @return 库存记录集合
+     * @param inventoryHistory Quantity记录
+     * @return Quantity记录集合
      */
     List<InventoryHistory> selectByEntity(InventoryHistory inventoryHistory);
 

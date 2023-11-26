@@ -29,12 +29,12 @@ import com.cyl.wms.service.ItemService;
 import com.cyl.wms.pojo.vo.ItemVO;
 import com.ruoyi.common.utils.poi.ExcelUtil;
 /**
- * 物料Controller
- * 
+ * Goods Controller
+ *
  * @author zcc
  * @date 2022-08-05
  */
-@Api(description ="物料接口列表")
+@Api(description ="Goods 接口列表")
 @RestController
 @RequestMapping("/wms/item")
 public class ItemController extends BaseController {
@@ -43,7 +43,7 @@ public class ItemController extends BaseController {
     @Autowired
     private ItemConvert convert;
 
-    @ApiOperation("查询物料列表")
+    @ApiOperation("查询Goods 列表")
     @PreAuthorize("@ss.hasPermi('wms:item:list')")
     @PostMapping("/list")
     public ResponseEntity<Page<ItemVO>> list(@RequestBody ItemQuery query, Pageable page) {
@@ -52,7 +52,7 @@ public class ItemController extends BaseController {
 
         return ResponseEntity.ok(new PageImpl<>(list, page, ((com.github.pagehelper.Page)items).getTotal()));
     }
-    @ApiOperation("查询物料列表")
+    @ApiOperation("查询Goods 列表")
     @PreAuthorize("@ss.hasPermi('wms:item:list')")
     @PostMapping("/all")
     public ResponseEntity<List<ItemVO>> all(@RequestBody ItemQuery query) {
@@ -60,17 +60,17 @@ public class ItemController extends BaseController {
         return ResponseEntity.ok(convert.dos2vos(items));
     }
 
-    @ApiOperation("导出物料列表")
+    @ApiOperation("导出Goods 列表")
     @PreAuthorize("@ss.hasPermi('wms:item:export')")
-    @Log(title = "物料", businessType = BusinessType.EXPORT)
+    @Log(title = "Goods ", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
     public ResponseEntity<String> export(ItemQuery query) {
         List<Item> list = service.selectList(query, null);
         ExcelUtil<ItemVO> util = new ExcelUtil<>(ItemVO.class);
-        return ResponseEntity.ok(util.writeExcel(convert.dos2vos(list), "物料数据"));
+        return ResponseEntity.ok(util.writeExcel(convert.dos2vos(list), "Goods 数据"));
     }
 
-    @ApiOperation("获取物料详细信息")
+    @ApiOperation("获取Goods 详细信息")
     @PreAuthorize("@ss.hasPermi('wms:item:query')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<ItemVO> getInfo(@PathVariable("id") Long id) {
@@ -79,31 +79,31 @@ public class ItemController extends BaseController {
         return ResponseEntity.ok(itemVO);
     }
 
-    @ApiOperation("新增物料")
+    @ApiOperation("新增Goods ")
     @PreAuthorize("@ss.hasPermi('wms:item:add')")
-    @Log(title = "物料", businessType = BusinessType.INSERT)
+    @Log(title = "Goods ", businessType = BusinessType.INSERT)
     @PostMapping
     public ResponseEntity<Integer> add(@RequestBody Item item) {
         return ResponseEntity.ok(service.insert(item));
     }
 
-    @ApiOperation("修改物料")
+    @ApiOperation("修改Goods ")
     @PreAuthorize("@ss.hasPermi('wms:item:edit')")
-    @Log(title = "物料", businessType = BusinessType.UPDATE)
+    @Log(title = "Goods ", businessType = BusinessType.UPDATE)
     @PutMapping
     public ResponseEntity<Integer> edit(@RequestBody Item item) {
         return ResponseEntity.ok(service.update(item));
     }
 
-    @ApiOperation("删除物料")
+    @ApiOperation("删除Goods ")
     @PreAuthorize("@ss.hasPermi('wms:item:remove')")
-    @Log(title = "物料", businessType = BusinessType.DELETE)
+    @Log(title = "Goods ", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{ids}")
     public ResponseEntity<Integer> remove(@PathVariable Long[] ids) {
         return ResponseEntity.ok(service.deleteByIds(ids));
     }
 
-    @ApiOperation("查询过期物料")
+    @ApiOperation("查询过期Goods ")
     @PreAuthorize("@ss.hasPermi('wms:item:list')")
     @PostMapping("/expiryList")
     public ResponseEntity<Page<ItemVO>> list(Pageable page){

@@ -16,15 +16,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 物料类型表对象 wms_item_type
+ * Goods 类型表对象 wms_item_type
  *
  * @author zhangcheng
  */
-@ApiModel(description = "物料类型表对象")
+@ApiModel(description = "Goods 类型表对象")
 @TableName("wms_item_type")
 public class ItemType extends BaseAudit {
 
-    @ApiModelProperty("物料类型id")
+    @ApiModelProperty("Goods 类型id")
     @TableId(value = "item_type_id", type = IdType.AUTO)
     private Long itemTypeId;
 
@@ -48,24 +48,24 @@ public class ItemType extends BaseAudit {
         this.children = children;
     }
 
-    @ApiModelProperty("父物料类型id")
-    @Excel(name = "父物料类型id")
+    @ApiModelProperty("父Goods 类型id")
+    @Excel(name = "父Goods 类型id")
     private Long parentId;
 
     @ApiModelProperty("祖级列表")
     @Excel(name = "祖级列表")
     private String ancestors;
 
-    @ApiModelProperty("物料类型名称")
-    @Excel(name = "物料类型名称")
+    @ApiModelProperty("Goods 类型名称")
+    @Excel(name = "Goods 类型名称")
     private String typeName;
 
     @ApiModelProperty("显示顺序")
     @Excel(name = "显示顺序")
     private String orderNum;
 
-    @ApiModelProperty("物料类型状态（0正常 1停用）")
-    @Excel(name = "物料类型状态", readConverterExp = "0=正常,1=停用")
+    @ApiModelProperty("Goods 类型状态（0正常 1停用）")
+    @Excel(name = "Goods 类型状态", readConverterExp = "0=正常,1=停用")
     private String status;
 
     @ApiModelProperty("删除标志（0代表存在 2代表删除）")

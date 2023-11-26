@@ -6,16 +6,16 @@ import org.apache.ibatis.annotations.Param;
 import com.cyl.wms.domain.ItemType;
 
 /**
- * 物料类型表Mapper接口
+ * Goods 类型表Mapper接口
  * 
  * @author zcc
  */
 public interface ItemTypeMapper extends BaseMapper<ItemType> {
     /**
-     * 查询物料类型表列表
+     * 查询Goods 类型表列表
      *
-     * @param itemType 物料类型表
-     * @return 物料类型表集合
+     * @param itemType Goods 类型表
+     * @return Goods 类型表集合
      */
     List<ItemType> selectByEntity(ItemType itemType);
 

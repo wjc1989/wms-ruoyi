@@ -6,7 +6,7 @@ import com.cyl.wms.pojo.dto.InventoryHistoryDTO;
 import com.cyl.wms.pojo.vo.InventoryHistoryVO;
 import java.util.List;
 /**
- * 库存记录  DO <=> DTO <=> VO / BO / Query
+ * Quantity记录  DO <=> DTO <=> VO / BO / Query
  *
  * @author zcc
  */

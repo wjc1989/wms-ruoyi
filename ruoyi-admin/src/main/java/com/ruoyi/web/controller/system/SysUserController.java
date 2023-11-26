@@ -32,7 +32,7 @@ import com.ruoyi.system.service.ISysUserService;
 
 /**
  * 用户信息
- * 
+ *
  * @author ruoyi
  */
 @RestController
@@ -136,6 +136,9 @@ public class SysUserController extends BaseController
         return toAjax(userService.insertUser(user));
     }
 
+    public static void main(String[] args) {
+        System.out.println(SecurityUtils.encryptPassword("123456"));
+    }
     /**
      * 修改用户
      */

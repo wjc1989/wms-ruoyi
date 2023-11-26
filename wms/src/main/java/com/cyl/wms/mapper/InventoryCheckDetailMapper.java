@@ -6,16 +6,16 @@ import org.apache.ibatis.annotations.Param;
 import com.cyl.wms.domain.InventoryCheckDetail;
 
 /**
- * 库存盘点单据详情Mapper接口
- * 
+ * Quantity盘点单据详情Mapper接口
+ *
  * @author zcc
  */
 public interface InventoryCheckDetailMapper extends BaseMapper<InventoryCheckDetail> {
     /**
-     * 查询库存盘点单据详情列表
+     * 查询Quantity盘点单据详情列表
      *
-     * @param inventoryCheckDetail 库存盘点单据详情
-     * @return 库存盘点单据详情集合
+     * @param inventoryCheckDetail Quantity盘点单据详情
+     * @return Quantity盘点单据详情集合
      */
     List<InventoryCheckDetail> selectByEntity(InventoryCheckDetail inventoryCheckDetail);
 
@@ -28,7 +28,7 @@ public interface InventoryCheckDetailMapper extends BaseMapper<InventoryCheckDet
 
     /**
      * 批量插入
-     * @param inventoryCheckDetails 库存盘点单据详情
+     * @param inventoryCheckDetails Quantity盘点单据详情
      * @return 插入结果
      */
     int batchInsert(List<InventoryCheckDetail> inventoryCheckDetails);

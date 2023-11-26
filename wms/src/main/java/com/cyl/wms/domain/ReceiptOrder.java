@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 
 /**
  * 入库单对象 wms_receipt_order
- * 
+ *
  * @author zcc
  */
 @ApiModel(description="入库单对象")
@@ -47,11 +47,11 @@ public class ReceiptOrder extends BaseAudit {
     @Excel(name = "入库状态")
     private Integer receiptOrderStatus;
 
-    @ApiModelProperty("备注")
-    @Excel(name = "备注")
+    @ApiModelProperty("Remark")
+    @Excel(name = "Remark")
     private String remark;
 
-    @ApiModelProperty("删除标识")
+    @ApiModelProperty("Delete Flag")
     private Integer delFlag;
 
     @ApiModelProperty("波次号")

@@ -7,7 +7,7 @@ import com.cyl.wms.pojo.dto.InventoryDTO;
 import com.cyl.wms.pojo.vo.InventoryVO;
 import java.util.List;
 /**
- * 库存  DO <=> DTO <=> VO / BO / Query
+ * Quantity  DO <=> DTO <=> VO / BO / Query
  *
  * @author zcc
  */

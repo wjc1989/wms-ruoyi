@@ -9,7 +9,7 @@ import lombok.Data;
 import com.baomidou.mybatisplus.annotation.TableName;
 /**
  * 发货记录对象 wms_delivery
- * 
+ *
  * @author zcc
  */
 @ApiModel(description="发货记录对象")
@@ -37,11 +37,11 @@ public class Delivery extends BaseAudit {
     @Excel(name = "快递单号")
     private String trackingNo;
 
-    @ApiModelProperty("备注")
-    @Excel(name = "备注")
+    @ApiModelProperty("Remark")
+    @Excel(name = "Remark")
     private String remark;
 
-    @ApiModelProperty("删除标识")
+    @ApiModelProperty("Delete Flag")
     private Integer delFlag;
 
 }
