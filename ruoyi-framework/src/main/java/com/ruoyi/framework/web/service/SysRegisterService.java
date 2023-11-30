@@ -19,7 +19,7 @@ import org.springframework.util.StringUtils;
 
 /**
  * 注册校验方法
- * 
+ *
  * @author ruoyi
  */
 @Component
@@ -50,11 +50,11 @@ public class SysRegisterService
 
         if (StringUtils.isEmpty(username))
         {
-            msg = "用户名不能为空";
+            msg = "用户名 can not blank";
         }
         else if (StringUtils.isEmpty(password))
         {
-            msg = "用户密码不能为空";
+            msg = "用户密码 can not blank";
         }
         else if (username.length() < UserConstants.USERNAME_MIN_LENGTH
                 || username.length() > UserConstants.USERNAME_MAX_LENGTH)
@@ -94,7 +94,7 @@ public class SysRegisterService
 
     /**
      * 校验验证码
-     * 
+     *
      * @param username 用户名
      * @param code 验证码
      * @param uuid 唯一标识

@@ -22,4 +22,5 @@ public class ItemDTO extends BaseAudit {
     private BigDecimal quantity;
     private LocalDateTime expiryDate;
     private String remark;
+    private String pics;
 }

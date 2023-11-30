@@ -28,8 +28,8 @@ public class Wave extends BaseAudit {
     @Excel(name = "波次号")
     private String waveNo;
 
-    @ApiModelProperty("状态")
-    @Excel(name = "状态")
+    @ApiModelProperty("Status")
+    @Excel(name = "Status")
     private String status;
 
     @ApiModelProperty("Remark")

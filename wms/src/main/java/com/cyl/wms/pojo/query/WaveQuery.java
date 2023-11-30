@@ -15,7 +15,7 @@ public class WaveQuery {
     @ApiModelProperty("波次号 精确匹配")
     private String waveNo;
 
-    @ApiModelProperty("状态 精确匹配")
+    @ApiModelProperty("Status 精确匹配")
     private String status;
 
     private Integer type;

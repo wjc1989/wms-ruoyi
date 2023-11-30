@@ -25,7 +25,7 @@ import com.ruoyi.system.service.ISysDeptService;
 
 /**
  * 部门信息
- * 
+ *
  * @author ruoyi
  */
 @RestController
@@ -136,7 +136,7 @@ public class SysDeptController extends BaseController
         else if (StringUtils.equals(UserConstants.DEPT_DISABLE, dept.getStatus())
                 && deptService.selectNormalChildrenDeptById(dept.getDeptId()) > 0)
         {
-            return AjaxResult.error("该部门包含未停用的子部门！");
+            return AjaxResult.error("该部门包含未Disabled的子部门！");
         }
         dept.setUpdateBy(getUserId());
         return toAjax(deptService.updateDept(dept));

@@ -12,7 +12,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  *
  * @author zcc
  */
-@ApiModel(description="Quantity移动详情对象")
+@ApiModel(description="Move Quantity")
 @Data
 @TableName("wms_inventory_movement_detail")
 public class InventoryMovementDetail extends BaseAudit {
@@ -21,20 +21,20 @@ public class InventoryMovementDetail extends BaseAudit {
     @ApiModelProperty("ID")
     private Long id;
 
-    @ApiModelProperty("Quantity移动Id")
-    @Excel(name = "Quantity移动Id")
+    @ApiModelProperty("ID")
+    @Excel(name = "ID")
     private Long inventoryMovementId;
 
-    @ApiModelProperty("Goods ")
-    @Excel(name = "Goods ")
+    @ApiModelProperty("Goods")
+    @Excel(name = "Goods")
     private Long itemId;
 
-    @ApiModelProperty("计划数量")
-    @Excel(name = "计划数量")
+    @ApiModelProperty("Plan Quantity")
+    @Excel(name = "Plan Quantity")
     private BigDecimal planQuantity;
 
-    @ApiModelProperty("实际数量")
-    @Excel(name = "实际数量")
+    @ApiModelProperty("Real Quantity")
+    @Excel(name = "Real Quantity")
     private BigDecimal realQuantity;
 
     @ApiModelProperty("Delete Flag")
@@ -44,32 +44,32 @@ public class InventoryMovementDetail extends BaseAudit {
     @Excel(name = "Remark")
     private String remark;
 
-    @ApiModelProperty("源货架")
-    @Excel(name = "源货架")
+    @ApiModelProperty("Source Rack")
+    @Excel(name = "Source Rack")
     private Long sourceRackId;
 
-    @ApiModelProperty("源仓库")
-    @Excel(name = "源仓库")
+    @ApiModelProperty("Source Warehouse")
+    @Excel(name = "Source Warehouse")
     private Long sourceWarehouseId;
 
-    @ApiModelProperty("源库区")
-    @Excel(name = "源库区")
+    @ApiModelProperty("Source Area")
+    @Excel(name = "Source Area")
     private Long sourceAreaId;
 
-    @ApiModelProperty("移库状态")
-    @Excel(name = "移库状态")
+    @ApiModelProperty("Status")
+    @Excel(name = "Status")
     private Integer moveStatus;
 
-    @ApiModelProperty("目标货架")
-    @Excel(name = "目标货架")
+    @ApiModelProperty("Target Rack")
+    @Excel(name = "Target Rack")
     private Long targetRackId;
 
-    @ApiModelProperty("目标仓库")
-    @Excel(name = "目标仓库")
+    @ApiModelProperty("Target Warehouse")
+    @Excel(name = "Target Warehouse")
     private Long targetWarehouseId;
 
-    @ApiModelProperty("目标库区")
-    @Excel(name = "目标库区")
+    @ApiModelProperty("Target Area")
+    @Excel(name = "Target Area")
     private Long targetAreaId;
 
 }

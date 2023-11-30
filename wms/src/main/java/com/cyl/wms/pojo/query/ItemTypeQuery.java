@@ -18,13 +18,13 @@ public class ItemTypeQuery {
     @ApiModelProperty("祖级列表 精确匹配")
     private String ancestors;
 
-    @ApiModelProperty("Goods 类型名称 精确匹配")
+    @ApiModelProperty("Goods Type Name 精确匹配")
     private String typeNameLike;
 
-    @ApiModelProperty("显示顺序 精确匹配")
+    @ApiModelProperty("Sort 精确匹配")
     private Integer orderNum;
 
-    @ApiModelProperty("Goods 类型状态（0正常 1停用） 精确匹配")
+    @ApiModelProperty("Status 精确匹配")
     private String status;
 
 }

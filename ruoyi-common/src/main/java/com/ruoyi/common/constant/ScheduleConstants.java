@@ -2,7 +2,7 @@ package com.ruoyi.common.constant;
 
 /**
  * 任务调度通用常量
- * 
+ *
  * @author ruoyi
  */
 public class ScheduleConstants
@@ -27,7 +27,7 @@ public class ScheduleConstants
     public enum Status
     {
         /**
-         * 正常
+         * Normal
          */
         NORMAL("0"),
         /**

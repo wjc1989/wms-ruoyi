@@ -61,7 +61,7 @@ public interface ISysJobService
     public void deleteJobByIds(Long[] jobIds) throws SchedulerException;
 
     /**
-     * 任务调度状态修改
+     * 任务调度Status修改
      * 
      * @param job 调度信息
      * @return 结果

@@ -358,7 +358,7 @@ public class GenTableServiceImpl implements IGenTableService {
 
         List<GenTableColumn> dbTableColumns = genTableColumnMapper.selectDbTableColumnsByName(tableName);
         if (StringUtils.isEmpty(dbTableColumns)) {
-            throw new ServiceException("同步数据失败，原表结构不存在");
+            throw new ServiceException("同步数据失败，Source 表结构不存在");
         }
         List<String> dbTableColumnNames = dbTableColumns.stream().map(GenTableColumn::getColumnName).collect(Collectors.toList());
 
@@ -431,16 +431,16 @@ public class GenTableServiceImpl implements IGenTableService {
             String options = JSON.toJSONString(genTable.getParams());
             JSONObject paramsObj = JSONObject.parseObject(options);
             if (StringUtils.isEmpty(paramsObj.getString(GenConstants.TREE_CODE))) {
-                throw new ServiceException("树编码字段不能为空");
+                throw new ServiceException("树编码字段 can not blank");
             } else if (StringUtils.isEmpty(paramsObj.getString(GenConstants.TREE_PARENT_CODE))) {
-                throw new ServiceException("树父编码字段不能为空");
+                throw new ServiceException("树父编码字段 can not blank");
             } else if (StringUtils.isEmpty(paramsObj.getString(GenConstants.TREE_NAME))) {
-                throw new ServiceException("树名称字段不能为空");
+                throw new ServiceException("树名称字段 can not blank");
             } else if (GenConstants.TPL_SUB.equals(genTable.getTplCategory())) {
                 if (StringUtils.isEmpty(genTable.getSubTableName())) {
-                    throw new ServiceException("关联子表的表名不能为空");
+                    throw new ServiceException("关联子表的表名 can not blank");
                 } else if (StringUtils.isEmpty(genTable.getSubTableFkName())) {
-                    throw new ServiceException("子表关联的外键名不能为空");
+                    throw new ServiceException("子表关联的外键名 can not blank");
                 }
             }
         }

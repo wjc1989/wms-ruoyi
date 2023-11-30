@@ -137,7 +137,7 @@ public class GenUtils {
         if (StringUtils.endsWithIgnoreCase(columnName, "name")) {
             column.setQueryType(GenConstants.QUERY_LIKE);
         }
-        // 状态字段设置单选框
+        // Status字段设置单选框
         if (StringUtils.endsWithIgnoreCase(columnName, "status")) {
             column.setHtmlType(GenConstants.HTML_RADIO);
         }

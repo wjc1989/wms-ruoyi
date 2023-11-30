@@ -66,8 +66,8 @@ public class ReceiptOrderDetail extends BaseAudit {
     @Excel(name = "Area")
     private Long areaId;
 
-    @ApiModelProperty("入库状态")
-    @Excel(name = "入库状态")
+    @ApiModelProperty("入库Status")
+    @Excel(name = "入库Status")
     private Integer receiptOrderStatus;
 
 }

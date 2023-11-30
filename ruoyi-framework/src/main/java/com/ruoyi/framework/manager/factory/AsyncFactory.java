@@ -29,7 +29,7 @@ public class AsyncFactory
      * 记录登录信息
      * 
      * @param username 用户名
-     * @param status 状态
+     * @param status Status
      * @param message 消息
      * @param args 列表
      * @return 任务task
@@ -65,7 +65,7 @@ public class AsyncFactory
                 logininfor.setBrowser(browser);
                 logininfor.setOs(os);
                 logininfor.setMsg(message);
-                // 日志状态
+                // 日志Status
                 if (StringUtils.equalsAny(status, Constants.LOGIN_SUCCESS, Constants.LOGOUT, Constants.REGISTER))
                 {
                     logininfor.setStatus(Constants.SUCCESS);

@@ -73,7 +73,7 @@ public class ShipmentOrderDetailVO extends BaseAudit {
     @Excel(name = "Area")
     private Long areaId;
 
-    @Excel(name = "出库状态")
+    @Excel(name = "出库Status")
     private Integer shipmentOrderStatus;
     private List<Long> place;
 }

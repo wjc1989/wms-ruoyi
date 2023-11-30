@@ -137,7 +137,7 @@ public interface ISysUserService
     public void insertUserAuth(Long userId, Long[] roleIds);
 
     /**
-     * 修改用户状态
+     * 修改用户Status
      * 
      * @param user 用户信息
      * @return 结果

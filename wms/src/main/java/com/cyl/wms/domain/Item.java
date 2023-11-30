@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
  *
  * @author zcc
  */
-@ApiModel(description = "Goods 对象")
+@ApiModel(description = "Goods")
 @Data
 @TableName("wms_item")
 public class Item extends BaseAudit {
@@ -27,24 +27,24 @@ public class Item extends BaseAudit {
     @ApiModelProperty("ID")
     private Long id;
 
-    @ApiModelProperty("编号")
-    @Excel(name = "编号")
+    @ApiModelProperty("No.")
+    @Excel(name = "No.")
     private String itemNo;
 
-    @ApiModelProperty("名称")
-    @Excel(name = "名称")
+    @ApiModelProperty("Name")
+    @Excel(name = "Name")
     private String itemName;
 
-    @ApiModelProperty("分类")
-    @Excel(name = "分类")
+    @ApiModelProperty("Category")
+    @Excel(name = "Category")
     private String itemType;
 
-    @ApiModelProperty("单位类别")
-    @Excel(name = "单位类别")
+    @ApiModelProperty("Unit")
+    @Excel(name = "Unit")
     private String unit;
 
-    @ApiModelProperty("所属货架")
-    @Excel(name = "所属货架")
+    @ApiModelProperty("Rack")
+    @Excel(name = "Rack")
     private Long rackId;
 
     @ApiModelProperty("Area")
@@ -55,23 +55,22 @@ public class Item extends BaseAudit {
     @Excel(name = "Warehouse")
     private Long warehouseId;
 
-    @ApiModelProperty("安全Quantity")
-    @Excel(name = "安全Quantity")
+    @ApiModelProperty("Safe Quantity")
+    @Excel(name = "Safe Quantity")
     private BigDecimal quantity;
 
-    @ApiModelProperty("有效期")
-    @Excel(name = "有效期", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty("Expiry Date")
+    @Excel(name = "Expiry Date", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime expiryDate;
 
     @ApiModelProperty("Delete Flag")
     private Integer delFlag;
-
+    private String pics;
     @ApiModelProperty("Remark")
     @Excel(name = "Remark")
     private String remark;
-
 
     @TableField(exist = false)
     private String itemTypeName;
@@ -81,4 +80,9 @@ public class Item extends BaseAudit {
 
     @TableField(exist = false)
     private String areaName;
+
+    @TableField(exist = false)
+    private BigDecimal inventory;
+
+
 }

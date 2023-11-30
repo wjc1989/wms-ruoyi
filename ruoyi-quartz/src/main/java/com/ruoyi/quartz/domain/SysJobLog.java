@@ -8,7 +8,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
 
 /**
  * 定时任务调度日志表 sys_job_log
- * 
+ *
  * @author ruoyi
  */
 public class SysJobLog extends BaseEntity
@@ -35,8 +35,8 @@ public class SysJobLog extends BaseEntity
     @Excel(name = "日志信息")
     private String jobMessage;
 
-    /** 执行状态（0正常 1失败） */
-    @Excel(name = "执行状态", readConverterExp = "0=正常,1=失败")
+    /** 执行Status（0Normal 1失败） */
+    @Excel(name = "执行Status", readConverterExp = "0=Normal,1=失败")
     private String status;
 
     /** 异常信息 */
@@ -128,7 +128,7 @@ public class SysJobLog extends BaseEntity
     {
         this.startTime = startTime;
     }
-    
+
     public Date getStopTime()
     {
         return stopTime;

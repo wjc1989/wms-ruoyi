@@ -20,11 +20,11 @@ import java.util.List;
  *
  * @author zhangcheng
  */
-@ApiModel(description = "Goods 类型表对象")
+@ApiModel(description = "Goods")
 @TableName("wms_item_type")
 public class ItemType extends BaseAudit {
 
-    @ApiModelProperty("Goods 类型id")
+    @ApiModelProperty("Goods Type ID")
     @TableId(value = "item_type_id", type = IdType.AUTO)
     private Long itemTypeId;
 
@@ -48,27 +48,27 @@ public class ItemType extends BaseAudit {
         this.children = children;
     }
 
-    @ApiModelProperty("父Goods 类型id")
-    @Excel(name = "父Goods 类型id")
+    @ApiModelProperty("Parent ID")
+    @Excel(name = "Parent ID")
     private Long parentId;
 
-    @ApiModelProperty("祖级列表")
-    @Excel(name = "祖级列表")
+    @ApiModelProperty("Top")
+    @Excel(name = "Top")
     private String ancestors;
 
-    @ApiModelProperty("Goods 类型名称")
-    @Excel(name = "Goods 类型名称")
+    @ApiModelProperty("Goods Type Name")
+    @Excel(name = "Goods Type Name")
     private String typeName;
 
-    @ApiModelProperty("显示顺序")
-    @Excel(name = "显示顺序")
+    @ApiModelProperty("Sort")
+    @Excel(name = "Sort")
     private String orderNum;
 
-    @ApiModelProperty("Goods 类型状态（0正常 1停用）")
-    @Excel(name = "Goods 类型状态", readConverterExp = "0=正常,1=停用")
+    @ApiModelProperty("Status")
+    @Excel(name = "Status", readConverterExp = "0=Normal,1=Disabled")
     private String status;
 
-    @ApiModelProperty("删除标志（0代表存在 2代表删除）")
+    @ApiModelProperty("DeleteFlag（0 Normal 2 Deleted）")
     private String delFlag;
 
     /**
@@ -103,7 +103,7 @@ public class ItemType extends BaseAudit {
     }
 
 
-    @NotBlank(message = "显示顺序不能为空")
+    @NotBlank(message = "Sort can not blank")
     public String getOrderNum() {
         return orderNum;
     }

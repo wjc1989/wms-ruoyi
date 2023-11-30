@@ -129,7 +129,7 @@ public class SysJobController extends BaseController
     }
 
     /**
-     * 定时任务状态修改
+     * 定时任务Status修改
      */
     @PreAuthorize("@ss.hasPermi('monitor:job:changeStatus')")
     @Log(title = "定时任务", businessType = BusinessType.UPDATE)

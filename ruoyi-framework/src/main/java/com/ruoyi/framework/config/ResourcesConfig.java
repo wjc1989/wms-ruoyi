@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 通用配置
- * 
+ *
  * @author ruoyi
  */
 @Configuration
@@ -35,7 +35,8 @@ public class ResourcesConfig implements WebMvcConfigurer
                 .setCacheControl(CacheControl.maxAge(365, TimeUnit.DAYS));
 
         /** swagger配置 */
-        registry.addResourceHandler("/swagger-ui/**").addResourceLocations("classpath:/META-INF/resources/webjars/springfox-swagger-ui/");
+        registry.addResourceHandler("/swagger-ui/**")
+                .addResourceLocations("classpath:/META-INF/resources/webjars/springfox-swagger-ui/");
     }
 
     /**

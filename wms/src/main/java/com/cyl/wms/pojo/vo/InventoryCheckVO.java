@@ -21,21 +21,21 @@ public class InventoryCheckVO extends BaseAudit {
    /** Quantity盘点类型 */
     @Excel(name = "Quantity盘点类型")
     private Integer inventoryCheckType;
-   /** Quantity盘点单状态11：盘点中 22：已完成 */
-    @Excel(name = "Quantity盘点单状态11：盘点中 22：已完成")
+   /** Quantity盘点单Status11：盘点中 22：已完成 */
+    @Excel(name = "Quantity盘点单Status11：盘点中 22：已完成")
     private Integer inventoryCheckStatus;
    /** 盈亏数 */
     @Excel(name = "盈亏数")
     private BigDecimal inventoryCheckTotal;
-   /** 审核状态 */
-    @Excel(name = "审核状态")
+   /** Check Status */
+    @Excel(name = "Check Status")
     private Integer checkStatus;
-   /** 审核人 */
-    @Excel(name = "审核人")
+   /** Check User */
+    @Excel(name = "Check User")
     private Long checkUserId;
-   /** 审核时间 */
+   /** Check Time */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @Excel(name = "审核时间", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss")
+    @Excel(name = "Check Time", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime checkTime;
    /** Warehouse */
     @Excel(name = "Warehouse")

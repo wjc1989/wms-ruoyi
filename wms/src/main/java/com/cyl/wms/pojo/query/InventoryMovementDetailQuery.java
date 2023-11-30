@@ -34,10 +34,10 @@ public class InventoryMovementDetailQuery {
     @ApiModelProperty("源库区 精确匹配")
     private Long sourceAreaId;
 
-    @ApiModelProperty("移库状态 精确匹配")
+    @ApiModelProperty("移库Status 精确匹配")
     private Integer moveStatus;
 
-    @ApiModelProperty("目标货架 精确匹配")
+    @ApiModelProperty("Target Rack 精确匹配")
     private Long targetRackId;
 
     @ApiModelProperty("目标仓库 精确匹配")

@@ -6,7 +6,7 @@ import com.ruoyi.common.core.domain.BaseAudit;
 import lombok.Data;
 /**
  * 波次 数据视图对象
- * 
+ *
  * @author zhangcheng
  */
 @Data
@@ -16,8 +16,8 @@ public class WaveVO extends BaseAudit {
    /** 波次号 */
     @Excel(name = "波次号")
     private String waveNo;
-   /** 状态 */
-    @Excel(name = "状态")
+   /** Status */
+    @Excel(name = "Status")
     private String status;
    /** Remark */
     @Excel(name = "Remark")

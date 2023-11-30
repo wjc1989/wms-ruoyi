@@ -251,7 +251,7 @@ public class SysRoleServiceImpl implements ISysRoleService
     }
 
     /**
-     * 修改角色状态
+     * 修改角色Status
      *
      * @param role 角色信息
      * @return 结果

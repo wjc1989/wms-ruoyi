@@ -148,7 +148,7 @@ public class SysRoleController extends BaseController
     }
 
     /**
-     * 状态修改
+     * Status修改
      */
     @PreAuthorize("@ss.hasPermi('system:role:edit')")
     @Log(title = "角色管理", businessType = BusinessType.UPDATE)

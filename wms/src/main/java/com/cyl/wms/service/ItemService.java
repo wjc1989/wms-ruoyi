@@ -57,6 +57,7 @@ public class ItemService {
                 place.add(itemVO.getRackId());
             }
             itemVO.setPlace(place);
+
         });
         return list;
     }
@@ -225,8 +226,8 @@ public class ItemService {
     private List<Item> getItemList(QueryWrapper<Item> qw) {
         List<Item> items = itemMapper.selectList(qw);
         injectTypeName(items);
-        injectWarehouseName(items);
-        injectAreaName(items);
+//        injectWarehouseName(items);
+//        injectAreaName(items);
         return items;
     }
 
@@ -301,4 +302,10 @@ public class ItemService {
         injectTypeName(items);
         return items;
     }
+
+    public List<Item> selectListWithCount(ItemQuery query) {
+        return this.itemMapper.selectListWithCount(query);
+
+    }
+
 }

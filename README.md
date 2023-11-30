@@ -39,19 +39,19 @@ https://docs.ichengle.top/wms/open/ops.html
 2. 仓库/库区：管理维护仓库基础数据
 3. Goods ：管理维护Goods 基础数据
 4. 客户/供应商/承运商：管理维护联系人基础数据
-5. 入库：创建入库单后包括如下几个状态：未发货、在途（已发货未入库）、部分入库、作废、入库完成，入库类型包括：采购入库、外协入库、退货入库，入库单支持lodop和网页打印
-6. 出库：创建出库单后包括如下几个状态：未发货、部分发货、已发货、作废，入库类型包括：销售出库、外协出库、调拨出库，出库单支持lodop和网页打印
-7. 移库：创建移库单后包括如下几个状态：未操作、部分移动、操作完毕、作废
+5. 入库：创建入库单后包括如下几个Status：未发货、在途（已发货未入库）、部分入库、作废、入库完成，入库类型包括：采购入库、外协入库、退货入库，入库单支持lodop和网页打印
+6. 出库：创建出库单后包括如下几个Status：未发货、部分发货、已发货、作废，入库类型包括：销售出库、外协出库、调拨出库，出库单支持lodop和网页打印
+7. 移库：创建移库单后包括如下几个Status：未操作、部分移动、操作完毕、作废
 8. Quantity看板：查看当前Goods Quantity数量
 9. Quantity记录：查看当前Goods Quantity操作记录
 10. Quantity盘点：已完成
 11. Quantity月结：已完成
 12. 各类报表: 已完成
-## 状态流转
-#### 入库状态流转
-![入库状态流转](https://oscimg.oschina.net/oscnet/up-6bdb5ad6d8ab236f763300b71cf175d9a99.jpg)
-#### 出库状态流转
-![出库状态流转](https://oscimg.oschina.net/oscnet/up-55cad3f077f914e357efeaae0b3feecf942.jpg)
+## Status流转
+#### 入库Status流转
+![入库Status流转](https://oscimg.oschina.net/oscnet/up-6bdb5ad6d8ab236f763300b71cf175d9a99.jpg)
+#### 出库Status流转
+![出库Status流转](https://oscimg.oschina.net/oscnet/up-55cad3f077f914e357efeaae0b3feecf942.jpg)
 
 ## 演示图
 ![首页](https://oscimg.oschina.net/oscnet/up-89f751967b4145f7da92e23536bf231fbe8.jpg)

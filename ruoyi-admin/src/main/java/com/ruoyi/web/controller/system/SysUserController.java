@@ -192,7 +192,7 @@ public class SysUserController extends BaseController
     }
 
     /**
-     * 状态修改
+     * Status修改
      */
     @PreAuthorize("@ss.hasPermi('system:user:edit')")
     @Log(title = "用户管理", businessType = BusinessType.UPDATE)

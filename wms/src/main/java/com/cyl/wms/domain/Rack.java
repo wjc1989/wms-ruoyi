@@ -20,11 +20,11 @@ public class Rack extends BaseAudit {
     @ApiModelProperty("ID")
     private Long id;
 
-    @ApiModelProperty("货架编号")
-    @Excel(name = "货架编号")
+    @ApiModelProperty("Rack No.")
+    @Excel(name = "Rack No.")
     private String rackNo;
 
-    @ApiModelProperty("货架名称")
+    @ApiModelProperty("Rack Name.")
     @Excel(name = "货架名称")
     private String rackName;
 

@@ -3,6 +3,7 @@ package com.cyl.wms.controller;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.ruoyi.common.core.page.TableDataInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.data.domain.PageImpl;
@@ -54,6 +55,16 @@ public class ItemController extends BaseController {
     }
     @ApiOperation("查询Goods 列表")
     @PreAuthorize("@ss.hasPermi('wms:item:list')")
+    @PostMapping("/listCount")
+    public TableDataInfo listCount(@RequestBody ItemQuery query) {
+        startPage();
+        List<Item> items = service.selectListWithCount(query);
+        return  getDataTable(items);
+    }
+
+
+    @ApiOperation("查询Goods 列表")
+    @PreAuthorize("@ss.hasPermi('wms:item:list')")
     @PostMapping("/all")
     public ResponseEntity<List<ItemVO>> all(@RequestBody ItemQuery query) {
         List<Item> items = service.selectList(query, null);
@@ -81,7 +92,7 @@ public class ItemController extends BaseController {
 
     @ApiOperation("新增Goods ")
     @PreAuthorize("@ss.hasPermi('wms:item:add')")
-    @Log(title = "Goods ", businessType = BusinessType.INSERT)
+    @Log(title = "Goods", businessType = BusinessType.INSERT)
     @PostMapping
     public ResponseEntity<Integer> add(@RequestBody Item item) {
         return ResponseEntity.ok(service.insert(item));
@@ -89,7 +100,7 @@ public class ItemController extends BaseController {
 
     @ApiOperation("修改Goods ")
     @PreAuthorize("@ss.hasPermi('wms:item:edit')")
-    @Log(title = "Goods ", businessType = BusinessType.UPDATE)
+    @Log(title = "Goods", businessType = BusinessType.UPDATE)
     @PutMapping
     public ResponseEntity<Integer> edit(@RequestBody Item item) {
         return ResponseEntity.ok(service.update(item));
@@ -97,7 +108,7 @@ public class ItemController extends BaseController {
 
     @ApiOperation("删除Goods ")
     @PreAuthorize("@ss.hasPermi('wms:item:remove')")
-    @Log(title = "Goods ", businessType = BusinessType.DELETE)
+    @Log(title = "Goods", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{ids}")
     public ResponseEntity<Integer> remove(@PathVariable Long[] ids) {
         return ResponseEntity.ok(service.deleteByIds(ids));

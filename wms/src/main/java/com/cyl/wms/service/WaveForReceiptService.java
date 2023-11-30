@@ -178,22 +178,22 @@ public class WaveForReceiptService {
         // 2.2 更新入库单
         AtomicReference<Boolean> finish = new AtomicReference<>(true);
         map.forEach((key, val) -> {
-            //判断入库单的整体状态
+            //判断入库单的整体Status
             Set<Integer> statusList = val.stream().map(ReceiptOrderDetail::getReceiptOrderStatus).collect(Collectors.toSet());
             ReceiptOrder receiptOrder = orderMap.get(key);
             if (statusList.size() == 1) {
                 receiptOrder.setReceiptOrderStatus(statusList.iterator().next());
             } else if (statusList.size() == 2) {
                 if (statusList.contains(ReceiptOrderConstant.DROP) && statusList.contains(ReceiptOrderConstant.ALL_IN)) {
-                    //此时单据状态只有报废和全部入库，则入库单状态为全部入库
+                    //此时单据Status只有报废和全部入库，则入库单Status为全部入库
                     receiptOrder.setReceiptOrderStatus(ReceiptOrderConstant.ALL_IN);
                 } else if (statusList.contains(ReceiptOrderConstant.PART_IN) || statusList.contains(ReceiptOrderConstant.ALL_IN)) {
-                    //此时单据状态有两个，包含部分入库和全部入库都是部分入库
+                    //此时单据Status有两个，包含部分入库和全部入库都是部分入库
                     receiptOrder.setReceiptOrderStatus(ReceiptOrderConstant.PART_IN);
                 }
 
             } else if (statusList.contains(ReceiptOrderConstant.PART_IN) || statusList.contains(ReceiptOrderConstant.ALL_IN)) {
-                //此时单据状态有两个，包含部分入库和全部入库都是部分入库
+                //此时单据Status有两个，包含部分入库和全部入库都是部分入库
                 receiptOrder.setReceiptOrderStatus(ReceiptOrderConstant.PART_IN);
             }
             if (finish.get()) {
@@ -258,7 +258,7 @@ public class WaveForReceiptService {
         shipmentOrderDetailVO2.setAreaId(availableDetail.getAreaId());
         shipmentOrderDetailVO2.setPlace(availableDetail.getPlace());
         shipmentOrderDetailVO2.setDelFlag(0);
-        // 默认入库状态为未入库
+        // 默认入库Status为未入库
         shipmentOrderDetailVO2.setReceiptOrderStatus(ReceiptOrderConstant.NOT_IN);
         return shipmentOrderDetailVO2;
     }
@@ -266,7 +266,7 @@ public class WaveForReceiptService {
 
     private static List<ReceiptOrderDetailVO> aggregatedReceiptOrderDetailVOS(List<ReceiptOrderDetailVO> originalDetail) {
         // 单个入库单分配后库区，还可以波次？ 可以，这一步就是重新聚合订单分散得拣货数据。
-        // 聚合入库单，防止用户先前分配过Quantity。如果分配过Quantity，需要把分配过的Quantity加回来。保留原始订单信息
+        // 聚合入库单，防止用户先前分配过Quantity。如果分配过Quantity，需要把分配过的Quantity加回来。保留Source 始订单信息
         Map<String, ReceiptOrderDetailVO> aggregatedDetails = new HashMap<>();
         originalDetail.forEach(vo -> {
             String key = vo.getItemId() + "_" + vo.getOrderNo();

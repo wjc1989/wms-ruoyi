@@ -43,8 +43,8 @@ public class InventoryHistory extends BaseAudit implements PlaceAndItem {
     @Excel(name = "Area")
     private Long areaId;
 
-    @ApiModelProperty("Shelves")
-    @Excel(name = "Shelves")
+    @ApiModelProperty("Rack")
+    @Excel(name = "Rack")
     private Long rackId;
 
     @ApiModelProperty("Quantity变化")

@@ -225,17 +225,27 @@ public class InventoryMovementService {
             saveDetails(order.getId(), order.getDetails());
             return res;
         }
+
+
         // 2. 编辑
         QueryWrapper<InventoryMovementDetail> qw = new QueryWrapper<>();
         qw.eq("inventory_movement_id", order.getId());
 
-        // 新旧详情对比， 生成 Quantity记录修改
+        // 新的数量   realQuantity
         List<InventoryMovementDetailVO> details = order.getDetails();
-        Map<Long, InventoryMovementDetail> dbDetailMap = inventoryMovementDetailMapper.selectList(qw).stream().collect(Collectors.toMap(InventoryMovementDetail::getId, it -> it));
+        //查出旧的数量 只有planQuantity
+        Map<Long, InventoryMovementDetail> dbDetailMap =
+                inventoryMovementDetailMapper.selectList(qw).stream()
+                        .collect(Collectors.toMap(InventoryMovementDetail::getId, it -> it));
+
         List<InventoryHistory> inList = new ArrayList<>();
+
         List<InventoryHistory> outList = new ArrayList<>();
+
         LocalDateTime now = LocalDateTime.now();
         Long userId = SecurityUtils.getUserId();
+
+        //循环上报的数据
         details.forEach(it -> {
             Integer status = it.getMoveStatus();
             if (status != InventoryMovementConstant.PART_IN && status != InventoryMovementConstant.ALL_IN) {
@@ -243,23 +253,29 @@ public class InventoryMovementService {
             }
             // 新增时， status一定是未操作， 所以这个地方必定有值
             InventoryMovementDetail dbDetail = dbDetailMap.get(it.getId());
-            // 如果上次的状态不是部分移动或者全部移动，则本次的Quantity变化为本次的全部
-            Integer status1 = dbDetail.getMoveStatus();
+             Integer status1 = dbDetail.getMoveStatus();
+
             BigDecimal added;
 
             if (status1 != InventoryMovementConstant.PART_IN && status1 != InventoryMovementConstant.ALL_IN) {
+
                 added = it.getRealQuantity();
+
             } else {
+                //如果上次已经入了部分，将差值入库
                 BigDecimal before = dbDetail.getRealQuantity() == null ? BigDecimal.ZERO : dbDetail.getRealQuantity();
+
                 BigDecimal after = it.getRealQuantity() == null ? BigDecimal.ZERO : it.getRealQuantity();
                 // 数量变化有问题
                 if (before.compareTo(after) >= 0) {
                     return;
                 }
+
                 added = after.subtract(before);
             }
-            //判断Quantity是否足够出库
-            inventoryService.checkInventory(it.getItemId(), it.getSourceWarehouseId(), it.getSourceAreaId(), it.getSourceRackId(), added);
+            //判断数量是否足够出库
+            inventoryService.checkInventory(it.getItemId(), it.getSourceWarehouseId(),
+                    it.getSourceAreaId(), it.getSourceRackId(), added);
 
             // 1. 创建移库日志
             InventoryHistory h = detailConvert.do2InventoryHistory(it);
@@ -285,21 +301,25 @@ public class InventoryMovementService {
             out.setAreaId(it.getSourceAreaId());
             outList.add(out);
         });
+
+        //将入库和出库记录保存，并更新库存
         if (outList.size() > 0) {
             inventoryHistoryService.batchInsert(outList);
-            outList.forEach(it -> it.setQuantity(it.getQuantity().negate()));
+//            outList.forEach(it -> it.setQuantity(it.getQuantity().negate()));
             inventoryService.batchUpdate1(outList);
         }
+
         if (inList.size() > 0) {
             inventoryHistoryService.batchInsert(inList);
             inventoryService.batchUpdate1(inList);
         }
+
         // 2.1 先删除details 再重新保存
         inventoryMovementDetailMapper.delete(qw);
         saveDetails(order.getId(), order.getDetails());
 
         // 2.2 更新移库单
-        //判断移库单的整体状态
+        //判断移库单的整体Status
         Set<Integer> statusList = order.getDetails().stream().map(it -> it.getMoveStatus()).collect(Collectors.toSet());
         if (statusList.size() == 1) {
             order.setStatus(statusList.iterator().next());

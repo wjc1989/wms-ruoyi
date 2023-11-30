@@ -219,7 +219,7 @@ public class WaveService {
         List<ShipmentOrderDetailVO> list = shipmentOrderDetailService.toVos(allocationDetails);
         List<ShipmentOrderDetailVO> allocatedDetails = new ArrayList<>();
 
-        //2.更新原始Quantity
+        //2.更新Source 始Quantity
         originalDetails.forEach(originalOrder -> {
             Long itemId = originalOrder.getItemId();
             BigDecimal planQuantity = originalOrder.getPlanQuantity();
@@ -259,11 +259,11 @@ public class WaveService {
 
 
     /*
-     * 取消分配 即还原出库单明细
+     * 取消分配 即还Source 出库单明细
      * */
     private static List<ShipmentOrderDetailVO> aggregatedShipmentOrderDetailVOS(List<ShipmentOrderDetailVO> originalDetail) {
         // 单个出库单分配后库区，还可以波次？ 可以，这一步就是重新聚合订单分散得拣货数据。
-        // 聚合出库单，防止用户先前分配过Quantity。如果分配过Quantity，需要把分配过的Quantity加回来。保留原始订单信息
+        // 聚合出库单，防止用户先前分配过Quantity。如果分配过Quantity，需要把分配过的Quantity加回来。保留Source 始订单信息
         Map<String, ShipmentOrderDetailVO> aggregatedDetails = new HashMap<>();
         originalDetail.forEach(vo -> {
             String key = vo.getItemId() + "_" + vo.getOrderNo();
@@ -288,7 +288,7 @@ public class WaveService {
         shipmentOrderDetailVO2.setAreaId(availableDetail.getAreaId());
         shipmentOrderDetailVO2.setPlace(availableDetail.getPlace());
         shipmentOrderDetailVO2.setDelFlag(0);
-        // 默认出库状态为未出库
+        // 默认出库Status为未出库
         shipmentOrderDetailVO2.setShipmentOrderStatus(ShipmentOrderConstant.NOT_IN);
         return shipmentOrderDetailVO2;
     }
@@ -361,22 +361,22 @@ public class WaveService {
         // 2.2 更新出库单
         AtomicReference<Boolean> finish = new AtomicReference<>(true);
         map.forEach((key, val) -> {
-            //判断出库单的整体状态
+            //判断出库单的整体Status
             Set<Integer> statusList = val.stream().map(ShipmentOrderDetail::getShipmentOrderStatus).collect(Collectors.toSet());
             ShipmentOrder shipmentOrder = orderMap.get(key);
             if (statusList.size() == 1) {
                 shipmentOrder.setShipmentOrderStatus(statusList.iterator().next());
             } else if (statusList.size() == 2) {
                 if (statusList.contains(ShipmentOrderConstant.DROP) && statusList.contains(ShipmentOrderConstant.ALL_IN)) {
-                    //此时单据状态只有报废和全部出库，则出库单状态为全部出库
+                    //此时单据Status只有报废和全部出库，则出库单Status为全部出库
                     shipmentOrder.setShipmentOrderStatus(ShipmentOrderConstant.ALL_IN);
                 } else if (statusList.contains(ShipmentOrderConstant.PART_IN) || statusList.contains(ShipmentOrderConstant.ALL_IN)) {
-                    //此时单据状态有两个，包含部分出库和全部出库都是部分出库
+                    //此时单据Status有两个，包含部分出库和全部出库都是部分出库
                     shipmentOrder.setShipmentOrderStatus(ShipmentOrderConstant.PART_IN);
                 }
 
             } else if (statusList.contains(ShipmentOrderConstant.PART_IN) || statusList.contains(ShipmentOrderConstant.ALL_IN)) {
-                //此时单据状态有两个，包含部分出库和全部出库都是部分出库
+                //此时单据Status有两个，包含部分出库和全部出库都是部分出库
                 shipmentOrder.setShipmentOrderStatus(ShipmentOrderConstant.PART_IN);
             }
             if (finish.get()) {

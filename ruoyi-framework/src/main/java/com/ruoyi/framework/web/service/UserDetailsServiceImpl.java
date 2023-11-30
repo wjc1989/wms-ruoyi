@@ -46,8 +46,8 @@ public class UserDetailsServiceImpl implements UserDetailsService
         }
         else if (UserStatus.DISABLE.getCode().equals(user.getStatus()))
         {
-            log.info("登录用户：{} 已被停用.", username);
-            throw new ServiceException("对不起，您的账号：" + username + " 已停用");
+            log.info("登录用户：{} 已被Disabled.", username);
+            throw new ServiceException("对不起，您的账号：" + username + " 已Disabled");
         }
 
         return createLoginUser(user);

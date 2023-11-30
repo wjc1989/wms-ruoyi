@@ -25,7 +25,7 @@ public class ShipmentOrderQuery {
     @ApiModelProperty("客户 精确匹配")
     private Long customerId;
 
-    @ApiModelProperty("出库单状态 精确匹配")
+    @ApiModelProperty("出库单Status 精确匹配")
     private Integer shipmentOrderStatus;
 
 }

@@ -40,7 +40,7 @@ public class EscapeUtil
     }
 
     /**
-     * 还原被转义的HTML特殊字符
+     * 还Source 被转义的HTML特殊字符
      * 
      * @param content 包含转义符的HTML内容
      * @return 转换后的字符串

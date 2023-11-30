@@ -17,7 +17,7 @@ public class InventoryQuery implements InventoryPanelType {
     @ApiModelProperty("Goods ID")
     private Long itemId;
 
-    @ApiModelProperty("Shelves")
+    @ApiModelProperty("Rack")
     private Long warehouseId;
 
     @ApiModelProperty("Dashboard Type")
@@ -26,7 +26,7 @@ public class InventoryQuery implements InventoryPanelType {
     @ApiModelProperty("Area ID")
     private Long areaId;
 
-    @ApiModelProperty("Shelves ID")
+    @ApiModelProperty("Rack ID")
     private Long rackId;
 
     @ApiModelProperty("Quantity Begin")

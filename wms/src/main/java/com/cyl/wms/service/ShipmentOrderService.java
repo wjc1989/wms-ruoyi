@@ -265,7 +265,7 @@ public class ShipmentOrderService {
             }
             // 新增时， status一定是未出库， 所以这个地方必定有值
             ShipmentOrderDetail dbDetail = dbDetailMap.get(it.getId());
-            // 如果上次的状态不是部分出库或者全部出库，则本次的Quantity变化为本次的全部
+            // 如果上次的Status不是部分出库或者全部出库，则本次的Quantity变化为本次的全部
             Integer status1 = dbDetail.getShipmentOrderStatus();
             BigDecimal added;
 
@@ -309,21 +309,21 @@ public class ShipmentOrderService {
         }
 
         // 2.2 更新出库单
-        //判断出库单的整体状态
+        //判断出库单的整体Status
         Set<Integer> statusList = order.getDetails().stream().map(ShipmentOrderDetailVO::getShipmentOrderStatus).collect(Collectors.toSet());
         if (statusList.size() == 1) {
             order.setShipmentOrderStatus(statusList.iterator().next());
         } else if (statusList.size() == 2) {
             if (statusList.contains(ShipmentOrderConstant.DROP) && statusList.contains(ShipmentOrderConstant.ALL_IN)) {
-                //此时单据状态只有报废和全部出库，则出库单状态为全部出库
+                //此时单据Status只有报废和全部出库，则出库单Status为全部出库
                 order.setShipmentOrderStatus(ShipmentOrderConstant.ALL_IN);
             } else if (statusList.contains(ShipmentOrderConstant.PART_IN) || statusList.contains(ShipmentOrderConstant.ALL_IN)) {
-                //此时单据状态有两个，包含部分出库和全部出库都是部分出库
+                //此时单据Status有两个，包含部分出库和全部出库都是部分出库
                 order.setShipmentOrderStatus(ShipmentOrderConstant.PART_IN);
             }
 
         } else if (statusList.contains(ShipmentOrderConstant.PART_IN) || statusList.contains(ShipmentOrderConstant.ALL_IN)) {
-            //此时单据状态有两个，包含部分出库和全部出库都是部分出库
+            //此时单据Status有两个，包含部分出库和全部出库都是部分出库
             order.setShipmentOrderStatus(ShipmentOrderConstant.PART_IN);
         }
 

@@ -36,24 +36,24 @@ public class InventoryCheck extends BaseAudit {
     @Excel(name = "Quantity盘点类型")
     private Integer inventoryCheckType;
 
-    @ApiModelProperty("Quantity盘点单状态11：盘点中 22：已完成")
-    @Excel(name = "Quantity盘点单状态11：盘点中 22：已完成")
+    @ApiModelProperty("Quantity盘点单Status11：盘点中 22：已完成")
+    @Excel(name = "Quantity盘点单Status11：盘点中 22：已完成")
     private Integer inventoryCheckStatus;
 
     @ApiModelProperty("盈亏数")
     @Excel(name = "盈亏数")
     private BigDecimal inventoryCheckTotal;
 
-    @ApiModelProperty("审核状态")
-    @Excel(name = "审核状态")
+    @ApiModelProperty("Check Status")
+    @Excel(name = "Check Status")
     private Integer checkStatus;
 
-    @ApiModelProperty("审核人")
-    @Excel(name = "审核人")
+    @ApiModelProperty("Check User")
+    @Excel(name = "Check User")
     private Long checkUserId;
 
-    @ApiModelProperty("审核时间")
-    @Excel(name = "审核时间", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty("Check Time")
+    @Excel(name = "Check Time", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime checkTime;
 
     @ApiModelProperty("Warehouse")

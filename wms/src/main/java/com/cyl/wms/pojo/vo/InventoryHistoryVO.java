@@ -27,7 +27,7 @@ public class InventoryHistoryVO extends BaseAudit implements AreaAndItemInfo {
      */
     private Integer formType;
     /**
-     * 操作类型名称
+     * 操作Type Name
      */
     @Excel(name = "操作类型")
     private String formTypeName;

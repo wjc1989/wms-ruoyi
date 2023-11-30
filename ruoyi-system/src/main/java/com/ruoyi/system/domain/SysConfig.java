@@ -10,7 +10,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
 
 /**
  * 参数配置表 sys_config
- * 
+ *
  * @author ruoyi
  */
 public class SysConfig extends BaseEntity
@@ -47,7 +47,7 @@ public class SysConfig extends BaseEntity
         this.configId = configId;
     }
 
-    @NotBlank(message = "参数名称不能为空")
+    @NotBlank(message = "参数名称 can not blank")
     @Size(min = 0, max = 100, message = "参数名称不能超过100个字符")
     public String getConfigName()
     {
@@ -59,7 +59,7 @@ public class SysConfig extends BaseEntity
         this.configName = configName;
     }
 
-    @NotBlank(message = "参数键名长度不能为空")
+    @NotBlank(message = "参数键名长度 can not blank")
     @Size(min = 0, max = 100, message = "参数键名长度不能超过100个字符")
     public String getConfigKey()
     {
@@ -71,7 +71,7 @@ public class SysConfig extends BaseEntity
         this.configKey = configKey;
     }
 
-    @NotBlank(message = "参数键值不能为空")
+    @NotBlank(message = "参数键值 can not blank")
     @Size(min = 0, max = 500, message = "参数键值长度不能超过500个字符")
     public String getConfigValue()
     {
@@ -92,7 +92,7 @@ public class SysConfig extends BaseEntity
     {
         this.configType = configType;
     }
-    
+
     @Override
     public String toString() {
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)

@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 
 /**
  * 入库单 数据视图对象
- * 
+ *
  * @author zcc
  */
 @Data
@@ -30,8 +30,8 @@ public class ReceiptOrderVO extends BaseAudit {
     private String orderNo;
     @Excel(name = "应付款合计")
     private BigDecimal payableAmount;
-   /** 入库状态 */
-    @Excel(name = "入库状态")
+   /** 入库Status */
+    @Excel(name = "入库Status")
     private Integer receiptOrderStatus;
    /** Remark */
     @Excel(name = "Remark")

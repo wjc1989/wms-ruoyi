@@ -10,7 +10,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
 
 /**
  * 角色表 sys_role
- * 
+ *
  * @author ruoyi
  */
 public class SysRole extends BaseEntity
@@ -43,8 +43,8 @@ public class SysRole extends BaseEntity
     /** 部门树选择项是否关联显示（0：父子不互相关联显示 1：父子互相关联显示 ） */
     private boolean deptCheckStrictly;
 
-    /** 角色状态（0正常 1停用） */
-    @Excel(name = "角色状态", readConverterExp = "0=正常,1=停用")
+    /** 角色Status（0Normal 1Disabled） */
+    @Excel(name = "角色Status", readConverterExp = "0=Normal,1=Disabled")
     private String status;
 
     /** 删除标志（0代表存在 2代表删除） */
@@ -89,7 +89,7 @@ public class SysRole extends BaseEntity
         return roleId != null && 1L == roleId;
     }
 
-    @NotBlank(message = "角色名称不能为空")
+    @NotBlank(message = "角色名称 can not blank")
     @Size(min = 0, max = 30, message = "角色名称长度不能超过30个字符")
     public String getRoleName()
     {
@@ -101,7 +101,7 @@ public class SysRole extends BaseEntity
         this.roleName = roleName;
     }
 
-    @NotBlank(message = "权限字符不能为空")
+    @NotBlank(message = "权限字符 can not blank")
     @Size(min = 0, max = 100, message = "权限字符长度不能超过100个字符")
     public String getRoleKey()
     {
@@ -113,7 +113,7 @@ public class SysRole extends BaseEntity
         this.roleKey = roleKey;
     }
 
-    @NotBlank(message = "显示顺序不能为空")
+    @NotBlank(message = "Sort can not blank")
     public String getRoleSort()
     {
         return roleSort;
@@ -203,7 +203,7 @@ public class SysRole extends BaseEntity
     {
         this.deptIds = deptIds;
     }
-    
+
     @Override
     public String toString() {
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)

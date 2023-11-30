@@ -22,7 +22,7 @@ public class InventoryHistoryQuery {
     @ApiModelProperty("Goods ID 精确匹配")
     private Long itemId;
 
-    @ApiModelProperty("Shelves 精确匹配")
+    @ApiModelProperty("Rack 精确匹配")
     private Long warehouseId;
     private Long areaId;
     private Long rackId;

@@ -19,13 +19,13 @@ public class ItemTypeVO extends BaseAudit {
    /** 祖级列表 */
     @Excel(name = "祖级列表")
     private String ancestors;
-   /** Goods 类型名称 */
-    @Excel(name = "Goods 类型名称")
+   /** Goods Type Name */
+    @Excel(name = "Goods Type Name")
     private String typeName;
-   /** 显示顺序 */
-    @Excel(name = "显示顺序")
+   /** Sort */
+    @Excel(name = "Sort")
     private Integer orderNum;
-   /** Goods 类型状态（0正常 1停用） */
-    @Excel(name = "Goods 类型状态", readConverterExp = "0=正常,1=停用")
+   /** Status */
+    @Excel(name = "Goods 类型Status", readConverterExp = "0=Normal,1=Disabled")
     private String status;
 }

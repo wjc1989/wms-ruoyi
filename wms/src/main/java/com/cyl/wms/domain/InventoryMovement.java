@@ -12,7 +12,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  *
  * @author zcc
  */
-@ApiModel(description="Quantity移动对象")
+@ApiModel(description="Inventory Move")
 @Data
 @TableName("wms_inventory_movement")
 public class InventoryMovement extends BaseAudit {
@@ -21,32 +21,32 @@ public class InventoryMovement extends BaseAudit {
     @ApiModelProperty("ID")
     private Long id;
 
-    @ApiModelProperty("Quantity移动编号")
-    @Excel(name = "Quantity移动编号")
+    @ApiModelProperty("No.")
+    @Excel(name = "No.")
     private String inventoryMovementNo;
 
-    @ApiModelProperty("原Shelves")
-    @Excel(name = "原Shelves")
+    @ApiModelProperty("Source Rack")
+    @Excel(name = "Source Rack")
     private Long sourceRackId;
 
-    @ApiModelProperty("目标货架")
-    @Excel(name = "目标货架")
+    @ApiModelProperty("Target Rack")
+    @Excel(name = "Target Rack")
     private Long targetRackId;
 
-    @ApiModelProperty("状态")
-    @Excel(name = "状态")
+    @ApiModelProperty("Status")
+    @Excel(name = "Status")
     private Integer status;
 
-    @ApiModelProperty("审核状态")
-    @Excel(name = "审核状态")
+    @ApiModelProperty("Check Status")
+    @Excel(name = "Check Status")
     private Integer checkStatus;
 
-    @ApiModelProperty("审核人")
-    @Excel(name = "审核人")
+    @ApiModelProperty("Check User")
+    @Excel(name = "Check User")
     private Long checkUserId;
 
-    @ApiModelProperty("审核时间")
-    @Excel(name = "审核时间", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty("Check Time")
+    @Excel(name = "Check Time", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime checkTime;
 
     @ApiModelProperty("Remark")

@@ -204,7 +204,7 @@ public class ReceiptOrderService {
             }
             // 新增时， status一定是未入库， 所以这个地方必定有值
             ReceiptOrderDetail dbDetail = dbDetailMap.get(it.getId());
-            // 如果上次的状态不是部分入库或者全部入库，则本次的Quantity变化为本次的全部
+            // 如果上次的Status不是部分入库或者全部入库，则本次的Quantity变化为本次的全部
             Integer status1 = dbDetail.getReceiptOrderStatus();
             BigDecimal added;
             if (status1 != ReceiptOrderConstant.PART_IN && status1 != ReceiptOrderConstant.ALL_IN) {

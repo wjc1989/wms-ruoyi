@@ -93,12 +93,12 @@ INSERT INTO `gen_table_column` VALUES (11463, '908', 'name', 'NAME', 'varchar(25
 INSERT INTO `gen_table_column` VALUES (11464, '908', 'remark', 'REMARK', 'varchar(255)', 'String', 'remark', '0', '0', NULL, '1', '1', '1', NULL, 'EQ', 'input', '', 3, 1, '2022-12-01 11:28:35', NULL, '2022-12-01 11:29:24.000');
 INSERT INTO `gen_table_column` VALUES (11628, '920', 'id', 'ID', 'bigint(20)', 'Long', 'id', '1', '1', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 1, 1, '2023-05-26 10:54:12', NULL, NULL);
 INSERT INTO `gen_table_column` VALUES (11629, '920', 'inventory_movement_no', '编号', 'varchar(30)', 'String', 'inventoryMovementNo', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 2, 1, '2023-05-26 10:54:12', NULL, NULL);
-INSERT INTO `gen_table_column` VALUES (11630, '920', 'source_rack_id', '原Shelves', 'bigint(20)', 'Long', 'sourceRackId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 3, 1, '2023-05-26 10:54:12', NULL, NULL);
-INSERT INTO `gen_table_column` VALUES (11631, '920', 'target_rack_id', '目标货架', 'bigint(20)', 'Long', 'targetRackId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 4, 1, '2023-05-26 10:54:12', NULL, NULL);
-INSERT INTO `gen_table_column` VALUES (11632, '920', 'status', '状态', 'tinyint(4)', 'Integer', 'status', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'radio', '', 5, 1, '2023-05-26 10:54:12', NULL, NULL);
-INSERT INTO `gen_table_column` VALUES (11633, '920', 'check_status', '审核状态', 'tinyint(4)', 'Integer', 'checkStatus', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'radio', '', 6, 1, '2023-05-26 10:54:12', NULL, NULL);
-INSERT INTO `gen_table_column` VALUES (11634, '920', 'check_user_id', '审核人', 'bigint(20)', 'Long', 'checkUserId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 7, 1, '2023-05-26 10:54:12', NULL, NULL);
-INSERT INTO `gen_table_column` VALUES (11635, '920', 'check_time', '审核时间', 'datetime(3)', 'LocalDateTime', 'checkTime', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'datetime', '', 8, 1, '2023-05-26 10:54:12', NULL, NULL);
+INSERT INTO `gen_table_column` VALUES (11630, '920', 'source_rack_id', 'Source Shelves', 'bigint(20)', 'Long', 'sourceRackId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 3, 1, '2023-05-26 10:54:12', NULL, NULL);
+INSERT INTO `gen_table_column` VALUES (11631, '920', 'target_rack_id', 'Target Rack', 'bigint(20)', 'Long', 'targetRackId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 4, 1, '2023-05-26 10:54:12', NULL, NULL);
+INSERT INTO `gen_table_column` VALUES (11632, '920', 'status', 'Status', 'tinyint(4)', 'Integer', 'status', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'radio', '', 5, 1, '2023-05-26 10:54:12', NULL, NULL);
+INSERT INTO `gen_table_column` VALUES (11633, '920', 'check_status', 'Check Status', 'tinyint(4)', 'Integer', 'checkStatus', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'radio', '', 6, 1, '2023-05-26 10:54:12', NULL, NULL);
+INSERT INTO `gen_table_column` VALUES (11634, '920', 'check_user_id', 'Check User', 'bigint(20)', 'Long', 'checkUserId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 7, 1, '2023-05-26 10:54:12', NULL, NULL);
+INSERT INTO `gen_table_column` VALUES (11635, '920', 'check_time', 'Check Time', 'datetime(3)', 'LocalDateTime', 'checkTime', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'datetime', '', 8, 1, '2023-05-26 10:54:12', NULL, NULL);
 INSERT INTO `gen_table_column` VALUES (11636, '920', 'remark', 'Remark', 'varchar(255)', 'String', 'remark', '0', '0', NULL, '1', '1', '1', NULL, 'EQ', 'input', '', 9, 1, '2023-05-26 10:54:12', NULL, NULL);
 INSERT INTO `gen_table_column` VALUES (11637, '920', 'del_flag', 'Delete Flag', 'tinyint(4)', 'Integer', 'delFlag', '0', '0', '1', '1', NULL, NULL, NULL, 'EQ', 'input', '', 10, 1, '2023-05-26 10:54:12', NULL, NULL);
 INSERT INTO `gen_table_column` VALUES (11638, '920', 'create_by', '创建人', 'bigint(20)', 'Long', 'createBy', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 11, 1, '2023-05-26 10:54:12', NULL, NULL);
@@ -157,11 +157,11 @@ CREATE TABLE `sys_dept`  (
   `parent_id` bigint(20) NULL DEFAULT 0 COMMENT '父部门id',
   `ancestors` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '祖级列表',
   `dept_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '部门名称',
-  `order_num` int(4) NULL DEFAULT 0 COMMENT '显示顺序',
+  `order_num` int(4) NULL DEFAULT 0 COMMENT 'Sort',
   `leader` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '负责人',
   `phone` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '联系电话',
   `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '邮箱',
-  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '部门状态（0正常 1停用）',
+  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '部门Status（0Normal 1Disabled）',
   `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建者',
   `create_time` datetime(3) NULL DEFAULT NULL COMMENT '创建时间',
@@ -197,7 +197,7 @@ CREATE TABLE `sys_dict_data`  (
   `css_class` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '样式属性（其他样式扩展）',
   `list_class` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '表格回显样式',
   `is_default` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT 'N' COMMENT '是否默认（Y是 N否）',
-  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '状态（0正常 1停用）',
+  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT 'Status（0Normal 1Disabled）',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建者',
   `create_time` datetime(3) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '更新者',
@@ -214,18 +214,18 @@ INSERT INTO `sys_dict_data` VALUES (2, 2, '女', '1', 'sys_user_sex', '', '', 'N
 INSERT INTO `sys_dict_data` VALUES (3, 3, '未知', '2', 'sys_user_sex', '', '', 'N', '0', 1, '2022-06-17 17:20:28.000', NULL, NULL, '性别未知');
 INSERT INTO `sys_dict_data` VALUES (4, 1, '显示', '0', 'sys_show_hide', '', 'primary', 'Y', '0', 1, '2022-06-17 17:20:28.000', NULL, NULL, '显示菜单');
 INSERT INTO `sys_dict_data` VALUES (5, 2, '隐藏', '1', 'sys_show_hide', '', 'danger', 'N', '0', 1, '2022-06-17 17:20:28.000', NULL, NULL, '隐藏菜单');
-INSERT INTO `sys_dict_data` VALUES (6, 1, '正常', '0', 'sys_normal_disable', '', 'primary', 'Y', '0', 1, '2022-06-17 17:20:28.000', NULL, NULL, '正常状态');
-INSERT INTO `sys_dict_data` VALUES (7, 2, '停用', '1', 'sys_normal_disable', '', 'danger', 'N', '0', 1, '2022-06-17 17:20:28.000', NULL, NULL, '停用状态');
-INSERT INTO `sys_dict_data` VALUES (8, 1, '正常', '0', 'sys_job_status', '', 'primary', 'Y', '0', 1, '2022-06-17 17:20:28.000', NULL, NULL, '正常状态');
-INSERT INTO `sys_dict_data` VALUES (9, 2, '暂停', '1', 'sys_job_status', '', 'danger', 'N', '0', 1, '2022-06-17 17:20:28.000', NULL, NULL, '停用状态');
+INSERT INTO `sys_dict_data` VALUES (6, 1, 'Normal', '0', 'sys_normal_disable', '', 'primary', 'Y', '0', 1, '2022-06-17 17:20:28.000', NULL, NULL, 'NormalStatus');
+INSERT INTO `sys_dict_data` VALUES (7, 2, 'Disabled', '1', 'sys_normal_disable', '', 'danger', 'N', '0', 1, '2022-06-17 17:20:28.000', NULL, NULL, 'DisabledStatus');
+INSERT INTO `sys_dict_data` VALUES (8, 1, 'Normal', '0', 'sys_job_status', '', 'primary', 'Y', '0', 1, '2022-06-17 17:20:28.000', NULL, NULL, 'NormalStatus');
+INSERT INTO `sys_dict_data` VALUES (9, 2, '暂停', '1', 'sys_job_status', '', 'danger', 'N', '0', 1, '2022-06-17 17:20:28.000', NULL, NULL, 'DisabledStatus');
 INSERT INTO `sys_dict_data` VALUES (10, 1, '默认', 'DEFAULT', 'sys_job_group', '', '', 'Y', '0', 1, '2022-06-17 17:20:28.000', NULL, NULL, '默认分组');
 INSERT INTO `sys_dict_data` VALUES (11, 2, '系统', 'SYSTEM', 'sys_job_group', '', '', 'N', '0', 1, '2022-06-17 17:20:28.000', NULL, NULL, '系统分组');
 INSERT INTO `sys_dict_data` VALUES (12, 1, '是', 'Y', 'sys_yes_no', '', 'primary', 'Y', '0', 1, '2022-06-17 17:20:28.000', NULL, NULL, '系统默认是');
 INSERT INTO `sys_dict_data` VALUES (13, 2, '否', 'N', 'sys_yes_no', '', 'danger', 'N', '0', 1, '2022-06-17 17:20:28.000', NULL, NULL, '系统默认否');
 INSERT INTO `sys_dict_data` VALUES (14, 1, '通知', '1', 'sys_notice_type', '', 'warning', 'Y', '0', 1, '2022-06-17 17:20:28.000', NULL, NULL, '通知');
 INSERT INTO `sys_dict_data` VALUES (15, 2, '公告', '2', 'sys_notice_type', '', 'success', 'N', '0', 1, '2022-06-17 17:20:28.000', NULL, NULL, '公告');
-INSERT INTO `sys_dict_data` VALUES (16, 1, '正常', '0', 'sys_notice_status', '', 'primary', 'Y', '0', 1, '2022-06-17 17:20:29.000', NULL, NULL, '正常状态');
-INSERT INTO `sys_dict_data` VALUES (17, 2, '关闭', '1', 'sys_notice_status', '', 'danger', 'N', '0', 1, '2022-06-17 17:20:29.000', NULL, NULL, '关闭状态');
+INSERT INTO `sys_dict_data` VALUES (16, 1, 'Normal', '0', 'sys_notice_status', '', 'primary', 'Y', '0', 1, '2022-06-17 17:20:29.000', NULL, NULL, 'NormalStatus');
+INSERT INTO `sys_dict_data` VALUES (17, 2, '关闭', '1', 'sys_notice_status', '', 'danger', 'N', '0', 1, '2022-06-17 17:20:29.000', NULL, NULL, '关闭Status');
 INSERT INTO `sys_dict_data` VALUES (18, 1, '新增', '1', 'sys_oper_type', '', 'info', 'N', '0', 1, '2022-06-17 17:20:29.000', NULL, NULL, '新增操作');
 INSERT INTO `sys_dict_data` VALUES (19, 2, '修改', '2', 'sys_oper_type', '', 'info', 'N', '0', 1, '2022-06-17 17:20:29.000', NULL, NULL, '修改操作');
 INSERT INTO `sys_dict_data` VALUES (20, 3, '删除', '3', 'sys_oper_type', '', 'danger', 'N', '0', 1, '2022-06-17 17:20:29.000', NULL, NULL, '删除操作');
@@ -235,12 +235,12 @@ INSERT INTO `sys_dict_data` VALUES (23, 6, '导入', '6', 'sys_oper_type', '', '
 INSERT INTO `sys_dict_data` VALUES (24, 7, '强退', '7', 'sys_oper_type', '', 'danger', 'N', '0', 1, '2022-06-17 17:20:29.000', NULL, NULL, '强退操作');
 INSERT INTO `sys_dict_data` VALUES (25, 8, '生成代码', '8', 'sys_oper_type', '', 'warning', 'N', '0', 1, '2022-06-17 17:20:29.000', NULL, NULL, '生成操作');
 INSERT INTO `sys_dict_data` VALUES (26, 9, '清空数据', '9', 'sys_oper_type', '', 'danger', 'N', '0', 1, '2022-06-17 17:20:29.000', NULL, NULL, '清空操作');
-INSERT INTO `sys_dict_data` VALUES (27, 1, '成功', '0', 'sys_common_status', '', 'primary', 'N', '0', 1, '2022-06-17 17:20:29.000', NULL, NULL, '正常状态');
-INSERT INTO `sys_dict_data` VALUES (28, 2, '失败', '1', 'sys_common_status', '', 'danger', 'N', '0', 1, '2022-06-17 17:20:29.000', NULL, NULL, '停用状态');
-INSERT INTO `sys_dict_data` VALUES (100, 0, '原Goods ', '原Goods ', 'wms_item_type', NULL, 'default', 'N', '0', 1, '2022-08-18 15:49:33.000', NULL, NULL, NULL);
+INSERT INTO `sys_dict_data` VALUES (27, 1, '成功', '0', 'sys_common_status', '', 'primary', 'N', '0', 1, '2022-06-17 17:20:29.000', NULL, NULL, 'NormalStatus');
+INSERT INTO `sys_dict_data` VALUES (28, 2, '失败', '1', 'sys_common_status', '', 'danger', 'N', '0', 1, '2022-06-17 17:20:29.000', NULL, NULL, 'DisabledStatus');
+INSERT INTO `sys_dict_data` VALUES (100, 0, 'Source Goods ', 'Source Goods ', 'wms_item_type', NULL, 'default', 'N', '0', 1, '2022-08-18 15:49:33.000', NULL, NULL, NULL);
 INSERT INTO `sys_dict_data` VALUES (101, 1, '半成品', '半成品', 'wms_item_type', NULL, 'default', 'N', '0', 1, '2022-08-18 15:49:58.000', NULL, NULL, NULL);
 INSERT INTO `sys_dict_data` VALUES (102, 2, '产成品', '产成品', 'wms_item_type', NULL, 'default', 'N', '0', 1, '2022-08-18 15:50:15.000', NULL, NULL, NULL);
-INSERT INTO `sys_dict_data` VALUES (103, 3, '原辅料', '原辅料', 'wms_item_type', NULL, 'default', 'N', '0', 1, '2022-08-18 15:50:35.000', NULL, NULL, NULL);
+INSERT INTO `sys_dict_data` VALUES (103, 3, 'Source 辅料', 'Source 辅料', 'wms_item_type', NULL, 'default', 'N', '0', 1, '2022-08-18 15:50:35.000', NULL, NULL, NULL);
 INSERT INTO `sys_dict_data` VALUES (104, 0, '第一级', '第一级', 'wms_carrier_level', NULL, 'default', 'N', '0', 1, '2022-08-18 17:51:14.000', NULL, NULL, NULL);
 INSERT INTO `sys_dict_data` VALUES (105, 1, '第二级', '第二级', 'wms_carrier_level', NULL, 'default', 'N', '0', 1, '2022-08-18 17:51:27.000', NULL, NULL, NULL);
 INSERT INTO `sys_dict_data` VALUES (106, 0, '第一级', '第一级', 'wms_supplier_level', NULL, 'default', 'N', '0', 1, '2022-08-18 18:05:23.000', NULL, NULL, NULL);
@@ -301,7 +301,7 @@ CREATE TABLE `sys_dict_type`  (
   `dict_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '字典主键',
   `dict_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '字典名称',
   `dict_type` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '字典类型',
-  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '状态（0正常 1停用）',
+  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT 'Status（0Normal 1Disabled）',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建者',
   `create_time` datetime(3) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '更新者',
@@ -315,32 +315,32 @@ CREATE TABLE `sys_dict_type`  (
 -- Records of sys_dict_type
 -- ----------------------------
 INSERT INTO `sys_dict_type` VALUES (1, '用户性别', 'sys_user_sex', '0', 1, '2022-06-17 17:20:27.000', NULL, NULL, '用户性别列表');
-INSERT INTO `sys_dict_type` VALUES (2, '菜单状态', 'sys_show_hide', '0', 1, '2022-06-17 17:20:27.000', NULL, NULL, '菜单状态列表');
+INSERT INTO `sys_dict_type` VALUES (2, '菜单Status', 'sys_show_hide', '0', 1, '2022-06-17 17:20:27.000', NULL, NULL, '菜单Status列表');
 INSERT INTO `sys_dict_type` VALUES (3, '系统开关', 'sys_normal_disable', '0', 1, '2022-06-17 17:20:27.000', NULL, NULL, '系统开关列表');
-INSERT INTO `sys_dict_type` VALUES (4, '任务状态', 'sys_job_status', '0', 1, '2022-06-17 17:20:28.000', NULL, NULL, '任务状态列表');
+INSERT INTO `sys_dict_type` VALUES (4, '任务Status', 'sys_job_status', '0', 1, '2022-06-17 17:20:28.000', NULL, NULL, '任务Status列表');
 INSERT INTO `sys_dict_type` VALUES (5, '任务分组', 'sys_job_group', '0', 1, '2022-06-17 17:20:28.000', NULL, NULL, '任务分组列表');
 INSERT INTO `sys_dict_type` VALUES (6, '系统是否', 'sys_yes_no', '0', 1, '2022-06-17 17:20:28.000', NULL, NULL, '系统是否列表');
 INSERT INTO `sys_dict_type` VALUES (7, '通知类型', 'sys_notice_type', '0', 1, '2022-06-17 17:20:28.000', NULL, NULL, '通知类型列表');
-INSERT INTO `sys_dict_type` VALUES (8, '通知状态', 'sys_notice_status', '0', 1, '2022-06-17 17:20:28.000', NULL, NULL, '通知状态列表');
+INSERT INTO `sys_dict_type` VALUES (8, '通知Status', 'sys_notice_status', '0', 1, '2022-06-17 17:20:28.000', NULL, NULL, '通知Status列表');
 INSERT INTO `sys_dict_type` VALUES (9, '操作类型', 'sys_oper_type', '0', 1, '2022-06-17 17:20:28.000', NULL, NULL, '操作类型列表');
-INSERT INTO `sys_dict_type` VALUES (10, '系统状态', 'sys_common_status', '0', 1, '2022-06-17 17:20:28.000', NULL, NULL, '登录状态列表');
+INSERT INTO `sys_dict_type` VALUES (10, '系统Status', 'sys_common_status', '0', 1, '2022-06-17 17:20:28.000', NULL, NULL, '登录Status列表');
 INSERT INTO `sys_dict_type` VALUES (100, 'Goods 分类', 'wms_item_type', '0', 1, '2022-08-18 15:47:49.000', NULL, NULL, NULL);
 INSERT INTO `sys_dict_type` VALUES (101, '承运商级别', 'wms_carrier_level', '0', 1, '2022-08-18 17:50:40.000', NULL, NULL, NULL);
 INSERT INTO `sys_dict_type` VALUES (102, '供应商级别', 'wms_supplier_level', '0', 1, '2022-08-18 18:05:02.000', NULL, NULL, NULL);
 INSERT INTO `sys_dict_type` VALUES (103, '入库类型', 'wms_receipt_type', '0', 1, '2022-08-21 15:03:58.000', NULL, NULL, NULL);
-INSERT INTO `sys_dict_type` VALUES (104, '入库状态', 'wms_receipt_status', '0', 1, '2022-08-29 17:18:35.000', NULL, NULL, NULL);
+INSERT INTO `sys_dict_type` VALUES (104, '入库Status', 'wms_receipt_status', '0', 1, '2022-08-29 17:18:35.000', NULL, NULL, NULL);
 INSERT INTO `sys_dict_type` VALUES (105, '出库类型', 'wms_shipment_type', '0', 1, '2022-10-20 13:33:29.000', NULL, NULL, NULL);
-INSERT INTO `sys_dict_type` VALUES (106, '出库状态', 'wms_shipment_status', '0', 1, '2022-10-20 13:39:41.000', NULL, NULL, NULL);
+INSERT INTO `sys_dict_type` VALUES (106, '出库Status', 'wms_shipment_status', '0', 1, '2022-10-20 13:39:41.000', NULL, NULL, NULL);
 INSERT INTO `sys_dict_type` VALUES (107, '移库类型', 'wms_movement_type', '0', 1, '2022-10-20 14:22:52.000', NULL, NULL, NULL);
-INSERT INTO `sys_dict_type` VALUES (108, '移库状态', 'wms_movement_status', '0', 1, '2022-10-20 14:24:43.000', 1, '2022-10-20 14:24:55.000', NULL);
-INSERT INTO `sys_dict_type` VALUES (109, '盘点单据状态', 'wms_check_status', '0', 1, '2023-04-26 11:17:35.000', NULL, NULL, NULL);
+INSERT INTO `sys_dict_type` VALUES (108, '移库Status', 'wms_movement_status', '0', 1, '2022-10-20 14:24:43.000', 1, '2022-10-20 14:24:55.000', NULL);
+INSERT INTO `sys_dict_type` VALUES (109, '盘点单据Status', 'wms_check_status', '0', 1, '2023-04-26 11:17:35.000', NULL, NULL, NULL);
 INSERT INTO `sys_dict_type` VALUES (110, '供应商账号交易类型', 'wms_supplier_transaction_type', '0', 1, '2023-05-04 12:52:59.000', NULL, NULL, '1:结款；2:应付；3:入库单');
 INSERT INTO `sys_dict_type` VALUES (111, '客户账户交易类型', 'wms_customer_transaction_type', '0', 1, '2023-05-04 16:58:45.000', NULL, NULL, '1:结款；2:应付；3:出库单');
 INSERT INTO `sys_dict_type` VALUES (112, 'Quantity操作类型', 'wms_inventory_oper_type', '0', 1, '2023-05-05 10:23:28.000', NULL, NULL, NULL);
 INSERT INTO `sys_dict_type` VALUES (113, '盘点类型', 'wms_check_type', '0', 1, '2023-07-25 05:29:44.000', NULL, NULL, NULL);
 INSERT INTO `sys_dict_type` VALUES (114, 'Quantity看板类型', 'wms_inventory_panel_type', '0', 1, '2023-07-28 07:12:50.000', NULL, NULL, NULL);
-INSERT INTO `sys_dict_type` VALUES (115, 'Quantity结算状态', 'wms_settlement_status', '0', 1, '2023-08-02 13:34:27.000', NULL, NULL, NULL);
-INSERT INTO `sys_dict_type` VALUES (116, '波次作业状态', 'wms_wave_status', '0', 1, '2023-08-28 14:59:32.000', NULL, NULL, NULL);
+INSERT INTO `sys_dict_type` VALUES (115, 'Quantity结算Status', 'wms_settlement_status', '0', 1, '2023-08-02 13:34:27.000', NULL, NULL, NULL);
+INSERT INTO `sys_dict_type` VALUES (116, '波次作业Status', 'wms_wave_status', '0', 1, '2023-08-28 14:59:32.000', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_job
@@ -354,7 +354,7 @@ CREATE TABLE `sys_job`  (
   `cron_expression` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT 'cron执行表达式',
   `misfire_policy` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '3' COMMENT '计划执行错误策略（1立即执行 2执行一次 3放弃执行）',
   `concurrent` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '1' COMMENT '是否并发执行（0允许 1禁止）',
-  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '状态（0正常 1暂停）',
+  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT 'Status（0Normal 1暂停）',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建者',
   `create_time` datetime(3) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '更新者',
@@ -380,7 +380,7 @@ CREATE TABLE `sys_job_log`  (
   `job_group` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '任务组名',
   `invoke_target` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '调用目标字符串',
   `job_message` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '日志信息',
-  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '执行状态（0正常 1失败）',
+  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '执行Status（0Normal 1失败）',
   `exception_info` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '异常信息',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`job_log_id`) USING BTREE
@@ -397,7 +397,7 @@ CREATE TABLE `sys_logininfor`  (
   `login_location` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '登录地点',
   `browser` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '浏览器类型',
   `os` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '操作系统',
-  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '登录状态（0成功 1失败）',
+  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '登录Status（0成功 1失败）',
   `msg` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '提示消息',
   `login_time` datetime(0) NULL DEFAULT NULL COMMENT '访问时间',
   PRIMARY KEY (`info_id`) USING BTREE
@@ -411,15 +411,15 @@ CREATE TABLE `sys_menu`  (
   `menu_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '菜单ID',
   `menu_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '菜单名称',
   `parent_id` bigint(20) NULL DEFAULT 0 COMMENT '父菜单ID',
-  `order_num` int(4) NULL DEFAULT 0 COMMENT '显示顺序',
+  `order_num` int(4) NULL DEFAULT 0 COMMENT 'Sort',
   `path` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '路由地址',
   `component` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '组件路径',
   `query` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '路由参数',
   `is_frame` int(1) NULL DEFAULT 1 COMMENT '是否为外链（0是 1否）',
   `is_cache` int(1) NULL DEFAULT 0 COMMENT '是否缓存（0缓存 1不缓存）',
   `menu_type` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '菜单类型（M目录 C菜单 F按钮）',
-  `visible` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '菜单状态（0显示 1隐藏）',
-  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '菜单状态（0正常 1停用）',
+  `visible` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '菜单Status（0显示 1隐藏）',
+  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '菜单Status（0Normal 1Disabled）',
   `perms` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '权限标识',
   `icon` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '#' COMMENT '菜单图标',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建者',
@@ -507,7 +507,7 @@ INSERT INTO `sys_menu` VALUES (1049, '任务查询', 110, 1, '#', '', '', 1, 0, 
 INSERT INTO `sys_menu` VALUES (1050, '任务新增', 110, 2, '#', '', '', 1, 0, 'F', '0', '0', 'monitor:job:add', '#', 1, '2022-06-17 17:20:23.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1051, '任务修改', 110, 3, '#', '', '', 1, 0, 'F', '0', '0', 'monitor:job:edit', '#', 1, '2022-06-17 17:20:23.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1052, '任务删除', 110, 4, '#', '', '', 1, 0, 'F', '0', '0', 'monitor:job:remove', '#', 1, '2022-06-17 17:20:23.000', NULL, NULL, '');
-INSERT INTO `sys_menu` VALUES (1053, '状态修改', 110, 5, '#', '', '', 1, 0, 'F', '0', '0', 'monitor:job:changeStatus', '#', 1, '2022-06-17 17:20:23.000', NULL, NULL, '');
+INSERT INTO `sys_menu` VALUES (1053, 'Status修改', 110, 5, '#', '', '', 1, 0, 'F', '0', '0', 'monitor:job:changeStatus', '#', 1, '2022-06-17 17:20:23.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1054, '任务导出', 110, 7, '#', '', '', 1, 0, 'F', '0', '0', 'monitor:job:export', '#', 1, '2022-06-17 17:20:23.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1055, '生成查询', 115, 1, '#', '', '', 1, 0, 'F', '0', '0', 'tool:gen:query', '#', 1, '2022-06-17 17:20:23.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1056, '生成修改', 115, 2, '#', '', '', 1, 0, 'F', '0', '0', 'tool:gen:edit', '#', 1, '2022-06-17 17:20:23.000', NULL, NULL, '');
@@ -681,7 +681,7 @@ CREATE TABLE `sys_notice`  (
   `notice_title` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '公告标题',
   `notice_type` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '公告类型（1通知 2公告）',
   `notice_content` longblob NULL COMMENT '公告内容',
-  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '公告状态（0正常 1关闭）',
+  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '公告Status（0Normal 1关闭）',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建者',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '更新者',
@@ -714,7 +714,7 @@ CREATE TABLE `sys_oper_log`  (
   `oper_location` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '操作地点',
   `oper_param` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '请求参数',
   `json_result` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '返回参数',
-  `status` int(1) NULL DEFAULT 0 COMMENT '操作状态（0正常 1异常）',
+  `status` int(1) NULL DEFAULT 0 COMMENT '操作Status（0Normal 1异常）',
   `error_msg` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '错误消息',
   `oper_time` datetime(0) NULL DEFAULT NULL COMMENT '操作时间',
   PRIMARY KEY (`oper_id`) USING BTREE
@@ -728,8 +728,8 @@ CREATE TABLE `sys_post`  (
   `post_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '岗位ID',
   `post_code` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '岗位编码',
   `post_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '岗位名称',
-  `post_sort` int(4) NOT NULL COMMENT '显示顺序',
-  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '状态（0正常 1停用）',
+  `post_sort` int(4) NOT NULL COMMENT 'Sort',
+  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'Status（0Normal 1Disabled）',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建者',
   `create_time` datetime(3) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '更新者',
@@ -754,11 +754,11 @@ CREATE TABLE `sys_role`  (
   `role_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '角色ID',
   `role_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '角色名称',
   `role_key` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '角色权限字符串',
-  `role_sort` int(4) NOT NULL COMMENT '显示顺序',
+  `role_sort` int(4) NOT NULL COMMENT 'Sort',
   `data_scope` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '1' COMMENT '数据范围（1：全部数据权限 2：自定数据权限 3：本部门数据权限 4：本部门及以下数据权限）',
   `menu_check_strictly` tinyint(1) NULL DEFAULT 1 COMMENT '菜单树选择项是否关联显示',
   `dept_check_strictly` tinyint(1) NULL DEFAULT 1 COMMENT '部门树选择项是否关联显示',
-  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '角色状态（0正常 1停用）',
+  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '角色Status（0Normal 1Disabled）',
   `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建者',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
@@ -1156,7 +1156,7 @@ CREATE TABLE `sys_user`  (
   `sex` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '用户性别（0男 1女 2未知）',
   `avatar` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '头像地址',
   `password` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '密码',
-  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '帐号状态（0正常 1停用）',
+  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '帐号Status（0Normal 1Disabled）',
   `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
   `login_ip` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '最后登录IP',
   `login_date` datetime(0) NULL DEFAULT NULL COMMENT '最后登录时间',
@@ -1345,11 +1345,11 @@ CREATE TABLE `wms_inventory_check`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `inventory_check_no` varchar(22) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Quantity盘点单号，系统自动生成',
   `inventory_check_type` int(11) NULL DEFAULT NULL COMMENT 'Quantity盘点类型',
-  `inventory_check_status` tinyint(4) NULL DEFAULT 11 COMMENT 'Quantity盘点单状态11：盘点中 22：已完成',
+  `inventory_check_status` tinyint(4) NULL DEFAULT 11 COMMENT 'Quantity盘点单Status11：盘点中 22：已完成',
   `inventory_check_total` decimal(20, 2) NULL DEFAULT NULL COMMENT '盈亏数',
-  `check_status` tinyint(4) NULL DEFAULT NULL COMMENT '审核状态',
-  `check_user_id` bigint(20) NULL DEFAULT NULL COMMENT '审核人',
-  `check_time` datetime(3) NULL DEFAULT NULL COMMENT '审核时间',
+  `check_status` tinyint(4) NULL DEFAULT NULL COMMENT 'Check Status',
+  `check_user_id` bigint(20) NULL DEFAULT NULL COMMENT 'Check User',
+  `check_time` datetime(3) NULL DEFAULT NULL COMMENT 'Check Time',
   `warehouse_id` bigint(20) NULL DEFAULT NULL COMMENT 'Warehouse',
   `area_id` bigint(20) NULL DEFAULT NULL COMMENT 'Area',
   `rack_id` bigint(20) NULL DEFAULT NULL COMMENT '货架',
@@ -1414,12 +1414,12 @@ DROP TABLE IF EXISTS `wms_inventory_movement`;
 CREATE TABLE `wms_inventory_movement`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `inventory_movement_no` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '编号',
-  `source_rack_id` bigint(20) NULL DEFAULT NULL COMMENT '原Shelves',
-  `target_rack_id` bigint(20) NULL DEFAULT NULL COMMENT '目标货架',
-  `status` tinyint(4) NULL DEFAULT NULL COMMENT '状态',
-  `check_status` tinyint(4) NULL DEFAULT NULL COMMENT '审核状态',
-  `check_user_id` bigint(20) NULL DEFAULT NULL COMMENT '审核人',
-  `check_time` datetime(3) NULL DEFAULT NULL COMMENT '审核时间',
+  `source_rack_id` bigint(20) NULL DEFAULT NULL COMMENT 'Source Shelves',
+  `target_rack_id` bigint(20) NULL DEFAULT NULL COMMENT 'Target Rack',
+  `status` tinyint(4) NULL DEFAULT NULL COMMENT 'Status',
+  `check_status` tinyint(4) NULL DEFAULT NULL COMMENT 'Check Status',
+  `check_user_id` bigint(20) NULL DEFAULT NULL COMMENT 'Check User',
+  `check_time` datetime(3) NULL DEFAULT NULL COMMENT 'Check Time',
   `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Remark',
   `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT 'Delete Flag',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
@@ -1448,8 +1448,8 @@ CREATE TABLE `wms_inventory_movement_detail`  (
   `source_rack_id` bigint(20) NULL DEFAULT NULL COMMENT '源货架',
   `source_warehouse_id` bigint(20) NULL DEFAULT NULL COMMENT '源仓库',
   `source_area_id` bigint(20) NULL DEFAULT NULL COMMENT '源库区',
-  `move_status` tinyint(4) NULL DEFAULT NULL COMMENT '移库状态',
-  `target_rack_id` bigint(20) NULL DEFAULT NULL COMMENT '目标货架',
+  `move_status` tinyint(4) NULL DEFAULT NULL COMMENT '移库Status',
+  `target_rack_id` bigint(20) NULL DEFAULT NULL COMMENT 'Target Rack',
   `target_warehouse_id` bigint(20) NULL DEFAULT NULL COMMENT '目标仓库',
   `target_area_id` bigint(20) NULL DEFAULT NULL COMMENT '目标库区',
   PRIMARY KEY (`id`) USING BTREE
@@ -1462,7 +1462,7 @@ DROP TABLE IF EXISTS `wms_inventory_settlement`;
 CREATE TABLE `wms_inventory_settlement`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `inventory_settlement_no` varchar(22) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Quantity结算单号',
-  `inventory_settlement_status` tinyint(4) NULL DEFAULT 11 COMMENT 'Quantity结算单状态11：结算中 22：已完成',
+  `inventory_settlement_status` tinyint(4) NULL DEFAULT 11 COMMENT 'Quantity结算单Status11：结算中 22：已完成',
   `inventory_settlement_start_time` datetime(0) NULL DEFAULT NULL COMMENT 'Quantity结算周期开始时间',
   `inventory_settlement_end_time` datetime(0) NULL DEFAULT NULL COMMENT 'Quantity结算周期结束时间',
   `settlement_type` int(11) NOT NULL COMMENT '结算类型,1:月结，2:年结',
@@ -1516,12 +1516,12 @@ CREATE TABLE `wms_item`  (
   `item_name` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '名称',
   `specification` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '规格',
   `item_type` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '分类',
-  `unit` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '单位类别',
+  `unit` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Unit',
   `unit_price` decimal(10, 2) NULL DEFAULT NULL COMMENT '单价',
   `rack_id` bigint(20) NULL DEFAULT NULL COMMENT '所属货架',
   `area_id` bigint(20) NULL DEFAULT NULL COMMENT 'Area',
   `warehouse_id` bigint(20) NULL DEFAULT NULL COMMENT 'Warehouse',
-  `quantity` decimal(20, 2) NULL DEFAULT NULL COMMENT '安全Quantity',
+  `quantity` decimal(20, 2) NULL DEFAULT NULL COMMENT 'Safty Quantity',
   `production_date` datetime(3) NULL DEFAULT NULL COMMENT '生产日期',
   `expiry_date` datetime(3) NULL DEFAULT NULL COMMENT '有效期',
   `batch` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '批次',
@@ -1542,9 +1542,9 @@ CREATE TABLE `wms_item_type`  (
   `item_type_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'Goods 类型id',
   `parent_id` bigint(20) NULL DEFAULT 0 COMMENT '父Goods 类型id',
   `ancestors` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '祖级列表',
-  `type_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT 'Goods 类型名称',
-  `order_num` int(11) NULL DEFAULT 0 COMMENT '显示顺序',
-  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT 'Goods 类型状态（0正常 1停用）',
+  `type_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT 'Goods Type Name',
+  `order_num` int(11) NULL DEFAULT 0 COMMENT 'Sort',
+  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT 'Status',
   `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建者',
   `create_time` datetime(3) NULL DEFAULT NULL COMMENT '创建时间',
@@ -1583,7 +1583,7 @@ CREATE TABLE `wms_receipt_order`  (
   `supplier_id` bigint(20) NULL DEFAULT NULL COMMENT '供应商',
   `order_no` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '订单号',
   `payable_amount` decimal(10, 2) NULL DEFAULT NULL COMMENT '订单金额',
-  `receipt_order_status` tinyint(4) NULL DEFAULT NULL COMMENT '入库状态',
+  `receipt_order_status` tinyint(4) NULL DEFAULT NULL COMMENT '入库Status',
   `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Remark',
   `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT 'Delete Flag',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
@@ -1614,7 +1614,7 @@ CREATE TABLE `wms_receipt_order_detail`  (
   `update_time` datetime(3) NULL DEFAULT NULL COMMENT '修改时间',
   `warehouse_id` bigint(20) NULL DEFAULT NULL COMMENT 'Warehouse',
   `area_id` bigint(20) NULL DEFAULT NULL COMMENT 'Area',
-  `receipt_order_status` tinyint(4) NULL DEFAULT NULL COMMENT '入库状态',
+  `receipt_order_status` tinyint(4) NULL DEFAULT NULL COMMENT '入库Status',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 6044 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '入库单详情' ROW_FORMAT = Dynamic;
 
@@ -1629,10 +1629,10 @@ CREATE TABLE `wms_shipment_order`  (
   `order_no` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '出库订单',
   `customer_id` bigint(20) NULL DEFAULT NULL COMMENT '客户',
   `receivable_amount` decimal(10, 2) NULL DEFAULT NULL COMMENT '订单金额',
-  `shipment_order_status` tinyint(4) NULL DEFAULT NULL COMMENT '出库单状态',
-  `check_status` tinyint(4) NULL DEFAULT NULL COMMENT '审核状态',
-  `check_user_id` bigint(20) NULL DEFAULT NULL COMMENT '审核人',
-  `check_time` datetime(3) NULL DEFAULT NULL COMMENT '审核时间',
+  `shipment_order_status` tinyint(4) NULL DEFAULT NULL COMMENT '出库单Status',
+  `check_status` tinyint(4) NULL DEFAULT NULL COMMENT 'Check Status',
+  `check_user_id` bigint(20) NULL DEFAULT NULL COMMENT 'Check User',
+  `check_time` datetime(3) NULL DEFAULT NULL COMMENT 'Check Time',
   `wave_no` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '波次号',
   `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Remark',
   `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT 'Delete Flag',
@@ -1663,7 +1663,7 @@ CREATE TABLE `wms_shipment_order_detail`  (
   `update_time` datetime(3) NULL DEFAULT NULL COMMENT '修改时间',
   `warehouse_id` bigint(20) NULL DEFAULT NULL COMMENT 'Warehouse',
   `area_id` bigint(20) NULL DEFAULT NULL COMMENT 'Area',
-  `shipment_order_status` tinyint(4) NULL DEFAULT NULL COMMENT '出库状态',
+  `shipment_order_status` tinyint(4) NULL DEFAULT NULL COMMENT '出库Status',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 2308 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '出库单详情' ROW_FORMAT = Dynamic;
 
@@ -1739,7 +1739,7 @@ DROP TABLE IF EXISTS `wms_wave`;
 CREATE TABLE `wms_wave`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `wave_no` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '波次号',
-  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '状态',
+  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Status',
   `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'Remark',
   `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT 'Delete Flag',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建人',

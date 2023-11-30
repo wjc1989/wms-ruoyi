@@ -28,7 +28,7 @@ public class ItemQuery {
     @ApiModelProperty("分类 精确匹配")
     private String itemType;
 
-    @ApiModelProperty("单位类别 精确匹配")
+    @ApiModelProperty("Unit 精确匹配")
     private String unit;
 
     @ApiModelProperty("所属货架 精确匹配")
@@ -40,7 +40,7 @@ public class ItemQuery {
     @ApiModelProperty("Warehouse 精确匹配")
     private Long warehouseId;
 
-    @ApiModelProperty("安全Quantity 精确匹配")
+    @ApiModelProperty("Safty Quantity 精确匹配")
     private BigDecimal quantity;
 
     @ApiModelProperty("有效期 精确匹配")

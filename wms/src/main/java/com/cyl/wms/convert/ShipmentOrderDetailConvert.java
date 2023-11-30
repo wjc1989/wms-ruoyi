@@ -41,7 +41,7 @@ public interface ShipmentOrderDetailConvert {
 
     /*
      * 深拷贝
-     * @param original 原始集合
+     * @param original Source 始集合
      * @return 拷贝后的集合
      * */
     default Collection<ShipmentOrderDetailVO> copyList(Collection<ShipmentOrderDetailVO> original) {

@@ -24,35 +24,35 @@ public class InventoryMovementVO extends BaseAudit {
   @Excel(name = "Quantity移动编号")
   private String inventoryMovementNo;
   /**
-   * 原Shelves
+   * Source Shelves
    */
-  @Excel(name = "原Shelves")
+  @Excel(name = "Source Shelves")
   private Long sourceRackId;
   /**
-   * 目标货架
+   * Target Rack
    */
-  @Excel(name = "目标货架")
+  @Excel(name = "Target Rack")
   private Long targetRackId;
   /**
-   * 状态
+   * Status
    */
-  @Excel(name = "状态")
+  @Excel(name = "Status")
   private Integer status;
   /**
-   * 审核状态
+   * Check Status
    */
-  @Excel(name = "审核状态")
+  @Excel(name = "Check Status")
   private Integer checkStatus;
   /**
-   * 审核人
+   * Check User
    */
-  @Excel(name = "审核人")
+  @Excel(name = "Check User")
   private Long checkUserId;
   /**
-   * 审核时间
+   * Check Time
    */
   @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-  @Excel(name = "审核时间", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss")
+  @Excel(name = "Check Time", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss")
   private LocalDateTime checkTime;
   /**
    * Remark

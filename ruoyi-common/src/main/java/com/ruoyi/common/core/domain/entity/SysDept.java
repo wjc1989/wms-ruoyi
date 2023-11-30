@@ -11,7 +11,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
 
 /**
  * 部门表 sys_dept
- * 
+ *
  * @author ruoyi
  */
 public class SysDept extends BaseEntity
@@ -30,7 +30,7 @@ public class SysDept extends BaseEntity
     /** 部门名称 */
     private String deptName;
 
-    /** 显示顺序 */
+    /** Sort */
     private String orderNum;
 
     /** 负责人 */
@@ -42,7 +42,7 @@ public class SysDept extends BaseEntity
     /** 邮箱 */
     private String email;
 
-    /** 部门状态:0正常,1停用 */
+    /** 部门Status:0Normal,1Disabled */
     private String status;
 
     /** 删除标志（0代表存在 2代表删除） */
@@ -50,7 +50,7 @@ public class SysDept extends BaseEntity
 
     /** 父部门名称 */
     private String parentName;
-    
+
     /** 子部门 */
     private List<SysDept> children = new ArrayList<SysDept>();
 
@@ -84,7 +84,7 @@ public class SysDept extends BaseEntity
         this.ancestors = ancestors;
     }
 
-    @NotBlank(message = "部门名称不能为空")
+    @NotBlank(message = "部门名称 can not blank")
     @Size(min = 0, max = 30, message = "部门名称长度不能超过30个字符")
     public String getDeptName()
     {
@@ -96,7 +96,7 @@ public class SysDept extends BaseEntity
         this.deptName = deptName;
     }
 
-    @NotBlank(message = "显示顺序不能为空")
+    @NotBlank(message = "Sort can not blank")
     public String getOrderNum()
     {
         return orderNum;

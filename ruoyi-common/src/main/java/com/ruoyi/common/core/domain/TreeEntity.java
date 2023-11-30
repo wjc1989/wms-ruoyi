@@ -18,7 +18,7 @@ public class TreeEntity extends BaseEntity
     /** 父菜单ID */
     private Long parentId;
 
-    /** 显示顺序 */
+    /** Sort */
     private Integer orderNum;
 
     /** 祖级列表 */

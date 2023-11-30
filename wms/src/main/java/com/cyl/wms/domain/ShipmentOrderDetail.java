@@ -69,8 +69,8 @@ public class ShipmentOrderDetail extends BaseAudit {
     @Excel(name = "Area")
     private Long areaId;
 
-    @ApiModelProperty("出库状态")
-    @Excel(name = "出库状态")
+    @ApiModelProperty("出库Status")
+    @Excel(name = "出库Status")
     private Integer shipmentOrderStatus;
 
 }

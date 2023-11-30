@@ -13,7 +13,7 @@ import java.util.Map;
 
 /**
  * swagger 用户测试方法
- * 
+ *
  * @author ruoyi
  */
 @Api("用户信息管理")
@@ -62,7 +62,7 @@ public class TestController extends BaseController
     {
         if (StringUtils.isNull(user) || StringUtils.isNull(user.getUserId()))
         {
-            return error("用户ID不能为空");
+            return error("用户ID can not blank");
         }
         return AjaxResult.success(users.put(user.getUserId(), user));
     }
@@ -73,7 +73,7 @@ public class TestController extends BaseController
     {
         if (StringUtils.isNull(user) || StringUtils.isNull(user.getUserId()))
         {
-            return error("用户ID不能为空");
+            return error("用户ID can not blank");
         }
         if (users.isEmpty() || !users.containsKey(user.getUserId()))
         {

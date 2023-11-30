@@ -39,25 +39,25 @@ public class ShipmentOrderVO extends BaseAudit {
   @Excel(name = "客户")
   private Long customerId;
   /**
-   * 出库单状态
+   * 出库单Status
    */
-  @Excel(name = "出库单状态")
+  @Excel(name = "出库单Status")
   private Integer shipmentOrderStatus;
   /**
-   * 审核状态
+   * Check Status
    */
-  @Excel(name = "审核状态")
+  @Excel(name = "Check Status")
   private Integer checkStatus;
   /**
-   * 审核人
+   * Check User
    */
-  @Excel(name = "审核人")
+  @Excel(name = "Check User")
   private Long checkUserId;
   /**
-   * 审核时间
+   * Check Time
    */
   @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-  @Excel(name = "审核时间", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss")
+  @Excel(name = "Check Time", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss")
   private LocalDateTime checkTime;
   /**
    * Remark

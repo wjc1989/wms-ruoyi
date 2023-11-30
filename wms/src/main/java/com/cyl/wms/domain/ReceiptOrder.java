@@ -43,8 +43,8 @@ public class ReceiptOrder extends BaseAudit {
     @Excel(name = "应付款合计")
     private BigDecimal payableAmount;
 
-    @ApiModelProperty("入库状态")
-    @Excel(name = "入库状态")
+    @ApiModelProperty("入库Status")
+    @Excel(name = "入库Status")
     private Integer receiptOrderStatus;
 
     @ApiModelProperty("Remark")

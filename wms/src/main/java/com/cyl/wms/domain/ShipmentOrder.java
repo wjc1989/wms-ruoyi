@@ -44,20 +44,20 @@ public class ShipmentOrder extends BaseAudit {
     @Excel(name = "应收款合计")
     private BigDecimal receivableAmount;
 
-    @ApiModelProperty("出库单状态")
-    @Excel(name = "出库单状态")
+    @ApiModelProperty("出库单Status")
+    @Excel(name = "出库单Status")
     private Integer shipmentOrderStatus;
 
-    @ApiModelProperty("审核状态")
-    @Excel(name = "审核状态")
+    @ApiModelProperty("Check Status")
+    @Excel(name = "Check Status")
     private Integer checkStatus;
 
-    @ApiModelProperty("审核人")
-    @Excel(name = "审核人")
+    @ApiModelProperty("Check User")
+    @Excel(name = "Check User")
     private Long checkUserId;
 
-    @ApiModelProperty("审核时间")
-    @Excel(name = "审核时间", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty("Check Time")
+    @Excel(name = "Check Time", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime checkTime;
 
     @ApiModelProperty("Remark")

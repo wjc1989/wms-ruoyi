@@ -9,7 +9,7 @@
         <property name="beginningDelimiter" value="`"/>
         <property name="endingDelimiter" value="`"/>
         <property name="javaFileEncoding" value="UTF-8"/>
-        <!--生成mapper.xml时覆盖原文件-->
+        <!--生成mapper.xml时覆盖Source 文件-->
         <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin" />
         <!--可以自定义生成model的代码注释-->
         <commentGenerator type="com.ruoyi.generator.config.CommentGenerator">

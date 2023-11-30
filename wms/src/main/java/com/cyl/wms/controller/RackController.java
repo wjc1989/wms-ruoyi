@@ -29,7 +29,7 @@ import com.cyl.wms.pojo.vo.RackVO;
 import com.ruoyi.common.utils.poi.ExcelUtil;
 /**
  * 货架Controller
- * 
+ *
  * @author zcc
  * @date 2022-08-05
  */
@@ -57,7 +57,7 @@ public class RackController extends BaseController {
     public ResponseEntity<String> export(RackQuery query) {
         List<Rack> list = service.selectList(query, null);
         ExcelUtil<RackVO> util = new ExcelUtil<>(RackVO.class);
-        return ResponseEntity.ok(util.writeExcel(convert.dos2vos(list), "货架数据"));
+        return ResponseEntity.ok(util.writeExcel(convert.dos2vos(list), "Shelves Data"));
     }
 
     @ApiOperation("获取货架详细信息")

@@ -34,7 +34,7 @@ public class ReceiptOrderDetailQuery {
     @ApiModelProperty("Area 精确匹配")
     private Long areaId;
 
-    @ApiModelProperty("入库状态 精确匹配")
+    @ApiModelProperty("入库Status 精确匹配")
     private Integer receiptOrderStatus;
 
 }

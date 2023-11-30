@@ -234,12 +234,11 @@ public class InventoryService {
         Inventory inventory = this.queryInventoryByItemId(itemId, warehouseId, areaId, rackId);
         if (inventory == null) {
             Item item = itemService.selectById(itemId);
-            String msg = "商品：" + item.getItemName() + "(" + item.getItemNo() + ")" + ",<span style='color:red'>Quantity不存在</span> 无法出库</br>";
+            String msg = "Goods：" + item.getItemName() + "(" + item.getItemNo() + ")" + ",<span style='color:red'>Insufficient Stork</span> Cannot be outbound</br>";
             throw new WmsServiceException(msg, HttpStatus.INVENTORY_SHORTAGE, map);
         } else if (inventory.getQuantity().compareTo(added) < 0) {
             Item item = itemService.selectById(itemId);
-            String msg = "商品：[<span style='color:red'>" + item.getItemName() + "</span>] Quantity不足，无法出库" +
-                    "</br>计划数量：<span >" + added + "</span>";
+            String msg = "Goods：[<span style='color:red'>" + item.getItemName() + "</span>] Insufficient Stork" +"</br>Plan：<span >" + added + "</span>";
             throw new WmsServiceException(msg, HttpStatus.INVENTORY_SHORTAGE, map);
         }
     }
@@ -253,6 +252,8 @@ public class InventoryService {
         // 对插入的数据进行分组
         List<InventoryHistory> racks = new ArrayList<>();
         List<InventoryHistory> areas = new ArrayList<>();
+
+
         List<InventoryHistory> warehouses = new ArrayList<>();
         list.forEach(it -> {
             if (it.getRackId() != null) {
@@ -268,16 +269,17 @@ public class InventoryService {
         int res = 0;
         if (warehouses.size() > 0) {
             res += saveData(warehouses, now, userId,
-                    it -> it.getWarehouseId() + "_" + it.getItemId(),
-                    inventoryMapper::selectAllByWarehouseAndItemId
+                    it -> it.getWarehouseId() + "_" + it.getItemId(),inventoryMapper::selectAllByWarehouseAndItemId
             );
         }
         if (areas.size() > 0) {
+
             res += saveData(areas, now, userId,
                     it -> it.getWarehouseId() + "_" + it.getAreaId() + "_" + it.getItemId(),
                     inventoryMapper::selectAllByAreaAndItemId
             );
         }
+
         if (racks.size() > 0) {
             res += saveData(racks, now, userId,
                     it -> it.getWarehouseId() + "_" + it.getAreaId() + "_" + it.getRackId() + "_" + it.getItemId(),
@@ -292,6 +294,7 @@ public class InventoryService {
                          Function<List<InventoryHistory>, List<Inventory>> listFunc) {
         List<Inventory> exists = listFunc.apply(list);
         Map<String, Long> existKeys = exists.stream().collect(Collectors.toMap(keyFunc, Inventory::getId));
+
         List<Inventory> updates = new ArrayList<>();
         List<Inventory> adds1 = new ArrayList<>();
         list.forEach(it -> {
@@ -564,10 +567,10 @@ public class InventoryService {
     public List<ShipmentOrderDetail> allocatedInventory(Long itemId, BigDecimal planQuantity, Integer type) {
         List<Inventory> inventoryList = new ArrayList<>();
         if (type == 1) {
-            //  默认使用仓库Quantity数量最小优先原则
+            //  默认使用仓库Quantity数量最小优先Source 则
             inventoryList = inventoryMapper.selectLastInventory(itemId, "asc");
         } else if (type == 2) {
-            //使用仓库Quantity数量最大优先原则
+            //使用仓库Quantity数量最大优先Source 则
             inventoryList = inventoryMapper.selectLastInventory(itemId, "desc");
         }
 
@@ -607,15 +610,15 @@ public class InventoryService {
     public Inventory allocatedInventoryForReceipt(Long itemId, BigDecimal planQuantity, Integer type) {
         List<Inventory> inventoryList = new ArrayList<>();
         if (type == 1) {
-            //  默认使用仓库Quantity数量最小优先原则
+            //  默认使用仓库Quantity数量最小优先Source 则
             inventoryList = inventoryMapper.selectLastInventoryForReceipt(itemId, "asc");
         } else if (type == 2) {
-            //使用仓库Quantity数量最大优先原则
+            //使用仓库Quantity数量最大优先Source 则
             inventoryList = inventoryMapper.selectLastInventoryForReceipt(itemId, "desc");
         }
 
         if (CollUtil.isEmpty(inventoryList)) {
-            throw new ServiceException("没有仓库", HttpStatus.CONFIRMATION);
+            throw new ServiceException("No Warehouse", HttpStatus.CONFIRMATION);
         }
         return inventoryList.get(0);
     }

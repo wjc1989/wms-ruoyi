@@ -17,7 +17,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
 
 /**
  * 用户对象 sys_user
- * 
+ *
  * @author ruoyi
  */
 public class SysUser extends BaseEntity
@@ -61,8 +61,8 @@ public class SysUser extends BaseEntity
     /** 盐加密 */
     private String salt;
 
-    /** 帐号状态（0正常 1停用） */
-    @Excel(name = "帐号状态", readConverterExp = "0=正常,1=停用")
+    /** 帐号Status（0Normal 1Disabled） */
+    @Excel(name = "帐号Status", readConverterExp = "0=Normal,1=Disabled")
     private String status;
 
     /** 删除标志（0代表存在 2代表删除） */
@@ -146,7 +146,7 @@ public class SysUser extends BaseEntity
         this.nickName = nickName;
     }
 
-    @NotBlank(message = "用户账号不能为空")
+    @NotBlank(message = "用户账号 can not blank")
     @Size(min = 0, max = 30, message = "用户账号长度不能超过30个字符")
     public String getUserName()
     {

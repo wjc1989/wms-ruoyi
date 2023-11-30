@@ -10,7 +10,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
 
 /**
  * 菜单权限表 sys_menu
- * 
+ *
  * @author ruoyi
  */
 public class SysMenu extends BaseEntity
@@ -29,7 +29,7 @@ public class SysMenu extends BaseEntity
     /** 父菜单ID */
     private Long parentId;
 
-    /** 显示顺序 */
+    /** Sort */
     private String orderNum;
 
     /** 路由地址 */
@@ -50,10 +50,10 @@ public class SysMenu extends BaseEntity
     /** 类型（M目录 C菜单 F按钮） */
     private String menuType;
 
-    /** 显示状态（0显示 1隐藏） */
+    /** 显示Status（0显示 1隐藏） */
     private String visible;
-    
-    /** 菜单状态（0显示 1隐藏） */
+
+    /** 菜单Status（0显示 1隐藏） */
     private String status;
 
     /** 权限字符串 */
@@ -75,7 +75,7 @@ public class SysMenu extends BaseEntity
         this.menuId = menuId;
     }
 
-    @NotBlank(message = "菜单名称不能为空")
+    @NotBlank(message = "菜单名称 can not blank")
     @Size(min = 0, max = 50, message = "菜单名称长度不能超过50个字符")
     public String getMenuName()
     {
@@ -107,7 +107,7 @@ public class SysMenu extends BaseEntity
         this.parentId = parentId;
     }
 
-    @NotBlank(message = "显示顺序不能为空")
+    @NotBlank(message = "Sort can not blank")
     public String getOrderNum()
     {
         return orderNum;
@@ -170,7 +170,7 @@ public class SysMenu extends BaseEntity
         this.isCache = isCache;
     }
 
-    @NotBlank(message = "菜单类型不能为空")
+    @NotBlank(message = "菜单类型 can not blank")
     public String getMenuType()
     {
         return menuType;
@@ -231,7 +231,7 @@ public class SysMenu extends BaseEntity
     {
         this.children = children;
     }
-    
+
     @Override
     public String toString() {
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)

@@ -15,7 +15,7 @@ public class InventoryMovementQuery {
     @ApiModelProperty("Quantity移动编号 精确匹配")
     private String inventoryMovementNo;
 
-    @ApiModelProperty("状态 精确匹配")
+    @ApiModelProperty("Status 精确匹配")
     private Integer status;
 
 }

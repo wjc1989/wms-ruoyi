@@ -8,7 +8,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
 
 /**
  * 操作日志记录表 oper_log
- * 
+ *
  * @author ruoyi
  */
 public class SysOperLog extends BaseEntity
@@ -70,8 +70,8 @@ public class SysOperLog extends BaseEntity
     @Excel(name = "返回参数")
     private String jsonResult;
 
-    /** 操作状态（0正常 1异常） */
-    @Excel(name = "状态", readConverterExp = "0=正常,1=异常")
+    /** 操作Status（0Normal 1异常） */
+    @Excel(name = "Status", readConverterExp = "0=Normal,1=异常")
     private Integer status;
 
     /** 错误消息 */

@@ -2,7 +2,7 @@ package com.ruoyi.common.constant;
 
 /**
  * 用户常量信息
- * 
+ *
  * @author ruoyi
  */
 public class UserConstants
@@ -12,25 +12,25 @@ public class UserConstants
      */
     public static final String SYS_USER = "SYS_USER";
 
-    /** 正常状态 */
+    /** NormalStatus */
     public static final String NORMAL = "0";
 
-    /** 异常状态 */
+    /** 异常Status */
     public static final String EXCEPTION = "1";
 
-    /** 用户封禁状态 */
+    /** 用户封禁Status */
     public static final String USER_DISABLE = "1";
 
-    /** 角色封禁状态 */
+    /** 角色封禁Status */
     public static final String ROLE_DISABLE = "1";
 
-    /** 部门正常状态 */
+    /** 部门NormalStatus */
     public static final String DEPT_NORMAL = "0";
 
-    /** 部门停用状态 */
+    /** 部门DisabledStatus */
     public static final String DEPT_DISABLE = "1";
 
-    /** 字典正常状态 */
+    /** 字典NormalStatus */
     public static final String DICT_NORMAL = "0";
 
     /** 是否为系统默认（是） */
@@ -53,7 +53,7 @@ public class UserConstants
 
     /** Layout组件标识 */
     public final static String LAYOUT = "Layout";
-    
+
     /** ParentView组件标识 */
     public final static String PARENT_VIEW = "ParentView";
 

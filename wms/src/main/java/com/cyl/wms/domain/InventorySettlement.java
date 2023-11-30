@@ -24,8 +24,8 @@ public class InventorySettlement extends BaseAudit {
     @ApiModelProperty("ID")
     private Long id;
 
-    @ApiModelProperty("Quantity结算单状态11：结算中 22：已完成")
-    @Excel(name = "Quantity结算单状态11：结算中 22：已完成")
+    @ApiModelProperty("Quantity结算单Status11：结算中 22：已完成")
+    @Excel(name = "Quantity结算单Status11：结算中 22：已完成")
     private Integer inventorySettlementStatus;
 
     @ApiModelProperty("结算类型,1:月结，2:年结")

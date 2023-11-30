@@ -19,20 +19,20 @@ public class ItemVO extends BaseAudit {
    /** ID */
     private Long id;
    /** 编号 */
-    @Excel(name = "编号")
+    @Excel(name = "No.")
     private String itemNo;
    /** 名称 */
-    @Excel(name = "名称")
+    @Excel(name = "Name")
     private String itemName;
    /** 分类 */
     private String itemType;
     /**
      * 所属类别
      */
-    @Excel(name = "所属类别")
+    @Excel(name = "Category")
     private String itemTypeName;
-   /** 单位类别 */
-    @Excel(name = "单位类别")
+   /** Unit */
+    @Excel(name = "Unit")
     private String unit;
    /** 所属货架 */
     private Long rackId;
@@ -46,16 +46,20 @@ public class ItemVO extends BaseAudit {
     private String areaName;
    /** Warehouse */
     private Long warehouseId;
-   /** 安全Quantity */
-    @Excel(name = "安全Quantity")
+   /** Safty Quantity */
+    @Excel(name = "Safty Quantity")
     private BigDecimal quantity;
    /** 有效期 */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @Excel(name = "有效期", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss")
+    @Excel(name = "Expiry Date", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime expiryDate;
    /** Remark */
     @Excel(name = "Remark")
     private String remark;
+    private String pics;
     private List<Long> place;
     private Integer delFlag;
+
+    private BigDecimal inventory;
+
 }

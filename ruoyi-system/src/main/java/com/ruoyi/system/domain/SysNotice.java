@@ -8,7 +8,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
 
 /**
  * 通知公告表 sys_notice
- * 
+ *
  * @author ruoyi
  */
 public class SysNotice extends BaseEntity
@@ -27,7 +27,7 @@ public class SysNotice extends BaseEntity
     /** 公告内容 */
     private String noticeContent;
 
-    /** 公告状态（0正常 1关闭） */
+    /** 公告Status（0Normal 1关闭） */
     private String status;
 
     public Long getNoticeId()
@@ -45,7 +45,7 @@ public class SysNotice extends BaseEntity
         this.noticeTitle = noticeTitle;
     }
 
-    @NotBlank(message = "公告标题不能为空")
+    @NotBlank(message = "公告标题 can not blank")
     @Size(min = 0, max = 50, message = "公告标题不能超过50个字符")
     public String getNoticeTitle()
     {

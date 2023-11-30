@@ -1,7 +1,7 @@
 package com.ruoyi.common.constant;
 
 /**
- * 返回状态码
+ * 返回Status码
  *
  * @author ruoyi
  */

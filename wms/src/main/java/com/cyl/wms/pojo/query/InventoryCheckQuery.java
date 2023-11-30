@@ -20,19 +20,19 @@ public class InventoryCheckQuery {
     @ApiModelProperty("Quantity盘点类型 精确匹配")
     private Integer inventoryCheckType;
 
-    @ApiModelProperty("Quantity盘点单状态11：盘点中 22：已完成 精确匹配")
+    @ApiModelProperty("Quantity盘点单Status11：盘点中 22：已完成 精确匹配")
     private Integer inventoryCheckStatus;
 
     @ApiModelProperty("盈亏数 精确匹配")
     private BigDecimal inventoryCheckTotal;
 
-    @ApiModelProperty("审核状态 精确匹配")
+    @ApiModelProperty("Check Status 精确匹配")
     private Integer checkStatus;
 
-    @ApiModelProperty("审核人 精确匹配")
+    @ApiModelProperty("Check User 精确匹配")
     private Long checkUserId;
 
-    @ApiModelProperty("审核时间 精确匹配")
+    @ApiModelProperty("Check Time 精确匹配")
     private LocalDateTime checkTime;
 
     @ApiModelProperty("Warehouse 精确匹配")

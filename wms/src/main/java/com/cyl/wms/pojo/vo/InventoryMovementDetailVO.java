@@ -22,22 +22,22 @@ public class InventoryMovementDetailVO extends BaseAudit {
   /**
    * Quantity移动Id
    */
-  @Excel(name = "Quantity移动Id")
+  @Excel(name = "ID")
   private Long inventoryMovementId;
   /**
    * Goods
    */
-  @Excel(name = "Goods ")
+  @Excel(name = "Goods")
   private Long itemId;
   /**
    * 计划数量
    */
-  @Excel(name = "计划数量")
+  @Excel(name = "Plan Quantity")
   private BigDecimal planQuantity;
   /**
    * 实际数量
    */
-  @Excel(name = "实际数量")
+  @Excel(name = "Real Quantity")
   private BigDecimal realQuantity;
   /**
    * Remark
@@ -47,37 +47,37 @@ public class InventoryMovementDetailVO extends BaseAudit {
   /**
    * 源货架
    */
-  @Excel(name = "源货架")
+  @Excel(name = "Source Rack")
   private Long sourceRackId;
   /**
    * 源仓库
    */
-  @Excel(name = "源仓库")
+  @Excel(name = "Source Warehouse")
   private Long sourceWarehouseId;
   /**
    * 源库区
    */
-  @Excel(name = "源库区")
+  @Excel(name = "Source Area")
   private Long sourceAreaId;
   /**
-   * 移库状态
+   * 移库Status
    */
-  @Excel(name = "移库状态")
+  @Excel(name = "Status")
   private Integer moveStatus;
   /**
-   * 目标货架
+   * Target Rack
    */
-  @Excel(name = "目标货架")
+  @Excel(name = "Target Rack")
   private Long targetRackId;
   /**
    * 目标仓库
    */
-  @Excel(name = "目标仓库")
+  @Excel(name = "Target Warehouse")
   private Long targetWarehouseId;
   /**
    * 目标库区
    */
-  @Excel(name = "目标库区")
+  @Excel(name = "Target Area")
   private Long targetAreaId;
 
   private List<Long> sourcePlace;

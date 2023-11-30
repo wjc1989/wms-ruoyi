@@ -45,7 +45,7 @@ public interface SysDeptMapper
     public List<SysDept> selectChildrenDeptById(Long deptId);
 
     /**
-     * 根据ID查询所有子部门（正常状态）
+     * 根据ID查询所有子部门（NormalStatus）
      * 
      * @param deptId 部门ID
      * @return 子部门数
@@ -94,7 +94,7 @@ public interface SysDeptMapper
     public int updateDept(SysDept dept);
 
     /**
-     * 修改所在部门正常状态
+     * 修改所在部门NormalStatus
      * 
      * @param deptIds 部门ID组
      */
