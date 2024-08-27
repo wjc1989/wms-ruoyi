@@ -153,7 +153,7 @@ public class ReceiptOrderService {
         if (receiptOrderStatus != null) {
             qw.eq("receipt_order_status", receiptOrderStatus);
         }
-        return receiptOrderMapper.selectList(qw);
+        return receiptOrderMapper.selectByQuery(query);
     }
 
     /**

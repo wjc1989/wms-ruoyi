@@ -2,6 +2,7 @@ package com.cyl.wms.mapper;
 
 import java.util.List;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.cyl.wms.pojo.query.ReceiptOrderQuery;
 import org.apache.ibatis.annotations.Param;
 import com.cyl.wms.domain.ReceiptOrder;
 
@@ -25,4 +26,6 @@ public interface ReceiptOrderMapper extends BaseMapper<ReceiptOrder> {
      * @return
     */
     int updateDelFlagByIds(@Param("ids") Long[] ids);
+
+    List<ReceiptOrder> selectByQuery(ReceiptOrderQuery query);
 }

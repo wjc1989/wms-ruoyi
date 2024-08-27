@@ -2,10 +2,10 @@
   <div>
     <el-form class="ry_form" v-show="showSearch" :inline="true" label-width="120px" :model="queryParams" ref="queryForm"
              size="medium">
-      <el-form-item label="Status" prop="receiptOrderStatus">
+<!--      <el-form-item label="Status" prop="receiptOrderStatus">
         <DictRadio v-model="queryParams.receiptOrderStatus" :radioData="dict.type.wms_receipt_status" :showAll="'all'"
                    size="small" @change="handleQuery"></DictRadio>
-      </el-form-item>
+      </el-form-item>-->
 
       <el-form-item label="Inbound No." prop="receiptOrderNo">
         <el-input v-model.trim="queryParams.receiptOrderNo" clearable="clearable" placeholder="Please Input Inbound No."
@@ -36,27 +36,31 @@
     </el-row>
     <WmsTable v-loading="loading" :data="wmsReceiptOrderList" @selection-change="handleSelectionChange">
       <el-table-column align="center" type="selection" width="55"></el-table-column>
-      <el-table-column  align="center" label="Inbound No."  prop="receiptOrderNo"></el-table-column>
-      <el-table-column  align="center" label="Inbound Type">
+      <el-table-column  align="center" label="Inbound No."   >
+        <template slot-scope="scope">
+          <el-link type="primary" @click="handleStatus(scope.row)">{{scope.row.receiptOrderNo}}</el-link>
+        </template>
+      </el-table-column>
+   <!--   <el-table-column  align="center" label="Inbound Type">
         <template slot-scope="scope">
           <el-tag effect="plain" size="medium" :type="getReceiptOrderTypeTag(scope.row)">{{
               getReceiptOrderType(scope.row)
             }}
           </el-tag>
         </template>
-      </el-table-column>
+      </el-table-column>-->
       <el-table-column  align="center" :formatter="getSupplier"  label="Supplier"></el-table-column>
       <el-table-column  align="center" label="Project" prop="orderNo"></el-table-column>
       <el-table-column  align="center" label="Contact" prop="contact"></el-table-column>
       <el-table-column  align="center" label="Phone" prop="phone"></el-table-column>
-      <el-table-column  align="center" label="Status">
+<!--      <el-table-column  align="center" label="Status">
         <template slot-scope="scope">
           <el-tag effect="plain" size="medium" :type="getReceiptOrderStatusTag(scope.row)">{{
               getReceiptOrderStatus(scope.row)
             }}
           </el-tag>
         </template>
-      </el-table-column>
+      </el-table-column>-->
       <el-table-column  align="center" label="Remark" prop="remark">
         <template v-slot="{ row }">
           <el-popover placement="left" width="300" trigger="hover" :content="row.remark" popper-class="popperOptions">
@@ -73,9 +77,9 @@
           <el-button v-hasPermi="['wms:receiptOrder:remove']" icon="el-icon-delete" v-if="!row.waveNo"
                      size="mini" type="text" @click.stop="handleDelete(row)">Delete
           </el-button>
-          <el-button v-hasPermi="['wms:receiptOrder:status']" v-if="row.detailCount && !row.waveNo" icon="el-icon-truck" size="mini"
+      <!--    <el-button v-hasPermi="['wms:receiptOrder:status']" v-if="row.detailCount && !row.waveNo" icon="el-icon-truck" size="mini"
                      type="text" @click.stop="handleStatus(row)">Inbound
-          </el-button>
+          </el-button>-->
           <el-button icon="el-icon-printer" size="mini" type="text" @click.stop="printOut(row, true)">Print</el-button>
         </template>
       </el-table-column>

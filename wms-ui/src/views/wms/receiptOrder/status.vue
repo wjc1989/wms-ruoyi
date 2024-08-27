@@ -1,23 +1,54 @@
 <template>
   <div class="receipt-order-status-wrapper app-container" v-loading="loading">
     <div class="receipt-order-content">
-      <el-form label-width="108px" :model="form" ref="form" :rules="rules">
-        <el-form-item label="Inbound No." prop="receiptOrderNo">{{ form.receiptOrderNo }}</el-form-item>
-        <el-form-item label="Status" prop="receiptOrderNo">{{ receiptStatusMap.get(form.receiptOrderStatus + '') }}
-        </el-form-item>
-        <el-form-item label="Type" prop="receiptOrderType">
-          {{ selectDictLabel(dict.type.wms_receipt_type, form.receiptOrderType) }}
-        </el-form-item>
-        <el-form-item label="Supplier" prop="supplierId">{{ supplierMap.get(form.supplierId) }}</el-form-item>
-        <el-form-item label="No." prop="orderNo">{{ form.orderNo }}</el-form-item>
-        <el-form-item label="Remark" prop="remark">{{ form.remark }}</el-form-item>
+      <el-form label-width="138px" :model="form" ref="form" :rules="rules">
+        <el-row>
+          <el-col :span="12">
+            <el-form-item label="Inbound Order No." prop="receiptOrderNo">
+              {{form.receiptOrderNo}}
+            </el-form-item>
+
+
+            <!--       <el-form-item label="Amount" prop="payableAmount" v-show="hasSupplier">
+                     <el-input-number v-model="form.payableAmount" :precision="2" :min="0" label="Please Input Amount"></el-input-number>
+                   </el-form-item>-->
+
+            <el-form-item label="Contact" prop="contact">
+              {{form.contact}}
+            </el-form-item>
+            <el-form-item label="Phone" prop="phone">
+              {{form.phone}}
+            </el-form-item>
+            <el-form-item label="Create By" prop="remark">
+              {{form.createBy}}
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="Supplier" prop="supplierId">
+              {{supplierMap.get(form.supplierId)}}
+            </el-form-item>
+            <el-form-item label="Project" prop="orderNo">
+              {{form.orderNo}}
+            </el-form-item>
+            <el-form-item label="Remark" prop="remark">
+              {{form.remark}}
+            </el-form-item>
+            <el-form-item label="Create Time" prop="remark">
+              {{form.createTime}}
+            </el-form-item>
+
+          </el-col>
+        </el-row>
+
+
+
       </el-form>
       <el-divider></el-divider>
       <el-row class="mb8 mt10" :gutter="10">
         <el-col :span="1.5">
           <div class="flex-one large-tip bolder-font">Goods Detail</div>
         </el-col>
-        <el-col :span="1.5">
+    <!--    <el-col :span="1.5">
           <el-button size="small" type="success" plain="plain" icon="el-icon-delete-location"
                      @click="onBatchSetInventory">
             Set Warehouse
@@ -27,7 +58,7 @@
           <el-button v-if="mergeDetailStatusArray.length === 1" type="primary" plain="plain" size="small"
                      @click="batch">Set Inbound Status
           </el-button>
-        </el-col>
+        </el-col>-->
 
       </el-row>
 
@@ -40,42 +71,37 @@
       </el-dialog>
       <div class="table">
         <el-form ref="form" :model="form" :show-message="false">
-          <WmsTable :data="form.details" @selection-change="handleSelectionChange">
-            <el-table-column type="selection" width="55" align="center"></el-table-column>
+          <WmsTable :data="form.details" >
+            <el-table-column label="NO." width="55" type="index" align="center"></el-table-column>
             <el-table-column label="Goods Name" align="center" prop="prod.itemName"></el-table-column>
             <el-table-column label="Goods No." align="center" prop="prod.itemNo"></el-table-column>
             <el-table-column label="Category" align="center" prop="prod.itemType" class="mb20"></el-table-column>
             <el-table-column label="Plan Count" align="center" prop="planQuantity" class="mb20"></el-table-column>
-            <el-table-column label="Real Count" align="center" width="150">
-              <template slot-scope="scope" class="mb20">
-                <el-input-number v-model="scope.row.realQuantity" :min="1" :max="2147483647" size="small"
-                                 :disabled="scope.row.finish"></el-input-number>
-              </template>
+            <el-table-column label="Real Count" align="center" width="150" prop="realQuantity">
+
             </el-table-column>
-            <el-table-column label="Warehouse" align="center" width="200">
+            <el-table-column label="Warehouse" align="center" width="200" prop="place">
               <template slot-scope="scope">
                 <el-form-item :prop=" 'details.' + scope.$index + '.place' "
                               :rules="[{ required: true, message: 'Please select Warehouse', trigger: 'change' }]"
                               style="margin-bottom: 0!important;">
-                  <WmsWarehouseCascader v-model="scope.row.place" size="small"
-                                        :disabled="scope.row.finish"></WmsWarehouseCascader>
+                  <WmsWarehouseCascader v-model="scope.row.place" size="small" :disabled="scope.row.finish"></WmsWarehouseCascader>
                 </el-form-item>
               </template>
             </el-table-column>
-            <el-table-column label="Status"  align="center" width="150">
+<!--            <el-table-column label="Status"  align="center" width="150">
               <template slot-scope="{ row }">
                 <DictSelect v-model="row.receiptOrderStatus" :options="row.range" size="small"
                             @change="setReceiptOrderStatus" :disabled="row.finish"></DictSelect>
               </template>
-            </el-table-column>
+            </el-table-column>-->
           </WmsTable>
         </el-form>
         <el-empty v-if="!form.details || form.details.length === 0" :image-size="48"></el-empty>
       </div>
       <div class="tc mt16">
-        <el-button @click="cancel">Cancel</el-button>
-        <el-button @click="submitForm" type="primary" :disabled="finish">Add</el-button>
-      </div>
+        <el-button @click="cancel">Close</el-button>
+       </div>
     </div>
     <BatchWarehouseDialog
       :visible.sync="batchDialogVisible"

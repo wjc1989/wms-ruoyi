@@ -2,16 +2,19 @@ package com.cyl.wms.mapper;
 
 import java.util.Collection;
 import java.util.List;
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.cyl.wms.domain.ReceiptOrder;
 import com.cyl.wms.domain.ShipmentOrderDetail;
+import com.cyl.wms.pojo.query.ReceiptOrderDetailQuery;
 import com.cyl.wms.pojo.vo.ReceiptOrderVO;
 import org.apache.ibatis.annotations.Param;
 import com.cyl.wms.domain.ReceiptOrderDetail;
 
 /**
  * 入库单详情Mapper接口
- * 
+ *
  * @author zcc
  */
 public interface ReceiptOrderDetailMapper extends BaseMapper<ReceiptOrderDetail> {
@@ -35,4 +38,5 @@ public interface ReceiptOrderDetailMapper extends BaseMapper<ReceiptOrderDetail>
     List<ReceiptOrderVO> countByOrderId(@Param("ids") Collection<Long> ids);
 
     List<ReceiptOrderDetail> selectDetailByWaveNo(String waveNo);
+
 }
