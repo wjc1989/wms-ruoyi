@@ -32,7 +32,7 @@ import com.ruoyi.generator.service.IGenTableService;
 
 /**
  * 代码生成 操作处理
- * 
+ *
  * @author ruoyi
  */
 @RestController
@@ -129,7 +129,7 @@ public class GenController extends BaseController
     }
 
     /**
-     * 删除代码生成
+     * Delete代码生成
      */
     @PreAuthorize("@ss.hasPermi('tool:gen:remove')")
     @Log(title = "代码生成", businessType = BusinessType.DELETE)

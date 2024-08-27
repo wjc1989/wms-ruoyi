@@ -163,7 +163,7 @@ public class SysUserController extends BaseController
     }
 
     /**
-     * 删除用户
+     *  Delete用户
      */
     @PreAuthorize("@ss.hasPermi('system:user:remove')")
     @Log(title = "用户管理", businessType = BusinessType.DELETE)
@@ -172,7 +172,7 @@ public class SysUserController extends BaseController
     {
         if (ArrayUtils.contains(userIds, getUserId()))
         {
-            return error("当前用户不能删除");
+            return error("当前用户不能 Delete");
         }
         return toAjax(userService.deleteUserByIds(userIds));
     }

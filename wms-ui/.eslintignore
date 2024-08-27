@@ -1,0 +1,10 @@
+# 忽略buildDirectory下Typejs的文件的语法检查
+build/*.js
+# 忽略src/assetsDirectory下文件的语法检查
+src/assets
+# 忽略publicDirectory下文件的语法检查
+public
+# 忽略当前Directory下js的文件的语法检查
+*.js
+# 忽略当前Directory下vue的文件的语法检查
+*.vue

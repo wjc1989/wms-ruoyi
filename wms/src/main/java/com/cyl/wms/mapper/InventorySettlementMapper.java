@@ -21,7 +21,7 @@ public interface InventorySettlementMapper extends BaseMapper<InventorySettlemen
     List<InventorySettlement> selectByEntity(InventorySettlement inventorySettlement);
 
     /**
-     * 批量软删除
+     * 批量软Delete
      * @param ids
      * @return
     */

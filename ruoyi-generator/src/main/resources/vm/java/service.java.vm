@@ -124,9 +124,9 @@ public class ${ClassName}Service {
     }
 
     /**
-     * 批量删除${functionName}
+     * 批量Delete ${functionName}
      *
-     * @param ${pkColumn.javaField}s 需要删除的${functionName}主键
+     * @param ${pkColumn.javaField}s 需要Delete的${functionName}主键
      * @return 结果
      */
 #if($table.sub)
@@ -137,7 +137,7 @@ public class ${ClassName}Service {
     }
 
     /**
-     * 删除${functionName}信息
+     * Delete ${functionName}信息
      *
      * @param ${pkColumn.javaField} ${functionName}主键
      * @return 结果

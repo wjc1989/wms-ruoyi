@@ -83,7 +83,7 @@ public class ${_className.controller} extends BaseController {
         return ResponseEntity.ok(service.update(${className}));
     }
 
-    @ApiOperation("删除${functionName}")
+    @ApiOperation("Delete ${functionName}")
     @PreAuthorize("@ss.hasPermi('${permissionPrefix}:remove')")
     @Log(title = "${functionName}", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{${pkColumn.javaField}s}")

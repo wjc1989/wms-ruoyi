@@ -127,7 +127,7 @@
           :disabled="multiple"
           @click="handleDelete"
           v-hasPermi="['${moduleName}:${businessName}:remove']"
-        >删除</el-button>
+        >Delete</el-button>
       </el-col>
       <el-col :span="1.5">
         <el-button
@@ -196,7 +196,7 @@
             icon="el-icon-delete"
             @click="handleDelete(scope.row)"
             v-hasPermi="['${moduleName}:${businessName}:remove']"
-          >删除</el-button>
+          >Delete</el-button>
         </template>
       </el-table-column>
     </WmsTable>
@@ -319,7 +319,7 @@
             <el-button type="primary" icon="el-icon-plus" size="mini" @click="handleAdd${subClassName}">添加</el-button>
           </el-col>
           <el-col :span="1.5">
-            <el-button type="danger" icon="el-icon-delete" size="mini" @click="handleDelete${subClassName}">删除</el-button>
+            <el-button type="danger" icon="el-icon-delete" size="mini" @click="handleDelete${subClassName}">Delete</el-button>
           </el-col>
         </el-row>
         <WmsTable :data="${subclassName}List" :row-class-name="row${subClassName}Index" @selection-change="handle${subClassName}SelectionChange" ref="${subclassName}">
@@ -576,14 +576,14 @@ export default {
         }
       });
     },
-    /** 删除按钮操作 */
+    /** Delete按钮操作 */
     handleDelete(row) {
       const ${pkColumn.javaField}s = row.${pkColumn.javaField} || this.ids;
-      this.#[[$modal]]#.confirm('是否确认删除${functionName}编号为"' + ${pkColumn.javaField}s + '"的数据项？').then(function() {
+      this.#[[$modal]]#.confirm('是否确认Delete ${functionName}编号为"' + ${pkColumn.javaField}s + '"的数据项？').then(function() {
         return del${BusinessName}(${pkColumn.javaField}s);
       }).then(() => {
         this.getList();
-        this.#[[$modal]]#.msgSuccess("删除成功");
+        this.#[[$modal]]#.msgSuccess("Delete成功");
       }).catch(() => {});
     },
 #if($table.sub)
@@ -602,10 +602,10 @@ export default {
 #end
       this.${subclassName}List.push(obj);
     },
-    /** ${subTable.functionName}删除按钮操作 */
+    /** ${subTable.functionName}Delete按钮操作 */
     handleDelete${subClassName}() {
       if (this.checked${subClassName}.length == 0) {
-        this.msgError("请先选择要删除的${subTable.functionName}数据");
+        this.msgError("请先选择要Delete的${subTable.functionName}数据");
       } else {
         const ${subclassName}List = this.${subclassName}List;
         const checked${subClassName} = this.checked${subClassName};

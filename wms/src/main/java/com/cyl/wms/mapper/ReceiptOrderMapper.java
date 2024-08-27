@@ -7,7 +7,7 @@ import com.cyl.wms.domain.ReceiptOrder;
 
 /**
  * 入库单Mapper接口
- * 
+ *
  * @author zcc
  */
 public interface ReceiptOrderMapper extends BaseMapper<ReceiptOrder> {
@@ -20,7 +20,7 @@ public interface ReceiptOrderMapper extends BaseMapper<ReceiptOrder> {
     List<ReceiptOrder> selectByEntity(ReceiptOrder receiptOrder);
 
     /**
-     * 批量软删除
+     * 批量软Delete
      * @param ids
      * @return
     */

@@ -162,7 +162,7 @@ CREATE TABLE `sys_dept`  (
   `phone` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '联系电话',
   `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '邮箱',
   `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '部门Status（0Normal 1Disabled）',
-  `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
+  `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT 'Delete标志（0代表存在 2代表Delete）',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建者',
   `create_time` datetime(3) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '更新者',
@@ -228,7 +228,7 @@ INSERT INTO `sys_dict_data` VALUES (16, 1, 'Normal', '0', 'sys_notice_status', '
 INSERT INTO `sys_dict_data` VALUES (17, 2, '关闭', '1', 'sys_notice_status', '', 'danger', 'N', '0', 1, '2022-06-17 17:20:29.000', NULL, NULL, '关闭Status');
 INSERT INTO `sys_dict_data` VALUES (18, 1, '新增', '1', 'sys_oper_type', '', 'info', 'N', '0', 1, '2022-06-17 17:20:29.000', NULL, NULL, '新增操作');
 INSERT INTO `sys_dict_data` VALUES (19, 2, '修改', '2', 'sys_oper_type', '', 'info', 'N', '0', 1, '2022-06-17 17:20:29.000', NULL, NULL, '修改操作');
-INSERT INTO `sys_dict_data` VALUES (20, 3, '删除', '3', 'sys_oper_type', '', 'danger', 'N', '0', 1, '2022-06-17 17:20:29.000', NULL, NULL, '删除操作');
+INSERT INTO `sys_dict_data` VALUES (20, 3, 'Delete', '3', 'sys_oper_type', '', 'danger', 'N', '0', 1, '2022-06-17 17:20:29.000', NULL, NULL, 'Delete操作');
 INSERT INTO `sys_dict_data` VALUES (21, 4, '授权', '4', 'sys_oper_type', '', 'primary', 'N', '0', 1, '2022-06-17 17:20:29.000', NULL, NULL, '授权操作');
 INSERT INTO `sys_dict_data` VALUES (22, 5, '导出', '5', 'sys_oper_type', '', 'warning', 'N', '0', 1, '2022-06-17 17:20:29.000', NULL, NULL, '导出操作');
 INSERT INTO `sys_dict_data` VALUES (23, 6, '导入', '6', 'sys_oper_type', '', 'warning', 'N', '0', 1, '2022-06-17 17:20:29.000', NULL, NULL, '导入操作');
@@ -458,47 +458,47 @@ INSERT INTO `sys_menu` VALUES (501, '登录日志', 0, 11, 'logininfor', 'monito
 INSERT INTO `sys_menu` VALUES (1001, '用户查询', 100, 1, '', '', '', 1, 0, 'F', '0', '0', 'system:user:query', '#', 1, '2022-06-17 17:20:21.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1002, '用户新增', 100, 2, '', '', '', 1, 0, 'F', '0', '0', 'system:user:add', '#', 1, '2022-06-17 17:20:21.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1003, '用户修改', 100, 3, '', '', '', 1, 0, 'F', '0', '0', 'system:user:edit', '#', 1, '2022-06-17 17:20:21.000', NULL, NULL, '');
-INSERT INTO `sys_menu` VALUES (1004, '用户删除', 100, 4, '', '', '', 1, 0, 'F', '0', '0', 'system:user:remove', '#', 1, '2022-06-17 17:20:21.000', NULL, NULL, '');
+INSERT INTO `sys_menu` VALUES (1004, '用户Delete', 100, 4, '', '', '', 1, 0, 'F', '0', '0', 'system:user:remove', '#', 1, '2022-06-17 17:20:21.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1005, '用户导出', 100, 5, '', '', '', 1, 0, 'F', '0', '0', 'system:user:export', '#', 1, '2022-06-17 17:20:21.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1006, '用户导入', 100, 6, '', '', '', 1, 0, 'F', '0', '0', 'system:user:import', '#', 1, '2022-06-17 17:20:21.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1007, '重置密码', 100, 7, '', '', '', 1, 0, 'F', '0', '0', 'system:user:resetPwd', '#', 1, '2022-06-17 17:20:21.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1008, '角色查询', 101, 1, '', '', '', 1, 0, 'F', '0', '0', 'system:role:query', '#', 1, '2022-06-17 17:20:21.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1009, '角色新增', 101, 2, '', '', '', 1, 0, 'F', '0', '0', 'system:role:add', '#', 1, '2022-06-17 17:20:21.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1010, '角色修改', 101, 3, '', '', '', 1, 0, 'F', '0', '0', 'system:role:edit', '#', 1, '2022-06-17 17:20:21.000', NULL, NULL, '');
-INSERT INTO `sys_menu` VALUES (1011, '角色删除', 101, 4, '', '', '', 1, 0, 'F', '0', '0', 'system:role:remove', '#', 1, '2022-06-17 17:20:21.000', NULL, NULL, '');
+INSERT INTO `sys_menu` VALUES (1011, '角色Delete', 101, 4, '', '', '', 1, 0, 'F', '0', '0', 'system:role:remove', '#', 1, '2022-06-17 17:20:21.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1012, '角色导出', 101, 5, '', '', '', 1, 0, 'F', '0', '0', 'system:role:export', '#', 1, '2022-06-17 17:20:21.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1013, '菜单查询', 102, 1, '', '', '', 1, 0, 'F', '0', '0', 'system:menu:query', '#', 1, '2022-06-17 17:20:21.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1014, '菜单新增', 102, 2, '', '', '', 1, 0, 'F', '0', '0', 'system:menu:add', '#', 1, '2022-06-17 17:20:21.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1015, '菜单修改', 102, 3, '', '', '', 1, 0, 'F', '0', '0', 'system:menu:edit', '#', 1, '2022-06-17 17:20:21.000', NULL, NULL, '');
-INSERT INTO `sys_menu` VALUES (1016, '菜单删除', 102, 4, '', '', '', 1, 0, 'F', '0', '0', 'system:menu:remove', '#', 1, '2022-06-17 17:20:21.000', NULL, NULL, '');
+INSERT INTO `sys_menu` VALUES (1016, '菜单Delete', 102, 4, '', '', '', 1, 0, 'F', '0', '0', 'system:menu:remove', '#', 1, '2022-06-17 17:20:21.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1017, '部门查询', 103, 1, '', '', '', 1, 0, 'F', '0', '0', 'system:dept:query', '#', 1, '2022-06-17 17:20:21.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1018, '部门新增', 103, 2, '', '', '', 1, 0, 'F', '0', '0', 'system:dept:add', '#', 1, '2022-06-17 17:20:22.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1019, '部门修改', 103, 3, '', '', '', 1, 0, 'F', '0', '0', 'system:dept:edit', '#', 1, '2022-06-17 17:20:22.000', NULL, NULL, '');
-INSERT INTO `sys_menu` VALUES (1020, '部门删除', 103, 4, '', '', '', 1, 0, 'F', '0', '0', 'system:dept:remove', '#', 1, '2022-06-17 17:20:22.000', NULL, NULL, '');
+INSERT INTO `sys_menu` VALUES (1020, '部门Delete', 103, 4, '', '', '', 1, 0, 'F', '0', '0', 'system:dept:remove', '#', 1, '2022-06-17 17:20:22.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1021, '岗位查询', 104, 1, '', '', '', 1, 0, 'F', '0', '0', 'system:post:query', '#', 1, '2022-06-17 17:20:22.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1022, '岗位新增', 104, 2, '', '', '', 1, 0, 'F', '0', '0', 'system:post:add', '#', 1, '2022-06-17 17:20:22.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1023, '岗位修改', 104, 3, '', '', '', 1, 0, 'F', '0', '0', 'system:post:edit', '#', 1, '2022-06-17 17:20:22.000', NULL, NULL, '');
-INSERT INTO `sys_menu` VALUES (1024, '岗位删除', 104, 4, '', '', '', 1, 0, 'F', '0', '0', 'system:post:remove', '#', 1, '2022-06-17 17:20:22.000', NULL, NULL, '');
+INSERT INTO `sys_menu` VALUES (1024, '岗位Delete', 104, 4, '', '', '', 1, 0, 'F', '0', '0', 'system:post:remove', '#', 1, '2022-06-17 17:20:22.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1025, '岗位导出', 104, 5, '', '', '', 1, 0, 'F', '0', '0', 'system:post:export', '#', 1, '2022-06-17 17:20:22.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1026, '字典查询', 105, 1, '#', '', '', 1, 0, 'F', '0', '0', 'system:dict:query', '#', 1, '2022-06-17 17:20:22.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1027, '字典新增', 105, 2, '#', '', '', 1, 0, 'F', '0', '0', 'system:dict:add', '#', 1, '2022-06-17 17:20:22.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1028, '字典修改', 105, 3, '#', '', '', 1, 0, 'F', '0', '0', 'system:dict:edit', '#', 1, '2022-06-17 17:20:22.000', NULL, NULL, '');
-INSERT INTO `sys_menu` VALUES (1029, '字典删除', 105, 4, '#', '', '', 1, 0, 'F', '0', '0', 'system:dict:remove', '#', 1, '2022-06-17 17:20:22.000', NULL, NULL, '');
+INSERT INTO `sys_menu` VALUES (1029, '字典Delete', 105, 4, '#', '', '', 1, 0, 'F', '0', '0', 'system:dict:remove', '#', 1, '2022-06-17 17:20:22.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1030, '字典导出', 105, 5, '#', '', '', 1, 0, 'F', '0', '0', 'system:dict:export', '#', 1, '2022-06-17 17:20:22.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1031, '参数查询', 106, 1, '#', '', '', 1, 0, 'F', '0', '0', 'system:config:query', '#', 1, '2022-06-17 17:20:22.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1032, '参数新增', 106, 2, '#', '', '', 1, 0, 'F', '0', '0', 'system:config:add', '#', 1, '2022-06-17 17:20:22.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1033, '参数修改', 106, 3, '#', '', '', 1, 0, 'F', '0', '0', 'system:config:edit', '#', 1, '2022-06-17 17:20:22.000', NULL, NULL, '');
-INSERT INTO `sys_menu` VALUES (1034, '参数删除', 106, 4, '#', '', '', 1, 0, 'F', '0', '0', 'system:config:remove', '#', 1, '2022-06-17 17:20:22.000', NULL, NULL, '');
+INSERT INTO `sys_menu` VALUES (1034, '参数Delete', 106, 4, '#', '', '', 1, 0, 'F', '0', '0', 'system:config:remove', '#', 1, '2022-06-17 17:20:22.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1035, '参数导出', 106, 5, '#', '', '', 1, 0, 'F', '0', '0', 'system:config:export', '#', 1, '2022-06-17 17:20:22.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1036, '公告查询', 107, 1, '#', '', '', 1, 0, 'F', '0', '0', 'system:notice:query', '#', 1, '2022-06-17 17:20:22.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1037, '公告新增', 107, 2, '#', '', '', 1, 0, 'F', '0', '0', 'system:notice:add', '#', 1, '2022-06-17 17:20:22.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1038, '公告修改', 107, 3, '#', '', '', 1, 0, 'F', '0', '0', 'system:notice:edit', '#', 1, '2022-06-17 17:20:22.000', NULL, NULL, '');
-INSERT INTO `sys_menu` VALUES (1039, '公告删除', 107, 4, '#', '', '', 1, 0, 'F', '0', '0', 'system:notice:remove', '#', 1, '2022-06-17 17:20:22.000', NULL, NULL, '');
+INSERT INTO `sys_menu` VALUES (1039, '公告Delete', 107, 4, '#', '', '', 1, 0, 'F', '0', '0', 'system:notice:remove', '#', 1, '2022-06-17 17:20:22.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1040, '操作查询', 500, 1, '#', '', '', 1, 0, 'F', '0', '0', 'monitor:operlog:query', '#', 1, '2022-06-17 17:20:22.000', NULL, NULL, '');
-INSERT INTO `sys_menu` VALUES (1041, '操作删除', 500, 2, '#', '', '', 1, 0, 'F', '0', '0', 'monitor:operlog:remove', '#', 1, '2022-06-17 17:20:23.000', NULL, NULL, '');
+INSERT INTO `sys_menu` VALUES (1041, '操作Delete', 500, 2, '#', '', '', 1, 0, 'F', '0', '0', 'monitor:operlog:remove', '#', 1, '2022-06-17 17:20:23.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1042, '日志导出', 500, 4, '#', '', '', 1, 0, 'F', '0', '0', 'monitor:operlog:export', '#', 1, '2022-06-17 17:20:23.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1043, '登录查询', 501, 1, '#', '', '', 1, 0, 'F', '0', '0', 'monitor:logininfor:query', '#', 1, '2022-06-17 17:20:23.000', NULL, NULL, '');
-INSERT INTO `sys_menu` VALUES (1044, '登录删除', 501, 2, '#', '', '', 1, 0, 'F', '0', '0', 'monitor:logininfor:remove', '#', 1, '2022-06-17 17:20:23.000', NULL, NULL, '');
+INSERT INTO `sys_menu` VALUES (1044, '登录Delete', 501, 2, '#', '', '', 1, 0, 'F', '0', '0', 'monitor:logininfor:remove', '#', 1, '2022-06-17 17:20:23.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1045, '日志导出', 501, 3, '#', '', '', 1, 0, 'F', '0', '0', 'monitor:logininfor:export', '#', 1, '2022-06-17 17:20:23.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1046, '在线查询', 109, 1, '#', '', '', 1, 0, 'F', '0', '0', 'monitor:online:query', '#', 1, '2022-06-17 17:20:23.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1047, '批量强退', 109, 2, '#', '', '', 1, 0, 'F', '0', '0', 'monitor:online:batchLogout', '#', 1, '2022-06-17 17:20:23.000', NULL, NULL, '');
@@ -506,12 +506,12 @@ INSERT INTO `sys_menu` VALUES (1048, '单条强退', 109, 3, '#', '', '', 1, 0, 
 INSERT INTO `sys_menu` VALUES (1049, '任务查询', 110, 1, '#', '', '', 1, 0, 'F', '0', '0', 'monitor:job:query', '#', 1, '2022-06-17 17:20:23.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1050, '任务新增', 110, 2, '#', '', '', 1, 0, 'F', '0', '0', 'monitor:job:add', '#', 1, '2022-06-17 17:20:23.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1051, '任务修改', 110, 3, '#', '', '', 1, 0, 'F', '0', '0', 'monitor:job:edit', '#', 1, '2022-06-17 17:20:23.000', NULL, NULL, '');
-INSERT INTO `sys_menu` VALUES (1052, '任务删除', 110, 4, '#', '', '', 1, 0, 'F', '0', '0', 'monitor:job:remove', '#', 1, '2022-06-17 17:20:23.000', NULL, NULL, '');
+INSERT INTO `sys_menu` VALUES (1052, '任务Delete', 110, 4, '#', '', '', 1, 0, 'F', '0', '0', 'monitor:job:remove', '#', 1, '2022-06-17 17:20:23.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1053, 'Status修改', 110, 5, '#', '', '', 1, 0, 'F', '0', '0', 'monitor:job:changeStatus', '#', 1, '2022-06-17 17:20:23.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1054, '任务导出', 110, 7, '#', '', '', 1, 0, 'F', '0', '0', 'monitor:job:export', '#', 1, '2022-06-17 17:20:23.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1055, '生成查询', 115, 1, '#', '', '', 1, 0, 'F', '0', '0', 'tool:gen:query', '#', 1, '2022-06-17 17:20:23.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1056, '生成修改', 115, 2, '#', '', '', 1, 0, 'F', '0', '0', 'tool:gen:edit', '#', 1, '2022-06-17 17:20:23.000', NULL, NULL, '');
-INSERT INTO `sys_menu` VALUES (1057, '生成删除', 115, 3, '#', '', '', 1, 0, 'F', '0', '0', 'tool:gen:remove', '#', 1, '2022-06-17 17:20:23.000', NULL, NULL, '');
+INSERT INTO `sys_menu` VALUES (1057, '生成Delete', 115, 3, '#', '', '', 1, 0, 'F', '0', '0', 'tool:gen:remove', '#', 1, '2022-06-17 17:20:23.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1058, '导入代码', 115, 2, '#', '', '', 1, 0, 'F', '0', '0', 'tool:gen:import', '#', 1, '2022-06-17 17:20:23.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1059, '预览代码', 115, 4, '#', '', '', 1, 0, 'F', '0', '0', 'tool:gen:preview', '#', 1, '2022-06-17 17:20:23.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (1060, '生成代码', 115, 5, '#', '', '', 1, 0, 'F', '0', '0', 'tool:gen:code', '#', 1, '2022-06-17 17:20:23.000', NULL, NULL, '');
@@ -519,97 +519,97 @@ INSERT INTO `sys_menu` VALUES (2096, '库区', 2193, 2, 'area', 'wms/area/index'
 INSERT INTO `sys_menu` VALUES (2097, '货区查询', 2096, 1, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:area:query', '#', 1, '2022-07-29 16:08:33.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2098, '货区新增', 2096, 2, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:area:add', '#', 1, '2022-07-29 16:08:33.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2099, '货区修改', 2096, 3, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:area:edit', '#', 1, '2022-07-29 16:08:33.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2100, '货区删除', 2096, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:area:remove', '#', 1, '2022-07-29 16:08:33.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2100, '货区Delete', 2096, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:area:remove', '#', 1, '2022-07-29 16:08:33.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2101, '货区导出', 2096, 5, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:area:export', '#', 1, '2022-07-29 16:08:33.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2102, '承运商', 2198, 6, 'carrier', 'wms/carrier/index', NULL, 1, 0, 'C', '0', '0', 'wms:carrier:list', '#', 1, '2022-07-29 16:08:42.000', 1, '2022-10-31 09:10:41.000', '承运商菜单');
 INSERT INTO `sys_menu` VALUES (2103, '承运商查询', 2102, 1, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:carrier:query', '#', 1, '2022-07-29 16:08:42.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2104, '承运商新增', 2102, 2, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:carrier:add', '#', 1, '2022-07-29 16:08:42.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2105, '承运商修改', 2102, 3, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:carrier:edit', '#', 1, '2022-07-29 16:08:42.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2106, '承运商删除', 2102, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:carrier:remove', '#', 1, '2022-07-29 16:08:43.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2106, '承运商Delete', 2102, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:carrier:remove', '#', 1, '2022-07-29 16:08:43.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2107, '承运商导出', 2102, 5, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:carrier:export', '#', 1, '2022-07-29 16:08:43.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2108, '客户', 2198, 5, 'customer', 'wms/customer/index', NULL, 1, 0, 'C', '0', '0', 'wms:customer:list', '#', 1, '2022-07-29 16:08:51.000', 1, '2022-10-31 09:10:21.000', '客户菜单');
 INSERT INTO `sys_menu` VALUES (2109, '客户查询', 2108, 1, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:customer:query', '#', 1, '2022-07-29 16:08:51.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2110, '客户新增', 2108, 2, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:customer:add', '#', 1, '2022-07-29 16:08:51.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2111, '客户修改', 2108, 3, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:customer:edit', '#', 1, '2022-07-29 16:08:51.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2112, '客户删除', 2108, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:customer:remove', '#', 1, '2022-07-29 16:08:51.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2112, '客户Delete', 2108, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:customer:remove', '#', 1, '2022-07-29 16:08:51.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2113, '客户导出', 2108, 5, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:customer:export', '#', 1, '2022-07-29 16:08:51.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2114, '发货记录', 2197, 5, 'delivery', 'wms/delivery/index', NULL, 1, 0, 'C', '0', '0', 'wms:delivery:list', '#', 1, '2022-07-29 16:31:18.000', 1, '2022-10-30 22:09:55.000', '发货记录菜单');
 INSERT INTO `sys_menu` VALUES (2115, '发货记录查询', 2114, 1, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:delivery:query', '#', 1, '2022-07-29 16:31:18.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2116, '发货记录新增', 2114, 2, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:delivery:add', '#', 1, '2022-07-29 16:31:18.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2117, '发货记录修改', 2114, 3, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:delivery:edit', '#', 1, '2022-07-29 16:31:18.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2118, '发货记录删除', 2114, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:delivery:remove', '#', 1, '2022-07-29 16:31:18.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2118, '发货记录Delete', 2114, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:delivery:remove', '#', 1, '2022-07-29 16:31:18.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2119, '发货记录导出', 2114, 5, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:delivery:export', '#', 1, '2022-07-29 16:31:18.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2120, 'Quantity看板', 0, 1, 'inventory', 'wms/inventory/index', NULL, 1, 0, 'C', '0', '0', 'wms:inventory:list', 'chart', 1, '2022-07-29 16:34:37.000', 1, '2023-08-02 10:36:49.000', 'Quantity菜单');
 INSERT INTO `sys_menu` VALUES (2121, 'Quantity查询', 2120, 1, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventory:query', '#', 1, '2022-07-29 16:34:37.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2122, 'Quantity新增', 2120, 2, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventory:add', '#', 1, '2022-07-29 16:34:37.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2123, 'Quantity修改', 2120, 3, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventory:edit', '#', 1, '2022-07-29 16:34:37.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2124, 'Quantity删除', 2120, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventory:remove', '#', 1, '2022-07-29 16:34:37.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2124, 'QuantityDelete', 2120, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventory:remove', '#', 1, '2022-07-29 16:34:37.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2125, 'Quantity导出', 2120, 5, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventory:export', '#', 1, '2022-07-29 16:34:37.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2126, '出入记录', 2197, 4, 'inventoryHistory', 'wms/inventoryHistory/index', NULL, 1, 0, 'C', '0', '0', 'wms:inventoryHistory:list', '#', 1, '2022-07-29 16:34:45.000', 1, '2023-08-02 10:47:06.000', 'Quantity记录菜单');
 INSERT INTO `sys_menu` VALUES (2127, 'Quantity记录查询', 2126, 1, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryHistory:query', '#', 1, '2022-07-29 16:34:46.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2128, 'Quantity记录新增', 2126, 2, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryHistory:add', '#', 1, '2022-07-29 16:34:46.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2129, 'Quantity记录修改', 2126, 3, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryHistory:edit', '#', 1, '2022-07-29 16:34:46.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2130, 'Quantity记录删除', 2126, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryHistory:remove', '#', 1, '2022-07-29 16:34:46.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2130, 'Quantity记录Delete', 2126, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryHistory:remove', '#', 1, '2022-07-29 16:34:46.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2131, 'Quantity记录导出', 2126, 5, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryHistory:export', '#', 1, '2022-07-29 16:34:46.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2132, '移库', 2192, 6, 'inventoryMovement', 'wms/inventoryMovement/index', NULL, 1, 0, 'C', '0', '0', 'wms:inventoryMovement:list', '#', 1, '2022-07-29 16:34:54.000', 1, '2022-10-30 22:07:05.000', 'Quantity移动菜单');
 INSERT INTO `sys_menu` VALUES (2133, 'Quantity移动查询', 2132, 1, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryMovement:query', '#', 1, '2022-07-29 16:34:54.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2134, 'Quantity移动新增', 2132, 2, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryMovement:add', '#', 1, '2022-07-29 16:34:54.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2135, 'Quantity移动修改', 2132, 3, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryMovement:edit', '#', 1, '2022-07-29 16:34:54.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2136, 'Quantity移动删除', 2132, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryMovement:remove', '#', 1, '2022-07-29 16:34:54.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2136, 'Quantity移动Delete', 2132, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryMovement:remove', '#', 1, '2022-07-29 16:34:54.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2137, 'Quantity移动导出', 2132, 5, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryMovement:export', '#', 1, '2022-07-29 16:34:54.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2138, 'Quantity移动详情', 2192, 100, 'inventoryMovementDetail', 'wms/inventoryMovementDetail/index', NULL, 1, 0, 'C', '1', '0', 'wms:inventoryMovementDetail:list', '#', 1, '2022-07-29 16:35:04.000', 1, '2022-10-30 22:05:06.000', 'Quantity移动详情菜单');
 INSERT INTO `sys_menu` VALUES (2139, 'Quantity移动详情查询', 2138, 1, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryMovementDetail:query', '#', 1, '2022-07-29 16:35:04.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2140, 'Quantity移动详情新增', 2138, 2, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryMovementDetail:add', '#', 1, '2022-07-29 16:35:04.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2141, 'Quantity移动详情修改', 2138, 3, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryMovementDetail:edit', '#', 1, '2022-07-29 16:35:04.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2142, 'Quantity移动详情删除', 2138, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryMovementDetail:remove', '#', 1, '2022-07-29 16:35:04.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2142, 'Quantity移动详情Delete', 2138, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryMovementDetail:remove', '#', 1, '2022-07-29 16:35:04.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2143, 'Quantity移动详情导出', 2138, 5, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventoryMovementDetail:export', '#', 1, '2022-07-29 16:35:04.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2144, 'Goods ', 0, 4, 'item', '', NULL, 1, 0, 'M', '0', '0', '', 'shopping', 1, '2022-07-29 16:35:13.000', 1, '2023-08-02 10:44:51.000', 'Goods 菜单');
 INSERT INTO `sys_menu` VALUES (2145, 'Goods 查询', 2216, 1, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:item:query', '#', 1, '2022-07-29 16:35:13.000', 1, '2023-04-26 17:34:01.000', '');
 INSERT INTO `sys_menu` VALUES (2146, 'Goods 新增', 2216, 2, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:item:add', '#', 1, '2022-07-29 16:35:13.000', 1, '2023-04-26 17:34:18.000', '');
 INSERT INTO `sys_menu` VALUES (2147, 'Goods 修改', 2216, 3, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:item:edit', '#', 1, '2022-07-29 16:35:13.000', 1, '2023-04-26 17:34:25.000', '');
-INSERT INTO `sys_menu` VALUES (2148, 'Goods 删除', 2216, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:item:remove', '#', 1, '2022-07-29 16:35:13.000', 1, '2023-04-26 17:34:33.000', '');
+INSERT INTO `sys_menu` VALUES (2148, 'Goods Delete', 2216, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:item:remove', '#', 1, '2022-07-29 16:35:13.000', 1, '2023-04-26 17:34:33.000', '');
 INSERT INTO `sys_menu` VALUES (2149, 'Goods 导出', 2216, 5, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:item:export', '#', 1, '2022-07-29 16:35:13.000', 1, '2023-04-26 17:34:41.000', '');
 INSERT INTO `sys_menu` VALUES (2150, '货架', 2193, 3, 'rack', 'wms/rack/index', NULL, 1, 0, 'C', '0', '0', 'wms:rack:list', '#', 1, '2022-07-29 16:35:22.000', 1, '2022-10-30 22:18:04.000', '货架菜单');
 INSERT INTO `sys_menu` VALUES (2151, '货架查询', 2150, 1, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:rack:query', '#', 1, '2022-07-29 16:35:22.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2152, '货架新增', 2150, 2, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:rack:add', '#', 1, '2022-07-29 16:35:22.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2153, '货架修改', 2150, 3, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:rack:edit', '#', 1, '2022-07-29 16:35:22.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2154, '货架删除', 2150, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:rack:remove', '#', 1, '2022-07-29 16:35:22.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2154, '货架Delete', 2150, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:rack:remove', '#', 1, '2022-07-29 16:35:22.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2155, '货架导出', 2150, 5, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:rack:export', '#', 1, '2022-07-29 16:35:22.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2156, '入库', 2192, 1, 'receiptOrder', 'wms/receiptOrder/index', NULL, 1, 0, 'C', '0', '0', 'wms:receiptOrder:list', '#', 1, '2022-07-29 16:35:29.000', 1, '2022-10-30 22:06:34.000', '入库单菜单');
 INSERT INTO `sys_menu` VALUES (2157, '入库单查询', 2156, 1, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:receiptOrder:query', '#', 1, '2022-07-29 16:35:29.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2158, '编辑入库单', 2192, 2, 'receiptOrder/edit', 'wms/receiptOrder/edit', NULL, 1, 0, 'C', '1', '0', 'wms:receiptOrder:add', '#', 1, '2022-07-29 16:35:29.000', 1, '2022-08-31 15:54:00.000', '');
 INSERT INTO `sys_menu` VALUES (2159, '入库单修改', 2156, 3, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:receiptOrder:edit', '#', 1, '2022-07-29 16:35:29.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2160, '入库单删除', 2156, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:receiptOrder:remove', '#', 1, '2022-07-29 16:35:30.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2160, '入库单Delete', 2156, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:receiptOrder:remove', '#', 1, '2022-07-29 16:35:30.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2161, '入库单导出', 2156, 5, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:receiptOrder:export', '#', 1, '2022-07-29 16:35:30.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2162, '入库单详情', 2192, 100, 'receiptOrderDetail', 'wms/receiptOrderDetail/index', NULL, 1, 0, 'C', '1', '0', 'wms:receiptOrderDetail:list', '#', 1, '2022-07-29 16:35:36.000', 1, '2022-10-30 22:04:29.000', '入库单详情菜单');
 INSERT INTO `sys_menu` VALUES (2163, '入库单详情查询', 2162, 1, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:receiptOrderDetail:query', '#', 1, '2022-07-29 16:35:36.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2164, '入库单详情新增', 2162, 2, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:receiptOrderDetail:add', '#', 1, '2022-07-29 16:35:36.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2165, '入库单详情修改', 2162, 3, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:receiptOrderDetail:edit', '#', 1, '2022-07-29 16:35:36.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2166, '入库单详情删除', 2162, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:receiptOrderDetail:remove', '#', 1, '2022-07-29 16:35:36.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2166, '入库单详情Delete', 2162, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:receiptOrderDetail:remove', '#', 1, '2022-07-29 16:35:36.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2167, '入库单详情导出', 2162, 5, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:receiptOrderDetail:export', '#', 1, '2022-07-29 16:35:36.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2168, '出库', 2192, 2, 'shipmentOrder', 'wms/shipmentOrder/index', NULL, 1, 0, 'C', '0', '0', 'wms:shipmentOrder:list', '#', 1, '2022-07-29 16:35:44.000', 1, '2022-10-30 22:06:45.000', '出库单菜单');
 INSERT INTO `sys_menu` VALUES (2169, '出库单查询', 2168, 1, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:shipmentOrder:query', '#', 1, '2022-07-29 16:35:45.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2170, '出库单新增', 2168, 2, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:shipmentOrder:add', '#', 1, '2022-07-29 16:35:45.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2171, '出库单修改', 2168, 3, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:shipmentOrder:edit', '#', 1, '2022-07-29 16:35:45.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2172, '出库单删除', 2168, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:shipmentOrder:remove', '#', 1, '2022-07-29 16:35:45.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2172, '出库单Delete', 2168, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:shipmentOrder:remove', '#', 1, '2022-07-29 16:35:45.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2173, '出库单导出', 2168, 5, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:shipmentOrder:export', '#', 1, '2022-07-29 16:35:45.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2174, '出库单详情', 2192, 100, 'shipmentOrderDetail', 'wms/shipmentOrderDetail/index', NULL, 1, 0, 'C', '1', '0', 'wms:shipmentOrderDetail:list', '#', 1, '2022-07-29 16:35:52.000', 1, '2022-10-30 22:04:05.000', '出库单详情菜单');
 INSERT INTO `sys_menu` VALUES (2175, '出库单详情查询', 2174, 1, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:shipmentOrderDetail:query', '#', 1, '2022-07-29 16:35:52.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2176, '出库单详情新增', 2174, 2, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:shipmentOrderDetail:add', '#', 1, '2022-07-29 16:35:52.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2177, '出库单详情修改', 2174, 3, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:shipmentOrderDetail:edit', '#', 1, '2022-07-29 16:35:52.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2178, '出库单详情删除', 2174, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:shipmentOrderDetail:remove', '#', 1, '2022-07-29 16:35:52.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2178, '出库单详情Delete', 2174, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:shipmentOrderDetail:remove', '#', 1, '2022-07-29 16:35:52.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2179, '出库单详情导出', 2174, 5, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:shipmentOrderDetail:export', '#', 1, '2022-07-29 16:35:52.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2180, '供应商', 2198, 5, 'supplier', 'wms/supplier/index', NULL, 1, 0, 'C', '0', '0', 'wms:supplier:list', '#', 1, '2022-07-29 16:35:59.000', 1, '2022-10-31 09:10:34.000', '供应商菜单');
 INSERT INTO `sys_menu` VALUES (2181, '供应商查询', 2180, 1, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:supplier:query', '#', 1, '2022-07-29 16:35:59.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2182, '供应商新增', 2180, 2, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:supplier:add', '#', 1, '2022-07-29 16:35:59.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2183, '供应商修改', 2180, 3, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:supplier:edit', '#', 1, '2022-07-29 16:35:59.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2184, '供应商删除', 2180, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:supplier:remove', '#', 1, '2022-07-29 16:35:59.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2184, '供应商Delete', 2180, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:supplier:remove', '#', 1, '2022-07-29 16:35:59.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2185, '供应商导出', 2180, 5, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:supplier:export', '#', 1, '2022-07-29 16:36:00.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2186, '仓库/库区', 0, 5, 'warehouse', 'wms/warehouse/index', NULL, 1, 0, 'C', '0', '0', 'wms:warehouse:list', 'component', 1, '2022-07-29 16:36:31.000', 1, '2023-08-02 10:45:21.000', '仓库菜单');
 INSERT INTO `sys_menu` VALUES (2187, '仓库查询', 2186, 1, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:warehouse:query', '#', 1, '2022-07-29 16:36:31.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2188, '仓库新增', 2186, 2, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:warehouse:add', '#', 1, '2022-07-29 16:36:31.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2189, '仓库修改', 2186, 3, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:warehouse:edit', '#', 1, '2022-07-29 16:36:31.000', 0, NULL, '');
-INSERT INTO `sys_menu` VALUES (2190, '仓库删除', 2186, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:warehouse:remove', '#', 1, '2022-07-29 16:36:31.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2190, '仓库Delete', 2186, 4, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:warehouse:remove', '#', 1, '2022-07-29 16:36:31.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2191, '仓库导出', 2186, 5, '', '', NULL, 1, 0, 'F', '0', '0', 'wms:warehouse:export', '#', 1, '2022-07-29 16:36:31.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2192, '出入库', 0, 2, 'wms', NULL, NULL, 1, 0, 'M', '0', '0', '', 'redis', 1, '2022-07-29 18:09:52.000', 1, '2023-08-02 10:37:28.000', '');
 INSERT INTO `sys_menu` VALUES (2193, '仓库/库区/货架', 0, 4, 'basic', NULL, NULL, 1, 0, 'M', '1', '0', '', 'component', 1, '2022-08-09 08:57:46.000', 1, '2023-08-02 10:43:10.000', '');
@@ -624,7 +624,7 @@ INSERT INTO `sys_menu` VALUES (2201, 'Quantity盘点', 0, 3, 'inventoryCheck', '
 INSERT INTO `sys_menu` VALUES (2202, 'Quantity盘点单据查询', 2201, 1, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:inventoryCheck:query', '#', 1, '2023-04-26 14:16:50.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (2203, 'Quantity盘点单据新增', 2201, 2, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:inventoryCheck:add', '#', 1, '2023-04-26 14:17:20.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (2204, 'Quantity盘点单据修改', 2201, 3, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:inventoryCheck:edit', '#', 1, '2023-04-26 14:17:49.000', NULL, NULL, '');
-INSERT INTO `sys_menu` VALUES (2205, 'Quantity盘点单据删除', 2201, 4, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:inventoryCheck:remove', '#', 1, '2023-04-26 14:18:11.000', NULL, NULL, '');
+INSERT INTO `sys_menu` VALUES (2205, 'Quantity盘点单据Delete', 2201, 4, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:inventoryCheck:remove', '#', 1, '2023-04-26 14:18:11.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (2206, 'Quantity盘点单据导出', 2201, 5, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:inventoryCheck:export', '#', 1, '2023-04-26 14:18:28.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (2207, '盘库', 0, 5, '/check', NULL, NULL, 1, 0, 'M', '1', '0', NULL, 'checkbox', 1, '2023-04-26 14:19:57.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (2208, '编辑盘点单', 2207, 0, 'edit', 'wms/inventoryCheck/edit', NULL, 1, 0, 'C', '1', '0', 'wms:inventoryCheck:list', 'checkbox', 1, '2023-04-26 14:20:43.000', NULL, NULL, '');
@@ -633,26 +633,26 @@ INSERT INTO `sys_menu` VALUES (2210, '盘点单据详情', 2207, 1, 'inventoryCh
 INSERT INTO `sys_menu` VALUES (2211, 'Quantity盘点单据详情查询', 2210, 1, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:inventoryCheckDetail:query', '#', 1, '2023-04-26 14:23:19.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (2212, 'Quantity盘点单据详情新增', 2210, 2, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:inventoryCheckDetail:add', '#', 1, '2023-04-26 14:23:45.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (2213, 'Quantity盘点单据详情修改', 2210, 3, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:inventoryCheckDetail:edit', '#', 1, '2023-04-26 14:24:16.000', NULL, NULL, '');
-INSERT INTO `sys_menu` VALUES (2214, 'Quantity盘点单据详情删除', 2210, 4, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:inventoryCheckDetail:remove', '#', 1, '2023-04-26 14:24:36.000', NULL, NULL, '');
+INSERT INTO `sys_menu` VALUES (2214, 'Quantity盘点单据详情Delete', 2210, 4, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:inventoryCheckDetail:remove', '#', 1, '2023-04-26 14:24:36.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (2215, 'Quantity盘点单据详情导出', 2210, 5, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:inventoryCheckDetail:export', '#', 1, '2023-04-26 14:24:56.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (2216, 'Goods 管理', 2144, 2, 'item', 'wms/item/index', NULL, 1, 0, 'C', '0', '0', 'wms:item:list', 'dict', 1, '2023-04-26 17:33:32.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (2217, '分类管理', 2144, 1, 'itemType', 'wms/itemType/index', NULL, 1, 0, 'C', '0', '0', 'wms:itemType:list', 'dict', 1, '2023-04-26 17:35:52.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (2218, 'Goods 类型表查询', 2217, 1, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:itemType:query', '#', 1, '2023-04-26 17:36:20.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (2219, 'Goods 类型表新增', 2217, 2, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:itemType:add', '#', 1, '2023-04-26 17:36:49.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (2220, 'Goods 类型表修改', 2217, 3, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:itemType:edit', '#', 1, '2023-04-26 17:37:06.000', NULL, NULL, '');
-INSERT INTO `sys_menu` VALUES (2221, 'Goods 类型表删除', 2217, 4, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:itemType:remove', '#', 1, '2023-04-26 17:37:25.000', NULL, NULL, '');
+INSERT INTO `sys_menu` VALUES (2221, 'Goods 类型表Delete', 2217, 4, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:itemType:remove', '#', 1, '2023-04-26 17:37:25.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (2222, 'Goods 类型表导出', 2217, 5, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:itemType:export', '#', 1, '2023-04-26 17:37:42.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (2223, '供应商账户流水', 2198, 1, 'supplierTransaction', 'wms/supplierTransaction/index', NULL, 1, 0, 'C', '1', '0', 'wms:supplierTransaction:list', '#', 1, '2023-05-04 13:39:35.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (2224, '供应商账户流水查询', 2223, 1, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:supplierTransaction:query', '#', 1, '2023-05-04 13:39:55.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (2225, '供应商账户流水新增', 2223, 2, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:supplierTransaction:add', '#', 1, '2023-05-04 13:40:18.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (2226, '供应商账户流水修改', 2223, 3, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:supplierTransaction:edit', '#', 1, '2023-05-04 13:40:34.000', NULL, NULL, '');
-INSERT INTO `sys_menu` VALUES (2227, '供应商账户流水删除', 2223, 4, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:supplierTransaction:remove', '#', 1, '2023-05-04 13:40:52.000', NULL, NULL, '');
+INSERT INTO `sys_menu` VALUES (2227, '供应商账户流水Delete', 2223, 4, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:supplierTransaction:remove', '#', 1, '2023-05-04 13:40:52.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (2228, '供应商账户流水导出', 2223, 5, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:supplierTransaction:export', '#', 1, '2023-05-04 13:41:14.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (2229, '客户账户流水', 2198, 1, 'customerTransaction', 'wms/customerTransaction/index', NULL, 1, 0, 'C', '1', '0', 'wms:customerTransaction:list', '#', 1, '2023-05-04 16:55:03.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (2230, '客户账户流水查询', 2229, 1, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:customerTransaction:query', '#', 1, '2023-05-04 16:55:57.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (2231, '客户账户流水新增', 2229, 2, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:customerTransaction:add', '#', 1, '2023-05-04 16:56:36.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (2232, '客户账户流水修改', 2229, 3, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:customerTransaction:edit', '#', 1, '2023-05-04 16:57:02.000', NULL, NULL, '');
-INSERT INTO `sys_menu` VALUES (2233, '客户账户流水删除', 2229, 4, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:customerTransaction:remove', '#', 1, '2023-05-04 16:57:27.000', NULL, NULL, '');
+INSERT INTO `sys_menu` VALUES (2233, '客户账户流水Delete', 2229, 4, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:customerTransaction:remove', '#', 1, '2023-05-04 16:57:27.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (2234, '客户账户流水导出', 2229, 5, '', NULL, NULL, 1, 0, 'F', '0', '0', 'wms:customerTransaction:export', '#', 1, '2023-05-04 16:57:56.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (2235, 'Quantity结算', 0, 11, 'settlement', NULL, NULL, 1, 0, 'M', '0', '0', NULL, 'log', 1, '2023-08-02 13:05:35.000', NULL, NULL, '');
 INSERT INTO `sys_menu` VALUES (2236, 'Quantity年结', 2235, 7, 'inventorySettlementYear', 'wms/inventorySettlement/index', '{\"settlementType\": 2}', 1, 0, 'C', '0', '0', 'wms:inventorySettlement:list', 'skill', 1, '2023-04-20 16:10:49.000', 1, '2023-04-21 12:10:29.000', '');
@@ -661,13 +661,13 @@ INSERT INTO `sys_menu` VALUES (2238, 'Quantity月结', 2235, 5, 'inventorySettle
 INSERT INTO `sys_menu` VALUES (2239, 'Quantity结算单查询', 2235, 1, '#', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventorySettlement:query', '#', 1, '2023-04-18 19:33:08.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2240, 'Quantity结算单新增', 2235, 2, '#', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventorySettlement:add', '#', 1, '2023-04-18 19:33:08.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2241, '编辑Quantity结算', 2235, 3, 'inventorySettlement/edit', 'wms/inventorySettlement/edit', NULL, 1, 0, 'C', '1', '0', 'wms:inventorySettlement:edit', '#', 1, '2023-04-18 19:33:08.000', 1, '2023-04-20 16:05:52.000', '');
-INSERT INTO `sys_menu` VALUES (2242, 'Quantity结算单删除', 2235, 4, '#', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventorySettlement:remove', '#', 1, '2023-04-18 19:33:08.000', 0, NULL, '');
+INSERT INTO `sys_menu` VALUES (2242, 'Quantity结算单Delete', 2235, 4, '#', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventorySettlement:remove', '#', 1, '2023-04-18 19:33:08.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2243, 'Quantity结算单导出', 2235, 5, '#', '', NULL, 1, 0, 'F', '0', '0', 'wms:inventorySettlement:export', '#', 1, '2023-04-18 19:33:08.000', 0, NULL, '');
 INSERT INTO `sys_menu` VALUES (2244, '波次', 2192, 1, 'wave', 'wms/wave/index', NULL, 1, 0, 'C', '1', '0', 'wms:wave:list', '#', 1, '2023-08-16 05:24:03.000', 1, '2023-08-16 09:09:00.000', '波次菜单');
 INSERT INTO `sys_menu` VALUES (2245, '波次查询', 2244, 1, '#', '', NULL, 1, 0, 'F', '0', '0', 'wms:wave:query', '#', 1, '2023-08-16 05:24:03.000', 1, NULL, '');
 INSERT INTO `sys_menu` VALUES (2246, '波次新增', 2244, 2, '#', '', NULL, 1, 0, 'F', '0', '0', 'wms:wave:add', '#', 1, '2023-08-16 05:24:03.000', 1, NULL, '');
 INSERT INTO `sys_menu` VALUES (2247, '波次修改', 2244, 3, '#', '', NULL, 1, 0, 'F', '0', '0', 'wms:wave:edit', '#', 1, '2023-08-16 05:24:03.000', 1, NULL, '');
-INSERT INTO `sys_menu` VALUES (2248, '波次删除', 2244, 4, '#', '', NULL, 1, 0, 'F', '0', '0', 'wms:wave:remove', '#', 1, '2023-08-16 05:24:03.000', 1, NULL, '');
+INSERT INTO `sys_menu` VALUES (2248, '波次Delete', 2244, 4, '#', '', NULL, 1, 0, 'F', '0', '0', 'wms:wave:remove', '#', 1, '2023-08-16 05:24:03.000', 1, NULL, '');
 INSERT INTO `sys_menu` VALUES (2249, '波次导出', 2244, 5, '#', '', NULL, 1, 0, 'F', '0', '0', 'wms:wave:export', '#', 1, '2023-08-16 05:24:03.000', 1, NULL, '');
 INSERT INTO `sys_menu` VALUES (2250, '波次作业', 2192, 2, 'wave/status', 'wms/wave/status', NULL, 1, 0, 'C', '1', '0', '', 'checkbox', 1, '2023-08-16 07:44:29.000', 1, '2023-08-16 09:09:04.000', '');
 INSERT INTO `sys_menu` VALUES (2251, '批量入库', 2192, 6, 'wave/receipt/status', 'wms/wave/receipt/status', NULL, 1, 0, 'C', '1', '0', '', '#', 1, '2023-09-05 10:09:55.000', 1, '2023-09-05 10:11:59.000', '');
@@ -703,7 +703,7 @@ DROP TABLE IF EXISTS `sys_oper_log`;
 CREATE TABLE `sys_oper_log`  (
   `oper_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '日志主键',
   `title` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '模块标题',
-  `business_type` int(2) NULL DEFAULT 0 COMMENT '业务类型（0其它 1新增 2修改 3删除）',
+  `business_type` int(2) NULL DEFAULT 0 COMMENT '业务类型（0其它 1新增 2修改 3Delete）',
   `method` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '方法名称',
   `request_method` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '请求方式',
   `operator_type` int(1) NULL DEFAULT 0 COMMENT '操作类别（0其它 1后台用户 2手机端用户）',
@@ -759,7 +759,7 @@ CREATE TABLE `sys_role`  (
   `menu_check_strictly` tinyint(1) NULL DEFAULT 1 COMMENT '菜单树选择项是否关联显示',
   `dept_check_strictly` tinyint(1) NULL DEFAULT 1 COMMENT '部门树选择项是否关联显示',
   `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '角色Status（0Normal 1Disabled）',
-  `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
+  `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT 'Delete标志（0代表存在 2代表Delete）',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建者',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '更新者',
@@ -1157,7 +1157,7 @@ CREATE TABLE `sys_user`  (
   `avatar` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '头像地址',
   `password` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '密码',
   `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '帐号Status（0Normal 1Disabled）',
-  `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
+  `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT 'Delete标志（0代表存在 2代表Delete）',
   `login_ip` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '最后登录IP',
   `login_date` datetime(0) NULL DEFAULT NULL COMMENT '最后登录时间',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建者',
@@ -1291,7 +1291,7 @@ CREATE TABLE `wms_customer_transaction`  (
   `current_balance` decimal(18, 2) NOT NULL COMMENT '当前余额',
   `shipment_order_id` bigint(20) NULL DEFAULT NULL COMMENT '出库单号',
   `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Remark',
-  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT '删除标志',
+  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT 'Delete标志',
   `create_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
   `update_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
@@ -1545,7 +1545,7 @@ CREATE TABLE `wms_item_type`  (
   `type_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT 'Goods Type Name',
   `order_num` int(11) NULL DEFAULT 0 COMMENT 'Sort',
   `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT 'Status',
-  `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
+  `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT 'Delete标志（0代表存在 2代表Delete）',
   `create_by` bigint(20) NULL DEFAULT NULL COMMENT '创建者',
   `create_time` datetime(3) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` bigint(20) NULL DEFAULT NULL COMMENT '更新者',
@@ -1708,7 +1708,7 @@ CREATE TABLE `wms_supplier_transaction`  (
   `current_balance` decimal(18, 2) NOT NULL COMMENT '当前余额',
   `receipt_order_id` bigint(20) NULL DEFAULT NULL COMMENT '入库单号',
   `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Remark',
-  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT '删除标志',
+  `del_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT 'Delete标志',
   `create_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
   `update_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE

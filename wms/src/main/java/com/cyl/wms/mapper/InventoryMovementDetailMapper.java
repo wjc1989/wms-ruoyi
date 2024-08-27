@@ -23,7 +23,7 @@ public interface InventoryMovementDetailMapper extends BaseMapper<InventoryMovem
   List<InventoryMovementDetail> selectByEntity(InventoryMovementDetail inventoryMovementDetail);
 
   /**
-   * 批量软删除
+   * 批量软Delete
    *
    * @param ids
    * @return
