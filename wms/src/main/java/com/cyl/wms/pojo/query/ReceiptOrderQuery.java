@@ -27,4 +27,5 @@ public class ReceiptOrderQuery {
     @ApiModelProperty("入库Status 精确匹配")
     private Integer receiptOrderStatus;
 
+
 }

@@ -131,28 +131,28 @@ public class ReceiptOrderService {
     }
 
     private List<ReceiptOrder> selectList1(ReceiptOrderQuery query) {
-        QueryWrapper<ReceiptOrder> qw = new QueryWrapper<>();
-        qw.eq("del_flag", 0);
-        String receiptOrderNo = query.getReceiptOrderNo();
-        if (!StringUtils.isEmpty(receiptOrderNo)) {
-            qw.eq("receipt_order_no", receiptOrderNo);
-        }
-        Integer receiptOrderType = query.getReceiptOrderType();
-        if (receiptOrderType != null) {
-            qw.eq("receipt_order_type", receiptOrderType);
-        }
-        Long supplierId = query.getSupplierId();
-        if (supplierId != null) {
-            qw.eq("supplier_id", supplierId);
-        }
-        String orderNo = query.getOrderNo();
-        if (!StringUtils.isEmpty(orderNo)) {
-            qw.eq("order_no", orderNo);
-        }
-        Integer receiptOrderStatus = query.getReceiptOrderStatus();
-        if (receiptOrderStatus != null) {
-            qw.eq("receipt_order_status", receiptOrderStatus);
-        }
+//        QueryWrapper<ReceiptOrder> qw = new QueryWrapper<>();
+//        qw.eq("del_flag", 0);
+//        String receiptOrderNo = query.getReceiptOrderNo();
+//        if (!StringUtils.isEmpty(receiptOrderNo)) {
+//            qw.eq("receipt_order_no", receiptOrderNo);
+//        }
+//        Integer receiptOrderType = query.getReceiptOrderType();
+//        if (receiptOrderType != null) {
+//            qw.eq("receipt_order_type", receiptOrderType);
+//        }
+//        Long supplierId = query.getSupplierId();
+//        if (supplierId != null) {
+//            qw.eq("supplier_id", supplierId);
+//        }
+//        String orderNo = query.getOrderNo();
+//        if (!StringUtils.isEmpty(orderNo)) {
+//            qw.eq("order_no", orderNo);
+//        }
+//        Integer receiptOrderStatus = query.getReceiptOrderStatus();
+//        if (receiptOrderStatus != null) {
+//            qw.eq("receipt_order_status", receiptOrderStatus);
+//        }
         return receiptOrderMapper.selectByQuery(query);
     }
 
