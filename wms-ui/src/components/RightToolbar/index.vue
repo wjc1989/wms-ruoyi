@@ -7,9 +7,9 @@
       <el-tooltip class="item" effect="dark" content="Refresh" placement="top">
         <el-button size="mini" circle icon="el-icon-refresh" @click="refresh()" />
       </el-tooltip>
-      <el-tooltip class="item" effect="dark" content="Config" placement="top" v-if="columns">
+ <!--     <el-tooltip class="item" effect="dark" content="Config" placement="top" v-if="columns">
         <el-button size="mini" circle icon="el-icon-menu" @click="showColumn()" />
-      </el-tooltip>
+      </el-tooltip>-->
     </el-row>
     <el-dialog :title="title" :visible.sync="open" append-to-body>
       <el-transfer
@@ -41,15 +41,19 @@ export default {
     },
     columns: {
       type: Array,
+      default: null
     },
   },
   created() {
-    // 显隐列初始默认Hide列
-    for (let item in this.columns) {
-      if (this.columns[item].visible === false) {
-        this.value.push(parseInt(item));
+    if(this.columns){
+      // 显隐列初始默认Hide列
+      for (let item in this.columns) {
+        if (this.columns[item].visible === false) {
+          this.value.push(parseInt(item));
+        }
       }
     }
+
   },
   methods: {
     // Search

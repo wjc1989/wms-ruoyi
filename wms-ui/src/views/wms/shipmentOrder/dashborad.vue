@@ -37,30 +37,30 @@
                    @click="handleWave()">Wave Task
         </el-button>
       </el-col>
-      <right-toolbar :columns="columns" :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
+      <right-toolbar  :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
     <WmsTable v-loading="loading" :data="wmsShipmentOrderList" @selection-change="handleSelectionChange">
       <el-table-column align="center" type="selection" width="55"></el-table-column>
-      <el-table-column v-if="columns[0].visible" align="center" label="Outbound No."
+      <el-table-column  align="center" label="Outbound No."
                        prop="shipmentOrderNo"></el-table-column>
-      <el-table-column v-if="columns[1].visible" align="center" label="Outbound Type">
+      <el-table-column  align="center" label="Outbound Type">
         <template slot-scope="scope">
           <el-tag effect="plain" size="medium" :type="getShipmentOrderTypeTag(scope.row)">
             {{ getShipmentOrderType(scope.row) }}
           </el-tag>
         </template>
       </el-table-column>
-      <el-table-column v-if="columns[2].visible" align="center" :formatter="getCustomer" label="Custom"></el-table-column>
-      <el-table-column v-if="columns[3].visible" align="center" label="Project" prop="orderNo"></el-table-column>
-      <el-table-column v-if="columns[4].visible" align="center" label="Outbound Status">
+      <el-table-column  align="center" :formatter="getCustomer" label="Custom"></el-table-column>
+      <el-table-column  align="center" label="Project" prop="orderNo"></el-table-column>
+      <el-table-column  align="center" label="Outbound Status">
         <template slot-scope="scope">
           <el-tag effect="plain" size="medium" :type="getShipmentOrderStatusTag(scope.row)">
             {{ getShipmentOrderStatus(scope.row) }}
           </el-tag>
         </template>
       </el-table-column>
-      <el-table-column v-if="columns[5].visible" align="center" label="Wave No." prop="waveNo"></el-table-column>
-      <el-table-column v-if="columns[5].visible" align="center" label="Remark" prop="remark">
+      <el-table-column  align="center" label="Wave No." prop="waveNo"></el-table-column>
+      <el-table-column  align="center" label="Remark" prop="remark">
         <template v-slot="{ row }">
           <el-popover placement="left" width="300" trigger="hover" :content="row.remark" popper-class="popperOptions">
             <p class="showOverTooltip" slot="reference">{{ row.remark }}</p>

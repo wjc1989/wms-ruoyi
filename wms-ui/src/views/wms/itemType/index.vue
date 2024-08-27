@@ -31,7 +31,7 @@
         >New
         </el-button>
       </el-col>
-      <right-toolbar :showSearch.sync="showSearch" @queryTable="getList" :columns="columns"></right-toolbar>
+      <right-toolbar :showSearch.sync="showSearch" @queryTable="getList" ></right-toolbar>
     </el-row>
 
 
@@ -42,7 +42,7 @@
       :default-expand-all="isExpandAll"
       :tree-props="{children: 'children', hasChildren: 'hasChildren'}"
     >
-      <el-table-column label="Type" align="center" prop="typeName" width="260" v-if="columns[2].visible"/>
+      <el-table-column label="Type" align="center" prop="typeName" width="260" />
       <el-table-column label="Sort" align="center" prop="orderNum" width="200"/>
 
       <el-table-column prop="status" label="Status"  width="100" >

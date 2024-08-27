@@ -60,14 +60,14 @@
         <el-button type="warning" plain icon="el-icon-download" size="mini" :loading="exportLoading" @click="handleExport"
           v-hasPermi="['wms:supplier:export']">Export</el-button>
       </el-col> -->
-      <right-toolbar :showSearch.sync="showSearch" @queryTable="getList" :columns="columns"></right-toolbar>
+      <right-toolbar :showSearch.sync="showSearch" @queryTable="getList" ></right-toolbar>
     </el-row>
 
     <WmsTable v-loading="loading" :data="wmsSupplierList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="No." align="center" prop="supplierNo" v-if="columns[0].visible" />
-      <el-table-column label="Supplier Name" align="center" prop="supplierName" v-if="columns[1].visible" />
-      <el-table-column label="Payment" align="center" class-name="small-padding fixed-width" v-if="columns[2].visible">
+      <el-table-column label="No." align="center" prop="supplierNo"  />
+      <el-table-column label="Supplier Name" align="center" prop="supplierName"  />
+      <el-table-column label="Payment" align="center" class-name="small-padding fixed-width" >
 
         <template slot-scope="scope">
           <p> {{ scope.row.payableAmount }}</p>
@@ -79,12 +79,12 @@
           </el-button>
         </template>
       </el-table-column>
-      <el-table-column label="Address" align="center" prop="address" v-if="columns[3].visible" />
-      <el-table-column label="Phone" align="center" prop="mobileNo" v-if="columns[4].visible" />
-       <el-table-column label="Contacts" align="center" prop="contact" v-if="columns[5].visible" />
-      <el-table-column label="Leave" align="center" prop="level" v-if="columns[6].visible" />
-      <el-table-column label="Email" align="center" prop="email" v-if="columns[7].visible" />
-      <el-table-column label="Remark" align="center" prop="remark" v-if="columns[8].visible" />
+      <el-table-column label="Address" align="center" prop="address"  />
+      <el-table-column label="Phone" align="center" prop="mobileNo"  />
+       <el-table-column label="Contacts" align="center" prop="contact"  />
+      <el-table-column label="Leave" align="center" prop="level"  />
+      <el-table-column label="Email" align="center" prop="email"  />
+      <el-table-column label="Remark" align="center" prop="remark"  />
       <el-table-column label="Operate" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button size="mini" type="text" icon="el-icon-edit" @click="handleUpdate(scope.row)"

@@ -110,7 +110,7 @@
       <right-toolbar
         :showSearch.sync="showSearch"
         @queryTable="getList"
-        :columns="columns"
+
       ></right-toolbar>
     </el-row>
 
@@ -124,31 +124,31 @@
         label="No."
         align="center"
         prop="rackNo"
-        v-if="columns[0].visible"
+
       />
       <el-table-column
         label="Shelf Name"
         align="center"
         prop="rackName"
-        v-if="columns[1].visible"
+
       />
       <el-table-column
         label="Area"
         align="center"
         prop="areaName"
-        v-if="columns[2].visible"
+
       />
       <el-table-column
         label="Warehouse"
         align="center"
         prop="warehouseName"
-        v-if="columns[3].visible"
+
       />
       <el-table-column
         label="Remark"
         align="center"
         prop="remark"
-        v-if="columns[4].visible"
+
       />
       <el-table-column
         label="Operate"

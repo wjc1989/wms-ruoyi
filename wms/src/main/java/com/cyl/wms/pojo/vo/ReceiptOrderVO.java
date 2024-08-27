@@ -17,27 +17,29 @@ public class ReceiptOrderVO extends BaseAudit {
    /** ID */
     private Long id;
    /** 入库单号 */
-    @Excel(name = "入库单号")
+    @Excel(name = "In Bround Order No.")
     private String receiptOrderNo;
-   /** 入库类型 */
-    @Excel(name = "入库类型")
+
     private Integer receiptOrderType;
    /** 供应商 */
-    @Excel(name = "供应商")
+    @Excel(name = "Supplier")
     private Long supplierId;
    /** 订单号 */
-    @Excel(name = "订单号")
+    @Excel(name = "Project")
     private String orderNo;
-    @Excel(name = "应付款合计")
+
     private BigDecimal payableAmount;
    /** 入库Status */
-    @Excel(name = "入库Status")
+    @Excel(name = "Status")
     private Integer receiptOrderStatus;
    /** Remark */
     @Excel(name = "Remark")
     private String remark;
     private Integer detailCount;
 
-    @Excel(name = "波次号")
     private String waveNo;
+    @Excel(name="Contact")
+    private String contact;
+    @Excel(name="Phone")
+    private String phone;
 }

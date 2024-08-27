@@ -26,19 +26,19 @@
     </el-form>
 
     <el-row :gutter="10" class="mb8">
-      <right-toolbar :showSearch.sync="showSearch" @queryTable="getList" :columns="columns"></right-toolbar>
+      <right-toolbar :showSearch.sync="showSearch" @queryTable="getList" ></right-toolbar>
     </el-row>
 
     <WmsTable v-loading="loading" :data="WaveList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="Wave No." align="center" prop="waveNo" v-if="columns[0].visible"/>
-      <el-table-column label="Status" align="center" prop="status" v-if="columns[1].visible">
+      <el-table-column label="Wave No." align="center" prop="waveNo" />
+      <el-table-column label="Status" align="center" prop="status" >
         <template slot-scope="scope">
           <dict-tag :options="dict.type.wms_wave_status" :value="scope.row.status"/>
         </template>
       </el-table-column>
-      <el-table-column label="Create Time" align="center" prop="createTime" v-if="columns[1].visible"/>
-      <el-table-column label="Remark" align="center" prop="remark" v-if="columns[2].visible"/>
+      <el-table-column label="Create Time" align="center" prop="createTime" />
+      <el-table-column label="Remark" align="center" prop="remark" />
       <el-table-column label="Operate" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
 <!--          <el-button-->

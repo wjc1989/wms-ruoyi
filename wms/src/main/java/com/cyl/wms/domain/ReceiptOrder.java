@@ -57,4 +57,7 @@ public class ReceiptOrder extends BaseAudit {
     @ApiModelProperty("波次号")
     private String waveNo;
 
+    private String contact;
+    private String phone;
+
 }

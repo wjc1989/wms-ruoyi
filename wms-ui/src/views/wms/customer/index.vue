@@ -46,14 +46,14 @@
         <el-button type="primary" plain icon="el-icon-plus" size="mini" @click="handleAdd"
           v-hasPermi="['wms:customer:add']">New</el-button>
       </el-col>
-      <right-toolbar :showSearch.sync="showSearch" @queryTable="getList" :columns="columns"></right-toolbar>
+      <right-toolbar :showSearch.sync="showSearch" @queryTable="getList" ></right-toolbar>
     </el-row>
 
     <WmsTable v-loading="loading" :data="wmsCustomerList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="No." align="center" prop="customerNo" v-if="columns[0].visible" />
-      <el-table-column label="Name" align="center" prop="customerName" v-if="columns[1].visible" />
-      <el-table-column label="Receivable" align="center" class-name="small-padding fixed-width" v-if="columns[2].visible">
+      <el-table-column label="No." align="center" prop="customerNo"  />
+      <el-table-column label="Name" align="center" prop="customerName"  />
+      <el-table-column label="Receivable" align="center" class-name="small-padding fixed-width" >
         <template slot-scope="scope">
           <p> {{ scope.row.receivableAmount }}</p>
           <el-button size="mini" type="text" @click="handleEnter(scope.row)">+应收
@@ -64,13 +64,13 @@
           </el-button>
         </template>
       </el-table-column>
-      <el-table-column label="Address" align="center" prop="address" v-if="columns[3].visible" />
-      <el-table-column label="Phone" align="center" prop="mobile" v-if="columns[4].visible" />
-       <el-table-column label="Contacts" align="center" prop="customerPerson" v-if="columns[5].visible" />
-      <el-table-column label="Leave" align="center" prop="customerLevel" v-if="columns[6].visible" />
-      <el-table-column label="Email" align="center" prop="email" v-if="columns[7].visible" />
-      <el-table-column label="Remark" align="center" prop="remark" v-if="columns[8].visible" />
-      <el-table-column label="Operate" align="center" class-name="small-padding fixed-width" v-if="columns[9].visible">
+      <el-table-column label="Address" align="center" prop="address"  />
+      <el-table-column label="Phone" align="center" prop="mobile"  />
+       <el-table-column label="Contacts" align="center" prop="customerPerson"  />
+      <el-table-column label="Leave" align="center" prop="customerLevel"  />
+      <el-table-column label="Email" align="center" prop="email"  />
+      <el-table-column label="Remark" align="center" prop="remark"  />
+      <el-table-column label="Operate" align="center" class-name="small-padding fixed-width" >
         <template slot-scope="scope">
           <el-button size="mini" type="text" icon="el-icon-edit" @click="handleUpdate(scope.row)"
             v-hasPermi="['wms:customer:edit']">Modify</el-button>

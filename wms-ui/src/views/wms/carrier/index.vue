@@ -119,19 +119,19 @@
           v-hasPermi="['wms:carrier:export']"
         >Export</el-button>
       </el-col> -->
-      <right-toolbar :showSearch.sync="showSearch" @queryTable="getList" :columns="columns"></right-toolbar>
+      <right-toolbar :showSearch.sync="showSearch" @queryTable="getList" ></right-toolbar>
     </el-row>
 
     <WmsTable v-loading="loading" :data="wmsCarrierList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="No." align="center" prop="carrierNo" v-if="columns[0].visible"/>
-      <el-table-column label="Name" align="center" prop="carrierName" v-if="columns[1].visible"/>
-      <el-table-column label="Address" align="center" prop="address" v-if="columns[2].visible"/>
-      <el-table-column label="Phone" align="center" prop="mobile" v-if="columns[3].visible"/>
-       <el-table-column label="Contacts" align="center" prop="contact" v-if="columns[4].visible"/>
-      <el-table-column label="Leave" align="center" prop="level" v-if="columns[5].visible"/>
-      <el-table-column label="Email" align="center" prop="email" v-if="columns[6].visible"/>
-      <el-table-column label="Remark" align="center" prop="remark" v-if="columns[7].visible"/>
+      <el-table-column label="No." align="center" prop="carrierNo" />
+      <el-table-column label="Name" align="center" prop="carrierName" />
+      <el-table-column label="Address" align="center" prop="address" />
+      <el-table-column label="Phone" align="center" prop="mobile" />
+       <el-table-column label="Contacts" align="center" prop="contact" />
+      <el-table-column label="Leave" align="center" prop="level" />
+      <el-table-column label="Email" align="center" prop="email" />
+      <el-table-column label="Remark" align="center" prop="remark" />
       <el-table-column label="Operate" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button

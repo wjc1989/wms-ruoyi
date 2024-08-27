@@ -202,28 +202,28 @@
         >Export
         </el-button>
       </el-col>
-      <right-toolbar :showSearch.sync="showSearch" @queryTable="getList" :columns="columns"></right-toolbar>
+      <right-toolbar :showSearch.sync="showSearch" @queryTable="getList" ></right-toolbar>
     </el-row>
 
     <WmsTable v-loading="loading" :data="wmsInventorySettlementDetailList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center"/>
-      <el-table-column label="Settlementid" align="center" prop="settlementId" v-if="columns[0].visible"/>
-      <el-table-column label="SettlementType,1:Monthly，2:Year-end" align="center" prop="settlementType" v-if="columns[1].visible"/>
-      <el-table-column label="Itemid" align="center" prop="itemId" v-if="columns[2].visible"/>
-      <el-table-column label="No." align="center" prop="itemNo" v-if="columns[3].visible"/>
-      <el-table-column label="Item" align="center" prop="itemName" v-if="columns[4].visible"/>
-      <el-table-column label="Warehouseid" align="center" prop="warehouseId" v-if="columns[5].visible"/>
-      <el-table-column label="WarehouseNo." align="center" prop="warehouseNo" v-if="columns[6].visible"/>
-      <el-table-column label="WarehouseItem" align="center" prop="warehouseName" v-if="columns[7].visible"/>
-      <el-table-column label="Areaid" align="center" prop="areaId" v-if="columns[8].visible"/>
-      <el-table-column label="AreaNo." align="center" prop="areaNo" v-if="columns[9].visible"/>
-      <el-table-column label="AreaItem" align="center" prop="areaName" v-if="columns[10].visible"/>
-      <el-table-column label=" Last inventory" align="center" prop="previousBalance" v-if="columns[11].visible"/>
-      <el-table-column label="Current Inbound" align="center" prop="currentEnter" v-if="columns[12].visible"/>
-      <el-table-column label="Current Outbound " align="center" prop="currentOut" v-if="columns[13].visible"/>
-      <el-table-column label="Current Count" align="center" prop="currentCheck" v-if="columns[14].visible"/>
-      <el-table-column label="Current Inventory" align="center" prop="currentBalance" v-if="columns[15].visible"/>
-      <el-table-column label="Remark" align="center" prop="remark" v-if="columns[16].visible"/>
+      <el-table-column label="Settlementid" align="center" prop="settlementId" />
+      <el-table-column label="SettlementType,1:Monthly，2:Year-end" align="center" prop="settlementType" />
+      <el-table-column label="Itemid" align="center" prop="itemId" />
+      <el-table-column label="No." align="center" prop="itemNo" />
+      <el-table-column label="Item" align="center" prop="itemName" />
+      <el-table-column label="Warehouseid" align="center" prop="warehouseId" />
+      <el-table-column label="WarehouseNo." align="center" prop="warehouseNo" />
+      <el-table-column label="WarehouseItem" align="center" prop="warehouseName" />
+      <el-table-column label="Areaid" align="center" prop="areaId" />
+      <el-table-column label="AreaNo." align="center" prop="areaNo" />
+      <el-table-column label="AreaItem" align="center" prop="areaName" />
+      <el-table-column label=" Last inventory" align="center" prop="previousBalance" />
+      <el-table-column label="Current Inbound" align="center" prop="currentEnter" />
+      <el-table-column label="Current Outbound " align="center" prop="currentOut" />
+      <el-table-column label="Current Count" align="center" prop="currentCheck" />
+      <el-table-column label="Current Inventory" align="center" prop="currentBalance" />
+      <el-table-column label="Remark" align="center" prop="remark" />
       <el-table-column label="Operate" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button

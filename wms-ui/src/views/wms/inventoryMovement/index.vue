@@ -32,32 +32,32 @@
         >New
         </el-button>
       </el-col>
-      <right-toolbar :showSearch.sync="showSearch" @queryTable="getList" :columns="columns"></right-toolbar>
+      <right-toolbar :showSearch.sync="showSearch" @queryTable="getList" ></right-toolbar>
     </el-row>
 
     <WmsTable v-loading="loading" :data="wmsInventoryMovementList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center"/>
-      <el-table-column label="No." align="center" prop="inventoryMovementNo" v-if="columns[0].visible"/>
-      <el-table-column label="Status" align="center" prop="status" v-if="columns[1].visible">
+      <el-table-column label="No." align="center" prop="inventoryMovementNo" />
+      <el-table-column label="Status" align="center" prop="status" >
         <template slot-scope="scope">
           <el-tag size="medium" effect="plain" :type="getStatusTag(scope.row)">
             {{ getStatus(scope.row) }}
           </el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="Create Time" align="center" prop="createTime" width="180" v-if="columns[2].visible">
+      <el-table-column label="Create Time" align="center" prop="createTime" width="180" >
         <template slot-scope="scope">
           <span>{{ parseTime(scope.row.createTime, '') }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Remark" align="center" prop="remark" v-if="columns[3].visible">
+      <el-table-column label="Remark" align="center" prop="remark" >
         <template v-slot="{ row }">
           <el-popover placement="left" width="300" trigger="hover" :content="row.remark" popper-class="popperOptions">
             <p class="showOverTooltip" slot="reference">{{ row.remark }}</p>
           </el-popover>
         </template>
       </el-table-column>
-      <el-table-column label="Item" align="center" prop="remark" v-if="columns[4].visible">
+      <el-table-column label="Item" align="center" prop="remark" >
         <template slot-scope="scope">
           <p>Plan Count：{{ scope.row.detailCount }}</p>
           <p>Real Count：{{ scope.row.itemCount }}</p>

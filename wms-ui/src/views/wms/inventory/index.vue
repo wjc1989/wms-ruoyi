@@ -27,7 +27,7 @@
                    v-hasPermi="['wms:item:export']">Export
         </el-button>
       </el-col>
-      <right-toolbar :columns="columns" :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
+      <right-toolbar  :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
     <component :is="currentComponent" v-loading="loading" @update="getList"  :table-data="wmsInventoryList"></component>
     <pagination v-show="total&gt;0" :limit.sync="pageReq.size" :page.sync="pageReq.page" :total="total"

@@ -2,7 +2,7 @@
   <div class="receipt-order-edit-wrapper app-container">
     <div class="receipt-order-content">
       <el-form label-width="138px" :model="form" ref="form" :rules="rules">
-        <el-form-item label="Receipt Order No." prop="receiptOrderNo">
+        <el-form-item label="Inbound Order No." prop="receiptOrderNo">
           <el-input class="w200" v-model="form.receiptOrderNo" placeholder="Inbound No." disabled="disabled"></el-input>
         </el-form-item>
 
@@ -16,7 +16,12 @@
         <el-form-item label="Project" prop="orderNo">
           <el-input v-model="form.orderNo" placeholder="Please Input Project"></el-input>
         </el-form-item>
-
+        <el-form-item label="Contact" prop="contact">
+          <el-input v-model="form.contact" placeholder="Please Input Contact"></el-input>
+        </el-form-item>
+        <el-form-item label="Phone" prop="phone">
+          <el-input v-model="form.phone"  placeholder="Please Input Phone"></el-input>
+        </el-form-item>
         <el-form-item label="Remark" prop="remark">
           <el-input v-model="form.remark" placeholder="Remark...Maximum 100 characters" rows="3" maxlength="100" type="textarea"
                     show-word-limit="show-word-limit"></el-input>
@@ -271,7 +276,9 @@ export default {
         createTime: null,
         updateBy: null,
         updateTime: null,
-        details: []
+        details: [],
+        contact:null,
+        phone:null
       }
       this.resetForm('form')
     },

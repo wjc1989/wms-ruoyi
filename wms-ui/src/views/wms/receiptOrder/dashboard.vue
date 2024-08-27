@@ -32,12 +32,12 @@
         </el-button>
       </el-col>
 
-      <right-toolbar :columns="columns" :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
+      <right-toolbar  :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
     <WmsTable v-loading="loading" :data="wmsReceiptOrderList" @selection-change="handleSelectionChange">
       <el-table-column align="center" type="selection" width="55"></el-table-column>
-      <el-table-column v-if="columns[0].visible" align="center" label="Inbound No."  prop="receiptOrderNo"></el-table-column>
-      <el-table-column v-if="columns[1].visible" align="center" label="Inbound Type">
+      <el-table-column  align="center" label="Inbound No."  prop="receiptOrderNo"></el-table-column>
+      <el-table-column  align="center" label="Inbound Type">
         <template slot-scope="scope">
           <el-tag effect="plain" size="medium" :type="getReceiptOrderTypeTag(scope.row)">{{
               getReceiptOrderType(scope.row)
@@ -45,9 +45,11 @@
           </el-tag>
         </template>
       </el-table-column>
-      <el-table-column v-if="columns[2].visible" align="center" :formatter="getSupplier"  label="Supplier"></el-table-column>
-      <el-table-column v-if="columns[3].visible" align="center" label="Project" prop="orderNo"></el-table-column>
-      <el-table-column v-if="columns[4].visible" align="center" label="Status">
+      <el-table-column  align="center" :formatter="getSupplier"  label="Supplier"></el-table-column>
+      <el-table-column  align="center" label="Project" prop="orderNo"></el-table-column>
+      <el-table-column  align="center" label="Contact" prop="contact"></el-table-column>
+      <el-table-column  align="center" label="Phone" prop="phone"></el-table-column>
+      <el-table-column  align="center" label="Status">
         <template slot-scope="scope">
           <el-tag effect="plain" size="medium" :type="getReceiptOrderStatusTag(scope.row)">{{
               getReceiptOrderStatus(scope.row)
@@ -55,7 +57,7 @@
           </el-tag>
         </template>
       </el-table-column>
-      <el-table-column v-if="columns[6].visible" align="center" label="Remark" prop="remark">
+      <el-table-column  align="center" label="Remark" prop="remark">
         <template v-slot="{ row }">
           <el-popover placement="left" width="300" trigger="hover" :content="row.remark" popper-class="popperOptions">
             <p class="showOverTooltip" slot="reference">{{ row.remark }}</p>

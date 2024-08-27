@@ -64,10 +64,10 @@
                 </div>
 
                 <WmsTable v-loading="loading" :data="wmsAreaList">
-                  <el-table-column label="No." align="center" prop="areaNo" v-if="columns[0].visible" />
-                  <el-table-column label="Warehouse" align="center" prop="warehouseName" v-if="columns[2].visible" />
-                  <el-table-column label="Area Name" align="center" prop="areaName" v-if="columns[1].visible" />
-                  <el-table-column label="Remark" align="center" prop="remark" v-if="columns[3].visible" />
+                  <el-table-column label="No." align="center" prop="areaNo"  />
+                  <el-table-column label="Warehouse" align="center" prop="warehouseName"  />
+                  <el-table-column label="Area Name" align="center" prop="areaName"  />
+                  <el-table-column label="Remark" align="center" prop="remark"  />
                   <el-table-column label="Operate" align="center" class-name="small-padding fixed-width">
                     <template slot-scope="scope">
                       <el-button size="mini" type="text" icon="el-icon-edit" @click.stop="handleUpdateArea(scope.row)"

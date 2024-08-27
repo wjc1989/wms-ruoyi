@@ -42,11 +42,11 @@
     </el-form>
 
     <el-row :gutter="10" class="mb8">
-      <right-toolbar :showSearch.sync="showSearch" @queryTable="getList" :columns="columns"></right-toolbar>
+      <right-toolbar :showSearch.sync="showSearch" @queryTable="getList" ></right-toolbar>
     </el-row>
 
     <WmsTable v-loading="loading" :data="wmsDeliveryList" @selection-change="handleSelectionChange">
-      <el-table-column label="Outbound " align="center" prop="shipmentOrderId" v-if="columns[0].visible">
+      <el-table-column label="Outbound " align="center" prop="shipmentOrderId" >
         <template slot-scope="scope">
           <el-button size="mini"
                      type="text"
@@ -55,13 +55,13 @@
         </template>
       </el-table-column>
       <el-table-column label=" Carrier" align="center" prop="carrierId" :formatter="getCarrier"
-                       v-if="columns[1].visible"/>
-      <el-table-column label="Outbound Date" align="center" prop="deliveryDate" width="180" v-if="columns[2].visible">
+                       />
+      <el-table-column label="Outbound Date" align="center" prop="deliveryDate" width="180" >
         <template slot-scope="scope">
           <span>{{ parseTime(scope.row.deliveryDate, '') }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Tracking No." align="center" prop="trackingNo" v-if="columns[3].visible">
+      <el-table-column label="Tracking No." align="center" prop="trackingNo" >
         <!--        https://www.kuaidi100.com/chaxun?com=[]&nu=[]-->
         <template slot-scope="scope">
           <a
@@ -72,7 +72,7 @@
           </a>
         </template>
       </el-table-column>
-      <el-table-column label="Remark" align="center" prop="remark" v-if="columns[4].visible"/>
+      <el-table-column label="Remark" align="center" prop="remark" />
     </WmsTable>
 
     <pagination

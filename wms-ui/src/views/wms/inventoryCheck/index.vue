@@ -56,37 +56,37 @@
         >Export
         </el-button>
       </el-col> -->
-      <right-toolbar :showSearch.sync="showSearch" @queryTable="getList" :columns="columns"></right-toolbar>
+      <right-toolbar :showSearch.sync="showSearch" @queryTable="getList" ></right-toolbar>
     </el-row>
 
     <WmsTable v-loading="loading" :data="wmsInventoryCheckList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center"/>
       <el-table-column label="InventoryCountNo." align="center" prop="inventoryCheckNo"
-                       v-if="columns[0].visible"/>
-      <!--      <el-table-column label="InventoryCountType" align="center" prop="inventoryCheckType" v-if="columns[1].visible"/>-->
+                       />
+      <!--      <el-table-column label="InventoryCountType" align="center" prop="inventoryCheckType" />-->
 
-      <el-table-column label="Change" align="center" prop="inventoryCheckTotal" v-if="columns[3].visible"/>
-      <!--      <el-table-column label=" Review Status" align="center" prop="checkStatus" v-if="columns[4].visible"/>
-            <el-table-column label=" Review 人" align="center" prop="checkUserId" v-if="columns[5].visible"/>
-            <el-table-column label=" Review  Time" align="center" prop="checkTime" width="180" v-if="columns[6].visible">
+      <el-table-column label="Change" align="center" prop="inventoryCheckTotal" />
+      <!--      <el-table-column label=" Review Status" align="center" prop="checkStatus" />
+            <el-table-column label=" Review 人" align="center" prop="checkUserId" />
+            <el-table-column label=" Review  Time" align="center" prop="checkTime" width="180" >
               <template slot-scope="scope">
                 <span>{{ parseTime(scope.row.checkTime, '') }}</span>
               </template>
             </el-table-column>-->
-      <!--      <el-table-column label="Warehouse" align="center" prop="warehouseId" v-if="columns[7].visible"/>
-            <el-table-column label="Area" align="center" prop="areaId" v-if="columns[8].visible"/>-->
-      <el-table-column label="Warehouse" align="center" prop="rackId" v-if="columns[4].visible">
+      <!--      <el-table-column label="Warehouse" align="center" prop="warehouseId" />
+            <el-table-column label="Area" align="center" prop="areaId" />-->
+      <el-table-column label="Warehouse" align="center" prop="rackId" >
         <template v-slot="{ row }"><span>{{ row.warehouseName }}</span><span
           v-if="row.areaName">/{{ row.areaName }}</span><span v-if="row.rackName">/{{ row.rackName }}</span></template>
       </el-table-column>
-      <el-table-column label="InventoryCountStatus" align="center" prop="inventoryCheckStatus" v-if="columns[2].visible">
+      <el-table-column label="InventoryCountStatus" align="center" prop="inventoryCheckStatus" >
         <template slot-scope="scope">
           <dict-tag :options="dict.type.wms_check_status" :value="scope.row.inventoryCheckStatus"/>
         </template>
 
       </el-table-column>
 
-      <el-table-column label="Remark" align="center" prop="remark" v-if="columns[11].visible"/>
+      <el-table-column label="Remark" align="center" prop="remark" />
       <el-table-column label="Operate" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button

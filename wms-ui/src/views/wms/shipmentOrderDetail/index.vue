@@ -96,17 +96,17 @@
           v-hasPermi="['wms:shipmentOrderDetail:export']"
         >Export</el-button>
       </el-col>
-      <right-toolbar :showSearch.sync="showSearch" @queryTable="getList" :columns="columns"></right-toolbar>
+      <right-toolbar :showSearch.sync="showSearch" @queryTable="getList" ></right-toolbar>
     </el-row>
 
     <WmsTable v-loading="loading" :data="wmsShipmentOrderDetailList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="Outbound " align="center" prop="shipmentOrderId" v-if="columns[0].visible"/>
-      <el-table-column label="Item" align="center" prop="itemId" v-if="columns[1].visible"/>
-      <el-table-column label="Plan Count" align="center" prop="planQuantity" v-if="columns[2].visible"/>
-      <el-table-column label="Real Count" align="center" prop="realQuantity" v-if="columns[3].visible"/>
-      <el-table-column label="Rack" align="center" prop="rackId" v-if="columns[4].visible"/>
-      <el-table-column label="Remark" align="center" prop="remark" v-if="columns[5].visible"/>
+      <el-table-column label="Outbound " align="center" prop="shipmentOrderId" />
+      <el-table-column label="Item" align="center" prop="itemId" />
+      <el-table-column label="Plan Count" align="center" prop="planQuantity" />
+      <el-table-column label="Real Count" align="center" prop="realQuantity" />
+      <el-table-column label="Rack" align="center" prop="rackId" />
+      <el-table-column label="Remark" align="center" prop="remark" />
       <el-table-column label="Operate" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button

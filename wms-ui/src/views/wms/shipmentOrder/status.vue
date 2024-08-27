@@ -44,15 +44,15 @@
 
       <div class="table">
         <WmsTable v-loading="loading" :data="form.delivery" @selection-change="handleSelectionChange">
-          <el-table-column label="Outbound No." align="center" prop="shipmentOrderId" v-if="columns[0].visible"/>
+          <el-table-column label="Outbound No." align="center" prop="shipmentOrderId" />
           <el-table-column label=" Carrier" align="center" :formatter="getCarrier" prop="carrierId"
-                           v-if="columns[1].visible"/>
-          <el-table-column label="Outbound Date" align="center" prop="deliveryDate" width="180" v-if="columns[2].visible">
+                           />
+          <el-table-column label="Outbound Date" align="center" prop="deliveryDate" width="180" >
             <template slot-scope="scope">
               <span>{{ parseTime(scope.row.deliveryDate, '') }}</span>
             </template>
           </el-table-column>
-          <el-table-column label="Tracking No." align="center" prop="trackingNo" v-if="columns[3].visible">
+          <el-table-column label="Tracking No." align="center" prop="trackingNo" >
             <!--        https://www.kuaidi100.com/chaxun?com=[]&nu=[]-->
             <template slot-scope="scope">
             <!--  <a
@@ -64,7 +64,7 @@
               <!--</a>-->
             </template>
           </el-table-column>
-          <el-table-column label="Remark" align="center" prop="remark" v-if="columns[4].visible"/>
+          <el-table-column label="Remark" align="center" prop="remark" />
         </WmsTable>
       </div>
       <el-row class="mb8 mt10" :gutter="10">

@@ -34,28 +34,28 @@
 
     <WmsTable v-loading="loading" :data="wmsSupplierTransactionList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="Trade No." align="center" prop="transactionCode" v-if="columns[0].visible" />
-      <el-table-column label="Supplier" align="center" prop="supplierId" v-if="columns[1].visible">
+      <el-table-column label="Trade No." align="center" prop="transactionCode"  />
+      <el-table-column label="Supplier" align="center" prop="supplierId" >
         <template slot-scope="scope">
           {{ getSupplierName(scope.row) }}
         </template>
       </el-table-column>
-      <el-table-column label="Trade Type" align="center" prop="transactionType" v-if="columns[2].visible">
+      <el-table-column label="Trade Type" align="center" prop="transactionType" >
         <template slot-scope="scope">
           <dict-tag :options="dict.type.wms_supplier_transaction_type" :value="scope.row.transactionType" />
         </template>
       </el-table-column>
-      <el-table-column label="Trade Amount" align="center" prop="transactionAmount" v-if="columns[3].visible">
+      <el-table-column label="Trade Amount" align="center" prop="transactionAmount" >
         <template slot-scope="scope">
           <span style="color:red">{{scope.row.transactionType==11 ? "-":"+"}} {{scope.row.transactionAmount}}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Last balance" align="center" prop="previousBalance" v-if="columns[4].visible" />
-      <el-table-column label="Current balance" align="center" prop="currentBalance" v-if="columns[5].visible" />
-      <el-table-column label="Inbound No." align="center" prop="receiptOrderId" v-if="columns[6].visible" />
-      <el-table-column label="Remark" align="center" prop="remark" v-if="columns[7].visible" />
-      <el-table-column label="Create Time" align="center" prop="createTime" v-if="columns[8].visible" />
-      <el-table-column label="Operate" align="center" class-name="small-padding fixed-width" v-if="columns[9].visible">
+      <el-table-column label="Last balance" align="center" prop="previousBalance"  />
+      <el-table-column label="Current balance" align="center" prop="currentBalance"  />
+      <el-table-column label="Inbound No." align="center" prop="receiptOrderId"  />
+      <el-table-column label="Remark" align="center" prop="remark"  />
+      <el-table-column label="Create Time" align="center" prop="createTime"  />
+      <el-table-column label="Operate" align="center" class-name="small-padding fixed-width" >
         <template slot-scope="scope">
           <el-button size="mini" type="text" icon="el-icon-edit" @click="handleUpdate(scope.row)"
             v-hasPermi="['wms:wmsSupplierTransaction:edit']">Modify</el-button>

@@ -122,25 +122,25 @@
         <el-card style="padding-bottom: 20px; font-size: 14px;margin-top: 20px;">
           <div slot="header" ref="expiry"><span>Expiry Goods</span></div>
           <WmsTable v-loading="loading" :data="expiryList">
-            <el-table-column label="ID" align="center" prop="itemNo" v-if="columns[0].visible" />
-            <el-table-column label="Goods" align="center" prop="itemName" v-if="columns[1].visible">
+            <el-table-column label="ID" align="center" prop="itemNo"  />
+            <el-table-column label="Goods" align="center" prop="itemName" >
               <template slot-scope="scope">
                 <span style="color:red;">{{ scope.row.itemName }}</span>
               </template>
             </el-table-column>
-            <el-table-column label="Type" align="center" prop="itemTypeName" v-if="columns[2].visible" />
-            <el-table-column label="Unit" align="center" prop="unit" v-if="columns[3].visible" />
-            <el-table-column label="Warehouse" align="center" prop="warehouseName"  width="100" v-if="columns[6].visible" />
-            <el-table-column label="Area" align="center" prop="areaName" v-if="columns[5].visible" />
-            <el-table-column label="Shelf Name" align="center" prop="rackName" v-if="columns[4].visible" />
-            <el-table-column label="Safty Count" align="center" prop="quantity"  width="100" v-if="columns[7].visible" />
-            <el-table-column label="Expiry Date" align="center" prop="expiryDate" width="180" v-if="columns[8].visible">
+            <el-table-column label="Type" align="center" prop="itemTypeName"  />
+            <el-table-column label="Unit" align="center" prop="unit"  />
+            <el-table-column label="Warehouse" align="center" prop="warehouseName"  width="100"  />
+            <el-table-column label="Area" align="center" prop="areaName"  />
+            <el-table-column label="Shelf Name" align="center" prop="rackName"  />
+            <el-table-column label="Safty Count" align="center" prop="quantity"  width="100"  />
+            <el-table-column label="Expiry Date" align="center" prop="expiryDate" width="180" >
               <template slot-scope="scope">
                 <span style="color:red;font-weight: bold;">{{ parseTime(scope.row.expiryDate, "{yyyy}-{mm}-{dd}")
                 }}</span>
               </template>
             </el-table-column>
-            <el-table-column label="Remark" align="center" prop="remark" v-if="columns[9].visible" />
+            <el-table-column label="Remark" align="center" prop="remark"  />
           </WmsTable>
           <pagination v-show="totalExpiry > 0" :total="totalExpiry" :page.sync="queryExpiryParams.pageNum"
             :limit.sync="queryExpiryParams.pageSize" @pagination="getExpiryList" :autoScroll="ifScroll" />

@@ -23,21 +23,21 @@
                    plain="plain" size="mini" type="warning" @click="handleExport">Export
         </el-button>
       </el-col>
-      <right-toolbar :columns="columns" :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
+      <right-toolbar  :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
     <WmsTable v-loading="loading" :data="wmsInventoryHistoryList" @selection-change="handleSelectionChange">
-      <el-table-column v-if="columns[1].visible" align="center" label="Type" prop="formType">
+      <el-table-column  align="center" label="Type" prop="formType">
         <template v-slot="{ row }"><span>{{ row.formType ? opTypeMap[row.formType] : row.formType }}</span></template>
       </el-table-column>
-      <el-table-column v-if="columns[2].visible" align="center" label="Goods Name" prop="itemName"></el-table-column>
+      <el-table-column  align="center" label="Goods Name" prop="itemName"></el-table-column>
       <el-table-column align="center" label="Goods No." prop="itemNo"></el-table-column>
-      <el-table-column v-if="columns[3].visible" align="center" label="Warehouse" prop="rackId">
+      <el-table-column  align="center" label="Warehouse" prop="rackId">
         <template v-slot="{ row }"><span>{{ row.warehouseName }}</span><span
           v-if="row.areaName">/{{ row.areaName }}</span></template>
       </el-table-column>
-      <el-table-column v-if="columns[4].visible" align="center" label="Inventory Change" prop="quantity"></el-table-column>
-      <el-table-column v-if="columns[4].visible" align="center" label="Date" prop="createTime"></el-table-column>
-      <el-table-column v-if="columns[5].visible" align="center" label="Remark" prop="remark"></el-table-column>
+      <el-table-column  align="center" label="Inventory Change" prop="quantity"></el-table-column>
+      <el-table-column  align="center" label="Date" prop="createTime"></el-table-column>
+      <el-table-column  align="center" label="Remark" prop="remark"></el-table-column>
     </WmsTable>
     <pagination v-show="total&gt;0" :limit.sync="queryParams.pageSize" :page.sync="queryParams.pageNum" :total="total"
                 @pagination="getList"></pagination>

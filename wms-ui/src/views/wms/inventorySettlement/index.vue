@@ -82,7 +82,7 @@
       <right-toolbar
         :showSearch.sync="showSearch"
         @queryTable="getList"
-        :columns="columns"
+
       ></right-toolbar>
     </el-row>
 
@@ -96,19 +96,19 @@
         label="SettlementNo."
         align="center"
         prop="inventorySettlementNo"
-        v-if="columns[3].visible"
+
       />
       <el-table-column
         label="Settlement Cycle"
         align="center"
-        v-if="columns[0].visible"
+
       >
         <template slot-scope="scope">
           <span>{{ formatInventorySettlementPeriod(scope.row) }}</span>
         </template>
 
       </el-table-column>
-      <el-table-column label="SettlementStatus" align="center" prop="inventorySettlementStatus" v-if="columns[0].visible">
+      <el-table-column label="SettlementStatus" align="center" prop="inventorySettlementStatus" >
         <template slot-scope="scope">
           <dict-tag :options="dict.type.wms_settlement_status" :value="scope.row.inventorySettlementStatus"/>
         </template>
@@ -117,13 +117,13 @@
               label="SettlementType"
               align="center"
               prop="settlementType"
-              v-if="columns[1].visible"
+
             />-->
       <el-table-column
         label="Remark"
         align="center"
         prop="remark"
-        v-if="columns[2].visible"
+
       />
       <el-table-column
         label="Operate"

@@ -19,21 +19,21 @@ public class ReceiptOrderDetailVO extends BaseAudit {
    /** 入库单号 */
     @Excel(name = "In bround No.")
     private Long receiptOrderId;
-    @Excel(name = "订单号")
+    @Excel(name = "Project")
     private String orderNo;
    /** Goods  */
-    @Excel(name = "Goods ")
+    @Excel(name = "Goods")
     private Long itemId;
    /** 计划数量 */
-    @Excel(name = "计划数量")
+    @Excel(name = "Plan Quantity")
     private BigDecimal planQuantity;
    /** 实际数量 */
-    @Excel(name = "实际数量")
+    @Excel(name = "Real Quantity")
     private BigDecimal realQuantity;
    /** 所属货架 */
-    @Excel(name = "所属货架")
+    @Excel(name = "Shelf ID")
     private Long rackId;
-    @Excel(name = "金额")
+    @Excel(name = "Aumont")
     private BigDecimal money;
    /** Remark */
     @Excel(name = "Remark")
@@ -45,8 +45,14 @@ public class ReceiptOrderDetailVO extends BaseAudit {
     @Excel(name = "Area")
     private Long areaId;
    /** 入库Status */
-    @Excel(name = "入库Status")
+    @Excel(name = "Status")
     private Integer receiptOrderStatus;
+
     private Integer delFlag;
+
+    private String contact;
+
+    private String phone;
+
     private List<Long> place;
 }

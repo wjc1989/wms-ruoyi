@@ -122,20 +122,20 @@
           v-hasPermi="['wms:receiptOrderDetail:export']"
         >Export</el-button>
       </el-col>
-      <right-toolbar :showSearch.sync="showSearch" @queryTable="getList" :columns="columns"></right-toolbar>
+      <right-toolbar :showSearch.sync="showSearch" @queryTable="getList" ></right-toolbar>
     </el-row>
 
     <WmsTable v-loading="loading" :data="wmsReceiptOrderDetailList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="Inbound No." align="center" prop="receiptOrderId" v-if="columns[0].visible"/>
-      <el-table-column label="Item" align="center" prop="itemId" v-if="columns[1].visible"/>
-      <el-table-column label="Plan Count" align="center" prop="planQuantity" v-if="columns[2].visible"/>
-      <el-table-column label="Real Count" align="center" prop="realQuantity" v-if="columns[3].visible"/>
-      <el-table-column label="Shelf Name" align="center" prop="rackId" v-if="columns[4].visible"/>
-      <el-table-column label="Remark" align="center" prop="remark" v-if="columns[5].visible"/>
-      <el-table-column label="Warehouse" align="center" prop="warehouseId" v-if="columns[6].visible"/>
-      <el-table-column label="Area" align="center" prop="areaId" v-if="columns[7].visible"/>
-      <el-table-column label="Status" align="center" prop="receiptOrderStatus" v-if="columns[8].visible"/>
+      <el-table-column label="Inbound No." align="center" prop="receiptOrderId" />
+      <el-table-column label="Item" align="center" prop="itemId" />
+      <el-table-column label="Plan Count" align="center" prop="planQuantity" />
+      <el-table-column label="Real Count" align="center" prop="realQuantity" />
+      <el-table-column label="Shelf Name" align="center" prop="rackId" />
+      <el-table-column label="Remark" align="center" prop="remark" />
+      <el-table-column label="Warehouse" align="center" prop="warehouseId" />
+      <el-table-column label="Area" align="center" prop="areaId" />
+      <el-table-column label="Status" align="center" prop="receiptOrderStatus" />
       <el-table-column label="Operate" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button

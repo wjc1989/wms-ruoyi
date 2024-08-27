@@ -66,28 +66,28 @@
         <el-button type="warning" plain icon="el-icon-download" size="mini" :loading="exportLoading" @click="handleExport"
           v-hasPermi="['wms:item:export']">Export</el-button>
       </el-col>
-      <right-toolbar :showSearch.sync="showSearch" @queryTable="getList" :columns="columns"></right-toolbar>
+      <right-toolbar :showSearch.sync="showSearch" @queryTable="getList" ></right-toolbar>
     </el-row>
 
     <WmsTable v-loading="loading" :data="wmsItemList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="No." align="center" prop="itemNo" v-if="columns[0].visible" />
-      <el-table-column label="Goods Name" align="center" prop="itemName" v-if="columns[1].visible" />
-      <el-table-column label="Pic" align="center" prop="pics" v-if="columns[2].visible" >
+      <el-table-column label="No." align="center" prop="itemNo"  />
+      <el-table-column label="Goods Name" align="center" prop="itemName"  />
+      <el-table-column label="Pic" align="center" prop="pics"  >
         <template slot-scope="scope">
           <span><ImagePreview v-if="scope.row.pics!=null" :src="scope.row.pics" class="listimage" ></ImagePreview></span>
         </template>
       </el-table-column>
 
-      <el-table-column label="Category" align="center" prop="itemTypeName" v-if="columns[3].visible" />
-      <el-table-column label="Unit" align="center" prop="unit" v-if="columns[4].visible" />
-      <el-table-column label="Safty Count" align="center" prop="quantity" v-if="columns[5].visible" />
-      <el-table-column label="Expiry Date" align="center" prop="expiryDate" width="180" v-if="columns[6].visible">
+      <el-table-column label="Category" align="center" prop="itemTypeName"  />
+      <el-table-column label="Unit" align="center" prop="unit"  />
+      <el-table-column label="Safty Count" align="center" prop="quantity"  />
+      <el-table-column label="Expiry Date" align="center" prop="expiryDate" width="180" >
         <template slot-scope="scope">
           <span>{{ parseTime(scope.row.expiryDate, "") }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Remark" align="center" prop="remark" v-if="columns[7].visible" />
+      <el-table-column label="Remark" align="center" prop="remark"  />
       <el-table-column label="Operate" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button size="mini" type="text" icon="el-icon-edit" @click.stop="handleUpdate(scope.row)"
