@@ -104,7 +104,7 @@
 </template>
 
 <script>
-  import {addOrUpdateWmsReceiptOrder, getWmsReceiptOrder} from '@/api/wms/receiptOrder'
+import {addOrUpdateWmsReceiptOrder, getWmsReceiptOrder} from '@/api/wms/receiptOrder'
 import {randomId} from '@/utils/RandomUtils'
 import ItemSelect from '@/views/components/ItemSelect'
 import BatchWarehouseDialog from "@/views/components/wms/BatchWarehouseDialog/index.vue";
@@ -240,6 +240,7 @@ export default {
             it.prod.rackId = null
           }
           return {
+            id: it.id,
             itemId: it.prod.id,
             rackId: it.prod.rackId,
             areaId: it.prod.areaId,
@@ -263,14 +264,18 @@ export default {
       getWmsReceiptOrder(id).then(response => {
         const {details, items} = response
         const map = {};
+        //循环商品放入map
         (items || []).forEach(it => {
           map[it.id] = it
         });
+        //循环入库明细把商品信息填上
         details && details.forEach(it => it.prod = map[it.itemId])
+
         this.form = {
           ...response,
           details
         }
+        console.log("loadDetail-form:",this.form)
       })
     },
     // 表Reset

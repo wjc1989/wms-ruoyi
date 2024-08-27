@@ -93,10 +93,13 @@ public class ReceiptOrderService {
         ReceiptOrderDetailQuery query = new ReceiptOrderDetailQuery();
         query.setReceiptOrderId(id);
         ReceiptOrderForm form = receiptOrderConvert.do2form(orders.get(0));
+        //查询订单明细
         List<ReceiptOrderDetail> receiptOrderDetails = receiptOrderDetailService.selectList(query, null);
         List<ReceiptOrderDetailVO> receiptOrderDetailVOS = receiptOrderDetailService.toVos(receiptOrderDetails);
         form.setDetails(receiptOrderDetailVOS);
+
         if (!CollUtil.isEmpty(form.getDetails())) {
+            //如果明细不为空，把所有商品提出来放到一个list里
             List<Long> itemIds = form.getDetails().stream().map(ReceiptOrderDetailVO::getItemId).distinct().collect(Collectors.toList());
             ItemQuery query1 = new ItemQuery();
             query1.setIds(itemIds);
@@ -170,8 +173,15 @@ public class ReceiptOrderService {
         // 1. 新增
         receiptOrder.setDelFlag(0);
         receiptOrder.setCreateTime(LocalDateTime.now());
+
+
+
+
         res = receiptOrderMapper.insert(receiptOrder);
         saveDetails(receiptOrder.getId(), receiptOrder.getDetails());
+
+
+
         if (receiptOrder.getSupplierId() != null && receiptOrder.getPayableAmount() != null) {
             //保存订单金额到供应商流水表
             saveOrUpdatePayAmount(receiptOrder);
@@ -195,15 +205,23 @@ public class ReceiptOrderService {
 
         // 新旧入库单详情对比， 生成 Quantity记录修改
         List<ReceiptOrderDetailVO> details = receiptOrder.getDetails();
-        Map<Long, ReceiptOrderDetail> dbDetailMap = receiptOrderDetailMapper.selectList(qw).stream().collect(Collectors.toMap(ReceiptOrderDetail::getId, it -> it));
+        //查出库里的入库明细
+        Map<Long, ReceiptOrderDetail> dbDetailMap =
+                receiptOrderDetailMapper.selectList(qw)
+                .stream()
+                .collect(Collectors.toMap(ReceiptOrderDetail::getId, it -> it));
+
         List<InventoryHistory> adds = new ArrayList<>();
         LocalDateTime now = LocalDateTime.now();
         Long userId = SecurityUtils.getUserId();
+
         details.forEach(it -> {
             Integer status = it.getReceiptOrderStatus();
+            //状态不是入库的不处理
             if (status != ReceiptOrderConstant.PART_IN && status != ReceiptOrderConstant.ALL_IN) {
                 return;
             }
+
             // 新增时， status一定是未入库， 所以这个地方必定有值
             ReceiptOrderDetail dbDetail = dbDetailMap.get(it.getId());
             // 如果上次的Status不是部分入库或者全部入库，则本次的Quantity变化为本次的全部

@@ -54,5 +54,5 @@ public class ReceiptOrderDetailVO extends BaseAudit {
 
     private String phone;
 
-    private List<Long> place;
+    private List<Long> place;//warehouseids,areaIds,shelfIds
 }
