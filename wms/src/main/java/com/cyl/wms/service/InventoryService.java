@@ -252,9 +252,8 @@ public class InventoryService {
         // 对插入的数据进行分组
         List<InventoryHistory> racks = new ArrayList<>();
         List<InventoryHistory> areas = new ArrayList<>();
-
-
         List<InventoryHistory> warehouses = new ArrayList<>();
+
         list.forEach(it -> {
             if (it.getRackId() != null) {
                 racks.add(it);
@@ -268,6 +267,8 @@ public class InventoryService {
         });
         int res = 0;
         if (warehouses.size() > 0) {
+//inventoryMapper::selectAllByWarehouseAndItemId
+            //
             res += saveData(warehouses, now, userId,
                     it -> it.getWarehouseId() + "_" + it.getItemId(),inventoryMapper::selectAllByWarehouseAndItemId
             );

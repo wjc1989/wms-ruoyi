@@ -217,29 +217,29 @@ public class ReceiptOrderService {
 
         details.forEach(it -> {
             Integer status = it.getReceiptOrderStatus();
-            //状态不是入库的不处理
+            //状态不是入库的，不涉及库存数量变更，不处理
             if (status != ReceiptOrderConstant.PART_IN && status != ReceiptOrderConstant.ALL_IN) {
                 return;
             }
 
-            // 新增时， status一定是未入库， 所以这个地方必定有值
+            //查出数据库中对应的该条detail
             ReceiptOrderDetail dbDetail = dbDetailMap.get(it.getId());
-            // 如果上次的Status不是部分入库或者全部入库，则本次的Quantity变化为本次的全部
             Integer status1 = dbDetail.getReceiptOrderStatus();
             BigDecimal added;
+            // 如果数据库中的状态不是部分入库或者全部入库，则本次的实际入库数量数量变化为全部入库
+            //否则本次新入库的数据为本次总数量-上一次的真实入库数量
             if (status1 != ReceiptOrderConstant.PART_IN && status1 != ReceiptOrderConstant.ALL_IN) {
                 added = it.getRealQuantity();
             } else {
                 BigDecimal before = dbDetail.getRealQuantity() == null ? BigDecimal.ZERO : dbDetail.getRealQuantity();
                 BigDecimal after = it.getRealQuantity() == null ? BigDecimal.ZERO : it.getRealQuantity();
-                // 数量变化有问题
                 if (before.compareTo(after) >= 0) {
                     return;
                 }
                 added = after.subtract(before);
             }
 
-            // 1. 前一次的实际数量是 0
+            // 存入本次的库存数量变更
             InventoryHistory h = receiptOrderDetailConvert.do2InventoryHistory(it);
             h.setFormId(receiptOrder.getId());
             h.setFormType(receiptOrder.getReceiptOrderType());
@@ -256,6 +256,7 @@ public class ReceiptOrderService {
             int update1 = inventoryService.batchUpdate1(adds);
             log.info("inventoryHistory: {}, inventory: {}", add1, update1);
         }
+
         // 2.1 编辑或发货入库，都要先删除details 再重新保存
         receiptOrderDetailMapper.delete(qw);
         saveDetails(receiptOrder.getId(), receiptOrder.getDetails());
