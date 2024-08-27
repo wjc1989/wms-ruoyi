@@ -1,5 +1,6 @@
 package com.cyl.wms.domain;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.ruoyi.common.annotation.Excel;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -60,6 +61,7 @@ public class ReceiptOrder extends BaseAudit {
     private String contact;
     private String phone;
 
+    @TableField(exist = false)
     private String createName;
 
 }

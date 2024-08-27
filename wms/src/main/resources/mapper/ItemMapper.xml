@@ -9,6 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="itemNo" column="item_no"/>
         <result property="itemName" column="item_name"/>
         <result property="itemType" column="item_type"/>
+        <result property="itemTypeName" column="item_type_name"/>
         <result property="unit" column="unit"/>
         <result property="rackId" column="rack_id"/>
         <result property="areaId" column="area_id"/>
@@ -62,6 +63,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             item_no,
             item_name,
             item_type,
+            get_item_type_name(item_type) as item_type_name,
             unit,
             rack_id,
             area_id,

@@ -36,7 +36,7 @@
             </el-col>
             <el-col :span="1.5">
               <el-button size="small" type="success" plain="plain" icon="el-icon-delete-location"
-                         @click="onBatchSetInventory">
+                         @click="onBatchSetInventory"  >
                 Set Warehouse
               </el-button>
             </el-col>
@@ -63,12 +63,12 @@
               <WmsWarehouseCascader v-model="scope.row.place" size="small"></WmsWarehouseCascader>
             </template>
           </el-table-column>
-          <el-table-column label="Amount" align="center" width="150">
+ <!--         <el-table-column label="Amount" align="center" width="150">
             <template slot-scope="scope">
               <el-input-number v-model="scope.row.money" :precision="2" @change="selectMoney" size="small"
                                :min="0" label="Please Input Amount"></el-input-number>
             </template>
-          </el-table-column>
+          </el-table-column>-->
           <el-table-column label="Operate" align="center">
             <template slot-scope="scope">
               <a class="red" @click="form.details.splice(scope.$index, 1)">Delete</a>
@@ -77,12 +77,13 @@
         </WmsTable>
         <!-- <el-empty v-if="!form.details || form.details.length === 0" :image-size="48"></el-empty> -->
       </div>
-      <div class="tc mt16">
+ <!--     <div class="tc mt16">
         <el-button type="primary" plain="plain" size="small" @click="showAddItem">Add Item</el-button>
-      </div>
+      </div>-->
       <div class="tc mt16">
-        <el-button @click="cancel">Cancel</el-button>
-        <el-button @click="submitForm" type="primary">Save</el-button>
+        <el-button @click="cancel">Close</el-button>
+        <el-button @click="submitForm" type="primary">Save Draft</el-button>
+        <el-button @click="submitForm(true)" type="success">Save & In Bround</el-button>
       </div>
     </div>
     <el-dialog :visible="modalObj.show" :title="modalObj.title" :width="modalObj.width" @close="modalObj.cancel">
@@ -103,7 +104,7 @@
 </template>
 
 <script>
-import {addOrUpdateWmsReceiptOrder, getWmsReceiptOrder} from '@/api/wms/receiptOrder'
+  import {addOrUpdateWmsReceiptOrder, getWmsReceiptOrder} from '@/api/wms/receiptOrder'
 import {randomId} from '@/utils/RandomUtils'
 import ItemSelect from '@/views/components/ItemSelect'
 import BatchWarehouseDialog from "@/views/components/wms/BatchWarehouseDialog/index.vue";
@@ -119,6 +120,7 @@ export default {
       multiple: true,
       // Set Warehouse
       batchDialogVisible: false,
+      readOnly:false,
       batchForm: {
         place: []
       },
@@ -166,6 +168,7 @@ export default {
     }
   },
   methods: {
+
     addSupplier(){
       this.$router.push({path: '/basic/supplier'})
     },
@@ -212,14 +215,21 @@ export default {
     cancel() {
       this.$tab.closeOpenPage({path: '/receiptOrder'})
     },
+    inbround(){
+
+    },
     /** 提交Button */
-    submitForm() {
+    submitForm(isInbround) {
       this.$refs['form'].validate(valid => {
         if (!valid) {
+          this.$notify({
+            title: 'Warning',
+            message: "Verification failed",
+            type: 'warning'
+          });
           return
         }
         const details = this.form.details.map(it => {
-          console.log(it.place)
           if (it.place) {
             it.prod.warehouseId = it.place[0]
             it.prod.areaId = it.place[1]
@@ -236,14 +246,15 @@ export default {
             money: it.money,
             warehouseId: it.prod.warehouseId,
             planQuantity: it.planQuantity,
-            realQuantity: it.realQuantity,
-            receiptOrderStatus: it.receiptOrderStatus,
+            realQuantity: it.planQuantity,
+            receiptOrderStatus: isInbround?3:0,//it.receiptOrderStatus,
             delFlag: 0
           }
         })
         const req = {...this.form, details}
+
         addOrUpdateWmsReceiptOrder(req).then(response => {
-          this.$modal.msgSuccess(this.form.id ? 'Modify Successful' : 'Add Successful')
+          this.$modal.msgSuccess(this.form.id ? 'Modify Successful' : 'Add Successful');
           this.cancel();
         })
       })

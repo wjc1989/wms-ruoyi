@@ -18,15 +18,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="updateBy" column="update_by"/>
         <result property="updateTime" column="update_time"/>
         <result property="createName" column="createName"></result>
+        <result property="contact" column="contact"></result>
+        <result property="phone" column="phone"></result>
     </resultMap>
 
     <sql id="selectReceiptOrderVo">
-        select id, receipt_order_no, receipt_order_type, supplier_id, order_no, receipt_order_status, remark, del_flag, create_by,get_username(create_by) as createName, create_time, update_by, update_time   from wms_receipt_order
+        select id, receipt_order_no, receipt_order_type, supplier_id, order_no, receipt_order_status, remark, del_flag, create_by,get_username(create_by) as createName, create_time, update_by, update_time,contact,phone   from wms_receipt_order
     </sql>
 
     <select id="selectByEntity" parameterType="ReceiptOrder" resultMap="ReceiptOrderResult">
         <include refid="selectReceiptOrderVo"/>
         <where>
+            <if test="id!=null"> and id=#{id}</if>
             <if test="receiptOrderNo != null  and receiptOrderNo != ''"> and receipt_order_no = #{receiptOrderNo}</if>
             <if test="receiptOrderType != null "> and receipt_order_type = #{receiptOrderType}</if>
             <if test="supplierId != null "> and supplier_id = #{supplierId}</if>

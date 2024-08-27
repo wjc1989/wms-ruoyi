@@ -84,13 +84,15 @@ public class ReceiptOrderService {
      * @return 入库单
      */
     public ReceiptOrderForm selectById(Long id) {
-        ReceiptOrder order = receiptOrderMapper.selectById(id);
-        if (order == null) {
+        ReceiptOrder receiptOrder=new ReceiptOrder();
+        receiptOrder.setId(id);
+        List<ReceiptOrder> orders = receiptOrderMapper.selectByEntity(receiptOrder);
+        if (orders == null||orders.isEmpty()) {
             return null;
         }
         ReceiptOrderDetailQuery query = new ReceiptOrderDetailQuery();
         query.setReceiptOrderId(id);
-        ReceiptOrderForm form = receiptOrderConvert.do2form(order);
+        ReceiptOrderForm form = receiptOrderConvert.do2form(orders.get(0));
         List<ReceiptOrderDetail> receiptOrderDetails = receiptOrderDetailService.selectList(query, null);
         List<ReceiptOrderDetailVO> receiptOrderDetailVOS = receiptOrderDetailService.toVos(receiptOrderDetails);
         form.setDetails(receiptOrderDetailVOS);

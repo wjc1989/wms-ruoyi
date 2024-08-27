@@ -20,7 +20,7 @@
               {{form.phone}}
             </el-form-item>
             <el-form-item label="Create By" prop="remark">
-              {{form.createBy}}
+              {{form.createName}}
             </el-form-item>
           </el-col>
           <el-col :span="12">

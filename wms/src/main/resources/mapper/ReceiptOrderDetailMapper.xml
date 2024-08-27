@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectReceiptOrderDetailVo">
-        select id, receipt_order_id, item_id, plan_quantity, real_quantity, rack_id, del_flag, remark, create_by, create_time, update_by, update_time, warehouse_id, area_id, receipt_order_status   from wms_receipt_order_detail
+        select id, receipt_order_id, item_id, plan_quantity, real_quantity, rack_id, del_flag, remark, create_by, create_time, update_by, update_time, warehouse_id, area_id, receipt_order_status from wms_receipt_order_detail
     </sql>
 
     <select id="selectByEntity" parameterType="ReceiptOrderDetail" resultMap="ReceiptOrderDetailResult">

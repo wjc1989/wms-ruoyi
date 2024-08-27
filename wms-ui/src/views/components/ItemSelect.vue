@@ -39,8 +39,9 @@
               </th>
               <th>Goods No.</th>
               <th>Goods Name</th>
-              <th>Pics</th>
-              <th>Quantity</th>
+              <th>Category</th>
+              <th>Picture</th>
+              <th>Stock</th>
             </tr>
 
             <tr v-for="p in list" :key="p.id">
@@ -54,12 +55,17 @@
               </td>
               <td>
                 <div class="text-center">
+                  {{ p.itemNo }}
+                </div>
+              </td>
+              <td>
+                <div class="text-center">
                   {{ p.itemName }}
                 </div>
               </td>
               <td>
                 <div class="text-center">
-                  {{ p.itemNo }}
+                  {{ p.itemTypeName }}
                 </div>
               </td>
               <td>
@@ -116,11 +122,7 @@ export default {
     leftAllChecked: {
       get() {
         return this.editableList.length > 0 &&
-        this.editableList.every((it) => it.checked)
-          ? 1
-          : this.editableList.some((it) => it.checked)
-            ? 2
-            : 0;
+        this.editableList.every((it) => it.checked)? 1 : this.editableList.some((it) => it.checked)? 2: 0;
       },
       set(v) {
         this.editableList.forEach((it) => (it.checked = v));
