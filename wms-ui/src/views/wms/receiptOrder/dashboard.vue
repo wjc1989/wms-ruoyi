@@ -68,6 +68,8 @@
           </el-popover>
         </template>
       </el-table-column>
+      <el-table-column  align="center" label="Create By" prop="createName"></el-table-column>
+      <el-table-column  align="center" label="Create Time" prop="createTime"></el-table-column>
       <el-table-column align="center" class-name="small-padding fixed-width" label="Operate">
         <template v-slot="{ row }">
           <el-button v-hasPermi="['wms:receiptOrder:edit']"

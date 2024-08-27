@@ -42,4 +42,6 @@ public class ReceiptOrderVO extends BaseAudit {
     private String contact;
     @Excel(name="Phone")
     private String phone;
+    @Excel(name="Create By")
+    private String createName;
 }

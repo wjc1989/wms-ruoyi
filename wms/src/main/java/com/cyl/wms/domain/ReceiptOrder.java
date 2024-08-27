@@ -60,4 +60,6 @@ public class ReceiptOrder extends BaseAudit {
     private String contact;
     private String phone;
 
+    private String createName;
+
 }

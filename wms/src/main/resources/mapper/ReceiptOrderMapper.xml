@@ -17,14 +17,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="createTime" column="create_time"/>
         <result property="updateBy" column="update_by"/>
         <result property="updateTime" column="update_time"/>
-        <result property="createBy" column="create_by"/>
-        <result property="createTime" column="create_time"/>
-        <result property="updateBy" column="update_by"/>
-        <result property="updateTime" column="update_time" />
+        <result property="createName" column="createName"></result>
     </resultMap>
 
     <sql id="selectReceiptOrderVo">
-        select id, receipt_order_no, receipt_order_type, supplier_id, order_no, receipt_order_status, remark, del_flag, get_username(create_by) as create_by, create_time, update_by, update_time   from wms_receipt_order
+        select id, receipt_order_no, receipt_order_type, supplier_id, order_no, receipt_order_status, remark, del_flag, create_by,get_username(create_by) as createName, create_time, update_by, update_time   from wms_receipt_order
     </sql>
 
     <select id="selectByEntity" parameterType="ReceiptOrder" resultMap="ReceiptOrderResult">
