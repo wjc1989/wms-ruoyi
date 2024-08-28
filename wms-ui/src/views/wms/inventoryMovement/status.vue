@@ -161,7 +161,7 @@ export default {
     onBatchSetInventory(field) {
       const {details} = this.form
       if (!details || details.length === 0) {
-        this.$modal.msgError('Please Add Item')
+        this.$modal.msgError('Please Select Goods')
         return
       }
       // 未选中

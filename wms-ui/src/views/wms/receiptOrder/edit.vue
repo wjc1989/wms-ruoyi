@@ -79,7 +79,7 @@
         <!-- <el-empty v-if="!form.details || form.details.length === 0" :image-size="48"></el-empty> -->
       </div>
  <!--     <div class="tc mt16">
-        <el-button type="primary" plain="plain" size="small" @click="showAddItem">Add Item</el-button>
+        <el-button type="primary" plain="plain" size="small" @click="showAddItem">Select Goods</el-button>
       </div>-->
       <div class="tc mt16">
         <el-button @click="cancel">Close</el-button>
@@ -185,7 +185,7 @@ export default {
     onBatchSetInventory() {
       const {details} = this.form
       if (!details || details.length === 0) {
-        this.$modal.msgError('Please Add Item')
+        this.$modal.msgError('Please Select Goods')
         return
       }
       // 未选中

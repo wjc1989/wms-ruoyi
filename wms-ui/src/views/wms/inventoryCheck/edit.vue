@@ -23,7 +23,7 @@
       <div class="flex-center mb8">
         <div class="flex-one large-tip bolder-font">Goods Detail</div>
         <div class="ops">
-          <el-button type="primary" plain="plain" size="small" @click="showAddItem">Add Item</el-button>
+          <el-button type="primary" plain="plain" size="small" @click="showAddItem">Select Goods</el-button>
         </div>
       </div>
       <div class="table">
@@ -61,7 +61,7 @@
         <!-- <el-empty v-if="!form.details || form.details.length === 0" :image-size="48"></el-empty> -->
       </div>
       <div class="tc mt16" >
-        <el-button type="primary" plain="plain" size="small" @click="showAddItem">Add Item</el-button>
+        <el-button type="primary" plain="plain" size="small" @click="showAddItem">Select Goods</el-button>
       </div>
       <div class="tc mt16">
         <el-button @click="cancel">Cancel</el-button>
@@ -351,7 +351,7 @@ export default {
       const cancel = () => this.closeModal()
       this.modalObj = {
         show: true,
-        title: 'Add Item',
+        title: 'Select Goods',
         width: '50%',
         component: 'add-item',
         model: {},
