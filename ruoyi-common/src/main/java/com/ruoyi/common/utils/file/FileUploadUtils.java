@@ -106,7 +106,7 @@ public class FileUploadUtils
      * @param file             上传的文件
      * @param allowedExtension 上传文件类型
      * @param scale            是否缩放
-     * @return 返回上传成功的文件名
+     * @return Back上传成功的文件名
      * @throws FileSizeLimitExceededException       如果超出最大大小
      * @throws FileNameLengthLimitExceededException 文件名太长
      * @throws IOException                          比如读写文件出错时

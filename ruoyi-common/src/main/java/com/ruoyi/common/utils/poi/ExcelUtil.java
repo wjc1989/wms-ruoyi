@@ -246,7 +246,7 @@ public class ExcelUtil<T>
         {
             pictures = getSheetPictures03((HSSFSheet) sheet, (HSSFWorkbook) wb);
         }
-        // 获取最后一个非空行的行下标，比如总行数为n，则返回的为n-1
+        // 获取最后一个非空行的行下标，比如总行数为n，则Back的为n-1
         int rows = sheet.getLastRowNum();
 
         if (rows > 0)
@@ -431,7 +431,7 @@ public class ExcelUtil<T>
     /**
      * 对list数据源将其里面的数据导入到excel表单
      *
-     * @param response 返回数据
+     * @param response Back数据
      * @param list 导出数据集合
      * @param sheetName 工作表的名称
      * @return 结果
@@ -445,7 +445,7 @@ public class ExcelUtil<T>
     /**
      * 对list数据源将其里面的数据导入到excel表单
      *
-     * @param response 返回数据
+     * @param response Back数据
      * @param list 导出数据集合
      * @param sheetName 工作表的名称
      * @param title 标题

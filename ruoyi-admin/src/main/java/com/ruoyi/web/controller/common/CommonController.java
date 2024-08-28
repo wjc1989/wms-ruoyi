@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * 通用请求处理
- * 
+ *
  * @author ruoyi
  */
 @RestController
@@ -35,7 +35,7 @@ public class CommonController
 
     /**
      * 通用下载请求
-     * 
+     *
      * @param fileName 文件名称
      * @param delete 是否删除
      */
@@ -75,7 +75,7 @@ public class CommonController
         {
             // 上传文件路径
             String filePath = RuoYiConfig.getUploadPath();
-            // 上传并返回新文件名称
+            // 上传并Back新文件名称
             String fileName = FileUploadUtils.upload(filePath, file, MimeTypeUtils.isImg(file.getContentType()));
             String url = serverConfig.getUrl() + fileName;
             AjaxResult ajax = AjaxResult.success();

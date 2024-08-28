@@ -20,8 +20,8 @@ import com.ruoyi.framework.manager.factory.AsyncFactory;
 import com.ruoyi.framework.web.service.TokenService;
 
 /**
- * 自定义退出处理类 返回成功
- * 
+ * 自定义退出处理类 Back成功
+ *
  * @author ruoyi
  */
 @Configuration
@@ -32,7 +32,7 @@ public class LogoutSuccessHandlerImpl implements LogoutSuccessHandler
 
     /**
      * 退出处理
-     * 
+     *
      * @return
      */
     @Override

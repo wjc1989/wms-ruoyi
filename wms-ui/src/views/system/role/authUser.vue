@@ -149,7 +149,7 @@ export default {
         }
       );
     },
-    // 返回Button
+    // BackButton
     handleClose() {
       const obj = { path: "/system/role" };
       this.$tab.closeOpenPage(obj);

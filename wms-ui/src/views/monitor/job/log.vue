@@ -239,7 +239,7 @@ export default {
         }
       );
     },
-    // 返回Button
+    // BackButton
     handleClose() {
       const obj = { path: "/monitor/job" };
       this.$tab.closeOpenPage(obj);

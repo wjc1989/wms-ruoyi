@@ -66,8 +66,8 @@ public class SysOperLog extends BaseEntity
     @Excel(name = "请求参数")
     private String operParam;
 
-    /** 返回参数 */
-    @Excel(name = "返回参数")
+    /** Back参数 */
+    @Excel(name = "Back参数")
     private String jsonResult;
 
     /** 操作Status（0Normal 1异常） */

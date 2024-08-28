@@ -2,10 +2,10 @@
   <div class="app-container" v-if="show">
     <el-form :model="queryParams" ref="queryForm" :inline="true" v-show="showSearch" label-width="120px" size="medium"
              class="ry_form">
-      <el-form-item label="InventoryCountNo." prop="inventoryCheckNo">
+      <el-form-item label="Task No." prop="inventoryCheckNo">
         <el-input
           v-model="queryParams.inventoryCheckNo"
-          placeholder="Please Input InventoryCountNo."
+          placeholder="Please Input Inventory Count Task No."
           clearable
           size="small"
           @keyup.enter.native="handleQuery"
@@ -61,8 +61,7 @@
 
     <WmsTable v-loading="loading" :data="wmsInventoryCheckList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center"/>
-      <el-table-column label="InventoryCountNo." align="center" prop="inventoryCheckNo"
-                       />
+      <el-table-column label="Task No." align="center" prop="inventoryCheckNo"/>
       <!--      <el-table-column label="InventoryCountType" align="center" prop="inventoryCheckType" />-->
 
       <el-table-column label="Change" align="center" prop="inventoryCheckTotal" />
@@ -104,7 +103,7 @@
             icon="el-icon-edit"
             @click="handleUpdate(scope.row)"
             v-hasPermi="['wms:inventoryCheck:edit']"
-          >继续Count
+          >Count
           </el-button>
           <el-button
             size="mini"

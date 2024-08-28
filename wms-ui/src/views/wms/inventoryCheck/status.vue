@@ -63,7 +63,7 @@
         <el-empty v-if="!form.details || form.details.length === 0" :image-size="48"></el-empty>
       </div>
       <div class="tc mt16">
-        <el-button @click="cancel" type="primary">返回</el-button>
+        <el-button @click="cancel" type="primary">Back</el-button>
       </div>
     </div>
   </div>

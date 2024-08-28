@@ -181,7 +181,7 @@ function judgeStar(accessToken,owner, repo, key,productName,productLink,redirect
     params: { access_token: accessToken }
   })
     .then(res => {
-      // success 回调即代表已经 star，gitee API 请求体No 返回任何Data
+      // success 回调即代表已经 star，gitee API 请求体No Back任何Data
       console.log('-> stared ...')
       //  Record本次检查 Time
       if (typeof window !== 'undefined') {
@@ -194,7 +194,7 @@ function judgeStar(accessToken,owner, repo, key,productName,productLink,redirect
     })
     .catch(e => {
       // console.log('ff请求错误 ', e);
-      // e.g.下返回，代表没有 star
+      // e.g.下Back，代表没有 star
       if (e.response && e.response.status === 404) {
         console.log('not star ...')
         toStar(redirectUrl,productName,productLink,accessToken,owner,repo,key,code);

@@ -68,9 +68,9 @@
         </WmsTable>
         <!--        <el-empty v-if="!form.details || form.details.length === 0" :image-size="48"></el-empty>-->
       </div>
-      <div class="tc mt16">
+<!--      <div class="tc mt16">
         <el-button type="primary" plain="plain" size="small" @click="showAddItem">Select Goods</el-button>
-      </div>
+      </div>-->
       <div class="tc mt16">
         <el-button @click="cancel">Cancel</el-button>
         <el-button @click="submitForm" type="primary">Save</el-button>

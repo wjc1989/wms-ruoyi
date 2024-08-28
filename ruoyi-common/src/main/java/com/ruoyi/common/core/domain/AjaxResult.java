@@ -19,7 +19,7 @@ public class AjaxResult extends HashMap<String, Object> {
     public static final String CODE_TAG = "code";
 
     /**
-     * 返回内容
+     * Back内容
      */
     public static final String MSG_TAG = "msg";
 
@@ -38,7 +38,7 @@ public class AjaxResult extends HashMap<String, Object> {
      * 初始化一个新创建的 AjaxResult 对象
      *
      * @param code Status码
-     * @param msg  返回内容
+     * @param msg  Back内容
      */
     public AjaxResult(int code, String msg) {
         super.put(CODE_TAG, code);
@@ -49,7 +49,7 @@ public class AjaxResult extends HashMap<String, Object> {
      * 初始化一个新创建的 AjaxResult 对象
      *
      * @param code Status码
-     * @param msg  返回内容
+     * @param msg  Back内容
      * @param data 数据对象
      */
     public AjaxResult(int code, String msg, Object data) {
@@ -61,7 +61,7 @@ public class AjaxResult extends HashMap<String, Object> {
     }
 
     /**
-     * 返回成功消息
+     * Back成功消息
      *
      * @return 成功消息
      */
@@ -70,7 +70,7 @@ public class AjaxResult extends HashMap<String, Object> {
     }
 
     /**
-     * 返回成功数据
+     * Back成功数据
      *
      * @return 成功消息
      */
@@ -79,9 +79,9 @@ public class AjaxResult extends HashMap<String, Object> {
     }
 
     /**
-     * 返回成功消息
+     * Back成功消息
      *
-     * @param msg 返回内容
+     * @param msg Back内容
      * @return 成功消息
      */
     public static AjaxResult success(String msg) {
@@ -89,9 +89,9 @@ public class AjaxResult extends HashMap<String, Object> {
     }
 
     /**
-     * 返回成功消息
+     * Back成功消息
      *
-     * @param msg  返回内容
+     * @param msg  Back内容
      * @param data 数据对象
      * @return 成功消息
      */
@@ -100,7 +100,7 @@ public class AjaxResult extends HashMap<String, Object> {
     }
 
     /**
-     * 返回错误消息
+     * Back错误消息
      *
      * @return
      */
@@ -109,9 +109,9 @@ public class AjaxResult extends HashMap<String, Object> {
     }
 
     /**
-     * 返回错误消息
+     * Back错误消息
      *
-     * @param msg 返回内容
+     * @param msg Back内容
      * @return 警告消息
      */
     public static AjaxResult error(String msg) {
@@ -119,9 +119,9 @@ public class AjaxResult extends HashMap<String, Object> {
     }
 
     /**
-     * 返回错误消息
+     * Back错误消息
      *
-     * @param msg  返回内容
+     * @param msg  Back内容
      * @param data 数据对象
      * @return 警告消息
      */
@@ -130,10 +130,10 @@ public class AjaxResult extends HashMap<String, Object> {
     }
 
     /**
-     * 返回错误消息
+     * Back错误消息
      *
      * @param code Status码
-     * @param msg  返回内容
+     * @param msg  Back内容
      * @param data 数据对象
      * @return 警告消息
      */
@@ -142,10 +142,10 @@ public class AjaxResult extends HashMap<String, Object> {
     }
 
     /**
-     * 返回错误消息
+     * Back错误消息
      *
      * @param code Status码
-     * @param msg  返回内容
+     * @param msg  Back内容
      * @return 警告消息
      */
     public static AjaxResult error(int code, String msg) {

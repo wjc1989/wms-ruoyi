@@ -244,7 +244,7 @@ public class VelocityUtils {
      * 根据列类型获取导入包
      *
      * @param genTable 业务表对象
-     * @return 返回需要导入的包列表
+     * @return Back需要导入的包列表
      */
     public static HashSet<String> getImportList(GenTable genTable) {
         List<GenTableColumn> columns = genTable.getColumns();
@@ -272,7 +272,7 @@ public class VelocityUtils {
      * 根据列类型获取字典组
      *
      * @param genTable 业务表对象
-     * @return 返回字典组
+     * @return Back字典组
      */
     public static String getDicts(GenTable genTable) {
         List<GenTableColumn> columns = genTable.getColumns();
@@ -291,7 +291,7 @@ public class VelocityUtils {
      *
      * @param moduleName   模块名称
      * @param businessName 业务名称
-     * @return 返回权限前缀
+     * @return Back权限前缀
      */
     public static String getPermissionPrefix(String moduleName, String businessName) {
         return StringUtils.format("{}:{}", moduleName, businessName);

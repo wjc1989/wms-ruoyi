@@ -60,7 +60,7 @@ public class UserConstants
     /** InnerLink组件标识 */
     public final static String INNER_LINK = "InnerLink";
 
-    /** 校验返回结果码 */
+    /** 校验Back结果码 */
     public final static String UNIQUE = "0";
     public final static String NOT_UNIQUE = "1";
 

@@ -146,7 +146,7 @@
             @click="handleUpdate(scope.row)"
             v-if="11 === scope.row.inventorySettlementStatus"
             v-hasPermi="['wms:wmsInventorySettlement:edit']"
-          >继续Settlement
+          >Settlement
           </el-button>
           <el-button
             size="mini"

@@ -56,7 +56,7 @@ const user = {
         getInfo().then(res => {
           const user = res.user
           const avatar = (user.avatar == "" || user.avatar == null) ? require("@/assets/images/profile.png") : process.env.VUE_APP_BASE_API + user.avatar;
-          if (res.roles && res.roles.length > 0) { // 验证返回的rolesYes一个非空数组
+          if (res.roles && res.roles.length > 0) { // 验证Back的rolesYes一个非空数组
             commit('SET_ROLES', res.roles)
             commit('SET_PERMISSIONS', res.permissions)
           } else {

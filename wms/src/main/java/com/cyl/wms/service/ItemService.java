@@ -208,7 +208,7 @@ public class ItemService {
      * @return Goods 列表
      */
     public List<Item> selectByIdIn(Collection<Long> ids) {
-        // 如果主键集合为空，直接返回空集合
+        // 如果主键集合为空，直接Back空集合
         if (ids == null || ids.isEmpty()) {
             return new ArrayList<>();
         }

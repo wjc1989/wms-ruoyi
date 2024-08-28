@@ -157,7 +157,7 @@ public class ReflectUtils
         Method method = getAccessibleMethodByName(obj, methodName, args.length);
         if (method == null)
         {
-            // 如果为空不报错，直接返回空。
+            // 如果为空不报错，直接Back空。
             logger.debug("在 [" + obj.getClass() + "] 中，没有找到 [" + methodName + "] 方法 ");
             return null;
         }
@@ -221,11 +221,11 @@ public class ReflectUtils
 
     /**
      * 循环向上转型, 获取对象的DeclaredField, 并强制设置为可访问.
-     * 如向上转型到Object仍无法找到, 返回null.
+     * 如向上转型到Object仍无法找到, Backnull.
      */
     public static Field getAccessibleField(final Object obj, final String fieldName)
     {
-        // 为空不报错。直接返回 null
+        // 为空不报错。直接Back null
         if (obj == null)
         {
             return null;
@@ -249,14 +249,14 @@ public class ReflectUtils
 
     /**
      * 循环向上转型, 获取对象的DeclaredMethod,并强制设置为可访问.
-     * 如向上转型到Object仍无法找到, 返回null.
+     * 如向上转型到Object仍无法找到, Backnull.
      * 匹配函数名+参数类型。
      * 用于方法需要被多次调用的情况. 先使用本函数先取得Method,然后调用Method.invoke(Object obj, Object... args)
      */
     public static Method getAccessibleMethod(final Object obj, final String methodName,
             final Class<?>... parameterTypes)
     {
-        // 为空不报错。直接返回 null
+        // 为空不报错。直接Back null
         if (obj == null)
         {
             return null;
@@ -280,13 +280,13 @@ public class ReflectUtils
 
     /**
      * 循环向上转型, 获取对象的DeclaredMethod,并强制设置为可访问.
-     * 如向上转型到Object仍无法找到, 返回null.
+     * 如向上转型到Object仍无法找到, Backnull.
      * 只匹配函数名。
      * 用于方法需要被多次调用的情况. 先使用本函数先取得Method,然后调用Method.invoke(Object obj, Object... args)
      */
     public static Method getAccessibleMethodByName(final Object obj, final String methodName, int argsNum)
     {
-        // 为空不报错。直接返回 null
+        // 为空不报错。直接Back null
         if (obj == null)
         {
             return null;
@@ -333,7 +333,7 @@ public class ReflectUtils
 
     /**
      * 通过反射, 获得Class定义中声明的泛型参数的类型, 注意泛型必须定义在父类处
-     * 如无法找到, 返回Object.class.
+     * 如无法找到, BackObject.class.
      */
     @SuppressWarnings("unchecked")
     public static <T> Class<T> getClassGenricType(final Class clazz)
@@ -343,7 +343,7 @@ public class ReflectUtils
 
     /**
      * 通过反射, 获得Class定义中声明的父类的泛型参数的类型.
-     * 如无法找到, 返回Object.class.
+     * 如无法找到, BackObject.class.
      */
     public static Class getClassGenricType(final Class clazz, final int index)
     {

@@ -12,11 +12,11 @@ import com.ruoyi.common.utils.StringUtils;
 
 /**
  * spring工具类 方便在非spring管理环境中获取bean
- * 
+ *
  * @author ruoyi
  */
 @Component
-public final class SpringUtils implements BeanFactoryPostProcessor, ApplicationContextAware 
+public final class SpringUtils implements BeanFactoryPostProcessor, ApplicationContextAware
 {
     /** Spring应用上下文环境 */
     private static ConfigurableListableBeanFactory beanFactory;
@@ -24,13 +24,13 @@ public final class SpringUtils implements BeanFactoryPostProcessor, ApplicationC
     private static ApplicationContext applicationContext;
 
     @Override
-    public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException 
+    public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException
     {
         SpringUtils.beanFactory = beanFactory;
     }
 
     @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException 
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException
     {
         SpringUtils.applicationContext = applicationContext;
     }
@@ -64,7 +64,7 @@ public final class SpringUtils implements BeanFactoryPostProcessor, ApplicationC
     }
 
     /**
-     * 如果BeanFactory包含一个与所给名称匹配的bean定义，则返回true
+     * 如果BeanFactory包含一个与所给名称匹配的bean定义，则Backtrue
      *
      * @param name
      * @return boolean
@@ -99,7 +99,7 @@ public final class SpringUtils implements BeanFactoryPostProcessor, ApplicationC
     }
 
     /**
-     * 如果给定的bean名字在bean定义中有别名，则返回这些别名
+     * 如果给定的bean名字在bean定义中有别名，则Back这些别名
      *
      * @param name
      * @return
@@ -113,7 +113,7 @@ public final class SpringUtils implements BeanFactoryPostProcessor, ApplicationC
 
     /**
      * 获取aop代理对象
-     * 
+     *
      * @param invoker
      * @return
      */
@@ -124,7 +124,7 @@ public final class SpringUtils implements BeanFactoryPostProcessor, ApplicationC
     }
 
     /**
-     * 获取当前的环境配置，无配置返回null
+     * 获取当前的环境配置，无配置Backnull
      *
      * @return 当前的环境配置
      */

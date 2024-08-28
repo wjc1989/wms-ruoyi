@@ -462,7 +462,7 @@ export default {
 				this.dateArr[0] = this.getAssignArr(rule)
 			}
 		},
-		// 根据传进来的min-max返回一个sort的数组
+		// 根据传进来的min-maxBack一个sort的数组
 		getOrderArr(min, max) {
 			let arr = [];
 			for (let i = min; i <= max; i++) {
@@ -470,7 +470,7 @@ export default {
 			}
 			return arr;
 		},
-		// 根据规则中指定的零散值返回一个数组
+		// 根据规则中指定的零散值Back一个数组
 		getAssignArr(rule) {
 			let arr = [];
 			let assiginArr = rule.split(',');
@@ -480,7 +480,7 @@ export default {
 			arr.sort(this.compare)
 			return arr;
 		},
-		// 根据一定算术规则计算返回一个数组
+		// 根据一定算术规则计算Back一个数组
 		getAverageArr(rule, limit) {
 			let arr = [];
 			let agArr = rule.split('/');
@@ -492,7 +492,7 @@ export default {
 			}
 			return arr;
 		},
-		// 根据规则返回一个具有 Cycle性的数组
+		// 根据规则Back一个具有 Cycle性的数组
 		getCycleArr(rule, limit, status) {
 			// status--表示从0 Start （则从1 Start ）
 			let arr = [];

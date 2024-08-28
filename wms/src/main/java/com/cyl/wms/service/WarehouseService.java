@@ -110,7 +110,7 @@ public class WarehouseService {
      * @return 仓库列表
      */
     public List<Warehouse> selectByIdIn(Collection<Long> ids) {
-        // 如果主键集合为空，直接返回空集合
+        // 如果主键集合为空，直接Back空集合
         if (ids == null || ids.isEmpty()) {
             return new ArrayList<>();
         }

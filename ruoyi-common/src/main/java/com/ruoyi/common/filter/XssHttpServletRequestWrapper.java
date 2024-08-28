@@ -14,7 +14,7 @@ import com.ruoyi.common.utils.html.EscapeUtil;
 
 /**
  * XSS过滤处理
- * 
+ *
  * @author ruoyi
  */
 public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper
@@ -48,13 +48,13 @@ public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper
     @Override
     public ServletInputStream getInputStream() throws IOException
     {
-        // 非json类型，直接返回
+        // 非json类型，直接Back
         if (!isJsonRequest())
         {
             return super.getInputStream();
         }
 
-        // 为空，直接返回
+        // 为空，直接Back
         String json = IOUtils.toString(super.getInputStream(), "utf-8");
         if (StringUtils.isEmpty(json))
         {
@@ -100,7 +100,7 @@ public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper
 
     /**
      * 是否是Json请求
-     * 
+     *
      * @param request
      */
     public boolean isJsonRequest()

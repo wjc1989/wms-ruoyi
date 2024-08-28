@@ -175,7 +175,7 @@ export default {
       if (res.code == 200) {
         // 获取光标所在位置
         let length = quill.getSelection().index;
-        // 插入图片  res.url服务器返回的图片Address
+        // 插入图片  res.url服务器Back的图片Address
         quill.insertEmbed(length, "image", process.env.VUE_APP_BASE_API + res.fileName);
         // 调整光标到最后
         quill.setSelection(length + 1);

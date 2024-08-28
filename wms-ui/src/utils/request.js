@@ -72,7 +72,7 @@ service.interceptors.response.use(res => {
     const code = res.data.code || 200;
     // 获取错误 Info
     const msg = errorCode[code] || res.data.msg || errorCode['default']
-    // 二进制Data则直接返回
+    // 二进制Data则直接Back
     if (res.request.responseType === 'blob' || res.request.responseType === 'arraybuffer') {
       return res.data
     }

@@ -324,7 +324,7 @@ export default {
       this.queryParams.pageNum = 1;
       this.getList();
     },
-    /** 返回ButtonOperate */
+    /** BackButtonOperate */
     handleClose() {
       const obj = { path: "/system/dict" };
       this.$tab.closeOpenPage(obj);

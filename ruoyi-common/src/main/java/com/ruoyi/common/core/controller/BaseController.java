@@ -100,14 +100,14 @@ public class BaseController
     }
 
     /**
-     * 返回成功
+     * Back成功
      */
     public AjaxResult success() {
         return AjaxResult.success();
     }
 
     /**
-     * 返回失败消息
+     * Back失败消息
      */
     public AjaxResult error()
     {
@@ -115,7 +115,7 @@ public class BaseController
     }
 
     /**
-     * 返回成功消息
+     * Back成功消息
      */
     public AjaxResult success(String message)
     {
@@ -123,7 +123,7 @@ public class BaseController
     }
 
     /**
-     * 返回失败消息
+     * Back失败消息
      */
     public AjaxResult error(String message)
     {
@@ -131,7 +131,7 @@ public class BaseController
     }
 
     /**
-     * 响应返回结果
+     * 响应Back结果
      *
      * @param rows 影响行数
      * @return 操作结果
@@ -142,7 +142,7 @@ public class BaseController
     }
 
     /**
-     * 响应返回结果
+     * 响应Back结果
      *
      * @param result 结果
      * @return 操作结果

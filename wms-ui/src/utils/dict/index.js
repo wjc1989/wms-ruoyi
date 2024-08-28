@@ -21,7 +21,7 @@ export default function(Vue, options) {
   mergeOptions(options)
   Vue.mixin({
     data() {
-      //e.g.果vue没有定义dixts即this.$options.dicts空，则返回{}相当于No 混入
+      //e.g.果vue没有定义dixts即this.$options.dicts空，则Back{}相当于No 混入
       if (this.$options === undefined || this.$options.dicts === undefined || this.$options.dicts === null) {
         return {}
       }

@@ -1,7 +1,7 @@
 package com.ruoyi.common.constant;
 
 /**
- * 返回Status码
+ * BackStatus码
  *
  * @author ruoyi
  */
@@ -22,7 +22,7 @@ public class HttpStatus {
     public static final int ACCEPTED = 202;
 
     /**
-     * 操作已经执行成功，但是没有返回数据
+     * 操作已经执行成功，但是没有Back数据
      */
     public static final int NO_CONTENT = 204;
 
