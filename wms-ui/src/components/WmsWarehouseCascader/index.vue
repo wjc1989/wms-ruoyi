@@ -7,7 +7,12 @@
   clearable
   :size="size"
   :disabled="disabled"
-  filterable></el-cascader>
+  filterable>
+    <template slot-scope="{node,data}">
+        <span>{{data.label}}</span>
+        <span v-if="!node.isLeaf">({{data.children.length}})</span>
+    </template>
+</el-cascader>
 </template>
 
 <script>
@@ -26,6 +31,10 @@ export default {
     disabled:{
       type: Boolean,
       default: false
+    },
+    d:{
+       type: Array,
+       default:null
     }
   },
   data() {
@@ -49,16 +58,18 @@ export default {
   },
   methods: {
     setOptions() {
+
       let areaMap = new Map()
       let warehouseMap = new Map()
-      // this.rackList.forEach(rack => {
-      //   let children = areaMap.get(rack.areaId)
-      //   if (!children) {
-      //     children = []
-      //     areaMap.set(rack.areaId, children)
-      //   }
-      //   children.push({ value: rack.id, label: rack.rackName })
-      // })
+      this.rackList.forEach(rack => {
+        let children = areaMap.get(rack.areaId)
+        if (!children) {
+          children = []
+          areaMap.set(rack.areaId, children)
+        }
+
+        children.push({ value: rack.id, label: rack.rackName })
+      })
       this.areaList.forEach(area => {
         let children = warehouseMap.get(area.warehouseId)
         if (!children) {

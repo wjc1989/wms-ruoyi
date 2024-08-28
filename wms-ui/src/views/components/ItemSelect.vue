@@ -18,7 +18,7 @@
             class="w200"
             v-model="query.search"
             clearable
-            placeholder="No.、Item、ID"
+            placeholder="No.、Goods、ID"
           ></el-input>
         </el-form-item>
         <el-button type="primary" @click="clickQuery">Search</el-button>
@@ -70,7 +70,7 @@
               </td>
               <td>
                 <div class="text-center">
-                  <ImagePreview :src="p.pics" class="listimage" ></ImagePreview>
+                  <ImagePreview :src="p.pics||''" class="listimage" ></ImagePreview>
                 </div>
               </td>
               <td>

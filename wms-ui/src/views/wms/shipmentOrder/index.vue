@@ -1,11 +1,11 @@
 <template>
   <div class="app-container">
-    <el-tabs v-model="activeName" >
-      <el-tab-pane label="Order" name="first"></el-tab-pane>
-      <el-tab-pane label="Wave Task" name="second"></el-tab-pane>
-    </el-tabs>
+<!--    <el-tabs v-model="activeName" >-->
+<!--      <el-tab-pane label="Order" name="first"></el-tab-pane>-->
+<!--      <el-tab-pane label="Wave Task" name="second"></el-tab-pane>-->
+<!--    </el-tabs>-->
     <Dashborad v-if="activeName == 'first'" @switchTab="activeName = 'second'"></Dashborad>
-    <wave v-if="activeName == 'second'" ></wave>
+<!--    <wave v-if="activeName == 'second'" ></wave>-->
   </div>
 </template>
 

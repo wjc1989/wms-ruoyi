@@ -43,7 +43,8 @@
           </el-row>
         </div>
         <div class="ops">
-          <el-button type="primary" plain="plain" size="small" @click="showAddItem">Add Item</el-button>
+          <el-button type="primary" plain="plain" size="small" @click="handleAdd">Add Goods</el-button>
+          <el-button type="primary" plain="plain" size="small" @click="showAddItem">Select Goods</el-button>
         </div>
       </div>
       <div class="table">
@@ -143,6 +144,7 @@ export default {
         cancel: () => {
         }
       },
+
       hasSupplier: false
     }
   },
@@ -168,7 +170,9 @@ export default {
     }
   },
   methods: {
-
+    handleAdd() {
+      this.$router.push({path: '/basic/item'})
+    },
     addSupplier(){
       this.$router.push({path: '/basic/supplier'})
     },
@@ -341,7 +345,7 @@ export default {
       const cancel = () => this.closeModal()
       this.modalObj = {
         show: true,
-        title: 'Add Item',
+        title: 'Select Goods',
         width: '50%',
         component: 'add-item',
         model: {},

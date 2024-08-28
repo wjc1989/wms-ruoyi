@@ -38,7 +38,7 @@
           </el-row>
         </div>
         <div class="ops">
-          <el-button type="primary" plain="plain" size="small" @click="showAddItem">Add Item</el-button>
+          <el-button type="primary" plain="plain" size="small" @click="showAddItem">Select Goods</el-button>
         </div>
       </div>
       <div class="table">
@@ -55,15 +55,15 @@
           </el-table-column>
           <el-table-column label="Warehouse" align="center">
             <template slot-scope="scope">
-              <WmsWarehouseCascader v-model="scope.row.place" size="small"></WmsWarehouseCascader>
+              <WmsWarehouseCascader v-model="scope.row.place"  size="small"></WmsWarehouseCascader>
             </template>
           </el-table-column>
-          <el-table-column label="Amount" align="center" width="150">
+   <!--       <el-table-column label="Amount" align="center" width="150">
             <template slot-scope="scope">
               <el-input-number v-model="scope.row.money" :precision="2" @change="selectMoney" size="mini" :min="0"
                                label="Please Input Amount"></el-input-number>
             </template>
-          </el-table-column>
+          </el-table-column>-->
           <el-table-column label="Operate" align="center">
             <template slot-scope="scope">
               <a class="red" @click="form.details.splice(scope.$index, 1)">Delete</a>
@@ -72,9 +72,9 @@
         </WmsTable>
         <!-- <el-empty v-if="!form.details || form.details.length === 0" :image-size="48"></el-empty> -->
       </div>
-      <div class="tc mt16">
+<!--      <div class="tc mt16">
         <el-button type="primary" plain="plain" size="small" @click="showAddItem">Add Item</el-button>
-      </div>
+      </div>-->
       <div class="tc mt16">
         <el-button @click="cancel">Cancel</el-button>
         <el-button @click="submitForm" type="primary">Save</el-button>
@@ -160,6 +160,7 @@ export default {
   methods: {
     // 多选框选中Data
     handleSelectionChange(selection) {
+      console.log("selection:",selection);
       this.ids = selection.map(item => item.id)
       this.multiple = !selection.length
     },

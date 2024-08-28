@@ -39,7 +39,12 @@
 <script>
 
 export default {
-  props: ['row'],
+  props: {
+    row: {
+      type: Object,
+      default: {}
+    }
+  },
   methods: {
     start() {
       this.$print(this.$refs.receiptOrderPrintRef, {}, 'A4')

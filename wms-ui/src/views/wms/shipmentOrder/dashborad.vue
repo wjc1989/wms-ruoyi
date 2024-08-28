@@ -18,9 +18,9 @@
         <el-input v-model="queryParams.orderNo" clearable="clearable" placeholder="Please Input No." size="small"
                   @keyup.enter.native="handleQuery"></el-input>
       </el-form-item>
-      <el-form-item label="Custom" prop="customerId">
+<!--      <el-form-item label="Custom" prop="customerId">
         <WmsCustomerSelect v-model="queryParams.customerId" size="small"></WmsCustomerSelect>
-      </el-form-item>
+      </el-form-item>-->
       <el-form-item class="flex_one tr">
         <el-button icon="el-icon-search" size="mini" type="primary" @click="handleQuery">Search</el-button>
         <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">Reset</el-button>
@@ -32,17 +32,16 @@
                    @click="handleAdd()">New
         </el-button>
       </el-col>
-      <el-col :span="1.5">
+  <!--    <el-col :span="1.5">
         <el-button icon="el-icon-check" size="mini" type="warning" :disabled="!waveAble"
                    @click="handleWave()">Wave Task
         </el-button>
-      </el-col>
+      </el-col>-->
       <right-toolbar  :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
     <WmsTable v-loading="loading" :data="wmsShipmentOrderList" @selection-change="handleSelectionChange">
       <el-table-column align="center" type="selection" width="55"></el-table-column>
-      <el-table-column  align="center" label="Outbound No."
-                       prop="shipmentOrderNo"></el-table-column>
+      <el-table-column  align="center" label="Outbound No." prop="shipmentOrderNo"></el-table-column>
       <el-table-column  align="center" label="Outbound Type">
         <template slot-scope="scope">
           <el-tag effect="plain" size="medium" :type="getShipmentOrderTypeTag(scope.row)">
@@ -50,7 +49,7 @@
           </el-tag>
         </template>
       </el-table-column>
-      <el-table-column  align="center" :formatter="getCustomer" label="Custom"></el-table-column>
+  <!--    <el-table-column  align="center" :formatter="getCustomer" label="Custom"></el-table-column>-->
       <el-table-column  align="center" label="Project" prop="orderNo"></el-table-column>
       <el-table-column  align="center" label="Outbound Status">
         <template slot-scope="scope">
@@ -59,7 +58,7 @@
           </el-tag>
         </template>
       </el-table-column>
-      <el-table-column  align="center" label="Wave No." prop="waveNo"></el-table-column>
+     <!-- <el-table-column  align="center" label="Wave No." prop="waveNo"></el-table-column>-->
       <el-table-column  align="center" label="Remark" prop="remark">
         <template v-slot="{ row }">
           <el-popover placement="left" width="300" trigger="hover" :content="row.remark" popper-class="popperOptions">
@@ -79,16 +78,17 @@
           <el-button v-hasPermi="['wms:shipmentOrder:status']" v-if="row.detailCount && !row.waveNo && row.shipmentOrderStatus !== ShipmentOrderConstant.Status.ALL_IN" icon="el-icon-truck" size="mini"
                      type="text" @click.stop="handleStatus(row)">Outbound
           </el-button>
-          <el-button icon="el-icon-printer" size="mini" type="text" @click.stop="printOut(row,true)">Print</el-button>
+          <el-button icon="el-icon-printer" size="mini" type="text" @click.stop="windowPrintOut(row,true)">Print</el-button>
         </template>
       </el-table-column>
     </WmsTable>
     <pagination v-show="total>0" :limit.sync="queryParams.pageSize" :page.sync="queryParams.pageNum" :total="total"
                 @pagination="getList"></pagination>
-    <el-dialog :visible.sync="modalObj.show" :title="modalObj.title" :width="modalObj.width">
+    <shipment-order-print :row="modalObj.form.row||{}" ref="receiptOrderPrintRef"></shipment-order-print>
+<!--    <el-dialog :visible.sync="modalObj.show" :title="modalObj.title" :width="modalObj.width">
       <template v-if="modalObj.component === 'print-type'">
         <el-radio-group v-model="modalObj.form.value">
-         <!-- <el-radio :label="1">lodopPrint</el-radio>-->
+         &lt;!&ndash; <el-radio :label="1">lodopPrint</el-radio>&ndash;&gt;
           <el-radio :label="2" >Browser Print</el-radio>
         </el-radio-group>
       </template>
@@ -99,7 +99,7 @@
         <el-button @click="modalObj.cancel">Cancel</el-button>
         <el-button @click="modalObj.ok" type="primary">OK</el-button>
       </template>
-    </el-dialog>
+    </el-dialog>-->
   </div>
 </template>
 

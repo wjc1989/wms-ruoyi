@@ -32,7 +32,7 @@
         </el-button>
       </el-col>
 
-      <right-toolbar  :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
+      <right-toolbar  :showSearch.sync="showSearch" @queryTable="getList" ></right-toolbar>
     </el-row>
     <WmsTable v-loading="loading" :data="wmsReceiptOrderList" @selection-change="handleSelectionChange">
       <el-table-column align="center" type="selection" width="55"></el-table-column>
@@ -87,7 +87,7 @@
       </el-table-column>
     </WmsTable>
     <pagination v-show="total > 0" :limit.sync="queryParams.pageSize" :page.sync="queryParams.pageNum" :total="total" @pagination="getList"></pagination>
-    <receipt-order-print :row=" modalObj.form.row " ref="receiptOrderPrintRef"></receipt-order-print>
+    <receipt-order-print :row="modalObj.form.row" ref="receiptOrderPrintRef"></receipt-order-print>
 <!--    <el-dialog :visible.sync=" modalObj.show " :title=" modalObj.title " :width=" modalObj.width ">
       <template v-if=" modalObj.component === 'print-type' ">
         <el-radio-group v-model=" modalObj.form.value ">
@@ -149,7 +149,7 @@ export default {
         component: "window-print-preview",
         form: {
           value: 2,
-          row: null
+          row: {}
         },
         ok: () => {
         },
@@ -388,13 +388,17 @@ export default {
           if (it.rackId) {
             place += `/${this.rackMap.get(it.rackId)}`
           }
-          detailList.push({
-            itemName: prod.itemName,
-            itemNo: prod.itemNo,
-            itemType: prod.itemType,
-            planQuantity: it.planQuantity,
-            place
-          })
+          console.log(details);
+          if(prod){
+            detailList.push({
+              itemName: prod.itemName,
+              itemNo: prod.itemNo,
+              itemType: prod.itemType,
+              planQuantity: it.planQuantity,
+              place
+            })
+          }
+
         })
         return {
           remark: row.remark,

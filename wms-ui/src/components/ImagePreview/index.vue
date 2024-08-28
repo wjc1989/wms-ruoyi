@@ -19,7 +19,8 @@ export default {
   props: {
     src: {
       type: String,
-      required: true
+      required: true,
+      defalut:""
     },
     width: {
       type: [Number, String],
@@ -32,21 +33,27 @@ export default {
   },
   computed: {
     realSrc() {
-      let real_src = this.src.split(",")[0];
-      if (isExternal(real_src)) {
-        return real_src;
+      if(this.src){
+        let real_src = this.src.split(",")[0];
+        if (isExternal(real_src)) {
+          return real_src;
+        }
+        return process.env.VUE_APP_BASE_API + real_src;
       }
-      return process.env.VUE_APP_BASE_API + real_src;
     },
     realSrcList() {
-      let real_src_list = this.src.split(",");
       let srcList = [];
-      real_src_list.forEach(item => {
-        if (isExternal(item)) {
-          return srcList.push(item);
-        }
-        return srcList.push(process.env.VUE_APP_BASE_API + item);
-      });
+
+      if(this.src){
+        let real_src_list = this.src.split(",");
+        real_src_list.forEach(item => {
+          if (isExternal(item)) {
+            return srcList.push(item);
+          }
+          return srcList.push(process.env.VUE_APP_BASE_API + item);
+        });
+      }
+
       return srcList;
     },
     realWidth() {
