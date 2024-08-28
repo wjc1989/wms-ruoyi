@@ -17,7 +17,7 @@
       <tr v-for="it in row.details">
         <td>{{ it.itemName || '' }}</td>
         <td>{{ it.itemNo || '' }}</td>
-        <td>{{ it.itemType || '' }}</td>
+        <td>{{ it.itemTypeName || '' }}</td>
         <td>{{ it.planQuantity }}</td>
         <td>{{ it.place }}</td>
       </tr>

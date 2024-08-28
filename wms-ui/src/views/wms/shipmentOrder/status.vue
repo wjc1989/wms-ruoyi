@@ -37,16 +37,14 @@
         <div class="flex-one large-tip bolder-font">Logistics</div>
         <div class="ops">
           <el-button v-if="mergeDetailStatusArray.length === 1" type="primary" plain="plain" size="small"
-                     @click="deliveryAdd">Add Tracking No.
+                     @click="deliveryAdd">Add Tracking
           </el-button>
         </div>
       </div>
 
       <div class="table">
         <WmsTable v-loading="loading" :data="form.delivery" @selection-change="handleSelectionChange">
-          <el-table-column label="Outbound No." align="center" prop="shipmentOrderId" />
-          <el-table-column label=" Carrier" align="center" :formatter="getCarrier" prop="carrierId"
-                           />
+           <el-table-column label="Carrier" align="center" :formatter="getCarrier" prop="carrierId"/>
           <el-table-column label="Outbound Date" align="center" prop="deliveryDate" width="180" >
             <template slot-scope="scope">
               <span>{{ parseTime(scope.row.deliveryDate, '') }}</span>
@@ -106,8 +104,7 @@
             <el-table-column label="Goods Name" align="center" prop="prod.itemName"></el-table-column>
             <el-table-column label="Goods No." align="center" prop="prod.itemNo"></el-table-column>
             <el-table-column label="Cagegory" align="center" prop="prod.itemType"></el-table-column>
-            <el-table-column label="Plan Count" align="center" prop="planQuantity"></el-table-column>
-            <el-table-column label="Real Count" align="center" width="150">
+            <el-table-column label="Count" align="center" width="150">
               <template slot-scope="scope">
                 <el-input-number v-model="scope.row.realQuantity" :min="1" :max="2147483647" size="small"
                                  :disabled="scope.row.finish"></el-input-number>
@@ -139,10 +136,10 @@
       </div>
       <!-- Add OrModifyOutbound Record对话框 -->
       <el-dialog :title="deliveryTitle" :visible.sync="deliveryOpen" width="50%" append-to-body>
-        <el-form ref="deliveryForm" :model="deliveryForm" :rules="rules" label-width="108px" inline
+        <el-form ref="deliveryForm" :model="deliveryForm" :rules="rules" label-width="118px" inline
                  class="dialog-form-two">
           <el-form-item label="Outbound " prop="shipmentOrderId">
-            <el-input v-model="deliveryForm.shipmentOrderId" disabled placeholder="Please Input Outbound "/>
+            <el-input v-model="deliveryForm.shipmentOrderNo" disabled placeholder="Please Input Outbound "/>
           </el-form-item>
           <el-form-item label=" Carrier" prop="carrierId">
             <wms-carrier-select v-model="deliveryForm.carrierId"></wms-carrier-select>
@@ -342,9 +339,10 @@ export default {
     },
     // AddLogistics
     deliveryAdd() {
-      this.deliveryTitle = "New"
+      this.deliveryTitle = "Add Tracking"
       this.deliveryOpen = true
-      this.deliveryForm.shipmentOrderId = this.shipmentOrderId
+      this.deliveryForm.shipmentOrderId = this.shipmentOrderId;
+      this.deliveryForm.shipmentOrderNo=this.form.shipmentOrderNo;
     },
     dialogConfirm() {
       if (!this.dialogStatus) {
