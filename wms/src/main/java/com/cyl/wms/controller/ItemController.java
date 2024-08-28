@@ -1,11 +1,20 @@
 package com.cyl.wms.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.ruoyi.common.config.RuoYiConfig;
 import com.ruoyi.common.core.page.TableDataInfo;
+import com.ruoyi.common.utils.DateUtils;
+import com.ruoyi.common.utils.file.FileUploadUtils;
+import com.ruoyi.common.utils.uuid.IdUtils;
+import io.github.bluesbruce.BrQrCodeUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.data.domain.PageImpl;
@@ -90,6 +99,16 @@ public class ItemController extends BaseController {
     @Log(title = "Goods", businessType = BusinessType.INSERT)
     @PostMapping
     public ResponseEntity<Integer> add(@RequestBody Item item) {
+        String fileName= DateUtils.datePath() + "/" + IdUtils.simpleUUID() + ".jpg";
+        String uploadPath=RuoYiConfig.getUploadPath()+"/qrcode";
+        try {
+            BrQrCodeUtil.brEncode(item.getItemNo(), BarcodeFormat.CODE_39, new File(uploadPath+"/"+fileName));
+            item.setCodePath(FileUploadUtils.getPathFileName(uploadPath,fileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (WriterException e) {
+            e.printStackTrace();
+        }
         return ResponseEntity.ok(service.insert(item));
     }
 
@@ -98,6 +117,7 @@ public class ItemController extends BaseController {
     @Log(title = "Goods", businessType = BusinessType.UPDATE)
     @PutMapping
     public ResponseEntity<Integer> edit(@RequestBody Item item) {
+
         return ResponseEntity.ok(service.update(item));
     }
 

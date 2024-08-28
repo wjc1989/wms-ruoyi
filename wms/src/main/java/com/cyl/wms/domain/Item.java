@@ -84,6 +84,8 @@ public class Item extends BaseAudit {
     @TableField(exist = false)
     private BigDecimal inventory;
 
+    private String codePath;
+
 
 
 }
