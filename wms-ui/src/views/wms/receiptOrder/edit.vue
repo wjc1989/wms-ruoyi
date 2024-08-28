@@ -235,10 +235,11 @@ export default {
             it.prod.areaId = it.place[1]
             it.prod.rackId = it.place[2]
           } else {
-            it.prod.warehouseId = null
-            it.prod.areaId = null
-            it.prod.rackId = null
-          }
+            it.prod.warehouseId = null;
+            it.prod.areaId = null;
+            it.prod.rackId = null;
+           }
+
           return {
             id: it.id,
             itemId: it.prod.id,
@@ -252,6 +253,20 @@ export default {
             delFlag: 0
           }
         })
+        if(isInbround){
+          this.form.receiptOrderStatus=3;
+          if(!details||details.length==0){
+            this.$modal.msgWarning("If Inbround please add less 1 goods.");
+            return;
+          }
+          let index=details.findIndex(x=>x.warehouseId==null);
+          if(index!=-1){
+            this.$modal.msgWarning("If Inbround please set warehouse on row "+(index+1));
+            return;
+          }
+
+        }
+
         const req = {...this.form, details}
 
         addOrUpdateWmsReceiptOrder(req).then(response => {

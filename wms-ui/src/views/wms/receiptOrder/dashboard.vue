@@ -82,15 +82,16 @@
       <!--    <el-button v-hasPermi="['wms:receiptOrder:status']" v-if="row.detailCount && !row.waveNo" icon="el-icon-truck" size="mini"
                      type="text" @click.stop="handleStatus(row)">Inbound
           </el-button>-->
-          <el-button icon="el-icon-printer" size="mini" type="text" @click.stop="printOut(row, true)">Print</el-button>
+          <el-button icon="el-icon-printer" size="mini" type="text" @click.stop="windowPrintOut(row, true)">Print</el-button>
         </template>
       </el-table-column>
     </WmsTable>
     <pagination v-show="total > 0" :limit.sync="queryParams.pageSize" :page.sync="queryParams.pageNum" :total="total" @pagination="getList"></pagination>
-    <el-dialog :visible.sync=" modalObj.show " :title=" modalObj.title " :width=" modalObj.width ">
+    <receipt-order-print :row=" modalObj.form.row " ref="receiptOrderPrintRef"></receipt-order-print>
+<!--    <el-dialog :visible.sync=" modalObj.show " :title=" modalObj.title " :width=" modalObj.width ">
       <template v-if=" modalObj.component === 'print-type' ">
         <el-radio-group v-model=" modalObj.form.value ">
-<!--          <el-radio :label=" 1 ">lodopPrint</el-radio>-->
+&lt;!&ndash;          <el-radio :label=" 1 ">lodopPrint</el-radio>&ndash;&gt;
           <el-radio :label="2" >Browser Print</el-radio>
         </el-radio-group>
       </template>
@@ -101,7 +102,7 @@
         <el-button @click=" modalObj.cancel ">Cancel</el-button>
         <el-button @click=" modalObj.ok " type="primary">OK</el-button>
       </template>
-    </el-dialog>
+    </el-dialog>-->
   </div>
 </template>
 
@@ -145,7 +146,7 @@ export default {
       modalObj: {
         title: 'Select Print',
         width: '520px',
-        component: null,
+        component: "window-print-preview",
         form: {
           value: 2,
           row: null
@@ -304,29 +305,31 @@ export default {
       })
     },
     printOut(row, print) {
-      this.modalObj = {
-        show: true,
-        title: 'Select Print',
-        width: '520px',
-        component: 'print-type',
-        form: {
-          value: 2,
-          row
-        },
-        ok: () => {
-          this.modalObj.show = false
-          if (this.modalObj.form.value === 1) {
-            this.doPrintOut(row, false)
-          } else {
-            this.windowPrintOut(row, print)
-          }
-        },
-        cancel: () => {
-          this.modalObj.show = false
-        }
-      }
+      // this.modalObj = {
+      //   show: true,
+      //   title: 'Select Print',
+      //   width: '520px',
+      //   component: 'print-type',
+      //   form: {
+      //     value: 2,
+      //     row
+      //   },
+      //   ok: () => {
+      //     this.modalObj.show = false
+      //     if (this.modalObj.form.value === 1) {
+      //       this.doPrintOut(row, false)
+      //     } else {
+      //       this.windowPrintOut(row, print)
+          // }
+        // },
+        // cancel: () => {
+        //   this.modalObj.show = false
+        // }
+      // }
     },
     windowPrintOut(row, print) {
+      // alert(print)
+      // console.log("row:",row,",print:",print)
       this.getOrderDetail(row).then(res => {
         console.log(res)
         if (print) {

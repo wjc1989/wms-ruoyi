@@ -14,7 +14,7 @@
           title="Info"
           width="200"
           trigger="hover"
-          content="该Item未 Distribute Warehouse。">
+          content="Not Distribute Warehouse。">
           <a slot="reference" class="el-icon-question blue" @click="allocationItem(row)"> Distribute </a>
         </el-popover>
 
@@ -26,7 +26,7 @@
           width="200"
           trigger="hover"
           @confirm="deleteItem(row)"
-          title="该Warehouse已经被逻辑Delete,清除Inventory Record？">
+          title="This Warehouse has been deleted,Is delete this inventory record？">
           <a slot="reference" class="el-icon-question red">Delete</a>
         </el-popconfirm>
       </template>

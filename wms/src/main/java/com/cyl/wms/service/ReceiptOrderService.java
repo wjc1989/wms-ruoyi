@@ -175,13 +175,31 @@ public class ReceiptOrderService {
         receiptOrder.setCreateTime(LocalDateTime.now());
 
 
-
-
+        LocalDateTime now = LocalDateTime.now();
+        Long userId = SecurityUtils.getUserId();
+        List<InventoryHistory> adds = new ArrayList<>();
         res = receiptOrderMapper.insert(receiptOrder);
         saveDetails(receiptOrder.getId(), receiptOrder.getDetails());
+        //新增时入库
+        if(receiptOrder.getReceiptOrderStatus()==ReceiptOrderConstant.ALL_IN){
+            receiptOrder.getDetails().forEach(it -> {
+                InventoryHistory h = receiptOrderDetailConvert.do2InventoryHistory(it);
+                h.setFormId(receiptOrder.getId());
+                h.setFormType(receiptOrder.getReceiptOrderType());
+                h.setQuantity(it.getRealQuantity());
+                h.setDelFlag(0);
+                h.setId(null);
+                h.setCreateTime(now);
+                h.setCreateBy(userId);
+                adds.add(h);
+            });
 
-
-
+            if (adds.size() > 0) {
+                int add1 = inventoryHistoryService.batchInsert(adds);
+                int update1 = inventoryService.batchUpdate1(adds);
+                log.info("inventoryHistory: {}, inventory: {}", add1, update1);
+            }
+        }
         if (receiptOrder.getSupplierId() != null && receiptOrder.getPayableAmount() != null) {
             //保存订单金额到供应商流水表
             saveOrUpdatePayAmount(receiptOrder);

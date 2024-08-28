@@ -3,7 +3,7 @@
     <div class="title">{{ row.receiptOrderNo }}</div>
     <div class="summary">
       <div class="col1">Supplier: {{ row.supplierName }}</div>
-      <div class="col1">No.: {{ row.orderNo }}</div>
+      <div class="col1">Project: {{ row.orderNo }}</div>
       <div class="col1">Type: {{ row.receiptType }}</div>
       <div class="col1">Date: {{ row.createTime }}</div>
     </div>
