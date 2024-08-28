@@ -65,8 +65,7 @@
 
                 <WmsTable v-loading="loading" :data="wmsAreaList">
                   <el-table-column label="No." align="center" prop="areaNo"  />
-                  <el-table-column label="Warehouse" align="center" prop="warehouseName"  />
-                  <el-table-column label="Area Name" align="center" prop="areaName"  />
+                   <el-table-column label="Area Name" align="center" prop="areaName"  />
                   <el-table-column label="Remark" align="center" prop="remark"  />
                   <el-table-column label="Operate" align="center" class-name="small-padding fixed-width">
                     <template slot-scope="scope">
@@ -111,13 +110,13 @@
         <el-form-item label="Area Name" prop="areaName">
           <el-input v-model="areaForm.areaName" placeholder="Please Input Item" />
         </el-form-item>
-        <el-form-item label="Warehouse" prop="warehouseId">
-          <!-- <el-select v-model="form.warehouseId" placeholder="Please Input 货仓Item" clearable size="small">
-            <el-option v-for="item in warehouseList" :key="item.id" :label="item.warehouseName" :value="item.id">
-            </el-option>
-          </el-select> -->
-          <el-input v-model="areaForm.warehouseId" :disabled="true" />
-        </el-form-item>
+<!--        <el-form-item label="Warehouse" prop="warehouseId">-->
+<!--          &lt;!&ndash; <el-select v-model="form.warehouseId" placeholder="Please Input 货仓Item" clearable size="small">-->
+<!--            <el-option v-for="item in warehouseList" :key="item.id" :label="item.warehouseName" :value="item.id">-->
+<!--            </el-option>-->
+<!--          </el-select> &ndash;&gt;-->
+<!--          <el-input v-model="areaForm.warehouseId" :disabled="true" />-->
+<!--        </el-form-item>-->
         <el-form-item label="Remark" prop="remark">
           <el-input v-model="areaForm.remark" placeholder="Please Input Remark" />
         </el-form-item>
