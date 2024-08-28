@@ -623,4 +623,16 @@ public class InventoryService {
         }
         return inventoryList.get(0);
     }
+
+    public List<Inventory> selectWarehouseGoodsCount(Long[] ids) {
+        return this.inventoryMapper.selectWarehouseGoodsCount(ids);
+    }
+
+    public List<Inventory> selectAreaGoodsCount(Long[] ids) {
+        return this.inventoryMapper.selectAreaGoodsCount(ids);
+    }
+
+    public List<Inventory> selectShelfGoodsCount(Long[] ids) {
+        return this.inventoryMapper.selectShelfGoodsCount(ids);
+    }
 }

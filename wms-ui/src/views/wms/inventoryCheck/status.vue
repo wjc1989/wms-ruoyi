@@ -39,7 +39,7 @@
             <td align="center">{{ it.prod.itemNo }}</td>
             <td align="center">{{ it.prod.itemName }}</td>
             <td align="center">
-              <WmsWarehouseCascader disabled v-model="it.place" size="small"></WmsWarehouseCascader>
+              <WmsWarehouseCascader disabled v-model="it.place" size="small" :goodsId="scope.row.itemId||scope.row.id"></WmsWarehouseCascader>
             </td>
             <td align="center">
               {{ it.quantity }}

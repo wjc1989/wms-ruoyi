@@ -18,7 +18,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 /**
  * QuantityController
  *
@@ -106,5 +109,48 @@ public class InventoryController extends BaseController {
     @DeleteMapping("/warehouse/{ids}")
     public ResponseEntity<Integer> removeByWarehouse(@PathVariable Long[] ids) {
         return ResponseEntity.ok(service.deleteByWarehouseIds(ids));
+    }
+
+    @PostMapping("/getGoodsCount/{ids}")
+    @ResponseBody
+    public ResponseEntity<Map> getGoodsCount(@PathVariable Long[] ids){
+        Map<Long,HashMap> map=new HashMap();
+        List<Inventory> warehouse_count=this.service.selectWarehouseGoodsCount(ids);
+        List<Inventory> area_count=this.service.selectAreaGoodsCount(ids);
+        List<Inventory> shelf_count=this.service.selectShelfGoodsCount(ids);
+        if(warehouse_count!=null){
+            warehouse_count.forEach(x->{
+                if(map.get(x.getItemId())==null){
+                    map.put(x.getItemId(),new HashMap<>());
+                }
+                if(x.getQuantity().intValue()>0){
+                    map.get(x.getItemId()).put("w_"+x.getWarehouseId(),x.getQuantity());
+                }
+            });
+        }
+
+        if(area_count!=null){
+            area_count.forEach(x->{
+                if(map.get(x.getItemId())==null){
+                    map.put(x.getItemId(),new HashMap<>());
+                }
+                if(x.getQuantity().intValue()>0) {
+                    map.get(x.getItemId()).put("a_" + x.getAreaId(), x.getQuantity());
+                }
+            });
+        }
+
+        if(shelf_count!=null){
+            shelf_count.forEach(x->{
+                if(map.get(x.getItemId())==null){
+                    map.put(x.getItemId(),new HashMap<>());
+                }
+                if(x.getQuantity().intValue()>0) {
+                    map.get(x.getItemId()).put("s_" + x.getRackId(), x.getQuantity());
+                }
+            });
+        }
+
+        return ResponseEntity.ok(map);
     }
 }

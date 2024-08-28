@@ -119,7 +119,7 @@
                               :rules="[{ required: true, message: 'Please select Warehouse', trigger: 'change' }]"
                               style="margin-bottom: 0!important;">
                   <WmsWarehouseCascader v-model="scope.row.place" size="small"
-                                        :disabled="scope.row.finish"></WmsWarehouseCascader>
+                                        :disabled="scope.row.finish" :goodsId="scope.row.itemId||scope.row.id" ></WmsWarehouseCascader>
                 </el-form-item>
               </template>
             </el-table-column>

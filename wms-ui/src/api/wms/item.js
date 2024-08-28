@@ -77,3 +77,5 @@ export function exportWmsItem(query) {
     params: query
   })
 }
+
+

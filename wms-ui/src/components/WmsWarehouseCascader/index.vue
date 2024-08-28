@@ -10,13 +10,14 @@
   filterable>
     <template slot-scope="{node,data}">
         <span>{{data.label}}</span>
-        <span v-if="!node.isLeaf">({{data.children.length}})</span>
+        <span v-if="data.count">({{data.count}})</span>
     </template>
 </el-cascader>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import {getGoodsCount} from "@/api/wms/inventory";
 
 export default {
   props: {
@@ -32,14 +33,15 @@ export default {
       type: Boolean,
       default: false
     },
-    d:{
-       type: Array,
+    goodsId:{
+       type: Number,
        default:null
     }
   },
   data() {
     return {
-      options: []
+      options: [],
+      goodsCount:{}
     }
   },
   computed: {
@@ -49,6 +51,7 @@ export default {
         return this.value
       },
       set(v) {
+        console.log("set:",v)
         this.$emit('input', v)
       }
     }
@@ -57,8 +60,14 @@ export default {
     this.setOptions()
   },
   methods: {
-    setOptions() {
 
+    async setOptions() {
+      console.log("this.goodsId:",this.goodsId)
+      if(this.goodsId){
+        let res=await getGoodsCount(this.goodsId);
+        this.goodsCount=res[this.goodsId]||{};
+      }
+      console.log("goodsCount:",this.goodsCount);
       let areaMap = new Map()
       let warehouseMap = new Map()
       this.rackList.forEach(rack => {
@@ -67,8 +76,11 @@ export default {
           children = []
           areaMap.set(rack.areaId, children)
         }
-
-        children.push({ value: rack.id, label: rack.rackName })
+        let shelf={ value: rack.id, label: rack.rackName };
+        if(this.goodsCount['s_'+rack.id]){
+          shelf.count=this.goodsCount['s_'+rack.id];
+        }
+        children.push(shelf);
       })
       this.areaList.forEach(area => {
         let children = warehouseMap.get(area.warehouseId)
@@ -76,15 +88,24 @@ export default {
           children = []
           warehouseMap.set(area.warehouseId, children)
         }
-        children.push({ value: area.id, label: area.areaName, children: areaMap.get(area.id) })
+        let areaInfo={ value: area.id, label: area.areaName, children: areaMap.get(area.id) }
+        if(this.goodsCount['a_'+area.id]){
+          areaInfo.count=this.goodsCount['a_'+area.id];
+        }
+        children.push(areaInfo)
       })
       this.options = this.warehouseList.map(warehouse => {
-        return {
+        let warehouseInfo={
           value: warehouse.id,
           label: warehouse.warehouseName,
           children: warehouseMap.get(warehouse.id)
         }
+        if(this.goodsCount['w_'+warehouse.id]){
+          warehouseInfo.count=this.goodsCount['w_'+warehouse.id];
+        }
+        return warehouseInfo;
       })
+      console.log(this.options);
     }
   }
 }

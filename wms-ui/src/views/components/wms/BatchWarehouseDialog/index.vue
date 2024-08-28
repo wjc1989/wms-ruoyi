@@ -2,7 +2,7 @@
   <el-dialog :visible="visible" width="600px" title="Set Warehouse" @close="handleCancel">
     <el-form :model="form" ref="form">
       <el-form-item label="Warehouse" prop="place" :rules="rules">
-        <WmsWarehouseCascader v-model="form.place" size="small"></WmsWarehouseCascader>
+        <WmsWarehouseCascader v-model="form.place" size="small" :goodsId="form.itemId||form.id"></WmsWarehouseCascader>
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">

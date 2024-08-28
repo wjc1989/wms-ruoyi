@@ -76,3 +76,10 @@ export function exportWmsInventory(query) {
     params: query
   })
 }
+
+export function getGoodsCount(ids){
+  return request({
+    url:'/wms/inventory/getGoodsCount/'+ids,
+    method:'post'
+  })
+}

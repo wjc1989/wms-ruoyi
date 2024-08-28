@@ -52,12 +52,12 @@
           </el-table-column>
           <el-table-column label="Source  Warehouse" align="center" width="200">
             <template slot-scope="scope">
-              <WmsWarehouseCascader v-model="scope.row.sourcePlace" size="small"></WmsWarehouseCascader>
+              <WmsWarehouseCascader v-model="scope.row.sourcePlace" size="small" :goodsId="scope.row.itemId||scope.row.id"></WmsWarehouseCascader>
             </template>
           </el-table-column>
           <el-table-column label="Target  Warehouse" align="center" width="200">
             <template slot-scope="scope">
-              <WmsWarehouseCascader v-model="scope.row.targetPlace" size="small"></WmsWarehouseCascader>
+              <WmsWarehouseCascader v-model="scope.row.targetPlace" size="small" :goodsId="scope.row.itemId||scope.row.id"></WmsWarehouseCascader>
             </template>
           </el-table-column>
           <el-table-column label="Operate" align="center">
@@ -78,7 +78,7 @@
     </div>
     <el-dialog :visible="modalObj.show" :title="modalObj.title" :width="modalObj.width" @close="modalObj.cancel">
       <template v-if="modalObj.component === 'add-item'">
-        <item-select ref="item-select" :data="this.form.details"></item-select>
+        <item-select ref="item-select"  ></item-select>
       </template>
       <span slot="footer">
         <el-button v-if="modalObj.cancel" @click="modalObj.cancel">Cancel</el-button>
@@ -242,8 +242,8 @@ export default {
       this.resetForm('form')
     },
     confirmSelectItem() {
-      const value = this.$refs['item-select'].getRightList()
-      this.form.details = value.map(it => {
+      let value = this.$refs['item-select'].getRightList()
+      value=value.map(it => {
         return {
           id:it.id,
           prod: it,
@@ -255,6 +255,7 @@ export default {
           delFlag: 0
         }
       })
+      this.form.details.push(...value)
       this.closeModal()
     },
     closeModal() {
@@ -262,7 +263,7 @@ export default {
     },
     showAddItem() {
       try {
-        this.$refs['item-select'].initDetailsList(this.form.details)
+        this.$refs['item-select'].initDetailsList([])
       } catch (err) {
 
       }

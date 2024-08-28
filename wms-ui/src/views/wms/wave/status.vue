@@ -71,7 +71,7 @@
         <el-table-column label="Warehouse" align="center" width="200">
           <template slot-scope="scope">
             <WmsWarehouseCascader v-model="scope.row.place" size="small"
-                                  :disabled="scope.row.finish"></WmsWarehouseCascader>
+                                  :disabled="scope.row.finish" :goodsId="scope.row.itemId||scope.row.id"></WmsWarehouseCascader>
           </template>
         </el-table-column>
         <el-table-column label="Outbound Status" width="150">

@@ -99,6 +99,7 @@
           and
         <![CDATA[
           a.quantity < b.quantity
+
         ]]>
     </select>
     <!--      -->
@@ -182,6 +183,22 @@
           and (i.area_id != '' and i.area_id is not null and a.del_flag = 0 or i.area_id is null)
         order by i.quantity ${sort}
     </select>
+    <select id="selectWarehouseGoodsCount" resultType="com.cyl.wms.domain.Inventory">
+        select item_id as itemId,warehouse_id as warehouseId,sum(quantity) as quantity
+        from wms_inventory
+        where item_id in <foreach collection="ids" open="(" item="id" close=")" separator=",">#{id}</foreach> and del_flag=0 and warehouse_id is not null group by item_id,warehouse_id
+    </select>
+    <select id="selectAreaGoodsCount" resultType="com.cyl.wms.domain.Inventory">
+        select item_id as itemId,warehouse_id as warehouseId,area_id as areaId,sum(quantity) as quantity
+        from wms_inventory
+        where item_id in <foreach collection="ids" open="(" item="id" close=")" separator=",">#{id}</foreach> and del_flag=0 and warehouse_id is not null and area_id is not null group by item_id,warehouse_id,area_id
+    </select>
+    <select id="selectShelfGoodsCount" resultType="com.cyl.wms.domain.Inventory">
+        select item_id as itemId,warehouse_id as warehouseId,area_id as areaId,rack_id as rackId,sum(quantity) as quantity
+        from wms_inventory
+        where item_id in <foreach collection="ids" open="(" item="id" close=")" separator=",">#{id}</foreach> and del_flag=0 and warehouse_id is not null and area_id is not null and rack_id is not null group by item_id,warehouse_id,area_id,rack_id
+    </select>
+
     <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
         insert into wms_inventory
         (item_id, rack_id, quantity, remark, del_flag, create_by, create_time, update_by, update_time, warehouse_id,

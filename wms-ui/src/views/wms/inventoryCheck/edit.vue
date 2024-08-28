@@ -41,7 +41,7 @@
             <td align="center">{{ it.prod.itemNo }}</td>
             <td align="center">{{ it.prod.itemName }}</td>
             <td align="center">
-              <WmsWarehouseCascader :disabled="!it.isNew" v-model="it.place" size="small"></WmsWarehouseCascader>
+              <WmsWarehouseCascader :disabled="!it.isNew" v-model="it.place" size="small" :goodsId="it.itemId||it.id"></WmsWarehouseCascader>
             </td>
             <td align="center">
               {{ it.quantity }}
@@ -71,7 +71,7 @@
     </div>
     <el-dialog :visible="modalObj.show" :title="modalObj.title" :width="modalObj.width" @close="modalObj.cancel">
       <template v-if="modalObj.component === 'add-item'">
-        <item-select ref="item-select"  :data="this.form.details"></item-select>
+        <item-select ref="item-select"   ></item-select>
       </template>
       <span slot="footer">
         <el-button v-if="modalObj.cancel" @click="modalObj.cancel">Cancel</el-button>
