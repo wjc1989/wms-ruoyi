@@ -257,6 +257,7 @@ export default {
             delFlag: 0
           }
         })
+        //如果是保存直接入库，验证是否选择了仓库
         if(isInbround){
           this.form.receiptOrderStatus=3;
           if(!details||details.length==0){
@@ -338,7 +339,7 @@ export default {
     },
     showAddItem() {
       try {
-        this.$refs['item-select'].initDetailsList()
+        this.$refs['item-select'].initDetailsList([])
       } catch (err) {
 
       }

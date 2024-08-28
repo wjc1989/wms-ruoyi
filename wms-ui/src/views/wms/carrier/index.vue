@@ -84,7 +84,7 @@
           size="mini"
           @click="handleAdd"
           v-hasPermi="['wms:carrier:add']"
-        >New</el-button>
+        >New Carrier</el-button>
       </el-col>
       <!-- <el-col :span="1.5">
         <el-button
@@ -332,7 +332,7 @@ export default {
         handleAdd() {
             this.reset();
             this.open = true;
-            this.title = "New";
+            this.title = "New Carrier";
         },
         /** ModifyButtonOperate */
         handleUpdate(row) {
@@ -341,7 +341,7 @@ export default {
             getWmsCarrier(id).then(response => {
                 this.form = response;
                 this.open = true;
-                this.title = "Modify";
+                this.title = "Modify Carrier";
             });
         },
         /** 提交Button */

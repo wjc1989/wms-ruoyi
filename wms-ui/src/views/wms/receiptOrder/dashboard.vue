@@ -394,6 +394,7 @@ export default {
               itemName: prod.itemName,
               itemNo: prod.itemNo,
               itemType: prod.itemType,
+              itemTypeName:prod.itemTypeName,
               planQuantity: it.planQuantity,
               place
             })
