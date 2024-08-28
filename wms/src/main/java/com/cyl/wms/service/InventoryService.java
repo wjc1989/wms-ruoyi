@@ -218,10 +218,16 @@ public class InventoryService {
         qw.eq("item_id", itemId).eq("warehouse_id", warehouseId);
         if (rackId != null) {
             qw.eq("rack_id", rackId);
+        }else{
+            qw.isNull("rack_id");
         }
+
         if (areaId != null) {
             qw.eq("area_id", areaId);
+        }else{
+            qw.isNotNull("area_id");
         }
+
         return inventoryMapper.selectOne(qw);
     }
 
