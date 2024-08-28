@@ -7,7 +7,7 @@ import com.cyl.wms.domain.Area;
 
 /**
  * 货区Mapper接口
- * 
+ *
  * @author zcc
  */
 public interface AreaMapper extends BaseMapper<Area> {

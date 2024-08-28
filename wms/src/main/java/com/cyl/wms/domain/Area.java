@@ -1,5 +1,6 @@
 package com.cyl.wms.domain;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.ruoyi.common.annotation.Excel;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -38,5 +39,7 @@ public class Area extends BaseAudit {
 
     @ApiModelProperty("Delete Flag")
     private Integer delFlag;
+    @TableField(exist = false)
+    private String warehouseName;
 
 }

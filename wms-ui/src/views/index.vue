@@ -99,15 +99,15 @@
           <div slot="header" ref="warn"><span>Warn</span></div>
           <WmsTable v-loading="loading" :data="warnList">
             <el-table-column align="left" label="ID" prop="id" width="72"></el-table-column>
-            <el-table-column align="left" label="Goods" prop="itemName">
+            <el-table-column align="left" label="Goods" prop="itemName" width="110">
               <template v-slot="{ row }"><span style="color:red">{{ row.itemName }}</span></template>
             </el-table-column>
             <el-table-column align="left" label="No." prop="itemNo"></el-table-column>
-            <el-table-column align="left" label="Warehouse" width="200">
+            <el-table-column align="left" label="Warehouse"  >
               <template v-slot="{ row }"><span v-if="row.warehouseName">{{ row.warehouseName }}</span><span
                   v-if="row.areaName">/{{ row.areaName }}</span></template>
             </el-table-column>
-            <el-table-column align="left" label="Count">
+            <el-table-column align="left" label="Count" width="60">
               <template v-slot="{ row }"><span style="color:red;font-weight: bold;">{{ row.quantity }}</span></template>
             </el-table-column>
             <el-table-column align="left" label="Safty Count" prop="saftyQuantity"></el-table-column>
