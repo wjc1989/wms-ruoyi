@@ -41,7 +41,7 @@
             <td align="center">{{ it.prod.itemNo }}</td>
             <td align="center">{{ it.prod.itemName }}</td>
             <td align="center">
-              <WmsWarehouseCascader :disabled="!it.isNew" v-model="it.place" size="small" :goodsId="it.itemId||it.id"></WmsWarehouseCascader>
+              <WmsWarehouseCascader :disabled="!it.isNew" v-model="it.place" size="small" :goodsId="it.prod.itemId||it.id"></WmsWarehouseCascader>
             </td>
             <td align="center">
               {{ it.quantity }}
@@ -60,9 +60,9 @@
         </table>
         <!-- <el-empty v-if="!form.details || form.details.length === 0" :image-size="48"></el-empty> -->
       </div>
-      <div class="tc mt16" >
+      <!--<div class="tc mt16" >
         <el-button type="primary" plain="plain" size="small" @click="showAddItem">Select Goods</el-button>
-      </div>
+      </div>-->
       <div class="tc mt16">
         <el-button @click="cancel">Cancel</el-button>
         <el-button @click="submitForm(11)" type="primary">Save</el-button>
@@ -71,7 +71,7 @@
     </div>
     <el-dialog :visible="modalObj.show" :title="modalObj.title" :width="modalObj.width" @close="modalObj.cancel">
       <template v-if="modalObj.component === 'add-item'">
-        <item-select ref="item-select"   ></item-select>
+        <item-select ref="item-select"    ></item-select>
       </template>
       <span slot="footer">
         <el-button v-if="modalObj.cancel" @click="modalObj.cancel">Cancel</el-button>
@@ -284,6 +284,7 @@ export default {
         this.form.details = value.filter(it => {
           return !hasInventoryIds.has(it.id)
         }).map(it => {
+          console.log("value:",it)
           let place = [this.form.warehouseId]
           if (this.form.areaId) {
             place.push(this.form.areaId)
@@ -314,6 +315,9 @@ export default {
             if (it.areaId) {
               place.push(it.areaId)
             }
+            if(it.rackId){
+              place.push(it.rackId)
+            }
             return {
               isNew: false,
               prod: {
@@ -343,7 +347,7 @@ export default {
     },
     showAddItem() {
       try {
-        this.$refs['item-select'].initDetailsList(this.form.details)
+        this.$refs['item-select'].initDetailsList()
       }catch (err){
 
       }
