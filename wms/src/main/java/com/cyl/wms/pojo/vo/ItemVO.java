@@ -61,5 +61,6 @@ public class ItemVO extends BaseAudit {
     private Integer delFlag;
 
     private BigDecimal inventory;
+    private String codePath;
 
 }

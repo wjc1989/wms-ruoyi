@@ -78,7 +78,11 @@
           <span><ImagePreview v-if="scope.row.pics!=null" :src="scope.row.pics" class="listimage" ></ImagePreview></span>
         </template>
       </el-table-column>
-
+      <el-table-column label="Code" align="center" prop="pics"  >
+        <template slot-scope="scope">
+          <span><ImagePreview v-if="scope.row.codePath!=null" :width="160"  :height="45" :src="scope.row.codePath" class="listimage" ></ImagePreview></span>
+        </template>
+      </el-table-column>
       <el-table-column label="Category" align="center" prop="itemTypeName"  />
       <el-table-column label="Unit" align="center" prop="unit"  />
       <el-table-column label="Safty Count" align="center" prop="quantity"  />
@@ -106,38 +110,35 @@
       <el-form ref="form" :model="form" :rules="rules" label-width="125px" class="dialog-form-two">
         <el-row :gutter="24">
           <el-col :span="12">
-            <el-form-item label="No." prop="itemNo">
-              <el-input v-model="form.itemNo" placeholder="Please Input No." />
-            </el-form-item>
-          </el-col>
-          <el-col :span="12">
             <el-form-item label="Goods Name" prop="itemName">
               <el-input v-model="form.itemName" placeholder="Please Input Item" />
             </el-form-item>
           </el-col>
-        </el-row>
-        <el-row :gutter="24">
           <el-col :span="12">
             <el-form-item label="Category" prop="itemType">
               <treeselect v-model="form.itemType" :options="deptOptions" :show-count="true" placeholder="Please select Type" />
-            </el-form-item>
-          </el-col>
-          <el-col :span="12">
-            <el-form-item label="Unit" prop="unit">
-              <el-input v-model="form.unit" placeholder="Please Input Unit" />
             </el-form-item>
           </el-col>
         </el-row>
         <el-row :gutter="24">
 
           <el-col :span="12">
+            <el-form-item label="Unit" prop="unit">
+              <el-input v-model="form.unit" placeholder="Please Input Unit" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
             <el-form-item label="Safty Count" prop="quantity">
               <el-input v-model="form.quantity" placeholder="Please Input Safty Count" />
             </el-form-item>
           </el-col>
+        </el-row>
+        <el-row :gutter="24">
+
+
           <el-col :span="12">
             <el-form-item label="Expiry Date" prop="expiryDate">
-              <el-date-picker clearable size="small" v-model="form.expiryDate" type="datetime"
+              <el-date-picker style="width: 100%" clearable size="small" v-model="form.expiryDate" type="datetime"
                               value-format="yyyy-MM-dd HH:mm:ss" placeholder="Select Expiry Date">
               </el-date-picker>
             </el-form-item>
@@ -147,7 +148,7 @@
 
           <el-col :span="24">
             <el-form-item label="Remark" prop="remark">
-              <el-input v-model="form.remark" placeholder="Please Input Remark" />
+              <el-input v-model="form.remark" type="textarea" placeholder="Please Input Remark" />
             </el-form-item>
           </el-col>
         </el-row>
