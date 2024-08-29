@@ -92,10 +92,11 @@
         </template>
       </el-table-column>
       <el-table-column label="Remark" align="center" prop="remark"  />
-      <el-table-column label="Operate" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="Operate" align="center" class-name="small-padding fixed-width" width="170">
         <template slot-scope="scope">
           <el-button size="mini" type="text" icon="el-icon-edit" @click.stop="handleUpdate(scope.row)"
             v-hasPermi="['wms:item:edit']">Modify</el-button>
+          <el-button icon="el-icon-printer" size="mini" type="text" @click.stop="windowPrintOut(scope.row, true)">Print</el-button>
           <el-button size="mini" type="text" icon="el-icon-delete" @click="handleDelete(scope.row)"
             v-hasPermi="['wms:item:remove']">Delete</el-button>
         </template>
@@ -165,6 +166,7 @@
         <el-button @click="cancel">Cancel</el-button>
       </div>
     </el-dialog>
+    <ItemPrint :codePath="codePath" ref="itemPrintRef"></ItemPrint>
   </div>
 </template>
 
@@ -181,10 +183,11 @@ import { mapGetters } from "vuex";
 import Treeselect from "@riophae/vue-treeselect";
 import { itemTypeTreeselect } from "@/api/wms/itemType";
 import "@riophae/vue-treeselect/dist/vue-treeselect.css";
+import ItemPrint from "@/views/wms/item/ItemPrint";
 
 export default {
   name: "WmsItem",
-  components: { Treeselect },
+  components: { Treeselect,ItemPrint },
   dicts: ["wms_item_type"],
   computed: {
     ...mapGetters(['warehouseMap', 'warehouseList', 'areaList', 'areaMap', 'rackList', 'rackMap']),
@@ -253,6 +256,7 @@ export default {
         { key: 7, label: "Expiry Date", visible: true },
         { key: 8, label: "Remark", visible: false },
       ],
+      codePath:"",
       showMoreCondition: false,
     };
   },
@@ -263,7 +267,24 @@ export default {
     });
   },
   methods: {
-
+    windowPrintOut(row, print) {
+      // alert(print)
+      console.log("row:",row)
+      this.codePath = row.codePath;
+      this.$nextTick(() => {
+        this.$refs['itemPrintRef'].start()
+      })
+      // this.getOrderDetail(row).then(res => {
+      //   console.log(res)
+      //   if (print) {
+      //     this.modalObj.form.row = res
+      //     this.$nextTick(() => {
+      //       this.$refs['receiptOrderPrintRef'].start()
+      //     })
+      //     return
+      //   }
+      // })
+    },
     /** SearchItem列表 */
     getList() {
       this.loading = true;

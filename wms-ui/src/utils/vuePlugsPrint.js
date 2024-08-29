@@ -20,6 +20,7 @@ const Print = function (dom, options, pageSize) {
 Print.prototype = {
   init: function (pageSize) {
     var content = this.getStyle(pageSize) + this.getHtml();
+    console.log("content:",content);
     this.writeIframe(content);
   },
   extend: function (obj, obj2) {
