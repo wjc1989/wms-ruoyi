@@ -96,7 +96,7 @@
         <template slot-scope="scope">
           <el-button size="mini" type="text" icon="el-icon-edit" @click.stop="handleUpdate(scope.row)"
             v-hasPermi="['wms:item:edit']">Modify</el-button>
-          <el-button icon="el-icon-printer" size="mini" type="text" @click.stop="windowPrintOut(scope.row, true)">Print</el-button>
+          <el-button icon="el-icon-printer" size="mini" type="text"  @click.stop="startPrintJobTest(scope.row.itemNo)">Print</el-button>
           <el-button size="mini" type="text" icon="el-icon-delete" @click="handleDelete(scope.row)"
             v-hasPermi="['wms:item:remove']">Delete</el-button>
         </template>
@@ -185,6 +185,17 @@ import { itemTypeTreeselect } from "@/api/wms/itemType";
 import "@riophae/vue-treeselect/dist/vue-treeselect.css";
 import ItemPrint from "@/views/wms/item/ItemPrint";
 
+
+import Socket from "@/utils/Socket";
+import NMPrintSocket from "@/utils/Print";
+import { textPrintData } from "@/utils/printData/Text";
+import { getBarcodePrintData } from "@/utils/printData/Barcode";
+import { qrCodePrintData } from "@/utils/printData/QrCode";
+import { linePrintData } from "@/utils/printData/Line";
+import { graphPrintData } from "@/utils/printData/Graph";
+import { imgPrintData } from "@/utils/printData/Img";
+import { combinationPrintData } from "@/utils/printData/Combination";
+import { batchPrintData } from "@/utils/printData/Batch";
 export default {
   name: "WmsItem",
   components: { Treeselect,ItemPrint },
@@ -193,6 +204,11 @@ export default {
     ...mapGetters(['warehouseMap', 'warehouseList', 'areaList', 'areaMap', 'rackList', 'rackMap']),
   },
   data() {
+    const jsonObj = {
+      printerImageProcessingInfo: {
+        printQuantity: 1,
+      },
+    };
     return {
       // 遮罩层
       loading: true,
@@ -221,6 +237,7 @@ export default {
       title: "",
       // Show弹出层
       open: false,
+
       // SearchParams
       queryParams: {
         pageNum: 1,
@@ -258,7 +275,57 @@ export default {
       ],
       codePath:"",
       showMoreCondition: false,
+      textPrintData,
+      qrCodePrintData,
+      linePrintData,
+      graphPrintData,
+      imgPrintData,
+      combinationPrintData,
+      batchPrintData,
+      jsonObj,
+      // 打印服务是否连接成功
+      printSocketOpen: false,
+      nMPrintSocket: null,
+      usbPrinters: {},
+      wifiPrinters: {},
+      onlineUsbBool: false,
+      onlineWifiBool: false,
+      usbSelectPrinter: "",
+      wifiSelectPrinter: "",
+      initBool: false,
+      density: 8,
+      label_type: 1,
+      print_mode: 2,
+      auto_shut_down: 1,
+      wifiName: "",
+      wifiPassword: "",
     };
+  },
+  mounted() {
+    // 创建socket实例
+    const socketData = new Socket("ws://127.0.0.1:37989");
+
+    socketData.open(
+      (openBool) => {
+        console.log(openBool, "openBool");
+        this.printSocketOpen = openBool;
+      },
+      (msg) => {
+        if (msg.resultAck.callback != undefined) {
+          const callbackName = msg.resultAck.callback.name;
+          const msgInfo = msg.resultAck.info;
+          if (callbackName == "onCoverStatusChange") {
+            //盒盖状态：0-闭合、1-打开
+            console.log("盒盖状态", msgInfo.capStatus);
+          } else if (callbackName == "onElectricityChange") {
+            //"power" : 0-4, // 电池电量等级（共5档）
+            console.log("电池电量等级", msgInfo.power);
+          }
+        }
+      }
+    );
+    // 创建打印实例
+    this.nMPrintSocket = new NMPrintSocket(socketData);
   },
   created() {
     this.getList();
@@ -267,6 +334,141 @@ export default {
     });
   },
   methods: {
+    async startPrintJobTest(code) {
+      if (!this.printSocketOpen) return alert("打印服务未开启");
+      let contentArr = [];
+      contentArr.push(getBarcodePrintData(code));
+      this.batchPrintJob(contentArr);
+    },
+    //批量打印列表数据
+    async batchPrintJob(list) {
+      const printQuantity =this.jsonObj.printerImageProcessingInfo.printQuantity;
+      try {
+        const startRes = await this.nMPrintSocket.startJob(
+          this.density,
+          this.label_type,
+          this.print_mode,
+          list.length * printQuantity
+        );
+        if (startRes.resultAck.errorCode == 0) {
+          // 提交打印任务
+          await this.printTag(list, 0);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    },
+    // 绘制打印标签
+    async printTag(list, x) {
+      console.log(list, x);
+      //设置画布尺寸
+      try {
+        const res = await this.nMPrintSocket.InitDrawingBoard(
+          list[x].InitDrawingBoardParam
+        );
+        if (res.resultAck.errorCode != 0) {
+          return;
+        }
+        // 提交打印任务
+        this.printItem(list, x, list[x].elements, 0);
+      } catch (err) {
+        console.error(err);
+      }
+    },
+    async printItem(list, x, item, i) {
+      try {
+        if (i < item.length) {
+          let arrParse;
+          switch (item[i].type) {
+            case "text":
+              //绘制文本
+              arrParse = await this.nMPrintSocket.DrawLableText(item[i].json);
+              if (arrParse.resultAck.errorCode != 0) {
+                return;
+              }
+              i++;
+              await this.printItem(list, x, item, i);
+              break;
+            case "qrCode":
+              arrParse = await this.nMPrintSocket.DrawLableQrCode(item[i].json);
+              //绘制二维码
+              if (arrParse.resultAck.errorCode !== 0) {
+                return;
+              }
+              i++;
+              await this.printItem(list, x, item, i);
+              break;
+            case "barCode":
+              //绘制一维码
+              arrParse = await this.nMPrintSocket.DrawLableBarCode(
+                item[i].json
+              );
+              if (arrParse.resultAck.errorCode !== 0) {
+                return;
+              }
+              i++;
+              await this.printItem(list, x, item, i);
+              break;
+            case "line":
+              //绘制线条
+              arrParse = await this.nMPrintSocket.DrawLableLine(item[i].json);
+              if (arrParse.resultAck.errorCode !== 0) {
+                return;
+              }
+              i++;
+              await this.printItem(list, x, item, i);
+              break;
+            case "graph":
+              //绘制边框
+              arrParse = await this.nMPrintSocket.DrawLableGraph(item[i].json);
+              if (arrParse.resultAck.errorCode != 0) {
+                return;
+              }
+
+              i++;
+              await this.printItem(list, x, item, i);
+              break;
+            case "image":
+              //绘制边框
+              arrParse = await this.nMPrintSocket.DrawLableImage(item[i].json);
+              if (arrParse.resultAck.errorCode != 0) {
+                return;
+              }
+              i++;
+              await this.printItem(list, x, item, i);
+              break;
+          }
+        } else {
+          //遍历完成，开始打印
+          const commitRes = await this.nMPrintSocket.commitJob(
+            null,
+            JSON.stringify(this.jsonObj)
+          );
+          //回调页码为数据总长度且回调打印份数数据等于当前页需要打印的份数数据时，结束打印任务
+          if (
+            commitRes.resultAck.printQuantity == list.length &&
+            commitRes.resultAck.onPrintPageCompleted ==
+            this.jsonObj.printerImageProcessingInfo.printQuantity
+          ) {
+            //结束打印任务
+            const endRes = await this.nMPrintSocket.endJob();
+            if (endRes.resultAck.errorCode === 0) {
+              console.log("打印完成");
+            }
+            return;
+          }
+          //回调为提交成功，同时数据未发送完成时，可继续提交数据
+          if (commitRes.resultAck.errorCode === 0 && x < list.length - 1) {
+            //数据提交成功，数据下标+1
+            console.log("发送下一页打印数据： ");
+            x++;
+            await this.printTag(list, x);
+          }
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    },
     windowPrintOut(row, print) {
       // alert(print)
       console.log("row:",row)
