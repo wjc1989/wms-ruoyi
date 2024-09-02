@@ -309,6 +309,8 @@ export default {
       (openBool) => {
         console.log(openBool, "openBool");
         this.printSocketOpen = openBool;
+        this.selectOnLineUsbPrinter();
+
       },
       (msg) => {
         if (msg.resultAck.callback != undefined) {
@@ -334,6 +336,71 @@ export default {
     });
   },
   methods: {
+    //初始化SDK
+    async init() {
+      if (!this.printSocketOpen) return alert("打印服务未开启");
+      //初始化数据
+      try {
+        const res = await this.nMPrintSocket.initSdk({ fontDir: "" });
+        if (res.resultAck.errorCode == 0) {
+          console.log("初始化成功");
+          this.initBool = true;
+        } else {
+          console.log("初始化失败");
+          this.initBool = false;
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    },
+    //更新打印机列表
+    async getPrinters() {
+      if (!this.printSocketOpen) {
+        return alert("打印服务未开启");
+      }
+      console.log("开始获取打印机");
+      try {
+        const allPrintersRes = await this.nMPrintSocket.getAllPrinters();
+        console.log(allPrintersRes, "allPrintersRes");
+        if (allPrintersRes.resultAck.errorCode === 0) {
+          const allPrinters = JSON.parse(allPrintersRes.resultAck.info);
+          this.usbPrinters = { ...allPrinters };
+          this.usbSelectPrinter = Object.keys(this.usbPrinters)[0];
+          console.log(this.usbSelectPrinter);
+          console.log("printers", this.usbPrinters);
+        } else {
+          alert("没有在线的打印机");
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    },
+    // 连接打印机
+    async selectOnLineUsbPrinter() {
+      if (!this.printSocketOpen) {
+        return alert("打印服务未开启");
+      }
+      console.log("开始连接打印机");
+      try {
+        const res = await this.nMPrintSocket.selectPrinter(
+          "B50 Label Printer",
+          0
+        );
+        console.log("选择打印机", res);
+
+        if (res.resultAck.errorCode === 0) {
+          console.log("连接成功");
+          this.onlineUsbBool = true;
+          this.init();
+        } else {
+          console.log("连接失败");
+          this.onlineUsbBool = false;
+          alert("连接失败");
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    },
     async startPrintJobTest(code) {
       if (!this.printSocketOpen) return alert("打印服务未开启");
       let contentArr = [];
