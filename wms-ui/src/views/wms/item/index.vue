@@ -67,6 +67,9 @@
           v-hasPermi="['wms:item:export']">Export</el-button>
       </el-col>
       <el-col :span="1.5">
+        <el-button type="success" plain icon="el-icon-download" size="mini" :disabled="multiple" :loading="exportLoading" @click="handlePrint" >Print</el-button>
+      </el-col>
+      <el-col :span="1.5">
         <el-button :type="initBool?'success':'danger'" plain  size="mini"   @click="handleConnect" :disabled="initBool" >{{connectPrintText}}</el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList" ></right-toolbar>
@@ -99,7 +102,7 @@
         <template slot-scope="scope">
           <el-button size="mini" type="text" icon="el-icon-edit" @click.stop="handleUpdate(scope.row)"
             v-hasPermi="['wms:item:edit']">Modify</el-button>
-          <el-button icon="el-icon-printer" size="mini" type="text"  @click.stop="startPrintJobTest(scope.row.itemNo)">Print</el-button>
+          <el-button icon="el-icon-printer" size="mini" type="text"  @click.stop="handlePrint(scope.row)">Print</el-button>
           <el-button size="mini" type="text" icon="el-icon-delete" @click="handleDelete(scope.row)"
             v-hasPermi="['wms:item:remove']">Delete</el-button>
         </template>
@@ -222,6 +225,7 @@ export default {
       exportLoading: false,
       // 选中数组
       ids: [],
+      codes:[],
       // 非个禁用
       single: true,
       // 非多个禁用
@@ -420,13 +424,18 @@ export default {
         console.error(err);
       }
     },
-    async startPrintJobTest(code) {
+    async handlePrint(row) {
+      let codes=row.itemNo?[row.itemNo]:this.codes;
+
       if (!this.initBool){
         this.$modal.msgWarning("Please connect print first");
         return;
       }
       let contentArr = [];
-      contentArr.push(getBarcodePrintData(code));
+      codes.forEach(code=>{
+        contentArr.push(getBarcodePrintData(code));
+      })
+      console.log(contentArr)
       this.batchPrintJob(contentArr);
     },
     //批量打印列表数据
@@ -643,6 +652,8 @@ export default {
     // 多选框选中Data
     handleSelectionChange(selection) {
       this.ids = selection.map((item) => item.id);
+      this.codes = selection.map((item) => item.itemNo);
+
       this.single = selection.length !== 1;
       this.multiple = !selection.length;
     },
