@@ -66,6 +66,9 @@
         <el-button type="warning" plain icon="el-icon-download" size="mini" :loading="exportLoading" @click="handleExport"
           v-hasPermi="['wms:item:export']">Export</el-button>
       </el-col>
+      <el-col :span="1.5">
+        <el-button :type="initBool?'success':'danger'" plain  size="mini"   @click="handleConnect" :disabled="initBool" >{{connectPrintText}}</el-button>
+      </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList" ></right-toolbar>
     </el-row>
 
@@ -299,6 +302,7 @@ export default {
       auto_shut_down: 1,
       wifiName: "",
       wifiPassword: "",
+      connectPrintText:"Connect Label Print"
     };
   },
   mounted() {
@@ -308,8 +312,7 @@ export default {
     socketData.open(
       (openBool) => {
         console.log(openBool, "openBool");
-        this.printSocketOpen = openBool;
-        this.selectOnLineUsbPrinter();
+        this.printSocketOpen=openBool;
 
       },
       (msg) => {
@@ -336,40 +339,56 @@ export default {
     });
   },
   methods: {
-    //初始化SDK
-    async init() {
-      if (!this.printSocketOpen) return alert("打印服务未开启");
-      //初始化数据
-      try {
-        const res = await this.nMPrintSocket.initSdk({ fontDir: "" });
-        if (res.resultAck.errorCode == 0) {
-          console.log("初始化成功");
-          this.initBool = true;
-        } else {
-          console.log("初始化失败");
-          this.initBool = false;
+    async handleConnect(){
+      await this.getPrinters();
+      if(this.usbSelectPrinter){
+        console.log("打印机已选择")
+        await this.selectOnLineUsbPrinter();
+        if(this.onlineUsbBool){
+          console.log("打印机已经连接")
+          await this.init();
         }
-      } catch (err) {
-        console.error(err);
       }
+
     },
-    //更新打印机列表
     async getPrinters() {
       if (!this.printSocketOpen) {
-        return alert("打印服务未开启");
+        this.$modal.msgError("Print socket not open please wait...");
+        return ;
       }
-      console.log("开始获取打印机");
-      try {
+       try {
         const allPrintersRes = await this.nMPrintSocket.getAllPrinters();
         console.log(allPrintersRes, "allPrintersRes");
         if (allPrintersRes.resultAck.errorCode === 0) {
           const allPrinters = JSON.parse(allPrintersRes.resultAck.info);
           this.usbPrinters = { ...allPrinters };
           this.usbSelectPrinter = Object.keys(this.usbPrinters)[0];
-          console.log(this.usbSelectPrinter);
-          console.log("printers", this.usbPrinters);
+          console.log("usbSelectPrinter:",this.usbSelectPrinter);
+          console.log("usbPrinters:", this.usbPrinters);
         } else {
-          alert("没有在线的打印机");
+          this.$modal.msgError("No find print...");
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    },
+    //初始化SDK
+    async init() {
+      if (!this.printSocketOpen) {
+        this.$modal.msgError("Print socket not open please wait...");
+        return ;
+      }
+      //初始化数据
+      try {
+        const res = await this.nMPrintSocket.initSdk({ fontDir: "" });
+        if (res.resultAck.errorCode == 0) {
+          console.log("初始化成功");
+          this.initBool = true;
+          this.connectPrintText="Connect Successful"
+        } else {
+          console.log("初始化失败");
+          this.initBool = false;
+          this.connectPrintText="Connect Failed"
         }
       } catch (err) {
         console.error(err);
@@ -378,20 +397,20 @@ export default {
     // 连接打印机
     async selectOnLineUsbPrinter() {
       if (!this.printSocketOpen) {
-        return alert("打印服务未开启");
+        this.$modal.msgError("Print socket not open please wait...");
+        return ;
       }
       console.log("开始连接打印机");
       try {
         const res = await this.nMPrintSocket.selectPrinter(
-          "B50 Label Printer",
-          0
+          this.usbSelectPrinter,
+          parseInt(this.usbPrinters[this.usbSelectPrinter])
         );
         console.log("选择打印机", res);
 
         if (res.resultAck.errorCode === 0) {
           console.log("连接成功");
           this.onlineUsbBool = true;
-          this.init();
         } else {
           console.log("连接失败");
           this.onlineUsbBool = false;
