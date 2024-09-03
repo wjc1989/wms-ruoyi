@@ -353,7 +353,7 @@ export default {
     },
     async getPrinters() {
       if (!this.printSocketOpen) {
-        this.$modal.msgError("Print socket not open please wait...");
+        this.$modal.msgWarning("Print socket not open please wait...");
         return ;
       }
        try {
@@ -366,7 +366,7 @@ export default {
           console.log("usbSelectPrinter:",this.usbSelectPrinter);
           console.log("usbPrinters:", this.usbPrinters);
         } else {
-          this.$modal.msgError("No find print...");
+          this.$modal.msgWarning("No find print...");
         }
       } catch (err) {
         console.error(err);
@@ -375,7 +375,7 @@ export default {
     //初始化SDK
     async init() {
       if (!this.printSocketOpen) {
-        this.$modal.msgError("Print socket not open please wait...");
+        this.$modal.msgWarning("Print socket not open please wait...");
         return ;
       }
       //初始化数据
@@ -397,7 +397,7 @@ export default {
     // 连接打印机
     async selectOnLineUsbPrinter() {
       if (!this.printSocketOpen) {
-        this.$modal.msgError("Print socket not open please wait...");
+        this.$modal.msgWarning("Print socket not open please wait...");
         return ;
       }
       console.log("开始连接打印机");
@@ -421,7 +421,10 @@ export default {
       }
     },
     async startPrintJobTest(code) {
-      if (!this.printSocketOpen) return alert("打印服务未开启");
+      if (!this.initBool){
+        this.$modal.msgWarning("Please connect print first");
+        return;
+      }
       let contentArr = [];
       contentArr.push(getBarcodePrintData(code));
       this.batchPrintJob(contentArr);
