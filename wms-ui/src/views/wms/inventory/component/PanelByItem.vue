@@ -47,7 +47,7 @@
       label="Remark"
     >
       <template slot-scope="scope">
-        <div :title="scope.row.remark" v-html="scope.row.remark.replaceAll('\n','<br/>')"></div>
+        <div :title="scope.row.remark" v-html="scope.row.remark?scope.row.remark.replaceAll('\n','<br/>'):''"></div>
       </template>
     </el-table-column>
   </merge-table>

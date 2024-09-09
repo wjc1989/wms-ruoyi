@@ -4,9 +4,11 @@ import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.google.zxing.FormatException;
 import com.ruoyi.common.annotation.Excel;
 import com.ruoyi.common.core.domain.BaseAudit;
 import com.ruoyi.common.utils.DateUtils;
+import io.github.bluesbruce.BrQrCodeUtil;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -89,7 +91,7 @@ public class Item extends BaseAudit {
     private String codePath;
 
 
-    public String getCode() {
+    public String getCode() throws FormatException {
         if(id==null){
             return null;
         }
@@ -102,6 +104,8 @@ public class Item extends BaseAudit {
         }else{
             code=dateTimeNow+StrUtil.fillBefore(id+"",'0',6);
         }
-        return code;
+        ;
+        return code+BrQrCodeUtil.getUpcEanChecksum(code);
     }
+
 }

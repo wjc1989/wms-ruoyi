@@ -1,7 +1,7 @@
 <template>
   <merge-table :table-data="tableData" :merge-arr="mergeArr">
     <el-table-column
-      prop="warehouseName"
+      prop="warehouseName"  width="160"
       label="Warehouse"
     >
       <template v-slot="{ row }">
@@ -36,12 +36,12 @@
 
     <el-table-column
       prop="itemTypeName"
-      label="Category"
+      label="Category" width="160"
     >
     </el-table-column>
     <el-table-column
       prop="itemNo"
-      label="Goods No."
+      label="Goods No." width="125"
     ></el-table-column>
     <el-table-column
       prop="itemName"
@@ -50,14 +50,14 @@
 
     <el-table-column
       prop="quantity"
-      label="Inventory"
+      label="Inventory" width="100"
     ></el-table-column>
     <el-table-column
       prop="remark"
       label="Remark"
     >
       <template slot-scope="scope">
-        <div :title="scope.row.remark" v-html="scope.row.remark.replaceAll('\n','<br/>')"></div>
+        <div :title="scope.row.remark" v-html="scope.row.remark?scope.row.remark.replaceAll('\n','<br/>'):''"></div>
       </template>
     </el-table-column>
   </merge-table>

@@ -11,6 +11,7 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.StrUtil;
 import com.google.zxing.BarcodeFormat;
+import com.google.zxing.FormatException;
 import com.google.zxing.WriterException;
 import com.ruoyi.common.config.RuoYiConfig;
 import com.ruoyi.common.core.page.TableDataInfo;
@@ -108,7 +109,7 @@ public class ItemController extends BaseController {
     @PreAuthorize("@ss.hasPermi('wms:item:add')")
     @Log(title = "Goods", businessType = BusinessType.INSERT)
     @PostMapping
-    public ResponseEntity<Integer> add(@RequestBody Item item) throws IOException, WriterException {
+    public ResponseEntity<Integer> add(@RequestBody Item item) throws IOException, WriterException, FormatException {
         int count=service.insert(item);
         String codePath=genGoodCode(item);
         item.setCodePath(codePath);
@@ -122,7 +123,7 @@ public class ItemController extends BaseController {
         return ResponseEntity.ok(count);
     }
 
-    private String genGoodCode(Item item) throws IOException, WriterException {
+    private String genGoodCode(Item item) throws IOException, WriterException, FormatException {
         String code=item.getCode();
         String uploadPath= RuoYiConfig.getUploadPath()+"/qrcode";
         String fileName= DateUtils.datePath() + "/" + code + ".jpg";

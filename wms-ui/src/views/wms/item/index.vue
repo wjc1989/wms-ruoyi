@@ -99,7 +99,7 @@
       </el-table-column>
       <el-table-column label="Remark" align="center" prop="remark"  >
         <template slot-scope="scope">
-          <div :title="scope.row.remark" v-html="scope.row.remark.replaceAll('\n','<br/>')"></div>
+          <div :title="scope.row.remark" v-html="scope.row.remark?scope.row.remark.replaceAll('\n','<br/>'):''"></div>
         </template>
       </el-table-column>
       <el-table-column label="Operate" align="center" class-name="small-padding fixed-width" width="170">
