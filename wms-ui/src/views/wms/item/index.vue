@@ -102,7 +102,7 @@
         <template slot-scope="scope">
           <el-button size="mini" type="text" icon="el-icon-edit" @click.stop="handleUpdate(scope.row)"
             v-hasPermi="['wms:item:edit']">Modify</el-button>
-          <el-button icon="el-icon-printer" size="mini" type="text"  @click.stop="handlePrint(scope.row)">Print</el-button>
+          <el-button icon="el-icon-printer" size="mini" type="text"  @click.stop="handlePrintbyRow(scope.row)">Print</el-button>
           <el-button size="mini" type="text" icon="el-icon-delete" @click="handleDelete(scope.row)"
             v-hasPermi="['wms:item:remove']">Delete</el-button>
         </template>
@@ -225,7 +225,7 @@ export default {
       exportLoading: false,
       // 选中数组
       ids: [],
-      codes:[],
+      selectRows:[],
       // 非个禁用
       single: true,
       // 非多个禁用
@@ -424,16 +424,21 @@ export default {
         console.error(err);
       }
     },
-    async handlePrint(row) {
-      let codes=row.itemNo?[row.itemNo]:this.codes;
+    async handlePrintbyRow(row){
+      let contentArr = [];
+      contentArr.push(getBarcodePrintData(row.itemNo,row.remark));
+      this.batchPrintJob(contentArr);
+    },
+    async handlePrint() {
+
 
       if (!this.initBool){
         this.$modal.msgWarning("Please connect print first");
         return;
       }
       let contentArr = [];
-      codes.forEach(code=>{
-        contentArr.push(getBarcodePrintData(code));
+      this.selectRows.forEach(row=>{
+        contentArr.push(getBarcodePrintData(row.itemNo,row.remark));
       })
       console.log(contentArr)
       this.batchPrintJob(contentArr);
@@ -476,11 +481,13 @@ export default {
     async printItem(list, x, item, i) {
       try {
         if (i < item.length) {
+          console.log("item:",JSON.stringify(item[i]));
           let arrParse;
           switch (item[i].type) {
             case "text":
               //绘制文本
               arrParse = await this.nMPrintSocket.DrawLableText(item[i].json);
+              console.log("textresult:",arrParse)
               if (arrParse.resultAck.errorCode != 0) {
                 return;
               }
@@ -652,7 +659,7 @@ export default {
     // 多选框选中Data
     handleSelectionChange(selection) {
       this.ids = selection.map((item) => item.id);
-      this.codes = selection.map((item) => item.itemNo);
+      this.selectRows = selection;
 
       this.single = selection.length !== 1;
       this.multiple = !selection.length;

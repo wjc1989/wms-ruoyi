@@ -141,9 +141,9 @@ public class ItemController extends BaseController {
     @Log(title = "Goods", businessType = BusinessType.UPDATE)
     @PutMapping
     public ResponseEntity<Integer> edit(@RequestBody Item item) throws IOException, WriterException {
-        String codePath=genGoodCode(item);
-        item.setCodePath(codePath);
-        item.setItemNo(item.getCode());
+//        String codePath=genGoodCode(item);
+//        item.setCodePath(codePath);
+//        item.setItemNo(item.getCode());
         int count=service.update(item);
         return ResponseEntity.ok(count);
     }
