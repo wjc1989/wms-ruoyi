@@ -420,6 +420,7 @@ public class InventoryService {
                 it.setItemName(item.getItemName());
                 it.setItemNo(item.getItemNo());
                 it.setItemDelFlag(item.getDelFlag());
+                it.setRemark(item.getRemark());
             }
         });
     }

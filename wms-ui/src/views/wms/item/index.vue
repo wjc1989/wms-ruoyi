@@ -77,27 +77,31 @@
 
     <WmsTable v-loading="loading" :data="wmsItemList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="No." align="center" prop="itemNo"  />
+      <el-table-column label="No." align="center" prop="itemNo" width="130" />
       <el-table-column label="Goods Name" align="center" prop="itemName"  />
-      <el-table-column label="Pic" align="center" prop="pics"  >
+      <el-table-column label="Pic" align="center" prop="pics"  width="100" >
         <template slot-scope="scope">
           <span><ImagePreview v-if="scope.row.pics!=null" :src="scope.row.pics" class="listimage" ></ImagePreview></span>
         </template>
       </el-table-column>
-      <el-table-column label="Code" align="center" prop="pics"  >
+      <el-table-column label="Code" align="center" prop="pics"  width="170"  >
         <template slot-scope="scope">
           <span><ImagePreview v-if="scope.row.codePath!=null" :width="160"  :height="45" :src="scope.row.codePath" class="listimage" ></ImagePreview></span>
         </template>
       </el-table-column>
-      <el-table-column label="Category" align="center" prop="itemTypeName"  />
-      <el-table-column label="Unit" align="center" prop="unit"  />
-      <el-table-column label="Safty Count" align="center" prop="quantity"  />
-      <el-table-column label="Expiry Date" align="center" prop="expiryDate" width="180" >
+      <el-table-column label="Category" align="center" prop="itemTypeName" width="145" />
+      <el-table-column label="Unit" align="center" prop="unit"  width="100"/>
+      <el-table-column label="Safty Count" align="center" prop="quantity"  width="100"/>
+      <el-table-column label="Expiry Date" align="center" prop="expiryDate" width="100" >
         <template slot-scope="scope">
           <span>{{ parseTime(scope.row.expiryDate, "") }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Remark" align="center" prop="remark"  />
+      <el-table-column label="Remark" align="center" prop="remark"  >
+        <template slot-scope="scope">
+          <div :title="scope.row.remark" v-html="scope.row.remark.replaceAll('\n','<br/>')"></div>
+        </template>
+      </el-table-column>
       <el-table-column label="Operate" align="center" class-name="small-padding fixed-width" width="170">
         <template slot-scope="scope">
           <el-button size="mini" type="text" icon="el-icon-edit" @click.stop="handleUpdate(scope.row)"

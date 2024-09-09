@@ -18,4 +18,5 @@ public interface AreaAndItemInfo extends PlaceAndItem {
     default void setWarehouseDelFlag(Integer delFlag) {
 
     }
+    void setRemark(String remark);
 }

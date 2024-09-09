@@ -136,7 +136,7 @@
         SELECT wi.warehouse_id,
         wi.area_id,
         wi.item_id,
-        wi.quantity
+        wi.quantity,wi.remark
         FROM wms_inventory wi
         left join wms_item_type wit on wit.item_type_id = wi.item_id
         <where>

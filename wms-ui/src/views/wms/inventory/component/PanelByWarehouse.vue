@@ -52,6 +52,14 @@
       prop="quantity"
       label="Inventory"
     ></el-table-column>
+    <el-table-column
+      prop="remark"
+      label="Remark"
+    >
+      <template slot-scope="scope">
+        <div :title="scope.row.remark" v-html="scope.row.remark.replaceAll('\n','<br/>')"></div>
+      </template>
+    </el-table-column>
   </merge-table>
 </template>
 

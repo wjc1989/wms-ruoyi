@@ -25,7 +25,7 @@
               width="200"
               trigger="hover"
               @confirm="deleteItem(row)"
-              title="该Item已经被逻辑Delete，清除Inventory Record？">
+              title="This item has already deleted，Is delete this inventory record？">
               <a slot="reference" class="el-icon-question red" >Delete</a>
             </el-popconfirm>
           </el-col>
@@ -37,10 +37,19 @@
       prop="warehouseName"
       label="Warehouse"
     ></el-table-column>
+
     <el-table-column
       prop="quantity"
       label="Inventory"
     ></el-table-column>
+    <el-table-column
+      prop="remark"
+      label="Remark"
+    >
+      <template slot-scope="scope">
+        <div :title="scope.row.remark" v-html="scope.row.remark.replaceAll('\n','<br/>')"></div>
+      </template>
+    </el-table-column>
   </merge-table>
 </template>
 
