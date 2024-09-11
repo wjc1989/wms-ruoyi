@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 /**
- * 出库单详情 数据视图对象
+ * Shipment Order详情 数据视图对象
  *
  * @author zcc
  */
@@ -21,14 +21,14 @@ public class ShipmentOrderDetailVO extends BaseAudit {
      */
     private Long id;
     /**
-     * 订单号
+     * Order No.
      */
-    @Excel(name = "订单号")
+    @Excel(name = "Order No.")
     private String orderNo;
     /**
-     * 出库单
+     * Shipment Order
      */
-    @Excel(name = "出库单")
+    @Excel(name = "Shipment Order")
     private Long shipmentOrderId;
     /**
      * Goods
@@ -36,19 +36,19 @@ public class ShipmentOrderDetailVO extends BaseAudit {
     @Excel(name = "Goods ")
     private Long itemId;
     /**
-     * 计划数量
+     * Plan Quantity
      */
-    @Excel(name = "计划数量")
+    @Excel(name = "Plan Quantity")
     private BigDecimal planQuantity;
     /**
-     * 实际数量
+     * Real Quantity
      */
-    @Excel(name = "实际数量")
+    @Excel(name = "Real Quantity")
     private BigDecimal realQuantity;
     /**
-     * 货架
+     * Shelf
      */
-    @Excel(name = "货架")
+    @Excel(name = "Shelf")
     private Long rackId;
     /**
      * Remark
@@ -62,7 +62,7 @@ public class ShipmentOrderDetailVO extends BaseAudit {
     @Excel(name = "Warehouse")
     private Long warehouseId;
 
-    @Excel(name = "金额")
+    @Excel(name = "Amount")
     private BigDecimal money;
 
     @ApiModelProperty("Delete Flag")
@@ -73,7 +73,7 @@ public class ShipmentOrderDetailVO extends BaseAudit {
     @Excel(name = "Area")
     private Long areaId;
 
-    @Excel(name = "出库Status")
+    @Excel(name = "Out Status")
     private Integer shipmentOrderStatus;
     private List<Long> place;
 }

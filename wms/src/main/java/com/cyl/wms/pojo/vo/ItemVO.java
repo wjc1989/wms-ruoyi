@@ -34,7 +34,7 @@ public class ItemVO extends BaseAudit {
    /** Unit */
     @Excel(name = "Unit")
     private String unit;
-   /** 所属货架 */
+   /** 所属Shelf */
     private Long rackId;
    /** Area */
     private Long areaId;

@@ -24,7 +24,7 @@ public class ReceiptOrderVO extends BaseAudit {
    /** 供应商 */
     @Excel(name = "Supplier")
     private Long supplierId;
-   /** 订单号 */
+   /** Order No. */
     @Excel(name = "Project")
     private String orderNo;
 

@@ -11,11 +11,11 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 /**
- * 出库单详情对象 wms_shipment_order_detail
+ * Shipment Order详情对象 wms_shipment_order_detail
  *
  * @author zcc
  */
-@ApiModel(description = "出库单详情对象")
+@ApiModel(description = "Shipment Order详情对象")
 @Data
 @TableName("wms_shipment_order_detail")
 public class ShipmentOrderDetail extends BaseAudit {
@@ -24,34 +24,34 @@ public class ShipmentOrderDetail extends BaseAudit {
     @ApiModelProperty("ID")
     private Long id;
     /**
-     * 订单号
+     * Order No.
      */
-    @Excel(name = "订单号")
+    @Excel(name = "Order No.")
     @TableField(exist = false)
     private String orderNo;
 
-    @ApiModelProperty("出库单")
-    @Excel(name = "出库单")
+    @ApiModelProperty("Shipment Order")
+    @Excel(name = "Shipment Order")
     private Long shipmentOrderId;
 
     @ApiModelProperty("Goods ")
     @Excel(name = "Goods ")
     private Long itemId;
 
-    @ApiModelProperty("计划数量")
-    @Excel(name = "计划数量")
+    @ApiModelProperty("Plan Quantity")
+    @Excel(name = "Plan Quantity")
     private BigDecimal planQuantity;
 
-    @ApiModelProperty("实际数量")
-    @Excel(name = "实际数量")
+    @ApiModelProperty("Real Quantity")
+    @Excel(name = "Real Quantity")
     private BigDecimal realQuantity;
 
-    @ApiModelProperty("货架")
-    @Excel(name = "货架")
+    @ApiModelProperty("Shelf")
+    @Excel(name = "Shelf")
     private Long rackId;
 
-    @ApiModelProperty("金额")
-    @Excel(name = "金额")
+    @ApiModelProperty("Amount")
+    @Excel(name = "Amount")
     private BigDecimal money;
 
     @ApiModelProperty("Delete Flag")
@@ -69,8 +69,8 @@ public class ShipmentOrderDetail extends BaseAudit {
     @Excel(name = "Area")
     private Long areaId;
 
-    @ApiModelProperty("出库Status")
-    @Excel(name = "出库Status")
+    @ApiModelProperty("Out Status")
+    @Excel(name = "Out Status")
     private Integer shipmentOrderStatus;
 
 }

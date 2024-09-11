@@ -30,10 +30,7 @@
           <a slot="reference" class="el-icon-question red">Delete</a>
         </el-popconfirm>
       </template>
-
-
     </el-table-column>
-
     <el-table-column
       prop="itemTypeName"
       label="Category" width="160"
@@ -47,7 +44,6 @@
       prop="itemName"
       label="Goods Name"
     ></el-table-column>
-
     <el-table-column
       prop="quantity"
       label="Inventory" width="100"

@@ -24,13 +24,13 @@ public class ReceiptOrderDetailVO extends BaseAudit {
    /** Goods  */
     @Excel(name = "Goods")
     private Long itemId;
-   /** 计划数量 */
+   /** Plan Quantity */
     @Excel(name = "Plan Quantity")
     private BigDecimal planQuantity;
-   /** 实际数量 */
+   /** Real Quantity */
     @Excel(name = "Real Quantity")
     private BigDecimal realQuantity;
-   /** 所属货架 */
+   /** 所属Shelf */
     @Excel(name = "Shelf ID")
     private Long rackId;
     @Excel(name = "Aumont")

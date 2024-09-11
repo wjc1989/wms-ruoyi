@@ -13,7 +13,7 @@ import java.util.List;
  */
 @Data
 public class OrderWaveFrom extends WaveVO {
-  // 出库单详情
+  // Shipment Order详情
   private List<ShipmentOrderDetailVO> details;
   private List<ShipmentOrderDetailVO> allocationDetails;
   // 所有商品

@@ -8,16 +8,16 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
- * 出库单详情Mapper接口
+ * Shipment Order详情Mapper接口
  *
  * @author zcc
  */
 public interface ShipmentOrderDetailMapper extends BaseMapper<ShipmentOrderDetail> {
     /**
-     * 查询出库单详情列表
+     * 查询Shipment Order详情列表
      *
-     * @param shipmentOrderDetail 出库单详情
-     * @return 出库单详情集合
+     * @param shipmentOrderDetail Shipment Order详情
+     * @return Shipment Order详情集合
      */
     List<ShipmentOrderDetail> selectByEntity(ShipmentOrderDetail shipmentOrderDetail);
 

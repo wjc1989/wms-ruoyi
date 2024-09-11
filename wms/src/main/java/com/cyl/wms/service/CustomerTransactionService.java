@@ -94,19 +94,19 @@ public class CustomerTransactionService {
         }else if (CustomerTransaction.EXIT.equals(customerTransaction.getTransactionType())){
             after = duePay.add(customerTransaction.getTransactionAmount());
         }else if (CustomerTransaction.SHIPMENT.equals(customerTransaction.getTransactionType())){
-            //查询该出库单是否已经添加
+            //查询该Shipment Order是否已经添加
             LambdaQueryWrapper<CustomerTransaction> queryWrapper = new LambdaQueryWrapper<>();
             queryWrapper.eq(CustomerTransaction::getShipmentOrderId, customerTransaction.getShipmentOrderId());
             queryWrapper.orderByDesc(CustomerTransaction::getId);
             List<CustomerTransaction> customerTransactions = customerTransactionMapper.selectList(queryWrapper);
             if (customerTransactions.size() > 0){
-                //更新出库单金额
+                //更新Shipment OrderAmount
                 CustomerTransaction customerTransaction1 = customerTransactions.get(0);
                 if (customerTransaction1.getTransactionAmount().compareTo(customerTransaction.getTransactionAmount()) != 0){
-                    //发生金额变化
+                    //发生Amount变化
                     after = duePay.add(customerTransaction.getTransactionAmount().subtract(customerTransaction1.getTransactionAmount()));
                 }else {
-                    //无金额变化
+                    //无Amount变化
                     return 0;
                 }
             }else {

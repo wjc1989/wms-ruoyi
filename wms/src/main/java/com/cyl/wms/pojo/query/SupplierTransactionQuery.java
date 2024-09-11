@@ -25,7 +25,7 @@ public class SupplierTransactionQuery {
     @ApiModelProperty("交易类型  1：结款  2：应付  精确匹配")
     private String transactionType;
 
-    @ApiModelProperty("交易金额 精确匹配")
+    @ApiModelProperty("交易Amount 精确匹配")
     private BigDecimal transactionAmount;
 
     @ApiModelProperty("上期余额 精确匹配")

@@ -219,7 +219,7 @@ public class InventorySettlementDetailService {
             List<Integer> receipt = Arrays.asList(ReceiptOrderConstant.PURCHASE, ReceiptOrderConstant.OUTSOURCING, ReceiptOrderConstant.RETURN);
             BigDecimal enter = inventoryHistories1.stream().filter(it -> receipt.contains(it.getFormType())).map(InventoryHistory::getQuantity).reduce(BigDecimal.ZERO, BigDecimal::add);
 
-            //获取出库的Quantity变化总和
+            //获取Out的Quantity变化总和
             List<Integer> shipment = Arrays.asList(ShipmentOrderConstant.SALE, ShipmentOrderConstant.OUTSOURCING, ShipmentOrderConstant.DEPT, ShipmentOrderConstant.CHECK_OUT);
             BigDecimal out = inventoryHistories1.stream().filter(it -> shipment.contains(it.getFormType())).map(InventoryHistory::getQuantity).reduce(BigDecimal.ZERO, BigDecimal::add);
 

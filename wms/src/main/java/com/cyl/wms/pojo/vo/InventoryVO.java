@@ -34,7 +34,7 @@ public class InventoryVO extends BaseAudit implements AreaAndItemInfo {
      * Shelves
      */
     private Long rackId;
-    // 货架 名称
+    // Shelf 名称
     private String rackName;
     private Long warehouseId;
     // 仓库 名称

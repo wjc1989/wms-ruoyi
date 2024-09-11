@@ -19,7 +19,7 @@ public class InventoryHistoryVO extends BaseAudit implements AreaAndItemInfo {
     @Excel(name = "编号")
     private Long id;
     /**
-     * 操作id（出库、入库、Quantity移动表单id）
+     * 操作id（Out、入库、Quantity移动表单id）
      */
     private Long formId;
     /**

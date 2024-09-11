@@ -31,7 +31,7 @@ public class InventoryCheckDetailQuery {
     @ApiModelProperty("Area 精确匹配")
     private Long areaId;
 
-    @ApiModelProperty("货架 精确匹配")
+    @ApiModelProperty("Shelf 精确匹配")
     private Long rackId;
 
 }

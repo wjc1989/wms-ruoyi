@@ -31,7 +31,7 @@ public class ItemQuery {
     @ApiModelProperty("Unit 精确匹配")
     private String unit;
 
-    @ApiModelProperty("所属货架 精确匹配")
+    @ApiModelProperty("所属Shelf 精确匹配")
     private Long rackId;
 
     @ApiModelProperty("Area 精确匹配")

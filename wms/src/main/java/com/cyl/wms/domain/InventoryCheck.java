@@ -64,8 +64,8 @@ public class InventoryCheck extends BaseAudit {
     @Excel(name = "Area")
     private Long areaId;
 
-    @ApiModelProperty("货架")
-    @Excel(name = "货架")
+    @ApiModelProperty("Shelf")
+    @Excel(name = "Shelf")
     private Long rackId;
 
     @ApiModelProperty("附件文件")

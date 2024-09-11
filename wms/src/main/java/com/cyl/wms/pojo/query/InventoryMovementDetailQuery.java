@@ -19,13 +19,13 @@ public class InventoryMovementDetailQuery {
     @ApiModelProperty("Goods  精确匹配")
     private Long itemId;
 
-    @ApiModelProperty("计划数量 精确匹配")
+    @ApiModelProperty("Plan Quantity 精确匹配")
     private BigDecimal planQuantity;
 
-    @ApiModelProperty("实际数量 精确匹配")
+    @ApiModelProperty("Real Quantity 精确匹配")
     private BigDecimal realQuantity;
 
-    @ApiModelProperty("源货架 精确匹配")
+    @ApiModelProperty("源Shelf 精确匹配")
     private Long sourceRackId;
 
     @ApiModelProperty("源仓库 精确匹配")

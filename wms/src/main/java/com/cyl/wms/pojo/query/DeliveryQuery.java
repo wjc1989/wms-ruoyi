@@ -13,7 +13,7 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel(description="发货记录 查询 对象")
 @Data
 public class DeliveryQuery {
-    @ApiModelProperty("出库单主表Id 精确匹配")
+    @ApiModelProperty("Shipment Order主表Id 精确匹配")
     private Long shipmentOrderId;
 
     @ApiModelProperty("承运商Id 精确匹配")

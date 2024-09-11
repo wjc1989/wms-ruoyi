@@ -7,11 +7,11 @@ import com.ruoyi.common.core.domain.BaseAudit;
 import lombok.Data;
 import com.baomidou.mybatisplus.annotation.TableName;
 /**
- * 货架对象 wms_rack
+ * Shelf对象 wms_rack
  *
  * @author zcc
  */
-@ApiModel(description="货架对象")
+@ApiModel(description="Shelf对象")
 @Data
 @TableName("wms_rack")
 public class Rack extends BaseAudit {
@@ -25,7 +25,7 @@ public class Rack extends BaseAudit {
     private String rackNo;
 
     @ApiModelProperty("Rack Name.")
-    @Excel(name = "货架名称")
+    @Excel(name = "Shelf名称")
     private String rackName;
 
     @ApiModelProperty("所属货区")

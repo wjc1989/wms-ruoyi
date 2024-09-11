@@ -6,7 +6,7 @@ import com.cyl.wms.pojo.dto.RackDTO;
 import com.cyl.wms.pojo.vo.RackVO;
 import java.util.List;
 /**
- * 货架  DO <=> DTO <=> VO / BO / Query
+ * Shelf  DO <=> DTO <=> VO / BO / Query
  *
  * @author zcc
  */

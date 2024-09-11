@@ -286,7 +286,7 @@ public class InventoryCheckService {
                 // 盘盈入库
                 h.setFormType(ReceiptOrderConstant.CHECK_IN);
             } else {
-                // 盘亏出库
+                // 盘亏Out
                 h.setFormType(ShipmentOrderConstant.CHECK_OUT);
             }
 

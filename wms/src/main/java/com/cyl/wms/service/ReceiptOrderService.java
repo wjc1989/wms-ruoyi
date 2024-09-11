@@ -201,7 +201,7 @@ public class ReceiptOrderService {
             }
         }
         if (receiptOrder.getSupplierId() != null && receiptOrder.getPayableAmount() != null) {
-            //保存订单金额到供应商流水表
+            //保存订单Amount到供应商流水表
             saveOrUpdatePayAmount(receiptOrder);
         }
         return res;
@@ -223,7 +223,7 @@ public class ReceiptOrderService {
 
         // 新旧入库单详情对比， 生成 Quantity记录修改
         List<ReceiptOrderDetailVO> details = receiptOrder.getDetails();
-        //查出库里的入库明细
+        //查Out里的入库明细
         Map<Long, ReceiptOrderDetail> dbDetailMap =
                 receiptOrderDetailMapper.selectList(qw)
                 .stream()
@@ -280,7 +280,7 @@ public class ReceiptOrderService {
         saveDetails(receiptOrder.getId(), receiptOrder.getDetails());
 
         if (receiptOrder.getSupplierId() != null && receiptOrder.getPayableAmount() != null) {
-            //保存订单金额到供应商流水表
+            //保存订单Amount到供应商流水表
             saveOrUpdatePayAmount(receiptOrder);
         }
 
@@ -290,7 +290,7 @@ public class ReceiptOrderService {
     }
 
     /**
-     * 保存订单金额到供应商流水表
+     * 保存订单Amount到供应商流水表
      *
      * @param receiptOrder 入库单
      */

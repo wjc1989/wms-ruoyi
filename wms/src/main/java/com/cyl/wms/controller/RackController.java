@@ -28,12 +28,12 @@ import com.cyl.wms.service.RackService;
 import com.cyl.wms.pojo.vo.RackVO;
 import com.ruoyi.common.utils.poi.ExcelUtil;
 /**
- * 货架Controller
+ * ShelfController
  *
  * @author zcc
  * @date 2022-08-05
  */
-@Api(description ="货架接口列表")
+@Api(description ="Shelf接口列表")
 @RestController
 @RequestMapping("/wms/rack")
 public class RackController extends BaseController {
@@ -42,7 +42,7 @@ public class RackController extends BaseController {
     @Autowired
     private RackConvert convert;
 
-    @ApiOperation("查询货架列表")
+    @ApiOperation("查询Shelf列表")
     @PreAuthorize("@ss.hasPermi('wms:rack:list')")
     @PostMapping("/list")
     public ResponseEntity<Page<Rack>> list(@RequestBody RackQuery query, Pageable page) {
@@ -50,9 +50,9 @@ public class RackController extends BaseController {
         return ResponseEntity.ok(new PageImpl<>(list, page, ((com.github.pagehelper.Page)list).getTotal()));
     }
 
-    @ApiOperation("导出货架列表")
+    @ApiOperation("导出Shelf列表")
     @PreAuthorize("@ss.hasPermi('wms:rack:export')")
-    @Log(title = "货架", businessType = BusinessType.EXPORT)
+    @Log(title = "Shelf", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
     public ResponseEntity<String> export(RackQuery query) {
         List<Rack> list = service.selectList(query, null);
@@ -60,32 +60,32 @@ public class RackController extends BaseController {
         return ResponseEntity.ok(util.writeExcel(convert.dos2vos(list), "Shelves Data"));
     }
 
-    @ApiOperation("获取货架详细信息")
+    @ApiOperation("获取Shelf详细信息")
     @PreAuthorize("@ss.hasPermi('wms:rack:query')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<Rack> getInfo(@PathVariable("id") Long id) {
         return ResponseEntity.ok(service.selectById(id));
     }
 
-    @ApiOperation("新增货架")
+    @ApiOperation("新增Shelf")
     @PreAuthorize("@ss.hasPermi('wms:rack:add')")
-    @Log(title = "货架", businessType = BusinessType.INSERT)
+    @Log(title = "Shelf", businessType = BusinessType.INSERT)
     @PostMapping
     public ResponseEntity<Integer> add(@RequestBody Rack rack) {
         return ResponseEntity.ok(service.insert(rack));
     }
 
-    @ApiOperation("修改货架")
+    @ApiOperation("修改Shelf")
     @PreAuthorize("@ss.hasPermi('wms:rack:edit')")
-    @Log(title = "货架", businessType = BusinessType.UPDATE)
+    @Log(title = "Shelf", businessType = BusinessType.UPDATE)
     @PutMapping
     public ResponseEntity<Integer> edit(@RequestBody Rack rack) {
         return ResponseEntity.ok(service.update(rack));
     }
 
-    @ApiOperation("删除货架")
+    @ApiOperation("删除Shelf")
     @PreAuthorize("@ss.hasPermi('wms:rack:remove')")
-    @Log(title = "货架", businessType = BusinessType.DELETE)
+    @Log(title = "Shelf", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{ids}")
     public ResponseEntity<Integer> remove(@PathVariable Long[] ids) {
         return ResponseEntity.ok(service.deleteByIds(ids));

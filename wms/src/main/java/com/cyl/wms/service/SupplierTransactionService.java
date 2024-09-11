@@ -96,13 +96,13 @@ public class SupplierTransactionService {
             queryWrapper.orderByDesc(SupplierTransaction::getId);
             List<SupplierTransaction> supplierTransactions = supplierTransactionMapper.selectList(queryWrapper);
             if (supplierTransactions.size() > 0) {
-                //更新入库单金额
+                //更新入库单Amount
                 SupplierTransaction supplierTransaction1 = supplierTransactions.get(0);
                 if (supplierTransaction1.getTransactionAmount().compareTo(supplierTransaction.getTransactionAmount()) != 0) {
-                    //发生金额变化
+                    //发生Amount变化
                     after = duePay.add(supplierTransaction.getTransactionAmount().subtract(supplierTransaction1.getTransactionAmount()));
                 } else {
-                    //无金额变化
+                    //无Amount变化
                     return 0;
                 }
             } else {

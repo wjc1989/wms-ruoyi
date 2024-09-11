@@ -8,7 +8,7 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 /**
- * 出库单 数据视图对象
+ * Shipment Order 数据视图对象
  *
  * @author zcc
  */
@@ -19,19 +19,19 @@ public class ShipmentOrderVO extends BaseAudit {
    */
   private Long id;
   /**
-   * 出库单号，系统自动生成
+   * Shipment Order号，系统自动生成
    */
-  @Excel(name = "出库单号，系统自动生成")
+  @Excel(name = "Shipment Order号，系统自动生成")
   private String shipmentOrderNo;
   /**
-   * 出库类型
+   * Out类型
    */
-  @Excel(name = "出库类型")
+  @Excel(name = "Out类型")
   private Integer shipmentOrderType;
   /**
-   * 出库订单
+   * Out订单
    */
-  @Excel(name = "出库订单")
+  @Excel(name = "Out订单")
   private String orderNo;
   /**
    * 客户
@@ -39,9 +39,9 @@ public class ShipmentOrderVO extends BaseAudit {
   @Excel(name = "客户")
   private Long customerId;
   /**
-   * 出库单Status
+   * Shipment OrderStatus
    */
-  @Excel(name = "出库单Status")
+  @Excel(name = "Shipment OrderStatus")
   private Integer shipmentOrderStatus;
   /**
    * Check Status

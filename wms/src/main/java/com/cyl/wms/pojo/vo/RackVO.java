@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ruoyi.common.core.domain.BaseAudit;
 import lombok.Data;
 /**
- * 货架 数据视图对象
+ * Shelf 数据视图对象
  *
  * @author zcc
  */
@@ -13,11 +13,11 @@ import lombok.Data;
 public class RackVO extends BaseAudit {
    /** ID */
     private Long id;
-   /** 货架编号 */
-    @Excel(name = "货架编号")
+   /** Shelf编号 */
+    @Excel(name = "Shelf编号")
     private String rackNo;
-   /** 货架名称 */
-    @Excel(name = "货架名称")
+   /** Shelf名称 */
+    @Excel(name = "Shelf名称")
     private String rackName;
    /** 所属货区 */
     @Excel(name = "所属货区")

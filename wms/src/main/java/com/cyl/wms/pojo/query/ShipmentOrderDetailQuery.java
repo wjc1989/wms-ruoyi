@@ -6,26 +6,26 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * 出库单详情 查询 对象
+ * Shipment Order详情 查询 对象
  *
  * @author zcc
  */
-@ApiModel(description="出库单详情 查询 对象")
+@ApiModel(description="Shipment Order详情 查询 对象")
 @Data
 public class ShipmentOrderDetailQuery {
-    @ApiModelProperty("出库单 精确匹配")
+    @ApiModelProperty("Shipment Order 精确匹配")
     private Long shipmentOrderId;
 
     @ApiModelProperty("Goods  精确匹配")
     private Long itemId;
 
-    @ApiModelProperty("计划数量 精确匹配")
+    @ApiModelProperty("Plan Quantity 精确匹配")
     private BigDecimal planQuantity;
 
-    @ApiModelProperty("实际数量 精确匹配")
+    @ApiModelProperty("Real Quantity 精确匹配")
     private BigDecimal realQuantity;
 
-    @ApiModelProperty("货架 精确匹配")
+    @ApiModelProperty("Shelf 精确匹配")
     private Long rackId;
 
 }

@@ -260,9 +260,11 @@ export default {
             itemNo: prod.itemNo,
             itemType: prod.itemType,
             planQuantity: it.planQuantity,
+            remark:prod.remark,
             place
           })
         })
+        console.log("detailList：",detailList);
         return {
           remark: row.remark,
           shipmentOrderNo: row.shipmentOrderNo,

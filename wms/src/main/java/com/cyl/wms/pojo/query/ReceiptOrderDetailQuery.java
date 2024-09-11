@@ -19,13 +19,13 @@ public class ReceiptOrderDetailQuery {
     @ApiModelProperty("Goods  精确匹配")
     private Long itemId;
 
-    @ApiModelProperty("计划数量 精确匹配")
+    @ApiModelProperty("Plan Quantity 精确匹配")
     private BigDecimal planQuantity;
 
-    @ApiModelProperty("实际数量 精确匹配")
+    @ApiModelProperty("Real Quantity 精确匹配")
     private BigDecimal realQuantity;
 
-    @ApiModelProperty("所属货架 精确匹配")
+    @ApiModelProperty("所属Shelf 精确匹配")
     private Long rackId;
 
     @ApiModelProperty("Warehouse 精确匹配")

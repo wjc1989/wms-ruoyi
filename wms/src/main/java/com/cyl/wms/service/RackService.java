@@ -15,7 +15,7 @@ import com.cyl.wms.domain.Rack;
 import com.cyl.wms.pojo.query.RackQuery;
 
 /**
- * 货架Service业务层处理
+ * ShelfService业务层处理
  *
  *
  * @author zcc
@@ -26,21 +26,21 @@ public class RackService {
     private RackMapper rackMapper;
 
     /**
-     * 查询货架
+     * 查询Shelf
      *
-     * @param id 货架主键
-     * @return 货架
+     * @param id Shelf主键
+     * @return Shelf
      */
     public Rack selectById(Long id) {
         return rackMapper.selectById(id);
     }
 
     /**
-     * 查询货架列表
+     * 查询Shelf列表
      *
      * @param query 查询条件
      * @param page 分页条件
-     * @return 货架
+     * @return Shelf
      */
     public List<Rack> selectList(RackQuery query, Pageable page) {
         if (page != null) {
@@ -68,9 +68,9 @@ public class RackService {
     }
 
     /**
-     * 新增货架
+     * 新增Shelf
      *
-     * @param rack 货架
+     * @param rack Shelf
      * @return 结果
      */
     public int insert(Rack rack) {
@@ -80,9 +80,9 @@ public class RackService {
     }
 
     /**
-     * 修改货架
+     * 修改Shelf
      *
-     * @param rack 货架
+     * @param rack Shelf
      * @return 结果
      */
     public int update(Rack rack) {
@@ -90,9 +90,9 @@ public class RackService {
     }
 
     /**
-     * 批量删除货架
+     * 批量删除Shelf
      *
-     * @param ids 需要删除的货架主键
+     * @param ids 需要删除的Shelf主键
      * @return 结果
      */
     public int deleteByIds(Long[] ids) {
@@ -100,9 +100,9 @@ public class RackService {
     }
 
     /**
-     * 删除货架信息
+     * 删除Shelf信息
      *
-     * @param id 货架主键
+     * @param id Shelf主键
      * @return 结果
      */
     public int deleteById(Long id) {
