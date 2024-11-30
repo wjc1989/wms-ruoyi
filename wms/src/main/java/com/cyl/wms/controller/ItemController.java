@@ -105,8 +105,12 @@ public class ItemController extends BaseController {
     @GetMapping(value = "/searchItemByNo/{itemNo}")
     public ResponseEntity<ItemVO> searchItemByNo(@PathVariable("itemNo") String itemNo) {
         Item item = service.selectByNo(itemNo);
-        ItemVO itemVO = service.toVo(item);
+        ItemVO itemVO=null;
+        if(item!=null){
+             itemVO = service.toVo(item);
+        }
         return ResponseEntity.ok(itemVO);
+
     }
     @ApiOperation("新增Goods ")
     @PreAuthorize("@ss.hasPermi('wms:item:add')")

@@ -84,8 +84,8 @@
         <if test="itemType != null  and itemType != ''">and item_type = #{itemType}</if>
 
     </select>
-    <select id="selectByNo" resultType="com.cyl.wms.domain.Item">
-
+    <select id="selectByNo" resultMap="ItemResult" >
+        select *,get_item_type_name(item_type) as item_type_name from wms_item where item_no=#{itemNo} limit 1
     </select>
 
     <update id="updateDelFlagByIds">

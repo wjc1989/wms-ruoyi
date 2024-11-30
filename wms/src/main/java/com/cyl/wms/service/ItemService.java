@@ -63,6 +63,7 @@ public class ItemService {
     }
 
     public ItemVO toVo(Item item) {
+
         ItemVO itemVO = convert.toVo(item);
 
         List<Long> place = new LinkedList<>();
