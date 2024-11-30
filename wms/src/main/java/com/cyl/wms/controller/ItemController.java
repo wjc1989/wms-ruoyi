@@ -108,8 +108,9 @@ public class ItemController extends BaseController {
         ItemVO itemVO=null;
         if(item!=null){
              itemVO = service.toVo(item);
+            return ResponseEntity.ok(itemVO);
         }
-        return ResponseEntity.ok(itemVO);
+        return ResponseEntity.ok(null);
 
     }
     @ApiOperation("新增Goods ")
