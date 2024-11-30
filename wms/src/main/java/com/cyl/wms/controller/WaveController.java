@@ -59,7 +59,7 @@ public class WaveController extends BaseController {
         return ResponseEntity.ok(util.writeExcel(convert.dos2vos(list), "波次数据"));
     }
 
-    @ApiOperation("获取出库波次详细信息")
+    @ApiOperation("获取Out波次详细信息")
     @PreAuthorize("@ss.hasPermi('wms:wave:query')")
     @GetMapping(value = "/shipment/{id}")
     public ResponseEntity<OrderWaveFrom> getInfo(@PathVariable("id") Long id) {
@@ -73,7 +73,7 @@ public class WaveController extends BaseController {
         return ResponseEntity.ok(waveForReceiptService.getReceiptOrders(id));
     }
 
-    @ApiOperation("新增出库波次")
+    @ApiOperation("新增Out波次")
     @PreAuthorize("@ss.hasPermi('wms:wave:add')")
     @Log(title = "波次", businessType = BusinessType.INSERT)
     @PostMapping("/shipment/add")
@@ -89,7 +89,7 @@ public class WaveController extends BaseController {
         return ResponseEntity.ok(waveForReceiptService.creatWaveForReceipt(wave));
     }
 
-    @ApiOperation("波次单为出库分配仓库")
+    @ApiOperation("波次单为Out分配仓库")
     @PreAuthorize("@ss.hasPermi('wms:wave:edit')")
     @Log(title = "波次单", businessType = BusinessType.UPDATE)
     @PostMapping("/shipment/allocated")
@@ -107,7 +107,7 @@ public class WaveController extends BaseController {
         return ResponseEntity.ok(waveForReceiptService.allocatedInventoryForReceipt(id,type));
     }
 
-    @ApiOperation("应用波次作业为出库单")
+    @ApiOperation("应用波次作业为Shipment Order")
     @PreAuthorize("@ss.hasPermi('wms:wave:edit')")
     @Log(title = "波次单", businessType = BusinessType.UPDATE)
     @PostMapping("/shipment/confirmWave")
@@ -123,7 +123,7 @@ public class WaveController extends BaseController {
         return ResponseEntity.ok(waveForReceiptService.confirmWaveForReceipt(order));
     }
 
-    @ApiOperation("取消出库波次作业")
+    @ApiOperation("取消Out波次作业")
     @PreAuthorize("@ss.hasPermi('wms:wave:edit')")
     @Log(title = "波次单", businessType = BusinessType.UPDATE)
     @PostMapping("/shipment/cancelAllocatedInventory/{id}")
@@ -147,7 +147,7 @@ public class WaveController extends BaseController {
         return ResponseEntity.ok(service.update(wave));
     }
 
-    @ApiOperation("删除出库波次")
+    @ApiOperation("删除Out波次")
     @PreAuthorize("@ss.hasPermi('wms:wave:remove')")
     @Log(title = "波次", businessType = BusinessType.DELETE)
     @DeleteMapping("/shipment/{ids}")

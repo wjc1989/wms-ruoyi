@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 /**
  * 客户账户流水 数据视图对象
- * 
+ *
  * @author zcc
  */
 @Data
@@ -23,8 +23,8 @@ public class CustomerTransactionVO  {
    /** 交易类型  1：结款  2：应付  */
     @Excel(name = "交易类型  1：结款  2：应付 ")
     private String transactionType;
-   /** 交易金额 */
-    @Excel(name = "交易金额")
+   /** 交易Amount */
+    @Excel(name = "交易Amount")
     private BigDecimal transactionAmount;
    /** 上期余额 */
     @Excel(name = "上期余额")
@@ -32,8 +32,8 @@ public class CustomerTransactionVO  {
    /** 当前余额 */
     @Excel(name = "当前余额")
     private BigDecimal currentBalance;
-   /** 出库单号 */
-    @Excel(name = "出库单号")
+   /** Shipment Order号 */
+    @Excel(name = "Shipment Order号")
     private Long shipmentOrderId;
    /** Remark */
     @Excel(name = "Remark")

@@ -55,7 +55,7 @@ public class InventorySettlementDetailQuery {
     @ApiModelProperty("本期入库 精确匹配")
     private BigDecimal currentEnter;
 
-    @ApiModelProperty("本期出库 精确匹配")
+    @ApiModelProperty("本期Out 精确匹配")
     private BigDecimal currentOut;
 
     @ApiModelProperty("本期盘点 精确匹配")

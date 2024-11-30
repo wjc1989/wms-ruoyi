@@ -30,12 +30,12 @@ public class InventoryMovementDetailVO extends BaseAudit {
   @Excel(name = "Goods")
   private Long itemId;
   /**
-   * 计划数量
+   * Plan Quantity
    */
   @Excel(name = "Plan Quantity")
   private BigDecimal planQuantity;
   /**
-   * 实际数量
+   * Real Quantity
    */
   @Excel(name = "Real Quantity")
   private BigDecimal realQuantity;
@@ -45,7 +45,7 @@ public class InventoryMovementDetailVO extends BaseAudit {
   @Excel(name = "Remark")
   private String remark;
   /**
-   * 源货架
+   * 源Shelf
    */
   @Excel(name = "Source Rack")
   private Long sourceRackId;

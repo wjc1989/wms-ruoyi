@@ -124,6 +124,7 @@ export default {
       listWmsInventory(query, pageReq).then(response => {
         const {content, totalElements} = response
         this.wmsInventoryList = content
+        console.log(this.wmsInventoryList);
 
         if (panelType == 5 || panelType == 20) {
           // 10 Area需要考虑Area空
@@ -131,7 +132,10 @@ export default {
             if (!item.warehouseName) {
               item.warehouseName = "No Distribute Warehouse"
             }
-            if (item.areaName) {
+
+            if (item.rackName) {
+              item.warehouseName = item.warehouseName + '/' + item.areaName+'/'+item.rackName
+            }else if (item.areaName) {
               item.warehouseName = item.warehouseName + '/' + item.areaName
             }
           })

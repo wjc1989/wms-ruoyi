@@ -39,7 +39,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * 出库单Service业务层处理
+ * Shipment OrderService业务层处理
  *
  * @author zcc
  */
@@ -70,10 +70,10 @@ public class ShipmentOrderService {
     private CustomerTransactionService customerTransactionService;
 
     /**
-     * 查询出库单
+     * 查询Shipment Order
      *
-     * @param id 出库单主键
-     * @return 出库单
+     * @param id Shipment Order主键
+     * @return Shipment Order
      */
     public ShipmentOrderFrom selectById(Long id) {
         ShipmentOrder order = shipmentOrderMapper.selectById(id);
@@ -103,11 +103,11 @@ public class ShipmentOrderService {
     }
 
     /**
-     * 查询出库单列表
+     * 查询Shipment Order列表
      *
      * @param query 查询条件
      * @param page  分页条件
-     * @return 出库单
+     * @return Shipment Order
      */
     public Page<ShipmentOrderVO> selectList(ShipmentOrderQuery query, Pageable page) {
         if (page != null) {
@@ -151,9 +151,9 @@ public class ShipmentOrderService {
     }
 
     /**
-     * 新增出库单
+     * 新增Shipment Order
      *
-     * @param shipmentOrder 出库单
+     * @param shipmentOrder Shipment Order
      * @return 结果
      */
     public int insert(ShipmentOrder shipmentOrder) {
@@ -163,9 +163,9 @@ public class ShipmentOrderService {
     }
 
     /**
-     * 修改出库单
+     * 修改Shipment Order
      *
-     * @param shipmentOrder 出库单
+     * @param shipmentOrder Shipment Order
      * @return 结果
      */
     public int update(ShipmentOrder shipmentOrder) {
@@ -173,9 +173,9 @@ public class ShipmentOrderService {
     }
 
     /**
-     * 批量删除出库单
+     * 批量删除Shipment Order
      *
-     * @param ids 需要删除的出库单主键
+     * @param ids 需要删除的Shipment Order主键
      * @return 结果
      */
     @Transactional
@@ -188,14 +188,14 @@ public class ShipmentOrderService {
             }
             Integer shipmentOrderStatus = shipmentOrder.getShipmentOrderStatus();
 
-            // 1. 逻辑删除出库单
+            // 1. 逻辑删除Shipment Order
             flag += shipmentOrderMapper.updateDelFlagByIds(ids);
 
-            // 2. 逻辑删除出库单详情
+            // 2. 逻辑删除Shipment Order详情
             shipmentOrderDetailService.updateDelFlag(shipmentOrder);
 
             if (shipmentOrderStatus != ShipmentOrderConstant.ALL_IN && shipmentOrderStatus != ShipmentOrderConstant.PART_IN) {
-                // 未出库的可以直接删除
+                // 未Out的可以直接删除
                 continue;
             }
 
@@ -221,9 +221,9 @@ public class ShipmentOrderService {
     }
 
     /**
-     * 删除出库单信息
+     * 删除Shipment Order信息
      *
-     * @param id 出库单主键
+     * @param id Shipment Order主键
      * @return 结果
      */
     public int deleteById(Long id) {
@@ -239,7 +239,7 @@ public class ShipmentOrderService {
         res = shipmentOrderMapper.insert(order);
         saveDetails(order.getId(), order.getDetails());
         if (order.getReceivableAmount() != null && order.getCustomerId() != null) {
-            //保存订单金额到客户流水表
+            //保存订单Amount到客户流水表
             saveOrUpdatePayAmount(order);
         }
         return res;
@@ -252,7 +252,7 @@ public class ShipmentOrderService {
         QueryWrapper<ShipmentOrderDetail> qw = new QueryWrapper<>();
         qw.eq("shipment_order_id", order.getId());
 
-        // 新旧出库单详情对比， 生成 Quantity记录修改
+        // 新旧Shipment Order详情对比， 生成 Quantity记录修改
         List<ShipmentOrderDetailVO> details = order.getDetails();
         Map<Long, ShipmentOrderDetail> dbDetailMap = shipmentOrderDetailMapper.selectList(qw).stream().collect(Collectors.toMap(ShipmentOrderDetail::getId, it -> it));
         List<InventoryHistory> adds = new ArrayList<>();
@@ -263,9 +263,9 @@ public class ShipmentOrderService {
             if (status != ShipmentOrderConstant.PART_IN && status != ShipmentOrderConstant.ALL_IN) {
                 return;
             }
-            // 新增时， status一定是未出库， 所以这个地方必定有值
+            // 新增时， status一定是未Out， 所以这个地方必定有值
             ShipmentOrderDetail dbDetail = dbDetailMap.get(it.getId());
-            // 如果上次的Status不是部分出库或者全部出库，则本次的Quantity变化为本次的全部
+            // 如果上次的Status不是部分Out或者全部Out，则本次的Quantity变化为本次的全部
             Integer status1 = dbDetail.getShipmentOrderStatus();
             BigDecimal added;
 
@@ -280,10 +280,10 @@ public class ShipmentOrderService {
                 }
                 added = after.subtract(before);
             }
-            //判断Quantity是否足够出库
+            //判断Quantity是否足够Out
             inventoryService.checkInventory(it.getItemId(), it.getWarehouseId(), it.getAreaId(), it.getRackId(), added);
 
-            // 1. 前一次的实际数量是 0
+            // 1. 前一次的Real Quantity是 0
             InventoryHistory h = detailConvert.do2InventoryHistory(it);
             h.setFormId(order.getId());
             h.setFormType(order.getShipmentOrderType());
@@ -304,26 +304,26 @@ public class ShipmentOrderService {
         shipmentOrderDetailMapper.delete(qw);
         saveDetails(order.getId(), order.getDetails());
         if (order.getReceivableAmount() != null && order.getCustomerId() != null) {
-            //保存订单金额到客户流水表
+            //保存订单Amount到客户流水表
             saveOrUpdatePayAmount(order);
         }
 
-        // 2.2 更新出库单
-        //判断出库单的整体Status
+        // 2.2 更新Shipment Order
+        //判断Shipment Order的整体Status
         Set<Integer> statusList = order.getDetails().stream().map(ShipmentOrderDetailVO::getShipmentOrderStatus).collect(Collectors.toSet());
         if (statusList.size() == 1) {
             order.setShipmentOrderStatus(statusList.iterator().next());
         } else if (statusList.size() == 2) {
             if (statusList.contains(ShipmentOrderConstant.DROP) && statusList.contains(ShipmentOrderConstant.ALL_IN)) {
-                //此时单据Status只有报废和全部出库，则出库单Status为全部出库
+                //此时单据Status只有报废和全部Out，则Shipment OrderStatus为全部Out
                 order.setShipmentOrderStatus(ShipmentOrderConstant.ALL_IN);
             } else if (statusList.contains(ShipmentOrderConstant.PART_IN) || statusList.contains(ShipmentOrderConstant.ALL_IN)) {
-                //此时单据Status有两个，包含部分出库和全部出库都是部分出库
+                //此时单据Status有两个，包含部分Out和全部Out都是部分Out
                 order.setShipmentOrderStatus(ShipmentOrderConstant.PART_IN);
             }
 
         } else if (statusList.contains(ShipmentOrderConstant.PART_IN) || statusList.contains(ShipmentOrderConstant.ALL_IN)) {
-            //此时单据Status有两个，包含部分出库和全部出库都是部分出库
+            //此时单据Status有两个，包含部分Out和全部Out都是部分Out
             order.setShipmentOrderStatus(ShipmentOrderConstant.PART_IN);
         }
 
@@ -332,13 +332,13 @@ public class ShipmentOrderService {
     }
 
     /**
-     * 保存订单金额到用户流水表
+     * 保存订单Amount到用户流水表
      *
-     * @param shipmentOrder 出库单
+     * @param shipmentOrder Shipment Order
      */
     private void saveOrUpdatePayAmount(ShipmentOrder shipmentOrder) {
         //todo 更换用户
-        //todo 删除出库单
+        //todo 删除Shipment Order
         CustomerTransaction customerTransaction = new CustomerTransaction();
         customerTransaction.setCustomerId(String.valueOf(shipmentOrder.getCustomerId()));
         customerTransaction.setTransactionType(CustomerTransaction.SHIPMENT);
@@ -358,27 +358,27 @@ public class ShipmentOrderService {
 
     /*
      * 单个订单分配仓库(填充详情单的仓库id,库区id,Shelves)
-     * @param id 出库单id
-     * 1.根据出库单id查询出库单详情
-     * 2.根据出库单详情的商品id，数量
+     * @param id Shipment Orderid
+     * 1.根据Shipment Orderid查询Shipment Order详情
+     * 2.根据Shipment Order详情的商品id，数量
      * 3.根据Quantity分配规则分配Quantity
-     * 4.修改出库单详情
-     * 5.修改出库单
+     * 4.修改Shipment Order详情
+     * 5.修改Shipment Order
      * */
     @Transactional
     public void allocatedInventory(long id, Integer type) {
-        log.info("单个订单分配仓库,出库单id:{}", id);
-        // 1.根据出库单id查询出库单
+        log.info("单个订单分配仓库,Shipment Orderid:{}", id);
+        // 1.根据Shipment Orderid查询Shipment Order
         ShipmentOrder shipmentOrder = shipmentOrderMapper.selectById(id);
         if (shipmentOrder == null) {
-            log.info("单个订单分配仓库--出库单不存在,{}", id);
-            throw new ServiceException("出库单不存在");
+            log.info("单个订单分配仓库--Shipment Order不存在,{}", id);
+            throw new ServiceException("Shipment Order不存在");
         }
-        // 2.根据出库单id查询出库单详情
+        // 2.根据Shipment Orderid查询Shipment Order详情
         List<ShipmentOrderDetail> allocationDetails = new ArrayList<>();
         List<ShipmentOrderDetail> shipmentOrderDetails = shipmentOrderDetailMapper.selectListGroupByItemId(id);
-        log.info("出库单详情\n{}", shipmentOrderDetails);
-        // 3.获取出库单详情的商品id，数量
+        log.info("Shipment Order详情\n{}", shipmentOrderDetails);
+        // 3.获取Shipment Order详情的商品id，数量
         shipmentOrderDetails.forEach(shipmentOrderDetail -> {
             // 4.根据Quantity分配规则分配Quantity
             List<ShipmentOrderDetail> shipmentOrderDetail1 = inventoryService.allocatedInventory(shipmentOrderDetail.getItemId(),
@@ -386,12 +386,12 @@ public class ShipmentOrderService {
             allocationDetails.addAll(shipmentOrderDetail1);
         });
         allocationDetails.forEach(it -> {
-            // 5.修改出库单详情
+            // 5.修改Shipment Order详情
             it.setShipmentOrderId(shipmentOrder.getId());
             it.setShipmentOrderStatus(ShipmentOrderConstant.NOT_IN);
             it.setDelFlag(0);
         });
-        // 6.修改出库单
+        // 6.修改Shipment Order
         shipmentOrderDetailService.deleteByOrderId(shipmentOrder.getId());
         shipmentOrderDetailMapper.batchInsert(allocationDetails);
 //        log.info("分配Quantity详情\n{}", allocationDetails);
@@ -401,11 +401,11 @@ public class ShipmentOrderService {
     public void updateWaveNo(Long orderId, String waveNo) {
         ShipmentOrder shipmentOrder = shipmentOrderMapper.selectById(orderId);
         if (shipmentOrder == null) {
-            throw new ServiceException("出库单不存在");
+            throw new ServiceException("Shipment Order不存在");
         }
         String orderNo = shipmentOrder.getShipmentOrderNo();
         if (shipmentOrder.getShipmentOrderStatus() == ShipmentOrderConstant.ALL_IN || shipmentOrder.getShipmentOrderStatus() == ShipmentOrderConstant.PART_IN) {
-            throw new ServiceException("订单" + orderNo + "已经出库，不能分配波次");
+            throw new ServiceException("订单" + orderNo + "已经Out，不能分配波次");
         }
         if (!StringUtils.isEmpty(shipmentOrder.getWaveNo())) {
             throw new ServiceException("订单" + orderNo + "已经分配波次，不能重复分配");

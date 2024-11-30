@@ -43,8 +43,8 @@ public class InventoryCheckVO extends BaseAudit {
    /** Area */
     @Excel(name = "Area")
     private Long areaId;
-   /** 货架 */
-    @Excel(name = "货架")
+   /** Shelf */
+    @Excel(name = "Shelf")
     private Long rackId;
    /** 附件文件 */
     @Excel(name = "附件文件")

@@ -6,16 +6,16 @@ import org.apache.ibatis.annotations.Param;
 import com.cyl.wms.domain.Rack;
 
 /**
- * 货架Mapper接口
- * 
+ * ShelfMapper接口
+ *
  * @author zcc
  */
 public interface RackMapper extends BaseMapper<Rack> {
     /**
-     * 查询货架列表
+     * 查询Shelf列表
      *
-     * @param rack 货架
-     * @return 货架集合
+     * @param rack Shelf
+     * @return Shelf集合
      */
     List<Rack> selectByEntity(Rack rack);
 

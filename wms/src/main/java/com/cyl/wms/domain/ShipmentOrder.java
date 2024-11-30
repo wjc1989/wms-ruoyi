@@ -11,11 +11,11 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
- * 出库单对象 wms_shipment_order
+ * Shipment Order对象 wms_shipment_order
  *
  * @author zcc
  */
-@ApiModel(description = "出库单对象")
+@ApiModel(description = "Shipment Order对象")
 @Data
 @TableName("wms_shipment_order")
 public class ShipmentOrder extends BaseAudit {
@@ -24,28 +24,28 @@ public class ShipmentOrder extends BaseAudit {
     @ApiModelProperty("ID")
     private Long id;
 
-    @ApiModelProperty("出库单号")
-    @Excel(name = "出库单号")
+    @ApiModelProperty("ShipmentOrder No")
+    @Excel(name = "ShipmentOrder No")
     private String shipmentOrderNo;
 
-    @ApiModelProperty("出库类型")
-    @Excel(name = "出库类型")
+    @ApiModelProperty("ShipmentOrder Type")
+    @Excel(name = "ShipmentOrder Type")
     private Integer shipmentOrderType;
 
-    @ApiModelProperty("出库订单")
-    @Excel(name = "出库订单")
+    @ApiModelProperty("Order No")
+    @Excel(name = "Order No")
     private String orderNo;
 
-    @ApiModelProperty("客户")
-    @Excel(name = "客户")
+    @ApiModelProperty("Customer")
+    @Excel(name = "Customer")
     private Long customerId;
 
-    @ApiModelProperty("应收款合计")
-    @Excel(name = "应收款合计")
+    @ApiModelProperty("Receivable Amount")
+    @Excel(name = "Receivable Amount")
     private BigDecimal receivableAmount;
 
-    @ApiModelProperty("出库单Status")
-    @Excel(name = "出库单Status")
+    @ApiModelProperty("ShipmentOrder Status")
+    @Excel(name = "ShipmentOrder Status")
     private Integer shipmentOrderStatus;
 
     @ApiModelProperty("Check Status")
@@ -67,7 +67,7 @@ public class ShipmentOrder extends BaseAudit {
     @ApiModelProperty("Delete Flag")
     private Integer delFlag;
 
-    @ApiModelProperty("波次号")
+    @ApiModelProperty("Wave")
     private String waveNo;
 
 }

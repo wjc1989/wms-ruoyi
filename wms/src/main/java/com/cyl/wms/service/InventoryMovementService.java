@@ -273,7 +273,7 @@ public class InventoryMovementService {
 
                 added = after.subtract(before);
             }
-            //判断数量是否足够出库
+            //判断数量是否足够Out
             inventoryService.checkInventory(it.getItemId(), it.getSourceWarehouseId(),
                     it.getSourceAreaId(), it.getSourceRackId(), added);
 
@@ -291,7 +291,7 @@ public class InventoryMovementService {
             h.setCreateBy(userId);
             inList.add(h);
 
-            // 出库日志
+            // Out日志
             InventoryHistory out = new InventoryHistory();
             BeanUtils.copyProperties(h, out);
             out.setFormType(InventoryMovementConstant.OUT_TYPE);
@@ -302,7 +302,7 @@ public class InventoryMovementService {
             outList.add(out);
         });
 
-        //将入库和出库记录保存，并更新库存
+        //将入库和Out记录保存，并更新库存
         if (outList.size() > 0) {
             inventoryHistoryService.batchInsert(outList);
 //            outList.forEach(it -> it.setQuantity(it.getQuantity().negate()));

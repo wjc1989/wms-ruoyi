@@ -8,7 +8,7 @@ import org.mapstruct.Mapper;
 
 import java.util.List;
 /**
- * 出库单  DO <=> DTO <=> VO / BO / Query
+ * Shipment Order  DO <=> DTO <=> VO / BO / Query
  *
  * @author zcc
  */

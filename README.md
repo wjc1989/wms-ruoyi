@@ -1,5 +1,5 @@
 ## 若依wms简介
-若依wms是一套基于若依的wms仓库管理系统，支持lodop和网页打印入库单、出库单。毫无保留给个人及企业免费使用。
+若依wms是一套基于若依的wms仓库管理系统，支持lodop和网页打印入库单、Shipment Order。毫无保留给个人及企业免费使用。
 * 前端采用Vue、Element UI（ant design 正在开发中）。
 * 后端采用Spring Boot、Spring Security、Redis & Jwt。
 * 权限认证使用Jwt，支持多终端认证系统。
@@ -40,7 +40,7 @@ https://docs.ichengle.top/wms/open/ops.html
 3. Goods ：管理维护Goods 基础数据
 4. 客户/供应商/承运商：管理维护联系人基础数据
 5. 入库：创建入库单后包括如下几个Status：未发货、在途（已发货未入库）、部分入库、作废、入库完成，入库类型包括：采购入库、外协入库、退货入库，入库单支持lodop和网页打印
-6. 出库：创建出库单后包括如下几个Status：未发货、部分发货、已发货、作废，入库类型包括：销售出库、外协出库、调拨出库，出库单支持lodop和网页打印
+6. Out：创建Shipment Order后包括如下几个Status：未发货、部分发货、已发货、作废，入库类型包括：销售Out、外协Out、调拨Out，Shipment Order支持lodop和网页打印
 7. 移库：创建移库单后包括如下几个Status：未操作、部分移动、操作完毕、作废
 8. Quantity看板：查看当前Goods Quantity数量
 9. Quantity记录：查看当前Goods Quantity操作记录
@@ -50,8 +50,8 @@ https://docs.ichengle.top/wms/open/ops.html
 ## Status流转
 #### 入库Status流转
 ![入库Status流转](https://oscimg.oschina.net/oscnet/up-6bdb5ad6d8ab236f763300b71cf175d9a99.jpg)
-#### 出库Status流转
-![出库Status流转](https://oscimg.oschina.net/oscnet/up-55cad3f077f914e357efeaae0b3feecf942.jpg)
+#### Out Status流转
+![Out Status流转](https://oscimg.oschina.net/oscnet/up-55cad3f077f914e357efeaae0b3feecf942.jpg)
 
 ## 演示图
 ![首页](https://oscimg.oschina.net/oscnet/up-89f751967b4145f7da92e23536bf231fbe8.jpg)

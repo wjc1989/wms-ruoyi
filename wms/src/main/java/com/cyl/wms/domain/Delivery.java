@@ -21,8 +21,8 @@ public class Delivery extends BaseAudit {
     @ApiModelProperty("ID")
     private Long id;
 
-    @ApiModelProperty("出库单主表Id")
-    @Excel(name = "出库单主表Id")
+    @ApiModelProperty("Shipment Order主表Id")
+    @Excel(name = "Shipment Order主表Id")
     private Long shipmentOrderId;
 
     @ApiModelProperty("承运商Id")

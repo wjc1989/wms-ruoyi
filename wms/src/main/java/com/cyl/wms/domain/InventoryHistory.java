@@ -23,8 +23,8 @@ public class InventoryHistory extends BaseAudit implements PlaceAndItem {
     @ApiModelProperty("ID")
     private Long id;
 
-    @ApiModelProperty("操作id（出库、入库、Quantity移动表单id）")
-    @Excel(name = "操作id", readConverterExp = "出库、入库、Quantity移动表单id")
+    @ApiModelProperty("操作id（Out、入库、Quantity移动表单id）")
+    @Excel(name = "操作id", readConverterExp = "Out、入库、Quantity移动表单id")
     private Long formId;
 
     @ApiModelProperty("操作类型")

@@ -308,6 +308,9 @@ public class ItemService {
 
     }
 
+    public int updateEntity(Item update) {
+       return this.itemMapper.updateByEntity(update);
+    }
     public Item selectByNo(String itemNo) {
         return this.itemMapper.selectByNo(itemNo);
     }

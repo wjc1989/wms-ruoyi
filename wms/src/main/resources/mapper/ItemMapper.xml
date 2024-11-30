@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cyl.wms.mapper.ItemMapper">
 
     <resultMap type="Item" id="ItemResult">
@@ -25,10 +25,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="createBy" column="create_by"/>
         <result property="createTime" column="create_time"/>
         <result property="updateBy" column="update_by"/>
-        <result property="updateTime" column="update_time" />
+        <result property="updateTime" column="update_time"/>
         <result property="pics" column="pics"/>
         <result property="inventory" column="inventory"/>
-     </resultMap>
+    </resultMap>
 
     <sql id="selectItemVo">
         select id, item_no, item_name, item_type, unit, rack_id, area_id, warehouse_id, quantity, expiry_date, del_flag, remark, create_by, create_time, update_by, update_time,pics   from wms_item
@@ -37,15 +37,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="selectByEntity" parameterType="Item" resultMap="ItemResult">
         <include refid="selectItemVo"/>
         <where>
-            <if test="itemNo != null  and itemNo != ''"> and item_no = #{itemNo}</if>
-            <if test="itemName != null  and itemName != ''"> and item_name like concat('%', #{itemName}, '%')</if>
-            <if test="itemType != null  and itemType != ''"> and item_type = #{itemType}</if>
-            <if test="unit != null  and unit != ''"> and unit = #{unit}</if>
-            <if test="rackId != null "> and rack_id = #{rackId}</if>
-            <if test="areaId != null "> and area_id = #{areaId}</if>
-            <if test="warehouseId != null "> and warehouse_id = #{warehouseId}</if>
-            <if test="quantity != null "> and quantity = #{quantity}</if>
-            <if test="expiryDate != null "> and expiry_date = #{expiryDate}</if>
+            <if test="itemNo != null  and itemNo != ''">and item_no = #{itemNo}</if>
+            <if test="itemName != null  and itemName != ''">and item_name like concat('%', #{itemName}, '%')</if>
+            <if test="itemType != null  and itemType != ''">and item_type = #{itemType}</if>
+            <if test="unit != null  and unit != ''">and unit = #{unit}</if>
+            <if test="rackId != null ">and rack_id = #{rackId}</if>
+            <if test="areaId != null ">and area_id = #{areaId}</if>
+            <if test="warehouseId != null ">and warehouse_id = #{warehouseId}</if>
+            <if test="quantity != null ">and quantity = #{quantity}</if>
+            <if test="expiryDate != null ">and expiry_date = #{expiryDate}</if>
         </where>
     </select>
     <select id="selectExpiry" resultMap="ItemResult">
@@ -59,29 +59,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     <select id="selectListWithCount" resultMap="ItemResult" parameterType="com.cyl.wms.pojo.query.ItemQuery">
         SELECT
-            id,
-            item_no,
-            item_name,
-            item_type,
-            get_item_type_name(item_type) as item_type_name,
-            unit,
-            rack_id,
-            area_id,
-            warehouse_id,
-            quantity,
-            expiry_date,
-            del_flag,
-            remark,
-            create_by,
-            create_time,
-            update_by,
-            update_time,
-            pics,
-            getGoodsCount ( id ) AS inventory
+        id,
+        item_no,
+        item_name,
+        item_type,
+        get_item_type_name(item_type) as item_type_name,
+        unit,
+        rack_id,
+        area_id,
+        warehouse_id,
+        quantity,
+        expiry_date,
+        del_flag,
+        remark,
+        create_by,
+        create_time,
+        update_by,
+        update_time,
+        pics,
+        getGoodsCount ( id ) AS inventory
         FROM
-            wms_item where del_flag=0
-        <if test="search != null  and search != ''"> and (item_no like CONCAT('%',#{search},'%') )</if>
-        <if test="itemType != null  and itemType != ''"> and item_type = #{itemType}</if>
+        wms_item where del_flag=0
+        <if test="search != null  and search != ''">and (item_no like CONCAT('%',#{search},'%') )</if>
+        <if test="itemType != null  and itemType != ''">and item_type = #{itemType}</if>
 
     </select>
     <select id="selectByNo" resultType="com.cyl.wms.domain.Item">
@@ -91,7 +91,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <update id="updateDelFlagByIds">
         update wms_item set del_flag=1
         <where>
-            id in <foreach collection="ids" open="(" item="it" close=")" separator=",">#{it}</foreach>
+            id in
+            <foreach collection="ids" open="(" item="it" close=")" separator=",">#{it}</foreach>
         </where>
+    </update>
+    <update id="updateByEntity">
+        update wms_item
+        <set>
+            <if test="itemNo != null">item_no = #{itemNo},</if>
+            <if test="itemName != null">item_name = #{itemName},</if>
+            <if test="itemType != null">item_type = #{itemType},</if>
+            <if test="unit != null">unit = #{unit},</if>
+            <if test="rackId != null">rack_id = #{rackId},</if>
+            <if test="areaId != null">area_id = #{areaId},</if>
+            <if test="warehouseId != null">warehouse_id = #{warehouseId},</if>
+            <if test="quantity != null">quantity = #{quantity},</if>
+            <if test="expiryDate != null">expiry_date = #{expiryDate},</if>
+            <if test="delFlag != null">del_flag = #{delFlag},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="pics != null">pics = #{pics},</if>
+            <if test="codePath != null">code_path = #{codePath},</if>
+        </set>
+        where id = #{id}
     </update>
 </mapper>

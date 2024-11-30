@@ -171,8 +171,7 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100%;
-  background-image: url("../assets/images/login-background.jpg");
-  background-size: cover;
+  background: #f2f7ff url(../assets/images/map.png) no-repeat center center;
 }
 .title {
   margin: 0px auto 30px auto;

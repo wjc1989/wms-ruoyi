@@ -7,15 +7,15 @@ import com.ruoyi.common.core.domain.BaseAudit;
 import lombok.Data;
 /**
  * 发货记录 数据视图对象
- * 
+ *
  * @author zcc
  */
 @Data
 public class DeliveryVO extends BaseAudit {
    /** ID */
     private Long id;
-   /** 出库单主表Id */
-    @Excel(name = "出库单主表Id")
+   /** Shipment Order主表Id */
+    @Excel(name = "Shipment Order主表Id")
     private Long shipmentOrderId;
    /** 承运商Id */
     @Excel(name = "承运商Id")

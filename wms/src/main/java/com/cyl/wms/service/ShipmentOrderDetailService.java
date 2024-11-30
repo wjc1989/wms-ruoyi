@@ -19,7 +19,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * 出库单详情Service业务层处理
+ * Shipment Order详情Service业务层处理
  *
  * @author zcc
  */
@@ -31,21 +31,21 @@ public class ShipmentOrderDetailService {
     private ShipmentOrderDetailConvert convert;
 
     /**
-     * 查询出库单详情
+     * 查询Shipment Order详情
      *
-     * @param id 出库单详情主键
-     * @return 出库单详情
+     * @param id Shipment Order详情主键
+     * @return Shipment Order详情
      */
     public ShipmentOrderDetail selectById(Long id) {
         return shipmentOrderDetailMapper.selectById(id);
     }
 
     /**
-     * 查询出库单详情列表
+     * 查询Shipment Order详情列表
      *
      * @param query 查询条件
      * @param page  分页条件
-     * @return 出库单详情
+     * @return Shipment Order详情
      */
     public List<ShipmentOrderDetail> selectList(ShipmentOrderDetailQuery query, Pageable page) {
         if (page != null) {
@@ -96,9 +96,9 @@ public class ShipmentOrderDetailService {
     }
 
     /**
-     * 新增出库单详情
+     * 新增Shipment Order详情
      *
-     * @param shipmentOrderDetail 出库单详情
+     * @param shipmentOrderDetail Shipment Order详情
      * @return 结果
      */
     public int insert(ShipmentOrderDetail shipmentOrderDetail) {
@@ -108,9 +108,9 @@ public class ShipmentOrderDetailService {
     }
 
     /**
-     * 修改出库单详情
+     * 修改Shipment Order详情
      *
-     * @param shipmentOrderDetail 出库单详情
+     * @param shipmentOrderDetail Shipment Order详情
      * @return 结果
      */
     public int update(ShipmentOrderDetail shipmentOrderDetail) {
@@ -118,9 +118,9 @@ public class ShipmentOrderDetailService {
     }
 
     /**
-     * 批量删除出库单详情
+     * 批量删除Shipment Order详情
      *
-     * @param ids 需要删除的出库单详情主键
+     * @param ids 需要删除的Shipment Order详情主键
      * @return 结果
      */
     public int deleteByIds(Long[] ids) {
@@ -128,9 +128,9 @@ public class ShipmentOrderDetailService {
     }
 
     /**
-     * 删除出库单详情信息
+     * 删除Shipment Order详情信息
      *
-     * @param id 出库单详情主键
+     * @param id Shipment Order详情主键
      * @return 结果
      */
     public int deleteById(Long id) {
@@ -147,9 +147,9 @@ public class ShipmentOrderDetailService {
     }
 
     /**
-     * 物理删除 出库单详情信息
+     * 物理删除 Shipment Order详情信息
      *
-     * @param orderId 出库单详情主键
+     * @param orderId Shipment Order详情主键
      * @return 结果
      */
     public int deleteByOrderId(Long orderId) {

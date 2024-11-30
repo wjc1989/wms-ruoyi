@@ -36,8 +36,8 @@ public class ReceiptOrder extends BaseAudit {
     @Excel(name = "供应商")
     private Long supplierId;
 
-    @ApiModelProperty("订单号")
-    @Excel(name = "订单号")
+    @ApiModelProperty("Order No.")
+    @Excel(name = "Order No.")
     private String orderNo;
 
     @ApiModelProperty("应付款合计")

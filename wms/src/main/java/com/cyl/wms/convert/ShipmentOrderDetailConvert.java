@@ -13,7 +13,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * 出库单详情  DO <=> DTO <=> VO / BO / Query
+ * Shipment Order详情  DO <=> DTO <=> VO / BO / Query
  *
  * @author zcc
  */

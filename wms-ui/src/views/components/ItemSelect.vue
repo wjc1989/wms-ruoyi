@@ -84,7 +84,7 @@
         </div>
       </div>
     </div>
-    <pagination v-show="total > 0" :total="total" :page.sync="pageReq.page" :limit.sync="pageReq.size"
+    <pagination v-show="total > 0" :total="total" :page.sync="pageReq.pageNum" :limit.sync="pageReq.pageSize"
                 @pagination="loadAll"/>
 
   </div>
@@ -111,8 +111,8 @@ export default {
       list: [],
       total: 0,
       pageReq: {
-        page: 1,
-        size: 10,
+        pageNum: 1,
+        pageSize: 10,
       },
       rightList: [],
       rightListKeySet: new Set
@@ -163,7 +163,8 @@ export default {
     },
     loadAll() {
       const pageReq = {...this.pageReq};
-      pageReq.page -= 1;
+      // pageReq.page -= 1;
+      console.log(pageReq);
       listWmsItemWithCount(this.query, pageReq).then((res) => {
         console.log("listWmsItemWithCount:",res)
         let content=res.rows||[];

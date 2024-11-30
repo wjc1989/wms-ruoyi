@@ -225,14 +225,14 @@ public class InventoryService {
         if (areaId != null) {
             qw.eq("area_id", areaId);
         }else{
-            qw.isNotNull("area_id");
+            qw.isNull("area_id");
         }
 
         return inventoryMapper.selectOne(qw);
     }
 
     /*
-     * 判断Quantity是否足够出库
+     * 判断Quantity是否足够Out
      * */
     public void checkInventory(Long itemId, Long warehouseId, Long areaId, Long rackId, BigDecimal added) {
         HashMap<String, Object> map = new HashMap<>();
@@ -375,7 +375,7 @@ public class InventoryService {
         if (CollUtil.isEmpty(res)) {
             return;
         }
-        // 注入 仓库，货区，货架 id
+        // 注入 仓库，货区，Shelf id
         Set<Long> warehouseIds = new HashSet<>();
         Set<Long> areaIds = new HashSet<>();
         Set<Long> rackIds = new HashSet<>();
@@ -420,6 +420,7 @@ public class InventoryService {
                 it.setItemName(item.getItemName());
                 it.setItemNo(item.getItemNo());
                 it.setItemDelFlag(item.getDelFlag());
+                it.setRemark(item.getRemark());
             }
         });
     }
@@ -569,7 +570,7 @@ public class InventoryService {
     /*
      * 根据Quantity分配规则分配Quantity
      * @param itemId Goods id
-     * @param planQuantity 计划数量
+     * @param planQuantity Plan Quantity
      * */
     public List<ShipmentOrderDetail> allocatedInventory(Long itemId, BigDecimal planQuantity, Integer type) {
         List<Inventory> inventoryList = new ArrayList<>();
@@ -582,7 +583,7 @@ public class InventoryService {
         }
 
         if (CollUtil.isEmpty(inventoryList)) {
-            log.error("Quantity不足,itemId:{},计划数量：{}", itemId, planQuantity);
+            log.error("Quantity不足,itemId:{},Plan Quantity：{}", itemId, planQuantity);
             throw new ServiceException("Quantity不足", HttpStatus.CONFIRMATION);
         }
         // 拆分Goods 明细

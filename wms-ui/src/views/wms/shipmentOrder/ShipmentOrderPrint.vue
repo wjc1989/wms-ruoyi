@@ -13,6 +13,7 @@
         <th>Category</th>
         <th>Count</th>
         <th>Warehouse</th>
+        <th width="270">Remark</th>
       </tr>
       <tr v-for="it in row.details">
         <td>{{ it.itemName || '' }}</td>
@@ -20,6 +21,7 @@
         <td>{{ it.itemTypeName || '' }}</td>
         <td>{{ it.planQuantity }}</td>
         <td>{{ it.place }}</td>
+        <td v-html="it.remark?it.remark.replaceAll('\n','<br/>') :'' "></td>
       </tr>
       <tr>
         <td>Total </td>

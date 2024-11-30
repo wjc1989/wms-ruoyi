@@ -11,7 +11,7 @@ public interface InventoryMovementConstant {
   int DROP = 24;
 
 
-  //调拨出库
+  //调拨Out
   int OUT_TYPE = 21;
   //调拨入库
   int IN_TYPE = 22;

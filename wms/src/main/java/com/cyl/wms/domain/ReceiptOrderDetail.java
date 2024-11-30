@@ -23,7 +23,7 @@ public class ReceiptOrderDetail extends BaseAudit {
     @ApiModelProperty("ID")
     private Long id;
 
-    @Excel(name = "订单号")
+    @Excel(name = "Order No.")
     @TableField(exist = false)
     private String orderNo;
 
@@ -35,20 +35,20 @@ public class ReceiptOrderDetail extends BaseAudit {
     @Excel(name = "Goods ")
     private Long itemId;
 
-    @ApiModelProperty("计划数量")
-    @Excel(name = "计划数量")
+    @ApiModelProperty("Plan Quantity")
+    @Excel(name = "Plan Quantity")
     private BigDecimal planQuantity;
 
-    @ApiModelProperty("实际数量")
-    @Excel(name = "实际数量")
+    @ApiModelProperty("Real Quantity")
+    @Excel(name = "Real Quantity")
     private BigDecimal realQuantity;
 
-    @ApiModelProperty("所属货架")
-    @Excel(name = "所属货架")
+    @ApiModelProperty("所属Shelf")
+    @Excel(name = "所属Shelf")
     private Long rackId;
 
-    @ApiModelProperty("金额")
-    @Excel(name = "金额")
+    @ApiModelProperty("Amount")
+    @Excel(name = "Amount")
     private BigDecimal money;
 
     @ApiModelProperty("Delete Flag")

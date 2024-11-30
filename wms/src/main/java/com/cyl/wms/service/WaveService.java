@@ -116,7 +116,7 @@ public class WaveService {
     @Transactional
     public int creatWave(Wave wave) {
         ArrayList<Long> orderIds = wave.getIds();
-        log.info("出库单进行波次作业:{}", orderIds);
+        log.info("Shipment Order进行波次作业:{}", orderIds);
         wave.setWaveNo("WV" + System.currentTimeMillis());
         wave.setStatus("1");
         wave.setDelFlag(0);
@@ -259,11 +259,11 @@ public class WaveService {
 
 
     /*
-     * 取消分配 即还Source 出库单明细
+     * 取消分配 即还Source Shipment Order明细
      * */
     private static List<ShipmentOrderDetailVO> aggregatedShipmentOrderDetailVOS(List<ShipmentOrderDetailVO> originalDetail) {
-        // 单个出库单分配后库区，还可以波次？ 可以，这一步就是重新聚合订单分散得拣货数据。
-        // 聚合出库单，防止用户先前分配过Quantity。如果分配过Quantity，需要把分配过的Quantity加回来。保留Source 始订单信息
+        // 单个Shipment Order分配后库区，还可以波次？ 可以，这一步就是重新聚合订单分散得拣货数据。
+        // 聚合Shipment Order，防止用户先前分配过Quantity。如果分配过Quantity，需要把分配过的Quantity加回来。保留Source 始订单信息
         Map<String, ShipmentOrderDetailVO> aggregatedDetails = new HashMap<>();
         originalDetail.forEach(vo -> {
             String key = vo.getItemId() + "_" + vo.getOrderNo();
@@ -288,7 +288,7 @@ public class WaveService {
         shipmentOrderDetailVO2.setAreaId(availableDetail.getAreaId());
         shipmentOrderDetailVO2.setPlace(availableDetail.getPlace());
         shipmentOrderDetailVO2.setDelFlag(0);
-        // 默认出库Status为未出库
+        // 默认Out Status为未Out
         shipmentOrderDetailVO2.setShipmentOrderStatus(ShipmentOrderConstant.NOT_IN);
         return shipmentOrderDetailVO2;
     }
@@ -304,13 +304,13 @@ public class WaveService {
 
 
         List<ShipmentOrderDetailVO> details = order.getAllocationDetails();
-        // 删除出库单明细表
+        // 删除Shipment Order明细表
         List<Long> orderIds = details.stream().map(ShipmentOrderDetailVO::getShipmentOrderId).distinct().collect(Collectors.toList());
         LambdaQueryWrapper<ShipmentOrderDetail> deleteWrapper = new LambdaQueryWrapper<>();
         deleteWrapper.in(ShipmentOrderDetail::getShipmentOrderId, orderIds);
         shipmentOrderDetailMapper.delete(deleteWrapper);
 
-        // 插入出库单明细表
+        // 插入Shipment Order明细表
         List<ShipmentOrderDetail> shipmentOrderDetails = shipmentOrderDetailConvert.vos2dos(details);
 
         List<InventoryHistory> adds = new ArrayList<>();
@@ -324,7 +324,7 @@ public class WaveService {
         details.forEach(it -> {
             Integer status = it.getShipmentOrderStatus();
             if (status == ShipmentOrderConstant.NOT_IN || status == ShipmentOrderConstant.DROP) {
-                // 未出库，跳过
+                // 未Out，跳过
                 return;
             }
             ShipmentOrderDetailVO dbObj = dbDetailMap.get(it.getId());
@@ -355,28 +355,28 @@ public class WaveService {
         }
         int batchInsert = shipmentOrderDetailMapper.batchInsert(shipmentOrderDetails);
 
-        //先按照出库单ID分组
+        //先按照Shipment OrderID分组
         Map<Long, List<ShipmentOrderDetail>> map = shipmentOrderDetails.stream().collect(Collectors.groupingBy(it -> it.getShipmentOrderId()));
         Map<Long, ShipmentOrder> orderMap = shipmentOrderMapper.selectList(new QueryWrapper<ShipmentOrder>().in("id", map.keySet())).stream().collect(Collectors.toMap(it -> it.getId(), it -> it));
-        // 2.2 更新出库单
+        // 2.2 更新Shipment Order
         AtomicReference<Boolean> finish = new AtomicReference<>(true);
         map.forEach((key, val) -> {
-            //判断出库单的整体Status
+            //判断Shipment Order的整体Status
             Set<Integer> statusList = val.stream().map(ShipmentOrderDetail::getShipmentOrderStatus).collect(Collectors.toSet());
             ShipmentOrder shipmentOrder = orderMap.get(key);
             if (statusList.size() == 1) {
                 shipmentOrder.setShipmentOrderStatus(statusList.iterator().next());
             } else if (statusList.size() == 2) {
                 if (statusList.contains(ShipmentOrderConstant.DROP) && statusList.contains(ShipmentOrderConstant.ALL_IN)) {
-                    //此时单据Status只有报废和全部出库，则出库单Status为全部出库
+                    //此时单据Status只有报废和全部Out，则Shipment OrderStatus为全部Out
                     shipmentOrder.setShipmentOrderStatus(ShipmentOrderConstant.ALL_IN);
                 } else if (statusList.contains(ShipmentOrderConstant.PART_IN) || statusList.contains(ShipmentOrderConstant.ALL_IN)) {
-                    //此时单据Status有两个，包含部分出库和全部出库都是部分出库
+                    //此时单据Status有两个，包含部分Out和全部Out都是部分Out
                     shipmentOrder.setShipmentOrderStatus(ShipmentOrderConstant.PART_IN);
                 }
 
             } else if (statusList.contains(ShipmentOrderConstant.PART_IN) || statusList.contains(ShipmentOrderConstant.ALL_IN)) {
-                //此时单据Status有两个，包含部分出库和全部出库都是部分出库
+                //此时单据Status有两个，包含部分Out和全部Out都是部分Out
                 shipmentOrder.setShipmentOrderStatus(ShipmentOrderConstant.PART_IN);
             }
             if (finish.get()) {
@@ -384,7 +384,7 @@ public class WaveService {
             }
             shipmentOrderMapper.updateById(shipmentOrder);
         });
-        //判断是否开始出库
+        //判断是否开始Out
         Set<Integer> totalStatusList = shipmentOrderDetails.stream().map(it -> it.getShipmentOrderStatus()).collect(Collectors.toSet());
         if (totalStatusList.size() == 1 && totalStatusList.contains(ShipmentOrderConstant.NOT_IN)) {
             wave.setStatus("1");
@@ -410,13 +410,13 @@ public class WaveService {
         List<ShipmentOrderDetailVO> originalDetail = (List<ShipmentOrderDetailVO>) shipmentOrderDetailConvert.copyList(shipmentOrderFrom.getDetails());
 
         List<ShipmentOrderDetailVO> originalDetails = aggregatedShipmentOrderDetailVOS(originalDetail);
-        // 删除出库单明细表
+        // 删除Shipment Order明细表
         List<Long> orderIds = originalDetail.stream().map(ShipmentOrderDetailVO::getShipmentOrderId).distinct().collect(Collectors.toList());
         LambdaQueryWrapper<ShipmentOrderDetail> deleteWrapper = new LambdaQueryWrapper<>();
         deleteWrapper.in(ShipmentOrderDetail::getShipmentOrderId, orderIds);
         shipmentOrderDetailMapper.delete(deleteWrapper);
 
-        // 插入出库单明细表
+        // 插入Shipment Order明细表
         List<ShipmentOrderDetail> shipmentOrderDetails = shipmentOrderDetailConvert.vos2dos(originalDetails);
         shipmentOrderDetails.forEach(shipmentOrderDetail -> {
             shipmentOrderDetail.setDelFlag(0);

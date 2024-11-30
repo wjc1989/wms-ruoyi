@@ -53,8 +53,8 @@ public class InventorySettlementDetailVO extends BaseAudit {
    /** 本期入库 */
     @Excel(name = "本期入库")
     private BigDecimal currentEnter;
-   /** 本期出库 */
-    @Excel(name = "本期出库")
+   /** 本期Out */
+    @Excel(name = "本期Out")
     private BigDecimal currentOut;
    /** 本期盘点 */
     @Excel(name = "本期盘点")

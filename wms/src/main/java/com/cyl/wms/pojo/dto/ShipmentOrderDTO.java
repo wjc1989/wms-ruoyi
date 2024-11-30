@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import com.ruoyi.common.core.domain.BaseAudit;
 import lombok.Data;
 /**
- * 出库单 DTO 对象
+ * Shipment Order DTO 对象
  *
  * @author zcc
  */

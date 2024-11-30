@@ -74,8 +74,8 @@ public class InventorySettlementDetail extends BaseAudit {
     @Excel(name = "本期入库")
     private BigDecimal currentEnter;
 
-    @ApiModelProperty("本期出库")
-    @Excel(name = "本期出库")
+    @ApiModelProperty("本期Out")
+    @Excel(name = "本期Out")
     private BigDecimal currentOut;
 
     @ApiModelProperty("本期盘点")

@@ -11,7 +11,7 @@ import lombok.Data;
 import com.baomidou.mybatisplus.annotation.TableName;
 /**
  * 客户账户流水对象 wms_customer_transaction
- * 
+ *
  * @author zcc
  */
 @ApiModel(description="客户账户流水对象")
@@ -38,8 +38,8 @@ public class CustomerTransaction {
     @Excel(name = "交易类型  1：结款  2：应付 ")
     private String transactionType;
 
-    @ApiModelProperty("交易金额")
-    @Excel(name = "交易金额")
+    @ApiModelProperty("交易Amount")
+    @Excel(name = "交易Amount")
     private BigDecimal transactionAmount;
 
     @ApiModelProperty("上期余额")
@@ -50,8 +50,8 @@ public class CustomerTransaction {
     @Excel(name = "当前余额")
     private BigDecimal currentBalance;
 
-    @ApiModelProperty("出库单号")
-    @Excel(name = "出库单号")
+    @ApiModelProperty("Shipment Order号")
+    @Excel(name = "Shipment Order号")
     private int shipmentOrderId;
 
     @ApiModelProperty("Remark")
