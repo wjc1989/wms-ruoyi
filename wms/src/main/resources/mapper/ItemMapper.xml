@@ -84,6 +84,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <if test="itemType != null  and itemType != ''"> and item_type = #{itemType}</if>
 
     </select>
+    <select id="selectByNo" resultType="com.cyl.wms.domain.Item">
+
+    </select>
 
     <update id="updateDelFlagByIds">
         update wms_item set del_flag=1

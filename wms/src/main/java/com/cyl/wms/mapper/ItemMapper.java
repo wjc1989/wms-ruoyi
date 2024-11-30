@@ -30,4 +30,6 @@ public interface ItemMapper extends BaseMapper<Item> {
     List<Item> selectExpiry();
 
     List<Item> selectListWithCount(ItemQuery query);
+
+    Item selectByNo(String itemNo);
 }

@@ -308,4 +308,7 @@ public class ItemService {
 
     }
 
+    public Item selectByNo(String itemNo) {
+        return this.itemMapper.selectByNo(itemNo);
+    }
 }

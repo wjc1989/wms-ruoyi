@@ -86,7 +86,6 @@ public class ItemController extends BaseController {
     }
 
     @ApiOperation("获取Goods 详细信息")
-    @PreAuthorize("@ss.hasPermi('wms:item:query')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<ItemVO> getInfo(@PathVariable("id") Long id) {
         Item item = service.selectById(id);
@@ -94,6 +93,13 @@ public class ItemController extends BaseController {
         return ResponseEntity.ok(itemVO);
     }
 
+
+    @GetMapping(value = "/searchItemByNo/{itemNo}")
+    public ResponseEntity<ItemVO> searchItemByNo(@PathVariable("itemNo") String itemNo) {
+        Item item = service.selectByNo(itemNo);
+        ItemVO itemVO = service.toVo(item);
+        return ResponseEntity.ok(itemVO);
+    }
     @ApiOperation("新增Goods ")
     @PreAuthorize("@ss.hasPermi('wms:item:add')")
     @Log(title = "Goods", businessType = BusinessType.INSERT)
