@@ -2,6 +2,7 @@ package com.cyl.wms.controller;
 
 import java.util.List;
 
+import com.cyl.wms.domain.ItemDetail;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.data.domain.PageImpl;
@@ -73,6 +74,12 @@ public class ShipmentOrderDetailController extends BaseController {
     @PostMapping
     public ResponseEntity<Integer> add(@RequestBody ShipmentOrderDetail shipmentOrderDetail) {
         return ResponseEntity.ok(service.insert(shipmentOrderDetail));
+    }
+
+    @PostMapping("/addOut")
+    public ResponseEntity<Integer> addOut(@RequestBody List<ItemDetail> items) {
+        System.out.println(items);
+        return ResponseEntity.ok(null);
     }
 
     @ApiOperation("修改Shipment Order详情")

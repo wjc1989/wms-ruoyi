@@ -2,7 +2,10 @@ package com.cyl.wms.pojo.vo;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.ruoyi.common.annotation.Excel;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -62,5 +65,9 @@ public class ItemVO extends BaseAudit {
 
     private BigDecimal inventory;
     private String codePath;
+    private List<String> picsArr=new ArrayList<>();
 
+    public List<String> getPicsArr() {
+        return pics!=null? Arrays.stream(pics.split(",")).collect(Collectors.toList()):new ArrayList<>();
+    }
 }
