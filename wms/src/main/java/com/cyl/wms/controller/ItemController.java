@@ -94,7 +94,6 @@ public class ItemController extends BaseController {
     }
 
     @ApiOperation("获取Goods 详细信息")
-    @PreAuthorize("@ss.hasPermi('wms:item:query')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<ItemVO> getInfo(@PathVariable("id") Long id) {
         Item item = service.selectById(id);
