@@ -63,6 +63,7 @@ public class ItemService {
     }
 
     public ItemVO toVo(Item item) {
+
         ItemVO itemVO = convert.toVo(item);
 
         List<Long> place = new LinkedList<>();
@@ -310,5 +311,8 @@ public class ItemService {
 
     public int updateEntity(Item update) {
        return this.itemMapper.updateByEntity(update);
+    }
+    public Item selectByNo(String itemNo) {
+        return this.itemMapper.selectByNo(itemNo);
     }
 }

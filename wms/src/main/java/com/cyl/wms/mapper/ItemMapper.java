@@ -31,5 +31,7 @@ public interface ItemMapper extends BaseMapper<Item> {
 
     List<Item> selectListWithCount(ItemQuery query);
 
+    Item selectByNo(String itemNo);
+
     int updateByEntity(Item update);
 }

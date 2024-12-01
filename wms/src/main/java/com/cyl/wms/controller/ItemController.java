@@ -101,8 +101,17 @@ public class ItemController extends BaseController {
         return ResponseEntity.ok(itemVO);
     }
 
-    public static void main(String[] args) {
-        String code="2408290000010";
+
+    @GetMapping(value = "/searchItemByNo/{itemNo}")
+    public ResponseEntity<ItemVO> searchItemByNo(@PathVariable("itemNo") String itemNo) {
+        Item item = service.selectByNo(itemNo);
+        ItemVO itemVO=null;
+        if(item!=null){
+             itemVO = service.toVo(item);
+            return ResponseEntity.ok(itemVO);
+        }
+        return ResponseEntity.ok(null);
+
     }
     @ApiOperation("新增Goods ")
     @PreAuthorize("@ss.hasPermi('wms:item:add')")
