@@ -23,9 +23,7 @@ public class ShipmentOrderDetail extends BaseAudit {
 
     @ApiModelProperty("ID")
     private Long id;
-    /**
-     * Order No.
-     */
+
     @Excel(name = "Order No.")
     @TableField(exist = false)
     private String orderNo;
@@ -73,4 +71,23 @@ public class ShipmentOrderDetail extends BaseAudit {
     @Excel(name = "Out Status")
     private Integer shipmentOrderStatus;
 
+    private Long count;
+
+    public BigDecimal getRealQuantity() {
+        if(realQuantity==null){
+            if(count!=null){
+                return new BigDecimal(count);
+            }
+        }
+        return realQuantity;
+    }
+
+    public BigDecimal getPlanQuantity() {
+        if(planQuantity==null){
+            if(count!=null){
+                return new BigDecimal(count);
+            }
+        }
+        return planQuantity;
+    }
 }

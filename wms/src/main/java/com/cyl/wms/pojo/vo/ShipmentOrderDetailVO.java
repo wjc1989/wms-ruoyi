@@ -76,4 +76,28 @@ public class ShipmentOrderDetailVO extends BaseAudit {
     @Excel(name = "Out Status")
     private Integer shipmentOrderStatus;
     private List<Long> place;
+
+    private Long count;
+
+    public BigDecimal getRealQuantity() {
+        if(realQuantity==null){
+            if(count!=null){
+                return new BigDecimal(count);
+            }
+        }
+        return realQuantity;
+    }
+
+    public BigDecimal getPlanQuantity() {
+        if(planQuantity==null){
+            if(count!=null){
+                return new BigDecimal(count);
+            }
+        }
+        return planQuantity;
+    }
+
+    public Integer getDelFlag() {
+        return delFlag==null?0:delFlag;
+    }
 }

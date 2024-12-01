@@ -10,6 +10,13 @@ import java.util.Map;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.StrUtil;
+import com.cyl.wms.domain.ItemDetail;
+import com.cyl.wms.domain.ShipmentOrder;
+import com.cyl.wms.domain.ShipmentOrderDetail;
+import com.cyl.wms.pojo.vo.ShipmentOrderDetailVO;
+import com.cyl.wms.pojo.vo.form.ShipmentOrderFrom;
+import com.cyl.wms.service.ShipmentOrderDetailService;
+import com.cyl.wms.service.ShipmentOrderService;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.FormatException;
 import com.google.zxing.WriterException;
@@ -50,10 +57,10 @@ import com.ruoyi.common.utils.poi.ExcelUtil;
 @RequestMapping("/wms/item")
 @RequiredArgsConstructor
 public class ItemController extends BaseController {
-     private final ItemService service;
-
+    private final ItemService service;
     private final ItemConvert convert;
-
+    private final ShipmentOrderDetailService shipmentOrderDetailService;
+    private final ShipmentOrderService shipmentOrderService;
     private final RedisCache redisCache;
 
     @ApiOperation("查询Goods 列表")
@@ -83,6 +90,21 @@ public class ItemController extends BaseController {
         return ResponseEntity.ok(convert.dos2vos(items));
     }
 
+    @PostMapping("/addOut")
+    public ResponseEntity<Integer> addOut(@RequestBody List<ShipmentOrderDetailVO> items) {
+
+        ShipmentOrderFrom shipmentOrderFrom=new ShipmentOrderFrom();
+        if(items!=null){
+            shipmentOrderFrom.setShipmentOrderNo(shipmentOrderFrom.genShipentmentOrder());
+            shipmentOrderFrom.setDetails(items);
+            shipmentOrderFrom.setShipmentOrderType(12);//Outbound
+            shipmentOrderFrom.setShipmentOrderStatus(13);//outbound finished
+            shipmentOrderFrom.setCreateBy(1L);
+            shipmentOrderService.add(shipmentOrderFrom);
+        }
+        return ResponseEntity.ok(1);
+    }
+
     @ApiOperation("导出Goods 列表")
     @PreAuthorize("@ss.hasPermi('wms:item:export')")
     @Log(title = "Goods ", businessType = BusinessType.EXPORT)
@@ -105,9 +127,9 @@ public class ItemController extends BaseController {
     @GetMapping(value = "/searchItemByNo/{itemNo}")
     public ResponseEntity<ItemVO> searchItemByNo(@PathVariable("itemNo") String itemNo) {
         Item item = service.selectByNo(itemNo);
-        ItemVO itemVO=null;
+        ItemVO itemVO;
         if(item!=null){
-             itemVO = service.toVo(item);
+            itemVO = service.toVo(item);
             return ResponseEntity.ok(itemVO);
         }
         return ResponseEntity.ok(null);
@@ -149,7 +171,7 @@ public class ItemController extends BaseController {
     @PreAuthorize("@ss.hasPermi('wms:item:edit')")
     @Log(title = "Goods", businessType = BusinessType.UPDATE)
     @PutMapping
-    public ResponseEntity<Integer> edit(@RequestBody Item item) throws IOException, WriterException {
+    public ResponseEntity<Integer> edit(@RequestBody Item item) {
 //        String codePath=genGoodCode(item);
 //        item.setCodePath(codePath);
 //        item.setItemNo(item.getCode());

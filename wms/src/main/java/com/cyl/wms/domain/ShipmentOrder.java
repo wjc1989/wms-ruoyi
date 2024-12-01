@@ -1,8 +1,10 @@
 package com.cyl.wms.domain;
 
+import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.ruoyi.common.annotation.Excel;
 import com.ruoyi.common.core.domain.BaseAudit;
+import com.ruoyi.common.utils.DateUtils;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -15,7 +17,7 @@ import java.time.LocalDateTime;
  *
  * @author zcc
  */
-@ApiModel(description = "Shipment Order对象")
+@ApiModel(description = "Shipment Order")
 @Data
 @TableName("wms_shipment_order")
 public class ShipmentOrder extends BaseAudit {
@@ -70,4 +72,7 @@ public class ShipmentOrder extends BaseAudit {
     @ApiModelProperty("Wave")
     private String waveNo;
 
+    public String genShipentmentOrder() {
+        return "O-"+ DateUtils.dateTimeNow("yyyy-MM-dd-HHmmss");
+    }
 }
