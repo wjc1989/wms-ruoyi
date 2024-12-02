@@ -66,6 +66,16 @@ public class ItemVO extends BaseAudit {
     private BigDecimal inventory;
     private String codePath;
     private List<String> picsArr=new ArrayList<>();
+    private Long count;
+
+    public Long getCount() {
+        if(count==null){
+            if(inventory!=null){
+                return inventory.longValue();
+            }
+        }
+        return count;
+    }
 
     public List<String> getPicsArr() {
         return pics!=null? Arrays.stream(pics.split(",")).collect(Collectors.toList()):new ArrayList<>();

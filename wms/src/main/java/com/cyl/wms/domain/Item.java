@@ -90,6 +90,8 @@ public class Item extends BaseAudit {
 
     private String codePath;
 
+    private Long count;
+
 
     public String getCode() throws FormatException {
         if(id==null){

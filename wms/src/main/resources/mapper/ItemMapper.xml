@@ -28,6 +28,7 @@
         <result property="updateTime" column="update_time"/>
         <result property="pics" column="pics"/>
         <result property="inventory" column="inventory"/>
+        <result property="count" column="count"/>
     </resultMap>
 
     <sql id="selectItemVo">
@@ -85,7 +86,28 @@
 
     </select>
     <select id="selectByNo" resultMap="ItemResult" >
-        select *,get_item_type_name(item_type) as item_type_name from wms_item where item_no=#{itemNo} limit 1
+             SELECT
+        id,
+        item_no,
+        item_name,
+        item_type,
+        get_item_type_name(item_type) as item_type_name,
+        unit,
+        rack_id,
+        area_id,
+        warehouse_id,
+        quantity,
+        expiry_date,
+        del_flag,
+        remark,
+        create_by,
+        create_time,
+        update_by,
+        update_time,
+        pics,
+        getGoodsCount ( id ) AS inventory
+        FROM
+        wms_item where del_flag=0 and item_no=#{itemNo} limit 1
     </select>
 
     <update id="updateDelFlagByIds">
