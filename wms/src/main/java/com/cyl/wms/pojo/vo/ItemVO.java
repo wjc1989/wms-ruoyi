@@ -74,7 +74,7 @@ public class ItemVO extends BaseAudit {
                 return inventory.longValue();
             }
         }
-        return count;
+        return count==null?0:count;
     }
 
     public List<String> getPicsArr() {
