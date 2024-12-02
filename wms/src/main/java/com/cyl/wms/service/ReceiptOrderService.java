@@ -176,7 +176,7 @@ public class ReceiptOrderService {
 
 
         LocalDateTime now = LocalDateTime.now();
-        Long userId=2L;
+        Long userId=8L;
         try{
             userId= SecurityUtils.getUserId();
         }catch (Exception e){
@@ -314,7 +314,10 @@ public class ReceiptOrderService {
 
     private void saveDetails(Long orderId, List<ReceiptOrderDetailVO> details) {
         if (!CollUtil.isEmpty(details)) {
-            details.forEach(it -> it.setReceiptOrderId(orderId));
+            details.forEach(it -> {
+                it.setReceiptOrderId(orderId);
+                it.setDelFlag(0);
+            });
             List<ReceiptOrderDetail> receiptOrders = receiptOrderDetailConvert.vos2dos(details);
             receiptOrderDetailMapper.batchInsert(receiptOrders);
         }

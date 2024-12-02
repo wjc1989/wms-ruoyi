@@ -77,6 +77,15 @@ public class ItemVO extends BaseAudit {
         return count==null?0:count;
     }
 
+    public BigDecimal getInventory() {
+        if(inventory==null){
+            if(count!=null){
+                return new BigDecimal(count);
+            }
+        }
+        return inventory;
+    }
+
     public List<String> getPicsArr() {
         if(picsArr==null){
             if(pics!=null){

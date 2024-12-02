@@ -109,11 +109,12 @@ public class ItemController extends BaseController {
             shipmentOrderFrom.setDetails(items);
             shipmentOrderFrom.setShipmentOrderType(ShipmentOrderConstant.OUTSOURCING);//Outbound
             shipmentOrderFrom.setShipmentOrderStatus(ShipmentOrderConstant.ALL_IN);//outbound finished
-            shipmentOrderFrom.setCreateBy(1L);
+            shipmentOrderFrom.setCreateBy(this.getUserId());
             shipmentOrderService.add(shipmentOrderFrom);
             List<InventoryHistory> adds = new ArrayList<>();
             LocalDateTime now=LocalDateTime.now();
             shipmentOrderFrom.getDetails().forEach(it -> {
+                it.setCreateBy(shipmentOrderFrom.getCreateBy());
                 BigDecimal added= it.getRealQuantity();
                 //判断Quantity是否足够Out
                 inventoryService.checkInventory(it.getItemId(), it.getWarehouseId(), it.getAreaId(), it.getRackId(), added);
@@ -125,7 +126,7 @@ public class ItemController extends BaseController {
                 h.setDelFlag(0);
                 h.setId(null);
                 h.setCreateTime(now);
-                h.setCreateBy(this.getUserId());
+                h.setCreateBy(shipmentOrderFrom.getCreateBy());
                 adds.add(h);
             });
             if (!adds.isEmpty()) {
@@ -145,8 +146,9 @@ public class ItemController extends BaseController {
         receiptOrder.setRemark(item.getRemark());
         receiptOrder.setReceiptOrderStatus(ReceiptOrderConstant.ALL_IN);
         receiptOrder.setReceiptOrderType(ReceiptOrderConstant.IN_PATH);
-        receiptOrder.setCreateBy(2L);
+        receiptOrder.setCreateBy(this.getUserId());
         receiptOrder.setReceiptOrderNo(receiptOrder.genReceiptOrderNo());
+        receiptOrder.setDelFlag(0);
         ReceiptOrderDetailVO receiptOrderDetail=new ReceiptOrderDetailVO();
         receiptOrderDetail.setItemId(item.getId());
         receiptOrderDetail.setAreaId(item.getAreaId());
@@ -155,6 +157,7 @@ public class ItemController extends BaseController {
         receiptOrderDetail.setPlanQuantity(new BigDecimal(item.getCount()));
         receiptOrderDetail.setRealQuantity(new BigDecimal(item.getCount()));
         receiptOrderDetail.setOrderNo(item.getProject());
+        receiptOrderDetail.setCreateBy(receiptOrder.getCreateBy());
         receiptOrder.setDetails(new ArrayList<>());
         receiptOrder.getDetails().add(receiptOrderDetail);
         receiptOrderService.add(receiptOrder);
@@ -169,7 +172,7 @@ public class ItemController extends BaseController {
             h.setDelFlag(0);
             h.setId(null);
             h.setCreateTime(now);
-            h.setCreateBy(this.getUserId());
+            h.setCreateBy(receiptOrder.getCreateBy());
             adds.add(h);
         });
         if (adds.size() > 0) {

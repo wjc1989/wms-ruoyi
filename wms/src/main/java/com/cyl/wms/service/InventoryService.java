@@ -254,6 +254,7 @@ public class InventoryService {
             return 0;
         }
         LocalDateTime now = LocalDateTime.now();
+
         Long userId = SecurityUtils.getUserId();
         // 对插入的数据进行分组
         List<InventoryHistory> racks = new ArrayList<>();
