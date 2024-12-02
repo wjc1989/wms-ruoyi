@@ -29,7 +29,7 @@ import com.cyl.wms.pojo.vo.CarrierVO;
 import com.ruoyi.common.utils.poi.ExcelUtil;
 /**
  * 承运商Controller
- * 
+ *
  * @author zcc
  * @date 2022-08-05
  */
@@ -43,7 +43,7 @@ public class CarrierController extends BaseController {
     private CarrierConvert convert;
 
     @ApiOperation("查询承运商列表")
-    @PreAuthorize("@ss.hasPermi('wms:carrier:list')")
+//    @PreAuthorize("@ss.hasPermi('wms:carrier:list')")
     @PostMapping("/list")
     public ResponseEntity<Page<Carrier>> list(@RequestBody CarrierQuery query, Pageable page) {
         List<Carrier> list = service.selectList(query, page);
@@ -51,7 +51,7 @@ public class CarrierController extends BaseController {
     }
 
     @ApiOperation("导出承运商列表")
-    @PreAuthorize("@ss.hasPermi('wms:carrier:export')")
+//    @PreAuthorize("@ss.hasPermi('wms:carrier:export')")
     @Log(title = "承运商", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
     public ResponseEntity<String> export(CarrierQuery query) {
@@ -61,14 +61,14 @@ public class CarrierController extends BaseController {
     }
 
     @ApiOperation("获取承运商详细信息")
-    @PreAuthorize("@ss.hasPermi('wms:carrier:query')")
+//    @PreAuthorize("@ss.hasPermi('wms:carrier:query')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<Carrier> getInfo(@PathVariable("id") Long id) {
         return ResponseEntity.ok(service.selectById(id));
     }
 
     @ApiOperation("新增承运商")
-    @PreAuthorize("@ss.hasPermi('wms:carrier:add')")
+//    @PreAuthorize("@ss.hasPermi('wms:carrier:add')")
     @Log(title = "承运商", businessType = BusinessType.INSERT)
     @PostMapping
     public ResponseEntity<Integer> add(@RequestBody Carrier carrier) {
@@ -76,7 +76,7 @@ public class CarrierController extends BaseController {
     }
 
     @ApiOperation("修改承运商")
-    @PreAuthorize("@ss.hasPermi('wms:carrier:edit')")
+//    @PreAuthorize("@ss.hasPermi('wms:carrier:edit')")
     @Log(title = "承运商", businessType = BusinessType.UPDATE)
     @PutMapping
     public ResponseEntity<Integer> edit(@RequestBody Carrier carrier) {
@@ -84,7 +84,7 @@ public class CarrierController extends BaseController {
     }
 
     @ApiOperation("删除承运商")
-    @PreAuthorize("@ss.hasPermi('wms:carrier:remove')")
+//    @PreAuthorize("@ss.hasPermi('wms:carrier:remove')")
     @Log(title = "承运商", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{ids}")
     public ResponseEntity<Integer> remove(@PathVariable Long[] ids) {

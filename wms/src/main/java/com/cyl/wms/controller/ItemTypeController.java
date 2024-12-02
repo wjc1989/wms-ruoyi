@@ -38,7 +38,7 @@ public class ItemTypeController extends BaseController {
     private ItemTypeConvert convert;
 
     @ApiOperation("查询Goods 类型表列表")
-    @PreAuthorize("@ss.hasPermi('wms:itemType:list')")
+//    @PreAuthorize("@ss.hasPermi('wms:itemType:list')")
     @PostMapping("/list")
     public ResponseEntity<Page<ItemType>> list(@RequestBody ItemTypeQuery query, Pageable page) {
         List<ItemType> list = service.selectList(query, page);
@@ -48,7 +48,7 @@ public class ItemTypeController extends BaseController {
     /**
      * 查询Goods 类型表列表
      */
-    @PreAuthorize("@ss.hasPermi('wms:itemType:list')")
+//    @PreAuthorize("@ss.hasPermi('wms:itemType:list')")
     @GetMapping("/noPageList")
     public AjaxResult list(ItemTypeQuery query) {
         List<ItemType> depts = service.selectList(query, null);
@@ -56,7 +56,7 @@ public class ItemTypeController extends BaseController {
     }
 
     @ApiOperation("导出Goods 类型表列表")
-    @PreAuthorize("@ss.hasPermi('wms:itemType:export')")
+//    @PreAuthorize("@ss.hasPermi('wms:itemType:export')")
     @Log(title = "Goods 类型表", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
     public ResponseEntity<String> export(ItemTypeQuery query) {
@@ -75,14 +75,14 @@ public class ItemTypeController extends BaseController {
     }
 
     @ApiOperation("获取Goods 类型表详细信息")
-    @PreAuthorize("@ss.hasPermi('wms:itemType:query')")
+//    @PreAuthorize("@ss.hasPermi('wms:itemType:query')")
     @GetMapping(value = "/{itemTypeId}")
     public ResponseEntity<ItemType> getInfo(@PathVariable("itemTypeId") Long itemTypeId) {
         return ResponseEntity.ok(service.selectByItemTypeId(itemTypeId));
     }
 
     @ApiOperation("新增Goods 类型表")
-    @PreAuthorize("@ss.hasPermi('wms:itemType:add')")
+//    @PreAuthorize("@ss.hasPermi('wms:itemType:add')")
     @Log(title = "Goods 类型表", businessType = BusinessType.INSERT)
     @PostMapping
     public ResponseEntity<Integer> add(@RequestBody ItemType itemType) {
@@ -90,7 +90,7 @@ public class ItemTypeController extends BaseController {
     }
 
     @ApiOperation("修改Goods 类型表")
-    @PreAuthorize("@ss.hasPermi('wms:itemType:edit')")
+//    @PreAuthorize("@ss.hasPermi('wms:itemType:edit')")
     @Log(title = "Goods 类型表", businessType = BusinessType.UPDATE)
     @PutMapping
     public ResponseEntity<Integer> edit(@RequestBody ItemType itemType) {
@@ -98,7 +98,7 @@ public class ItemTypeController extends BaseController {
     }
 
     @ApiOperation("删除Goods 类型表")
-    @PreAuthorize("@ss.hasPermi('wms:itemType:remove')")
+//    @PreAuthorize("@ss.hasPermi('wms:itemType:remove')")
     @Log(title = "Goods 类型表", businessType = BusinessType.DELETE)
     @DeleteMapping("/{itemTypeIds}")
     public ResponseEntity<Integer> remove(@PathVariable Long[] itemTypeIds) {

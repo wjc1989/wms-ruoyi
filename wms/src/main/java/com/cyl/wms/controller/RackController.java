@@ -43,7 +43,7 @@ public class RackController extends BaseController {
     private RackConvert convert;
 
     @ApiOperation("查询Shelf列表")
-    @PreAuthorize("@ss.hasPermi('wms:rack:list')")
+//    @PreAuthorize("@ss.hasPermi('wms:rack:list')")
     @PostMapping("/list")
     public ResponseEntity<Page<Rack>> list(@RequestBody RackQuery query, Pageable page) {
         List<Rack> list = service.selectList(query, page);
@@ -51,7 +51,7 @@ public class RackController extends BaseController {
     }
 
     @ApiOperation("导出Shelf列表")
-    @PreAuthorize("@ss.hasPermi('wms:rack:export')")
+//    @PreAuthorize("@ss.hasPermi('wms:rack:export')")
     @Log(title = "Shelf", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
     public ResponseEntity<String> export(RackQuery query) {
@@ -61,14 +61,14 @@ public class RackController extends BaseController {
     }
 
     @ApiOperation("获取Shelf详细信息")
-    @PreAuthorize("@ss.hasPermi('wms:rack:query')")
+//    @PreAuthorize("@ss.hasPermi('wms:rack:query')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<Rack> getInfo(@PathVariable("id") Long id) {
         return ResponseEntity.ok(service.selectById(id));
     }
 
     @ApiOperation("新增Shelf")
-    @PreAuthorize("@ss.hasPermi('wms:rack:add')")
+//    @PreAuthorize("@ss.hasPermi('wms:rack:add')")
     @Log(title = "Shelf", businessType = BusinessType.INSERT)
     @PostMapping
     public ResponseEntity<Integer> add(@RequestBody Rack rack) {
@@ -76,7 +76,7 @@ public class RackController extends BaseController {
     }
 
     @ApiOperation("修改Shelf")
-    @PreAuthorize("@ss.hasPermi('wms:rack:edit')")
+//    @PreAuthorize("@ss.hasPermi('wms:rack:edit')")
     @Log(title = "Shelf", businessType = BusinessType.UPDATE)
     @PutMapping
     public ResponseEntity<Integer> edit(@RequestBody Rack rack) {
@@ -84,7 +84,7 @@ public class RackController extends BaseController {
     }
 
     @ApiOperation("删除Shelf")
-    @PreAuthorize("@ss.hasPermi('wms:rack:remove')")
+//    @PreAuthorize("@ss.hasPermi('wms:rack:remove')")
     @Log(title = "Shelf", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{ids}")
     public ResponseEntity<Integer> remove(@PathVariable Long[] ids) {

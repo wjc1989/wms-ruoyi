@@ -29,7 +29,7 @@ import com.cyl.wms.pojo.vo.CustomerVO;
 import com.ruoyi.common.utils.poi.ExcelUtil;
 /**
  * 客户Controller
- * 
+ *
  * @author zcc
  * @date 2022-08-05
  */
@@ -43,7 +43,7 @@ public class CustomerController extends BaseController {
     private CustomerConvert convert;
 
     @ApiOperation("查询客户列表")
-    @PreAuthorize("@ss.hasPermi('wms:customer:list')")
+//    @PreAuthorize("@ss.hasPermi('wms:customer:list')")
     @PostMapping("/list")
     public ResponseEntity<Page<Customer>> list(@RequestBody CustomerQuery query, Pageable page) {
         List<Customer> list = service.selectList(query, page);
@@ -51,7 +51,7 @@ public class CustomerController extends BaseController {
     }
 
     @ApiOperation("导出客户列表")
-    @PreAuthorize("@ss.hasPermi('wms:customer:export')")
+//    @PreAuthorize("@ss.hasPermi('wms:customer:export')")
     @Log(title = "客户", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
     public ResponseEntity<String> export(CustomerQuery query) {
@@ -61,14 +61,14 @@ public class CustomerController extends BaseController {
     }
 
     @ApiOperation("获取客户详细信息")
-    @PreAuthorize("@ss.hasPermi('wms:customer:query')")
+//    @PreAuthorize("@ss.hasPermi('wms:customer:query')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<Customer> getInfo(@PathVariable("id") Long id) {
         return ResponseEntity.ok(service.selectById(id));
     }
 
     @ApiOperation("新增客户")
-    @PreAuthorize("@ss.hasPermi('wms:customer:add')")
+//    @PreAuthorize("@ss.hasPermi('wms:customer:add')")
     @Log(title = "客户", businessType = BusinessType.INSERT)
     @PostMapping
     public ResponseEntity<Integer> add(@RequestBody Customer customer) {
@@ -76,7 +76,7 @@ public class CustomerController extends BaseController {
     }
 
     @ApiOperation("修改客户")
-    @PreAuthorize("@ss.hasPermi('wms:customer:edit')")
+//    @PreAuthorize("@ss.hasPermi('wms:customer:edit')")
     @Log(title = "客户", businessType = BusinessType.UPDATE)
     @PutMapping
     public ResponseEntity<Integer> edit(@RequestBody Customer customer) {
@@ -84,7 +84,7 @@ public class CustomerController extends BaseController {
     }
 
     @ApiOperation("删除客户")
-    @PreAuthorize("@ss.hasPermi('wms:customer:remove')")
+//    @PreAuthorize("@ss.hasPermi('wms:customer:remove')")
     @Log(title = "客户", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{ids}")
     public ResponseEntity<Integer> remove(@PathVariable Long[] ids) {

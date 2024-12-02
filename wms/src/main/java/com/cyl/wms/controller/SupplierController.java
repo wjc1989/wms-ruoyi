@@ -29,7 +29,7 @@ import com.cyl.wms.pojo.vo.SupplierVO;
 import com.ruoyi.common.utils.poi.ExcelUtil;
 /**
  * 供应商Controller
- * 
+ *
  * @author zcc
  * @date 2022-08-05
  */
@@ -43,7 +43,7 @@ public class SupplierController extends BaseController {
     private SupplierConvert convert;
 
     @ApiOperation("查询供应商列表")
-    @PreAuthorize("@ss.hasPermi('wms:supplier:list')")
+//    @PreAuthorize("@ss.hasPermi('wms:supplier:list')")
     @PostMapping("/list")
     public ResponseEntity<Page<Supplier>> list(@RequestBody SupplierQuery query, Pageable page) {
         List<Supplier> list = service.selectList(query, page);
@@ -51,7 +51,7 @@ public class SupplierController extends BaseController {
     }
 
     @ApiOperation("导出供应商列表")
-    @PreAuthorize("@ss.hasPermi('wms:supplier:export')")
+//    @PreAuthorize("@ss.hasPermi('wms:supplier:export')")
     @Log(title = "供应商", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
     public ResponseEntity<String> export(SupplierQuery query) {
@@ -61,14 +61,14 @@ public class SupplierController extends BaseController {
     }
 
     @ApiOperation("获取供应商详细信息")
-    @PreAuthorize("@ss.hasPermi('wms:supplier:query')")
+//    @PreAuthorize("@ss.hasPermi('wms:supplier:query')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<Supplier> getInfo(@PathVariable("id") Long id) {
         return ResponseEntity.ok(service.selectById(id));
     }
 
     @ApiOperation("新增供应商")
-    @PreAuthorize("@ss.hasPermi('wms:supplier:add')")
+//    @PreAuthorize("@ss.hasPermi('wms:supplier:add')")
     @Log(title = "供应商", businessType = BusinessType.INSERT)
     @PostMapping
     public ResponseEntity<Integer> add(@RequestBody Supplier supplier) {
@@ -76,7 +76,7 @@ public class SupplierController extends BaseController {
     }
 
     @ApiOperation("修改供应商")
-    @PreAuthorize("@ss.hasPermi('wms:supplier:edit')")
+//    @PreAuthorize("@ss.hasPermi('wms:supplier:edit')")
     @Log(title = "供应商", businessType = BusinessType.UPDATE)
     @PutMapping
     public ResponseEntity<Integer> edit(@RequestBody Supplier supplier) {
@@ -84,7 +84,7 @@ public class SupplierController extends BaseController {
     }
 
     @ApiOperation("删除供应商")
-    @PreAuthorize("@ss.hasPermi('wms:supplier:remove')")
+//    @PreAuthorize("@ss.hasPermi('wms:supplier:remove')")
     @Log(title = "供应商", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{ids}")
     public ResponseEntity<Integer> remove(@PathVariable Long[] ids) {

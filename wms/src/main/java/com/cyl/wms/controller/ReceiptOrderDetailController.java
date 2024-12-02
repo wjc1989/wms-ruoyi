@@ -30,7 +30,7 @@ import com.cyl.wms.pojo.vo.ReceiptOrderDetailVO;
 import com.ruoyi.common.utils.poi.ExcelUtil;
 /**
  * 入库单详情Controller
- * 
+ *
  * @author zcc
  * @date 2022-08-29
  */
@@ -44,7 +44,7 @@ public class ReceiptOrderDetailController extends BaseController {
     private ReceiptOrderDetailConvert convert;
 
     @ApiOperation("查询入库单详情列表")
-    @PreAuthorize("@ss.hasPermi('wms:receiptOrderDetail:list')")
+//    @PreAuthorize("@ss.hasPermi('wms:receiptOrderDetail:list')")
     @PostMapping("/list")
     public ResponseEntity<Page<ReceiptOrderDetailVO>> list(@RequestBody ReceiptOrderDetailQuery query, Pageable page) {
         List<ReceiptOrderDetail> items = service.selectList(query, page);
@@ -53,7 +53,7 @@ public class ReceiptOrderDetailController extends BaseController {
     }
 
     @ApiOperation("导出入库单详情列表")
-    @PreAuthorize("@ss.hasPermi('wms:receiptOrderDetail:export')")
+//    @PreAuthorize("@ss.hasPermi('wms:receiptOrderDetail:export')")
     @Log(title = "入库单详情", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
     public ResponseEntity<String> export(ReceiptOrderDetailQuery query) {
@@ -63,7 +63,7 @@ public class ReceiptOrderDetailController extends BaseController {
     }
 
     @ApiOperation("获取入库单详情详细信息")
-    @PreAuthorize("@ss.hasPermi('wms:receiptOrderDetail:query')")
+//    @PreAuthorize("@ss.hasPermi('wms:receiptOrderDetail:query')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<ReceiptOrderDetailVO> getInfo(@PathVariable("id") Long id) {
         ReceiptOrderDetail item = service.selectById(id);
@@ -72,7 +72,7 @@ public class ReceiptOrderDetailController extends BaseController {
     }
 
     @ApiOperation("新增入库单详情")
-    @PreAuthorize("@ss.hasPermi('wms:receiptOrderDetail:add')")
+//    @PreAuthorize("@ss.hasPermi('wms:receiptOrderDetail:add')")
     @Log(title = "入库单详情", businessType = BusinessType.INSERT)
     @PostMapping
     public ResponseEntity<Integer> add(@RequestBody ReceiptOrderDetail receiptOrderDetail) {
@@ -80,7 +80,7 @@ public class ReceiptOrderDetailController extends BaseController {
     }
 
     @ApiOperation("修改入库单详情")
-    @PreAuthorize("@ss.hasPermi('wms:receiptOrderDetail:edit')")
+//    @PreAuthorize("@ss.hasPermi('wms:receiptOrderDetail:edit')")
     @Log(title = "入库单详情", businessType = BusinessType.UPDATE)
     @PutMapping
     public ResponseEntity<Integer> edit(@RequestBody ReceiptOrderDetail receiptOrderDetail) {
@@ -88,7 +88,7 @@ public class ReceiptOrderDetailController extends BaseController {
     }
 
     @ApiOperation("删除入库单详情")
-    @PreAuthorize("@ss.hasPermi('wms:receiptOrderDetail:remove')")
+//    @PreAuthorize("@ss.hasPermi('wms:receiptOrderDetail:remove')")
     @Log(title = "入库单详情", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{ids}")
     public ResponseEntity<Integer> remove(@PathVariable Long[] ids) {

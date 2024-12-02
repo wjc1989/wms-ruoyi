@@ -29,7 +29,7 @@ import com.cyl.wms.pojo.vo.WarehouseVO;
 import com.ruoyi.common.utils.poi.ExcelUtil;
 /**
  * 仓库Controller
- * 
+ *
  * @author zcc
  * @date 2022-08-05
  */
@@ -43,7 +43,7 @@ public class WarehouseController extends BaseController {
     private WarehouseConvert convert;
 
     @ApiOperation("查询仓库列表")
-    @PreAuthorize("@ss.hasPermi('wms:warehouse:list')")
+//    @PreAuthorize("@ss.hasPermi('wms:warehouse:list')")
     @PostMapping("/list")
     public ResponseEntity<Page<Warehouse>> list(@RequestBody WarehouseQuery query, Pageable page) {
         List<Warehouse> list = service.selectList(query, page);
@@ -51,7 +51,7 @@ public class WarehouseController extends BaseController {
     }
 
     @ApiOperation("导出仓库列表")
-    @PreAuthorize("@ss.hasPermi('wms:warehouse:export')")
+//    @PreAuthorize("@ss.hasPermi('wms:warehouse:export')")
     @Log(title = "仓库", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
     public ResponseEntity<String> export(WarehouseQuery query) {
@@ -61,14 +61,14 @@ public class WarehouseController extends BaseController {
     }
 
     @ApiOperation("获取仓库详细信息")
-    @PreAuthorize("@ss.hasPermi('wms:warehouse:query')")
+//    @PreAuthorize("@ss.hasPermi('wms:warehouse:query')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<Warehouse> getInfo(@PathVariable("id") Long id) {
         return ResponseEntity.ok(service.selectById(id));
     }
 
     @ApiOperation("新增仓库")
-    @PreAuthorize("@ss.hasPermi('wms:warehouse:add')")
+//    @PreAuthorize("@ss.hasPermi('wms:warehouse:add')")
     @Log(title = "仓库", businessType = BusinessType.INSERT)
     @PostMapping
     public ResponseEntity<Integer> add(@RequestBody Warehouse warehouse) {
@@ -76,7 +76,7 @@ public class WarehouseController extends BaseController {
     }
 
     @ApiOperation("修改仓库")
-    @PreAuthorize("@ss.hasPermi('wms:warehouse:edit')")
+//    @PreAuthorize("@ss.hasPermi('wms:warehouse:edit')")
     @Log(title = "仓库", businessType = BusinessType.UPDATE)
     @PutMapping
     public ResponseEntity<Integer> edit(@RequestBody Warehouse warehouse) {
@@ -84,7 +84,7 @@ public class WarehouseController extends BaseController {
     }
 
     @ApiOperation("删除仓库")
-    @PreAuthorize("@ss.hasPermi('wms:warehouse:remove')")
+//    @PreAuthorize("@ss.hasPermi('wms:warehouse:remove')")
     @Log(title = "仓库", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{ids}")
     public ResponseEntity<Integer> remove(@PathVariable Long[] ids) {

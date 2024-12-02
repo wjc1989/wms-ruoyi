@@ -34,14 +34,14 @@ public class ShipmentOrderController extends BaseController {
     private ShipmentOrderConvert convert;
 
     @ApiOperation("查询Shipment Order列表")
-    @PreAuthorize("@ss.hasPermi('wms:shipmentOrder:list')")
+//    @PreAuthorize("@ss.hasPermi('wms:shipmentOrder:list')")
     @PostMapping("/list")
     public ResponseEntity<Page<ShipmentOrderVO>> list(@RequestBody ShipmentOrderQuery query, Pageable page) {
         return ResponseEntity.ok(service.selectList(query, page));
     }
 
     @ApiOperation("导出Shipment Order列表")
-    @PreAuthorize("@ss.hasPermi('wms:shipmentOrder:export')")
+//    @PreAuthorize("@ss.hasPermi('wms:shipmentOrder:export')")
     @Log(title = "Shipment Order", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
     public ResponseEntity<String> export(ShipmentOrderQuery query) {
@@ -51,14 +51,14 @@ public class ShipmentOrderController extends BaseController {
     }
 
     @ApiOperation("获取Shipment Order详细信息")
-    @PreAuthorize("@ss.hasPermi('wms:shipmentOrder:query')")
+//    @PreAuthorize("@ss.hasPermi('wms:shipmentOrder:query')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<ShipmentOrderFrom> getInfo(@PathVariable("id") Long id) {
         return ResponseEntity.ok(service.selectById(id));
     }
 
     @ApiOperation("新增Shipment Order")
-    @PreAuthorize("@ss.hasPermi('wms:shipmentOrder:add')")
+//    @PreAuthorize("@ss.hasPermi('wms:shipmentOrder:add')")
     @Log(title = "Shipment Order", businessType = BusinessType.INSERT)
     @PostMapping
     public ResponseEntity<Integer> add(@RequestBody ShipmentOrder shipmentOrder) {
@@ -66,7 +66,7 @@ public class ShipmentOrderController extends BaseController {
     }
 
     @ApiOperation("修改Shipment Order")
-    @PreAuthorize("@ss.hasPermi('wms:shipmentOrder:edit')")
+//    @PreAuthorize("@ss.hasPermi('wms:shipmentOrder:edit')")
     @Log(title = "Shipment Order", businessType = BusinessType.UPDATE)
     @PutMapping
     public ResponseEntity<Integer> edit(@RequestBody ShipmentOrder shipmentOrder) {
@@ -74,7 +74,7 @@ public class ShipmentOrderController extends BaseController {
     }
 
     @ApiOperation("删除Shipment Order")
-    @PreAuthorize("@ss.hasPermi('wms:shipmentOrder:remove')")
+//    @PreAuthorize("@ss.hasPermi('wms:shipmentOrder:remove')")
     @Log(title = "Shipment Order", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{ids}")
     public ResponseEntity<Integer> remove(@PathVariable Long[] ids) {
@@ -82,7 +82,7 @@ public class ShipmentOrderController extends BaseController {
     }
 
     @ApiOperation("新增或更新Shipment Order以及Shipment Order明细")
-    @PreAuthorize("@ss.hasPermi('wms:shipmentOrder:add')")
+//    @PreAuthorize("@ss.hasPermi('wms:shipmentOrder:add')")
     @Log(title = "Shipment Order", businessType = BusinessType.INSERT)
     @PostMapping("add-or-update")
     public ResponseEntity<Integer> addOrUpdate(@RequestBody ShipmentOrderFrom order) {
@@ -93,7 +93,7 @@ public class ShipmentOrderController extends BaseController {
         }
     }
     @ApiOperation("单个订单分配仓库")
-    @PreAuthorize("@ss.hasPermi('wms:shipmentOrder:edit')")
+//    @PreAuthorize("@ss.hasPermi('wms:shipmentOrder:edit')")
     @Log(title = "Shipment Order", businessType = BusinessType.UPDATE)
     @PostMapping("allocated")
     public ResponseEntity allocatedInventory(Long id,Integer type) {

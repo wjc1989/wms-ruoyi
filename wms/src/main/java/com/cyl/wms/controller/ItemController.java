@@ -74,7 +74,7 @@ public class ItemController extends BaseController {
     private final InventoryService inventoryService;
     private final ShipmentOrderDetailConvert detailConvert;
     @ApiOperation("查询Goods 列表")
-    @PreAuthorize("@ss.hasPermi('wms:item:list')")
+//    //@PreAuthorize("@ss.hasPermi('wms:item:list')")
     @PostMapping("/list")
     public ResponseEntity<Page<Item>> list(@RequestBody ItemQuery query, Pageable page) {
         List<Item> items = service.selectList(query, page);
@@ -83,7 +83,7 @@ public class ItemController extends BaseController {
         return ResponseEntity.ok(new PageImpl<>(items, page, ((com.github.pagehelper.Page)items).getTotal()));
     }
     @ApiOperation("查询Goods 列表")
-    @PreAuthorize("@ss.hasPermi('wms:item:list')")
+    //@PreAuthorize("@ss.hasPermi('wms:item:list')")
     @PostMapping("/listCount")
     public TableDataInfo listCount(@RequestBody ItemQuery query) {
         startPage();
@@ -93,7 +93,7 @@ public class ItemController extends BaseController {
 
 
     @ApiOperation("查询Goods 列表")
-    @PreAuthorize("@ss.hasPermi('wms:item:list')")
+    //@PreAuthorize("@ss.hasPermi('wms:item:list')")
     @PostMapping("/all")
     public ResponseEntity<List<ItemVO>> all(@RequestBody ItemQuery query) {
         List<Item> items = service.selectList(query, null);
@@ -221,7 +221,7 @@ public class ItemController extends BaseController {
     }
 
     @ApiOperation("导出Goods 列表")
-    @PreAuthorize("@ss.hasPermi('wms:item:export')")
+    //@PreAuthorize("@ss.hasPermi('wms:item:export')")
     @Log(title = "Goods ", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
     public ResponseEntity<String> export(ItemQuery query) {
@@ -255,7 +255,7 @@ public class ItemController extends BaseController {
 
     }
     @ApiOperation("新增Goods ")
-    @PreAuthorize("@ss.hasPermi('wms:item:add')")
+    //@PreAuthorize("@ss.hasPermi('wms:item:add')")
     @Log(title = "Goods", businessType = BusinessType.INSERT)
     @PostMapping
     public ResponseEntity<Integer> add(@RequestBody Item item) throws IOException, WriterException, FormatException {
@@ -273,7 +273,7 @@ public class ItemController extends BaseController {
     }
 
     private String genGoodCode(String code) throws IOException, WriterException, FormatException {
-    
+
         String uploadPath= RuoYiConfig.getUploadPath()+"/qrcode";
         String fileName= DateUtils.datePath() + "/" + code + ".jpg";
         File targetFile=new File(uploadPath+"/"+fileName);
@@ -287,7 +287,7 @@ public class ItemController extends BaseController {
 
 
     @ApiOperation("修改Goods ")
-    @PreAuthorize("@ss.hasPermi('wms:item:edit')")
+    //@PreAuthorize("@ss.hasPermi('wms:item:edit')")
     @Log(title = "Goods", businessType = BusinessType.UPDATE)
     @PutMapping
     public ResponseEntity<Integer> edit(@RequestBody Item item) {
@@ -299,7 +299,7 @@ public class ItemController extends BaseController {
     }
 
     @ApiOperation("删除Goods ")
-    @PreAuthorize("@ss.hasPermi('wms:item:remove')")
+    //@PreAuthorize("@ss.hasPermi('wms:item:remove')")
     @Log(title = "Goods", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{ids}")
     public ResponseEntity<Integer> remove(@PathVariable Long[] ids) {
@@ -307,7 +307,7 @@ public class ItemController extends BaseController {
     }
 
     @ApiOperation("查询过期Goods ")
-    @PreAuthorize("@ss.hasPermi('wms:item:list')")
+    //@PreAuthorize("@ss.hasPermi('wms:item:list')")
     @PostMapping("/expiryList")
     public ResponseEntity<Page<ItemVO>> list(Pageable page){
         List<Item> items = service.queryExpiry(page);

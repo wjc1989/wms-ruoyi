@@ -42,7 +42,7 @@ public class WaveController extends BaseController {
     private WaveForReceiptService waveForReceiptService;
 
     @ApiOperation("查询波次列表")
-    @PreAuthorize("@ss.hasPermi('wms:wave:list')")
+    //@PreAuthorize("@ss.hasPermi('wms:wave:list')")
     @PostMapping("/list")
     public ResponseEntity<Page<Wave>> list(@RequestBody WaveQuery query, Pageable page) {
         List<Wave> list = service.selectList(query, page);
@@ -50,7 +50,7 @@ public class WaveController extends BaseController {
     }
 
     @ApiOperation("导出波次列表")
-    @PreAuthorize("@ss.hasPermi('wms:wave:export')")
+    //@PreAuthorize("@ss.hasPermi('wms:wave:export')")
     @Log(title = "波次", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
     public ResponseEntity<String> export(WaveQuery query) {
@@ -60,21 +60,21 @@ public class WaveController extends BaseController {
     }
 
     @ApiOperation("获取Out波次详细信息")
-    @PreAuthorize("@ss.hasPermi('wms:wave:query')")
+    //@PreAuthorize("@ss.hasPermi('wms:wave:query')")
     @GetMapping(value = "/shipment/{id}")
     public ResponseEntity<OrderWaveFrom> getInfo(@PathVariable("id") Long id) {
         return ResponseEntity.ok(service.getShipmentOrders(id));
     }
 
     @ApiOperation("获取入库波次详细信息")
-    @PreAuthorize("@ss.hasPermi('wms:wave:query')")
+    //@PreAuthorize("@ss.hasPermi('wms:wave:query')")
     @GetMapping(value = "/receipt/{id}")
     public ResponseEntity<OrderWaveReceiptFrom> getReceiptInfo(@PathVariable("id") Long id) {
         return ResponseEntity.ok(waveForReceiptService.getReceiptOrders(id));
     }
 
     @ApiOperation("新增Out波次")
-    @PreAuthorize("@ss.hasPermi('wms:wave:add')")
+    //@PreAuthorize("@ss.hasPermi('wms:wave:add')")
     @Log(title = "波次", businessType = BusinessType.INSERT)
     @PostMapping("/shipment/add")
     public ResponseEntity<Integer> add(@RequestBody Wave wave) {
@@ -82,7 +82,7 @@ public class WaveController extends BaseController {
     }
 
     @ApiOperation("新增入库波次")
-    @PreAuthorize("@ss.hasPermi('wms:wave:add')")
+    //@PreAuthorize("@ss.hasPermi('wms:wave:add')")
     @Log(title = "波次", businessType = BusinessType.INSERT)
     @PostMapping("/receipt/add")
     public ResponseEntity<Integer> addForReceipt(@RequestBody Wave wave) {
@@ -90,7 +90,7 @@ public class WaveController extends BaseController {
     }
 
     @ApiOperation("波次单为Out分配仓库")
-    @PreAuthorize("@ss.hasPermi('wms:wave:edit')")
+    //@PreAuthorize("@ss.hasPermi('wms:wave:edit')")
     @Log(title = "波次单", businessType = BusinessType.UPDATE)
     @PostMapping("/shipment/allocated")
     public ResponseEntity<OrderWaveFrom> allocatedInventory(Long id,Integer type) {
@@ -99,7 +99,7 @@ public class WaveController extends BaseController {
     }
 
     @ApiOperation("波次单为入库分配仓库")
-    @PreAuthorize("@ss.hasPermi('wms:wave:edit')")
+    //@PreAuthorize("@ss.hasPermi('wms:wave:edit')")
     @Log(title = "波次单", businessType = BusinessType.UPDATE)
     @PostMapping("/receipt/allocated")
     public ResponseEntity<OrderWaveReceiptFrom> allocatedInventoryForReceipt(Long id,Integer type) {
@@ -108,7 +108,7 @@ public class WaveController extends BaseController {
     }
 
     @ApiOperation("应用波次作业为Shipment Order")
-    @PreAuthorize("@ss.hasPermi('wms:wave:edit')")
+    //@PreAuthorize("@ss.hasPermi('wms:wave:edit')")
     @Log(title = "波次单", businessType = BusinessType.UPDATE)
     @PostMapping("/shipment/confirmWave")
     public ResponseEntity<Integer> confirmWave(@RequestBody OrderWaveFrom order) {
@@ -116,7 +116,7 @@ public class WaveController extends BaseController {
     }
 
     @ApiOperation("应用波次作业为入库单")
-    @PreAuthorize("@ss.hasPermi('wms:wave:edit')")
+    //@PreAuthorize("@ss.hasPermi('wms:wave:edit')")
     @Log(title = "波次单", businessType = BusinessType.UPDATE)
     @PostMapping("/receipt/confirmWave")
     public ResponseEntity<Integer> confirmWaveForReceipt(@RequestBody OrderWaveReceiptFrom order) {
@@ -124,7 +124,7 @@ public class WaveController extends BaseController {
     }
 
     @ApiOperation("取消Out波次作业")
-    @PreAuthorize("@ss.hasPermi('wms:wave:edit')")
+    //@PreAuthorize("@ss.hasPermi('wms:wave:edit')")
     @Log(title = "波次单", businessType = BusinessType.UPDATE)
     @PostMapping("/shipment/cancelAllocatedInventory/{id}")
     public ResponseEntity<Integer> cancelAllocatedInventory(@PathVariable("id") Long id) {
@@ -132,7 +132,7 @@ public class WaveController extends BaseController {
     }
 
     @ApiOperation("取消入库波次作业")
-    @PreAuthorize("@ss.hasPermi('wms:wave:edit')")
+    //@PreAuthorize("@ss.hasPermi('wms:wave:edit')")
     @Log(title = "波次单", businessType = BusinessType.UPDATE)
     @PostMapping("/receipt/cancelAllocatedInventory/{id}")
     public ResponseEntity<Integer> cancelAllocatedInventoryForReceipt(@PathVariable("id") Long id) {
@@ -140,7 +140,7 @@ public class WaveController extends BaseController {
     }
 
     @ApiOperation("修改波次")
-    @PreAuthorize("@ss.hasPermi('wms:wave:edit')")
+    //@PreAuthorize("@ss.hasPermi('wms:wave:edit')")
     @Log(title = "波次", businessType = BusinessType.UPDATE)
     @PutMapping
     public ResponseEntity<Integer> edit(@RequestBody Wave wave) {
@@ -148,7 +148,7 @@ public class WaveController extends BaseController {
     }
 
     @ApiOperation("删除Out波次")
-    @PreAuthorize("@ss.hasPermi('wms:wave:remove')")
+    //@PreAuthorize("@ss.hasPermi('wms:wave:remove')")
     @Log(title = "波次", businessType = BusinessType.DELETE)
     @DeleteMapping("/shipment/{ids}")
     public ResponseEntity<Integer> remove(@PathVariable Long[] ids) {
@@ -156,7 +156,7 @@ public class WaveController extends BaseController {
     }
 
     @ApiOperation("删除入库波次")
-    @PreAuthorize("@ss.hasPermi('wms:wave:remove')")
+    //@PreAuthorize("@ss.hasPermi('wms:wave:remove')")
     @Log(title = "波次", businessType = BusinessType.DELETE)
     @DeleteMapping("/receipt/{ids}")
     public ResponseEntity<Integer> removeForReceipt(@PathVariable Long[] ids) {

@@ -30,7 +30,7 @@ import com.cyl.wms.pojo.vo.ReceiptOrderVO;
 import com.ruoyi.common.utils.poi.ExcelUtil;
 /**
  * 入库单Controller
- * 
+ *
  * @author zcc
  * @date 2022-08-29
  */
@@ -44,14 +44,14 @@ public class ReceiptOrderController extends BaseController {
     private ReceiptOrderConvert convert;
 
     @ApiOperation("查询入库单列表")
-    @PreAuthorize("@ss.hasPermi('wms:receiptOrder:list')")
+//    @PreAuthorize("@ss.hasPermi('wms:receiptOrder:list')")
     @PostMapping("/list")
     public ResponseEntity<Page<ReceiptOrderVO>> list(@RequestBody ReceiptOrderQuery query, Pageable page) {
         return ResponseEntity.ok(service.selectList(query, page));
     }
 
     @ApiOperation("导出入库单列表")
-    @PreAuthorize("@ss.hasPermi('wms:receiptOrder:export')")
+//    @PreAuthorize("@ss.hasPermi('wms:receiptOrder:export')")
     @Log(title = "入库单", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
     public ResponseEntity<String> export(ReceiptOrderQuery query) {
@@ -61,14 +61,14 @@ public class ReceiptOrderController extends BaseController {
     }
 
     @ApiOperation("获取入库单详细信息")
-    @PreAuthorize("@ss.hasPermi('wms:receiptOrder:query')")
+//    @PreAuthorize("@ss.hasPermi('wms:receiptOrder:query')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<ReceiptOrderForm> getInfo(@PathVariable("id") Long id) {
         return ResponseEntity.ok(service.selectById(id));
     }
 
     @ApiOperation("新增或更新入库单以及入库明细")
-    @PreAuthorize("@ss.hasPermi('wms:receiptOrder:add')")
+//    @PreAuthorize("@ss.hasPermi('wms:receiptOrder:add')")
     @Log(title = "入库单", businessType = BusinessType.INSERT)
     @PostMapping("add-or-update")
     public ResponseEntity<Integer> addOrUpdate(@RequestBody ReceiptOrderForm receiptOrder) {
@@ -80,7 +80,7 @@ public class ReceiptOrderController extends BaseController {
     }
 
     @ApiOperation("修改入库单")
-    @PreAuthorize("@ss.hasPermi('wms:receiptOrder:edit')")
+//    @PreAuthorize("@ss.hasPermi('wms:receiptOrder:edit')")
     @Log(title = "入库单", businessType = BusinessType.UPDATE)
     @PutMapping
     public ResponseEntity<Integer> edit(@RequestBody ReceiptOrder receiptOrder) {
@@ -88,7 +88,7 @@ public class ReceiptOrderController extends BaseController {
     }
 
     @ApiOperation("删除入库单")
-    @PreAuthorize("@ss.hasPermi('wms:receiptOrder:remove')")
+//    @PreAuthorize("@ss.hasPermi('wms:receiptOrder:remove')")
     @Log(title = "入库单", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{ids}")
     public ResponseEntity<Integer> remove(@PathVariable Long[] ids) {

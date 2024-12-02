@@ -29,7 +29,7 @@ import com.cyl.wms.pojo.vo.AreaVO;
 import com.ruoyi.common.utils.poi.ExcelUtil;
 /**
  * 货区Controller
- * 
+ *
  * @author zcc
  * @date 2022-08-05
  */
@@ -43,7 +43,7 @@ public class AreaController extends BaseController {
     private AreaConvert convert;
 
     @ApiOperation("查询货区列表")
-    @PreAuthorize("@ss.hasPermi('wms:area:list')")
+    //@PreAuthorize("@ss.hasPermi('wms:area:list')")
     @PostMapping("/list")
     public ResponseEntity<Page<Area>> list(@RequestBody AreaQuery query, Pageable page) {
         List<Area> list = service.selectList(query, page);
@@ -51,7 +51,7 @@ public class AreaController extends BaseController {
     }
 
     @ApiOperation("导出货区列表")
-    @PreAuthorize("@ss.hasPermi('wms:area:export')")
+    //@PreAuthorize("@ss.hasPermi('wms:area:export')")
     @Log(title = "货区", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
     public ResponseEntity<String> export(AreaQuery query) {
@@ -61,14 +61,14 @@ public class AreaController extends BaseController {
     }
 
     @ApiOperation("获取货区详细信息")
-    @PreAuthorize("@ss.hasPermi('wms:area:query')")
+    //@PreAuthorize("@ss.hasPermi('wms:area:query')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<Area> getInfo(@PathVariable("id") Long id) {
         return ResponseEntity.ok(service.selectById(id));
     }
 
     @ApiOperation("新增货区")
-    @PreAuthorize("@ss.hasPermi('wms:area:add')")
+    //@PreAuthorize("@ss.hasPermi('wms:area:add')")
     @Log(title = "货区", businessType = BusinessType.INSERT)
     @PostMapping
     public ResponseEntity<Integer> add(@RequestBody Area area) {
@@ -76,7 +76,7 @@ public class AreaController extends BaseController {
     }
 
     @ApiOperation("修改货区")
-    @PreAuthorize("@ss.hasPermi('wms:area:edit')")
+    //@PreAuthorize("@ss.hasPermi('wms:area:edit')")
     @Log(title = "货区", businessType = BusinessType.UPDATE)
     @PutMapping
     public ResponseEntity<Integer> edit(@RequestBody Area area) {
@@ -84,7 +84,7 @@ public class AreaController extends BaseController {
     }
 
     @ApiOperation("删除货区")
-    @PreAuthorize("@ss.hasPermi('wms:area:remove')")
+    //@PreAuthorize("@ss.hasPermi('wms:area:remove')")
     @Log(title = "货区", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{ids}")
     public ResponseEntity<Integer> remove(@PathVariable Long[] ids) {
