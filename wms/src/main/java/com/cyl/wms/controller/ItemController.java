@@ -3,6 +3,7 @@ package com.cyl.wms.controller;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -13,14 +14,14 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.qrcode.QrCodeUtil;
 import com.cyl.wms.constant.ReceiptOrderConstant;
 import com.cyl.wms.constant.ShipmentOrderConstant;
+import com.cyl.wms.convert.ReceiptOrderDetailConvert;
+import com.cyl.wms.convert.ShipmentOrderDetailConvert;
 import com.cyl.wms.domain.*;
 import com.cyl.wms.pojo.vo.ReceiptOrderDetailVO;
 import com.cyl.wms.pojo.vo.ShipmentOrderDetailVO;
 import com.cyl.wms.pojo.vo.form.ReceiptOrderForm;
 import com.cyl.wms.pojo.vo.form.ShipmentOrderFrom;
-import com.cyl.wms.service.ReceiptOrderService;
-import com.cyl.wms.service.ShipmentOrderDetailService;
-import com.cyl.wms.service.ShipmentOrderService;
+import com.cyl.wms.service.*;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.FormatException;
 import com.google.zxing.WriterException;
@@ -48,7 +49,6 @@ import com.ruoyi.common.core.controller.BaseController;
 import com.ruoyi.common.enums.BusinessType;
 import com.cyl.wms.convert.ItemConvert;
 import com.cyl.wms.pojo.query.ItemQuery;
-import com.cyl.wms.service.ItemService;
 import com.cyl.wms.pojo.vo.ItemVO;
 import com.ruoyi.common.utils.poi.ExcelUtil;
 /**
@@ -69,6 +69,10 @@ public class ItemController extends BaseController {
     private final RedisCache redisCache;
     private final ServerConfig serverConfig;
     private final ReceiptOrderService receiptOrderService;
+    private final ReceiptOrderDetailConvert receiptOrderDetailConvert;
+    private final InventoryHistoryService inventoryHistoryService;
+    private final InventoryService inventoryService;
+    private final ShipmentOrderDetailConvert detailConvert;
     @ApiOperation("查询Goods 列表")
     @PreAuthorize("@ss.hasPermi('wms:item:list')")
     @PostMapping("/list")
@@ -107,7 +111,30 @@ public class ItemController extends BaseController {
             shipmentOrderFrom.setShipmentOrderStatus(ShipmentOrderConstant.ALL_IN);//outbound finished
             shipmentOrderFrom.setCreateBy(1L);
             shipmentOrderService.add(shipmentOrderFrom);
+            List<InventoryHistory> adds = new ArrayList<>();
+            LocalDateTime now=LocalDateTime.now();
+            shipmentOrderFrom.getDetails().forEach(it -> {
+                BigDecimal added= it.getRealQuantity();
+                //判断Quantity是否足够Out
+                inventoryService.checkInventory(it.getItemId(), it.getWarehouseId(), it.getAreaId(), it.getRackId(), added);
+                // 1. 前一次的Real Quantity是 0
+                InventoryHistory h = detailConvert.do2InventoryHistory(it);
+                h.setFormId(shipmentOrderFrom.getId());
+                h.setFormType(shipmentOrderFrom.getShipmentOrderType());
+                h.setQuantity(added.negate());
+                h.setDelFlag(0);
+                h.setId(null);
+                h.setCreateTime(now);
+                h.setCreateBy(this.getUserId());
+                adds.add(h);
+            });
+            if (!adds.isEmpty()) {
+                int add1 = inventoryHistoryService.batchInsert(adds);
+//            adds.forEach(it -> it.setQuantity(it.getQuantity().negate()));
+                int update1 = inventoryService.batchUpdate1(adds);
+             }
         }
+
         return ResponseEntity.ok(1);
     }
     @PostMapping("/addIn")
@@ -130,7 +157,26 @@ public class ItemController extends BaseController {
         receiptOrderDetail.setOrderNo(item.getProject());
         receiptOrder.setDetails(new ArrayList<>());
         receiptOrder.getDetails().add(receiptOrderDetail);
-        return ResponseEntity.ok(receiptOrderService.add(receiptOrder));
+        receiptOrderService.add(receiptOrder);
+        LocalDateTime now=LocalDateTime.now();
+        List<InventoryHistory> adds = new ArrayList<>();
+        receiptOrder.getDetails().forEach(it->{
+            // 存入本次的库存数量变更
+            InventoryHistory h = receiptOrderDetailConvert.do2InventoryHistory(it);
+            h.setFormId(receiptOrder.getId());
+            h.setFormType(receiptOrder.getReceiptOrderType());
+            h.setQuantity(it.getRealQuantity());
+            h.setDelFlag(0);
+            h.setId(null);
+            h.setCreateTime(now);
+            h.setCreateBy(this.getUserId());
+            adds.add(h);
+        });
+        if (adds.size() > 0) {
+            int add1 = inventoryHistoryService.batchInsert(adds);
+            int update1 = inventoryService.batchUpdate1(adds);
+        }
+        return ResponseEntity.ok(1);
     }
 
     private void checkChangeAndUpdate(Item item) {
