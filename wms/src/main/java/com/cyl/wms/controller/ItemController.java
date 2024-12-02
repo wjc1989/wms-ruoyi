@@ -2,30 +2,35 @@ package com.cyl.wms.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.math.BigDecimal;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.StrUtil;
-import com.cyl.wms.domain.ItemDetail;
-import com.cyl.wms.domain.ShipmentOrder;
-import com.cyl.wms.domain.ShipmentOrderDetail;
+import cn.hutool.extra.qrcode.QrCodeUtil;
+import com.cyl.wms.constant.ReceiptOrderConstant;
+import com.cyl.wms.domain.*;
+import com.cyl.wms.pojo.vo.ReceiptOrderDetailVO;
 import com.cyl.wms.pojo.vo.ShipmentOrderDetailVO;
+import com.cyl.wms.pojo.vo.form.ReceiptOrderForm;
 import com.cyl.wms.pojo.vo.form.ShipmentOrderFrom;
+import com.cyl.wms.service.ReceiptOrderService;
 import com.cyl.wms.service.ShipmentOrderDetailService;
 import com.cyl.wms.service.ShipmentOrderService;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.FormatException;
 import com.google.zxing.WriterException;
 import com.ruoyi.common.config.RuoYiConfig;
+import com.ruoyi.common.constant.UserConstants;
 import com.ruoyi.common.core.page.TableDataInfo;
 import com.ruoyi.common.core.redis.RedisCache;
 import com.ruoyi.common.utils.DateUtils;
 import com.ruoyi.common.utils.file.FileUploadUtils;
 import com.ruoyi.common.utils.uuid.IdUtils;
+import com.ruoyi.framework.config.ServerConfig;
 import io.github.bluesbruce.BrQrCodeUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -41,7 +46,6 @@ import com.ruoyi.common.annotation.Log;
 import com.ruoyi.common.core.controller.BaseController;
 import com.ruoyi.common.enums.BusinessType;
 import com.cyl.wms.convert.ItemConvert;
-import com.cyl.wms.domain.Item;
 import com.cyl.wms.pojo.query.ItemQuery;
 import com.cyl.wms.service.ItemService;
 import com.cyl.wms.pojo.vo.ItemVO;
@@ -62,7 +66,8 @@ public class ItemController extends BaseController {
     private final ShipmentOrderDetailService shipmentOrderDetailService;
     private final ShipmentOrderService shipmentOrderService;
     private final RedisCache redisCache;
-
+    private final ServerConfig serverConfig;
+    private final ReceiptOrderService receiptOrderService;
     @ApiOperation("查询Goods 列表")
     @PreAuthorize("@ss.hasPermi('wms:item:list')")
     @PostMapping("/list")
@@ -104,6 +109,64 @@ public class ItemController extends BaseController {
         }
         return ResponseEntity.ok(1);
     }
+    @PostMapping("/addIn")
+    public ResponseEntity<Integer> addIn(@RequestBody Item item) {
+
+        checkChangeAndUpdate(item);
+        ReceiptOrderForm receiptOrder=new ReceiptOrderForm();
+        receiptOrder.setRemark(item.getRemark());
+        receiptOrder.setReceiptOrderStatus(ReceiptOrderConstant.ALL_IN);
+        receiptOrder.setCreateBy(2L);
+        ReceiptOrderDetailVO receiptOrderDetail=new ReceiptOrderDetailVO();
+        receiptOrderDetail.setItemId(item.getId());
+        receiptOrderDetail.setAreaId(item.getAreaId());
+        receiptOrderDetail.setWarehouseId(item.getWarehouseId());
+        receiptOrderDetail.setRemark(item.getRemark());
+        receiptOrderDetail.setPlanQuantity(new BigDecimal(item.getCount()));
+        receiptOrderDetail.setRealQuantity(new BigDecimal(item.getCount()));
+        receiptOrderDetail.setOrderNo(item.getProject());
+        receiptOrder.setDetails(new ArrayList<>());
+        receiptOrder.getDetails().add(receiptOrderDetail);
+        return ResponseEntity.ok(receiptOrderService.add(receiptOrder));
+    }
+
+    private void checkChangeAndUpdate(Item item) {
+        if(item!=null){
+            if(item.getId()!=null){
+                Item update=new Item();
+                Item old=this.service.selectById(item.getId());
+                if(!StrUtil.equals(old.getItemNo(),item.getItemNo())){
+                    try {
+                        String codePath=genGoodCode(item.getItemNo());
+                        update.setId(item.getId());
+                        update.setCodePath(codePath);
+                        update.setItemNo(item.getItemNo());
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    } catch (WriterException e) {
+                        throw new RuntimeException(e);
+                    } catch (FormatException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+                if(!StrUtil.equals(old.getItemName(),item.getItemName())){
+                    update.setItemName(item.getItemName());
+                    update.setId(item.getId());
+                }
+                if(!StrUtil.equals(old.getRemark(),item.getRemark())){
+                    update.setRemark(item.getRemark());
+                    update.setId(item.getId());
+                }
+                if(!StrUtil.equals(old.getPics(),item.getPics())){
+                    update.setPics(item.getPics());
+                    update.setId(item.getId());
+                }
+                if(update.getId()!=null){
+                    this.service.updateEntity(update);
+                }
+            }
+        }
+    }
 
     @ApiOperation("导出Goods 列表")
     @PreAuthorize("@ss.hasPermi('wms:item:export')")
@@ -130,8 +193,12 @@ public class ItemController extends BaseController {
         ItemVO itemVO;
         if(item!=null){
             itemVO = service.toVo(item);
+            if(ArrayUtil.isNotEmpty(itemVO.getPicsArr())){
+                itemVO.setPicsArr(itemVO.getPicsArr().stream().map(x-> serverConfig.getUrl()+x).collect(Collectors.toList()));
+            }
             return ResponseEntity.ok(itemVO);
         }
+
         return ResponseEntity.ok(null);
 
     }
@@ -141,11 +208,11 @@ public class ItemController extends BaseController {
     @PostMapping
     public ResponseEntity<Integer> add(@RequestBody Item item) throws IOException, WriterException, FormatException {
         int count=service.insert(item);
-        String codePath=genGoodCode(item);
+        String codePath=genGoodCode(item.genCode());
         item.setCodePath(codePath);
         if(codePath!=null){
             Item update=new Item();
-            update.setItemNo(item.getCode());
+            update.setItemNo(item.genCode());
             update.setId(item.getId());
             update.setCodePath(codePath);
             service.updateEntity(update);
@@ -153,8 +220,8 @@ public class ItemController extends BaseController {
         return ResponseEntity.ok(count);
     }
 
-    private String genGoodCode(Item item) throws IOException, WriterException, FormatException {
-        String code=item.getCode();
+    private String genGoodCode(String code) throws IOException, WriterException, FormatException {
+    
         String uploadPath= RuoYiConfig.getUploadPath()+"/qrcode";
         String fileName= DateUtils.datePath() + "/" + code + ".jpg";
         File targetFile=new File(uploadPath+"/"+fileName);
@@ -195,6 +262,7 @@ public class ItemController extends BaseController {
         List<ItemVO> list = service.toVos(items);
         return ResponseEntity.ok(new PageImpl<>(list, page, ((com.github.pagehelper.Page)items).getTotal()));
     }
+
 
 
 }

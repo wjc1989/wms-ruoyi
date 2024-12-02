@@ -176,23 +176,29 @@ public class ReceiptOrderService {
 
 
         LocalDateTime now = LocalDateTime.now();
-        Long userId = SecurityUtils.getUserId();
+        Long userId=2L;
+        try{
+            userId= SecurityUtils.getUserId();
+        }catch (Exception e){
+
+        }
+
         List<InventoryHistory> adds = new ArrayList<>();
         res = receiptOrderMapper.insert(receiptOrder);
         saveDetails(receiptOrder.getId(), receiptOrder.getDetails());
         //新增时入库
         if(receiptOrder.getReceiptOrderStatus()==ReceiptOrderConstant.ALL_IN){
-            receiptOrder.getDetails().forEach(it -> {
-                InventoryHistory h = receiptOrderDetailConvert.do2InventoryHistory(it);
-                h.setFormId(receiptOrder.getId());
-                h.setFormType(receiptOrder.getReceiptOrderType());
-                h.setQuantity(it.getRealQuantity());
-                h.setDelFlag(0);
-                h.setId(null);
-                h.setCreateTime(now);
-                h.setCreateBy(userId);
-                adds.add(h);
-            });
+           for(ReceiptOrderDetailVO it :receiptOrder.getDetails()){
+               InventoryHistory h = receiptOrderDetailConvert.do2InventoryHistory(it);
+               h.setFormId(receiptOrder.getId());
+               h.setFormType(receiptOrder.getReceiptOrderType());
+               h.setQuantity(it.getRealQuantity());
+               h.setDelFlag(0);
+               h.setId(null);
+               h.setCreateTime(now);
+               h.setCreateBy(userId);
+               adds.add(h);
+           }
 
             if (adds.size() > 0) {
                 int add1 = inventoryHistoryService.batchInsert(adds);

@@ -34,4 +34,6 @@ public interface ItemMapper extends BaseMapper<Item> {
     Item selectByNo(String itemNo);
 
     int updateByEntity(Item update);
+
+    void updateByPhone(Item item);
 }

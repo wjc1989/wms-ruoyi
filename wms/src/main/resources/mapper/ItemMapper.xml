@@ -138,4 +138,11 @@
         </set>
         where id = #{id}
     </update>
+    <update id="updateByPhone">
+        update wms_item
+        <if test="itemName != null">item_name = #{itemName},</if>
+        <if test="pics != null">pics = #{pics},</if>
+        <if test="remark != null">remark = #{remark},</if>
+        where id = #{id}
+    </update>
 </mapper>

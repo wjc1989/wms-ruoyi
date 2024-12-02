@@ -315,4 +315,8 @@ public class ItemService {
     public Item selectByNo(String itemNo) {
         return this.itemMapper.selectByNo(itemNo);
     }
+
+    public void updateByPhone(Item item) {
+        this.itemMapper.updateByPhone(item);
+    }
 }

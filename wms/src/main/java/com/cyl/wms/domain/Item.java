@@ -89,11 +89,19 @@ public class Item extends BaseAudit {
     private BigDecimal inventory;
 
     private String codePath;
-
+    @TableField(exist = false)
     private Long count;
-
-
-    public String getCode() throws FormatException {
+    @TableField(exist = false)
+    private String project;
+    public Long getCount() {
+        if(count==null){
+            if(inventory!=null){
+                return inventory.longValue();
+            }
+        }
+        return count==null?0:count;
+    }
+    public String genCode() throws FormatException {
         if(id==null){
             return null;
         }
