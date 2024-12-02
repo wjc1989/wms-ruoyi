@@ -73,6 +73,6 @@ public class ShipmentOrder extends BaseAudit {
     private String waveNo;
 
     public String genShipentmentOrder() {
-        return "O-"+ DateUtils.dateTimeNow("yyyy-MM-dd-HHmmss");
+        return "Out-"+ DateUtils.dateTimeNow("yyyy-MM-dd-HHmmss");
     }
 }

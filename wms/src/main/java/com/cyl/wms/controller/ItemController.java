@@ -12,6 +12,7 @@ import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.qrcode.QrCodeUtil;
 import com.cyl.wms.constant.ReceiptOrderConstant;
+import com.cyl.wms.constant.ShipmentOrderConstant;
 import com.cyl.wms.domain.*;
 import com.cyl.wms.pojo.vo.ReceiptOrderDetailVO;
 import com.cyl.wms.pojo.vo.ShipmentOrderDetailVO;
@@ -102,8 +103,8 @@ public class ItemController extends BaseController {
         if(items!=null){
             shipmentOrderFrom.setShipmentOrderNo(shipmentOrderFrom.genShipentmentOrder());
             shipmentOrderFrom.setDetails(items);
-            shipmentOrderFrom.setShipmentOrderType(12);//Outbound
-            shipmentOrderFrom.setShipmentOrderStatus(13);//outbound finished
+            shipmentOrderFrom.setShipmentOrderType(ShipmentOrderConstant.OUTSOURCING);//Outbound
+            shipmentOrderFrom.setShipmentOrderStatus(ShipmentOrderConstant.ALL_IN);//outbound finished
             shipmentOrderFrom.setCreateBy(1L);
             shipmentOrderService.add(shipmentOrderFrom);
         }
@@ -116,7 +117,9 @@ public class ItemController extends BaseController {
         ReceiptOrderForm receiptOrder=new ReceiptOrderForm();
         receiptOrder.setRemark(item.getRemark());
         receiptOrder.setReceiptOrderStatus(ReceiptOrderConstant.ALL_IN);
+        receiptOrder.setReceiptOrderType(ReceiptOrderConstant.IN_PATH);
         receiptOrder.setCreateBy(2L);
+        receiptOrder.setReceiptOrderNo(receiptOrder.genReceiptOrderNo());
         ReceiptOrderDetailVO receiptOrderDetail=new ReceiptOrderDetailVO();
         receiptOrderDetail.setItemId(item.getId());
         receiptOrderDetail.setAreaId(item.getAreaId());

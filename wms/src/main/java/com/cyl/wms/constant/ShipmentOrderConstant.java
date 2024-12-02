@@ -19,4 +19,5 @@ public interface ShipmentOrderConstant {
   int DEPT = 14;
   //盘亏Out
   int CHECK_OUT = 31;
+  int FINISHED = 13;
 }

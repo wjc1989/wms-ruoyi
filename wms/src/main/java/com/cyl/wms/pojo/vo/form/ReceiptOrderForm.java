@@ -13,4 +13,5 @@ public class ReceiptOrderForm extends ReceiptOrder {
     private List<ReceiptOrderDetailVO> details;
     // 所有商品
     private List<ItemVO> items;
+
 }

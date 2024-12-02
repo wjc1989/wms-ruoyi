@@ -2,6 +2,7 @@ package com.cyl.wms.domain;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.ruoyi.common.annotation.Excel;
+import com.ruoyi.common.utils.DateUtils;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.ruoyi.common.core.domain.BaseAudit;
@@ -63,5 +64,7 @@ public class ReceiptOrder extends BaseAudit {
 
     @TableField(exist = false)
     private String createName;
-
+    public String genReceiptOrderNo() {
+        return "In-"+ DateUtils.dateTimeNow("yyyy-MM-dd-HHmmss");
+    }
 }
