@@ -12,6 +12,7 @@ import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.qrcode.QrCodeUtil;
+import cn.hutool.jwt.JWTUtil;
 import com.cyl.wms.constant.ReceiptOrderConstant;
 import com.cyl.wms.constant.ShipmentOrderConstant;
 import com.cyl.wms.convert.ReceiptOrderDetailConvert;
@@ -26,6 +27,7 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.FormatException;
 import com.google.zxing.WriterException;
 import com.ruoyi.common.config.RuoYiConfig;
+import com.ruoyi.common.constant.Constants;
 import com.ruoyi.common.constant.UserConstants;
 import com.ruoyi.common.core.page.TableDataInfo;
 import com.ruoyi.common.core.redis.RedisCache;
@@ -34,9 +36,12 @@ import com.ruoyi.common.utils.file.FileUploadUtils;
 import com.ruoyi.common.utils.uuid.IdUtils;
 import com.ruoyi.framework.config.ServerConfig;
 import io.github.bluesbruce.BrQrCodeUtil;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Page;
@@ -73,6 +78,8 @@ public class ItemController extends BaseController {
     private final InventoryHistoryService inventoryHistoryService;
     private final InventoryService inventoryService;
     private final ShipmentOrderDetailConvert detailConvert;
+    @Value("${token.secret}")
+    private String secret;
     @ApiOperation("查询Goods 列表")
     //@PreAuthorize("@ss.hasPermi('wms:item:list')")
     @PostMapping("/list")
@@ -84,11 +91,19 @@ public class ItemController extends BaseController {
     }
 
     @GetMapping("/getToken")
-    public ResponseEntity<String> getToken(String key){
+    public Map  getToken(String key){
+        String token="e68b6841-7ba9-40ad-baa4-27e4a0ee8452";
+        Map map=new HashMap();
+        Map<String, Object> claims = new HashMap<>();
+        claims.put(Constants.LOGIN_USER_KEY, token);
+        String jwtToken = Jwts.builder()
+                .setClaims(claims)
+                .signWith(SignatureAlgorithm.HS512, secret).compact();
         if("wms_token_my".equals(key)){
-            return ResponseEntity.ok("e68b6841-7ba9-40ad-baa4-27e4a0ee8452");
+            map.put("data",jwtToken);
         }
-        return ResponseEntity.ok("");
+        map.put("code",200);
+        return map;
     }
     @ApiOperation("查询Goods 列表")
     //@PreAuthorize("@ss.hasPermi('wms:item:list')")
