@@ -162,7 +162,7 @@ public class ItemController extends BaseController {
         return ResponseEntity.ok(1);
     }
     @PostMapping("/addIn")
-    public ResponseEntity<Integer> addIn(@RequestBody Item item) throws FormatException, IOException, WriterException {
+    public ResponseEntity<Integer> addIn(@RequestBody Item item) throws IOException, FormatException, WriterException {
 
         checkChangeAndUpdate(item);
         ReceiptOrderForm receiptOrder=new ReceiptOrderForm();
