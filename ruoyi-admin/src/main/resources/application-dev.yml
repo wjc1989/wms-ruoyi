@@ -27,11 +27,11 @@ spring:
         # 端口，默认为6379
         port: 6380
         # 数据库索引
-        database: 1
+        database: 3
         # 密码
         password: Xxs98p57!
 ruoyi:
     # 文件路径 示例（ Windows配置D:/ruoyi/uploadPath，Linux配置 /home/ruoyi/uploadPath）
-    profile: /usr/local/vthink/uploadPath
+    profile: /usr/local/vthink_wms/uploadPath
 scheduling:
     enabled: false
