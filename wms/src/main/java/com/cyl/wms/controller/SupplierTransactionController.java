@@ -29,7 +29,7 @@ import com.cyl.wms.pojo.vo.SupplierTransactionVO;
 import com.ruoyi.common.utils.poi.ExcelUtil;
 /**
  * 供应商账户流水Controller
- * 
+ *
  * @author zcc
  * @date 2023-05-04
  */
@@ -43,7 +43,7 @@ public class SupplierTransactionController extends BaseController {
     private SupplierTransactionConvert convert;
 
     @ApiOperation("查询供应商账户流水列表")
-    @PreAuthorize("@ss.hasPermi('wms:supplierTransaction:list')")
+    //@PreAuthorize("@ss.hasPermi('wms:supplierTransaction:list')")
     @PostMapping("/list")
     public ResponseEntity<Page<SupplierTransaction>> list(@RequestBody SupplierTransactionQuery query, Pageable page) {
         List<SupplierTransaction> list = service.selectList(query, page);
@@ -51,7 +51,7 @@ public class SupplierTransactionController extends BaseController {
     }
 
     @ApiOperation("导出供应商账户流水列表")
-    @PreAuthorize("@ss.hasPermi('wms:supplierTransaction:export')")
+    //@PreAuthorize("@ss.hasPermi('wms:supplierTransaction:export')")
     @Log(title = "供应商账户流水", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
     public ResponseEntity<String> export(SupplierTransactionQuery query) {
@@ -61,14 +61,14 @@ public class SupplierTransactionController extends BaseController {
     }
 
     @ApiOperation("获取供应商账户流水详细信息")
-    @PreAuthorize("@ss.hasPermi('wms:supplierTransaction:query')")
+    //@PreAuthorize("@ss.hasPermi('wms:supplierTransaction:query')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<SupplierTransaction> getInfo(@PathVariable("id") Integer id) {
         return ResponseEntity.ok(service.selectById(id));
     }
 
     @ApiOperation("新增供应商账户流水")
-    @PreAuthorize("@ss.hasPermi('wms:supplierTransaction:add')")
+    //@PreAuthorize("@ss.hasPermi('wms:supplierTransaction:add')")
     @Log(title = "供应商账户流水", businessType = BusinessType.INSERT)
     @PostMapping
     public ResponseEntity<Integer> add(@RequestBody SupplierTransaction supplierTransaction) {
@@ -76,7 +76,7 @@ public class SupplierTransactionController extends BaseController {
     }
 
     @ApiOperation("修改供应商账户流水")
-    @PreAuthorize("@ss.hasPermi('wms:supplierTransaction:edit')")
+    //@PreAuthorize("@ss.hasPermi('wms:supplierTransaction:edit')")
     @Log(title = "供应商账户流水", businessType = BusinessType.UPDATE)
     @PutMapping
     public ResponseEntity<Integer> edit(@RequestBody SupplierTransaction supplierTransaction) {
@@ -84,7 +84,7 @@ public class SupplierTransactionController extends BaseController {
     }
 
     @ApiOperation("删除供应商账户流水")
-    @PreAuthorize("@ss.hasPermi('wms:supplierTransaction:remove')")
+    //@PreAuthorize("@ss.hasPermi('wms:supplierTransaction:remove')")
     @Log(title = "供应商账户流水", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{ids}")
     public ResponseEntity<Integer> remove(@PathVariable Long[] ids) {

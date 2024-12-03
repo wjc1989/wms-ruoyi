@@ -29,7 +29,7 @@ import com.cyl.wms.pojo.vo.DeliveryVO;
 import com.ruoyi.common.utils.poi.ExcelUtil;
 /**
  * 发货记录Controller
- * 
+ *
  * @author zcc
  * @date 2022-08-05
  */
@@ -43,7 +43,7 @@ public class DeliveryController extends BaseController {
     private DeliveryConvert convert;
 
     @ApiOperation("查询发货记录列表")
-    @PreAuthorize("@ss.hasPermi('wms:delivery:list')")
+    //@PreAuthorize("@ss.hasPermi('wms:delivery:list')")
     @PostMapping("/list")
     public ResponseEntity<Page<Delivery>> list(@RequestBody DeliveryQuery query, Pageable page) {
         List<Delivery> list = service.selectList(query, page);
@@ -51,7 +51,7 @@ public class DeliveryController extends BaseController {
     }
 
     @ApiOperation("导出发货记录列表")
-    @PreAuthorize("@ss.hasPermi('wms:delivery:export')")
+    //@PreAuthorize("@ss.hasPermi('wms:delivery:export')")
     @Log(title = "发货记录", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
     public ResponseEntity<String> export(DeliveryQuery query) {
@@ -61,14 +61,14 @@ public class DeliveryController extends BaseController {
     }
 
     @ApiOperation("获取发货记录详细信息")
-    @PreAuthorize("@ss.hasPermi('wms:delivery:query')")
+    //@PreAuthorize("@ss.hasPermi('wms:delivery:query')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<Delivery> getInfo(@PathVariable("id") Long id) {
         return ResponseEntity.ok(service.selectById(id));
     }
 
     @ApiOperation("新增发货记录")
-    @PreAuthorize("@ss.hasPermi('wms:delivery:add')")
+    //@PreAuthorize("@ss.hasPermi('wms:delivery:add')")
     @Log(title = "发货记录", businessType = BusinessType.INSERT)
     @PostMapping
     public ResponseEntity<Integer> add(@RequestBody Delivery delivery) {
@@ -76,7 +76,7 @@ public class DeliveryController extends BaseController {
     }
 
     @ApiOperation("修改发货记录")
-    @PreAuthorize("@ss.hasPermi('wms:delivery:edit')")
+    //@PreAuthorize("@ss.hasPermi('wms:delivery:edit')")
     @Log(title = "发货记录", businessType = BusinessType.UPDATE)
     @PutMapping
     public ResponseEntity<Integer> edit(@RequestBody Delivery delivery) {
@@ -84,7 +84,7 @@ public class DeliveryController extends BaseController {
     }
 
     @ApiOperation("删除发货记录")
-    @PreAuthorize("@ss.hasPermi('wms:delivery:remove')")
+    //@PreAuthorize("@ss.hasPermi('wms:delivery:remove')")
     @Log(title = "发货记录", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{ids}")
     public ResponseEntity<Integer> remove(@PathVariable Long[] ids) {

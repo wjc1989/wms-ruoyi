@@ -45,14 +45,14 @@ public class InventoryMovementController extends BaseController {
     private InventoryMovementConvert convert;
 
     @ApiOperation("查询Quantity移动列表")
-    @PreAuthorize("@ss.hasPermi('wms:inventoryMovement:list')")
+    //@PreAuthorize("@ss.hasPermi('wms:inventoryMovement:list')")
     @PostMapping("/list")
     public ResponseEntity<Page<InventoryMovementVO>> list(@RequestBody InventoryMovementQuery query, Pageable page) {
         return ResponseEntity.ok(service.selectList(query, page));
     }
 
     @ApiOperation("导出Quantity移动列表")
-    @PreAuthorize("@ss.hasPermi('wms:inventoryMovement:export')")
+    //@PreAuthorize("@ss.hasPermi('wms:inventoryMovement:export')")
     @Log(title = "Quantity移动", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
     public ResponseEntity<String> export(InventoryMovementQuery query) {
@@ -62,14 +62,14 @@ public class InventoryMovementController extends BaseController {
     }
 
     @ApiOperation("获取Quantity移动详细信息")
-    @PreAuthorize("@ss.hasPermi('wms:inventoryMovement:query')")
+    //@PreAuthorize("@ss.hasPermi('wms:inventoryMovement:query')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<InventoryMovementFrom> getInfo(@PathVariable("id") Long id) {
         return ResponseEntity.ok(service.selectById(id));
     }
 
     @ApiOperation("新增Quantity移动")
-    @PreAuthorize("@ss.hasPermi('wms:inventoryMovement:add')")
+    //@PreAuthorize("@ss.hasPermi('wms:inventoryMovement:add')")
     @Log(title = "Quantity移动", businessType = BusinessType.INSERT)
     @PostMapping
     public ResponseEntity<Integer> add(@RequestBody InventoryMovement inventoryMovement) {
@@ -77,7 +77,7 @@ public class InventoryMovementController extends BaseController {
     }
 
     @ApiOperation("修改Quantity移动")
-    @PreAuthorize("@ss.hasPermi('wms:inventoryMovement:edit')")
+    //@PreAuthorize("@ss.hasPermi('wms:inventoryMovement:edit')")
     @Log(title = "Quantity移动", businessType = BusinessType.UPDATE)
     @PutMapping
     public ResponseEntity<Integer> edit(@RequestBody InventoryMovement inventoryMovement) {
@@ -85,7 +85,7 @@ public class InventoryMovementController extends BaseController {
     }
 
     @ApiOperation("删除Quantity移动")
-    @PreAuthorize("@ss.hasPermi('wms:inventoryMovement:remove')")
+    //@PreAuthorize("@ss.hasPermi('wms:inventoryMovement:remove')")
     @Log(title = "Quantity移动", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{ids}")
     public ResponseEntity<Integer> remove(@PathVariable Long[] ids) {
@@ -93,7 +93,7 @@ public class InventoryMovementController extends BaseController {
     }
 
     @ApiOperation("新增或更新Quantity移动")
-    @PreAuthorize("@ss.hasPermi('wms:inventoryMovement:add')")
+    //@PreAuthorize("@ss.hasPermi('wms:inventoryMovement:add')")
     @Log(title = "Quantity移动", businessType = BusinessType.INSERT)
     @PostMapping("add-or-update")
     public ResponseEntity<Integer> addOrUpdate(@RequestBody InventoryMovementFrom order) {

@@ -43,14 +43,14 @@ public class InventoryHistoryController extends BaseController {
     private InventoryHistoryConvert convert;
 
     @ApiOperation("查询Quantity记录列表")
-    @PreAuthorize("@ss.hasPermi('wms:inventoryHistory:list')")
+    //@PreAuthorize("@ss.hasPermi('wms:inventoryHistory:list')")
     @PostMapping("/list")
     public ResponseEntity<Page<InventoryHistoryVO>> list(@RequestBody InventoryHistoryQuery query, Pageable page) {
         return ResponseEntity.ok(service.selectList(query, page));
     }
 
     @ApiOperation("导出Quantity记录列表")
-    @PreAuthorize("@ss.hasPermi('wms:inventoryHistory:export')")
+    //@PreAuthorize("@ss.hasPermi('wms:inventoryHistory:export')")
     @Log(title = "Quantity记录", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
     public ResponseEntity<String> export(InventoryHistoryQuery query) {
@@ -60,14 +60,14 @@ public class InventoryHistoryController extends BaseController {
     }
 
     @ApiOperation("获取Quantity记录详细信息")
-    @PreAuthorize("@ss.hasPermi('wms:inventoryHistory:query')")
+    //@PreAuthorize("@ss.hasPermi('wms:inventoryHistory:query')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<InventoryHistory> getInfo(@PathVariable("id") Long id) {
         return ResponseEntity.ok(service.selectById(id));
     }
 
     @ApiOperation("新增Quantity记录")
-    @PreAuthorize("@ss.hasPermi('wms:inventoryHistory:add')")
+    //@PreAuthorize("@ss.hasPermi('wms:inventoryHistory:add')")
     @Log(title = "Quantity记录", businessType = BusinessType.INSERT)
     @PostMapping
     public ResponseEntity<Integer> add(@RequestBody InventoryHistory inventoryHistory) {
@@ -75,7 +75,7 @@ public class InventoryHistoryController extends BaseController {
     }
 
     @ApiOperation("修改Quantity记录")
-    @PreAuthorize("@ss.hasPermi('wms:inventoryHistory:edit')")
+    //@PreAuthorize("@ss.hasPermi('wms:inventoryHistory:edit')")
     @Log(title = "Quantity记录", businessType = BusinessType.UPDATE)
     @PutMapping
     public ResponseEntity<Integer> edit(@RequestBody InventoryHistory inventoryHistory) {
@@ -83,7 +83,7 @@ public class InventoryHistoryController extends BaseController {
     }
 
     @ApiOperation("删除Quantity记录")
-    @PreAuthorize("@ss.hasPermi('wms:inventoryHistory:remove')")
+    //@PreAuthorize("@ss.hasPermi('wms:inventoryHistory:remove')")
     @Log(title = "Quantity记录", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{ids}")
     public ResponseEntity<Integer> remove(@PathVariable Long[] ids) {

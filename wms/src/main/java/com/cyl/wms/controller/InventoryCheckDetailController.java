@@ -43,7 +43,7 @@ public class InventoryCheckDetailController extends BaseController {
     private InventoryCheckDetailConvert convert;
 
     @ApiOperation("查询Quantity盘点单据详情列表")
-    @PreAuthorize("@ss.hasPermi('wms:inventoryCheckDetail:list')")
+    //@PreAuthorize("@ss.hasPermi('wms:inventoryCheckDetail:list')")
     @PostMapping("/list")
     public ResponseEntity<Page<InventoryCheckDetail>> list(@RequestBody InventoryCheckDetailQuery query, Pageable page) {
         List<InventoryCheckDetail> list = service.selectList(query, page);
@@ -51,7 +51,7 @@ public class InventoryCheckDetailController extends BaseController {
     }
 
     @ApiOperation("导出Quantity盘点单据详情列表")
-    @PreAuthorize("@ss.hasPermi('wms:inventoryCheckDetail:export')")
+    //@PreAuthorize("@ss.hasPermi('wms:inventoryCheckDetail:export')")
     @Log(title = "Quantity盘点单据详情", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
     public ResponseEntity<String> export(InventoryCheckDetailQuery query) {
@@ -61,14 +61,14 @@ public class InventoryCheckDetailController extends BaseController {
     }
 
     @ApiOperation("获取Quantity盘点单据详情详细信息")
-    @PreAuthorize("@ss.hasPermi('wms:inventoryCheckDetail:query')")
+    //@PreAuthorize("@ss.hasPermi('wms:inventoryCheckDetail:query')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<InventoryCheckDetail> getInfo(@PathVariable("id") Long id) {
         return ResponseEntity.ok(service.selectById(id));
     }
 
     @ApiOperation("新增Quantity盘点单据详情")
-    @PreAuthorize("@ss.hasPermi('wms:inventoryCheckDetail:add')")
+    //@PreAuthorize("@ss.hasPermi('wms:inventoryCheckDetail:add')")
     @Log(title = "Quantity盘点单据详情", businessType = BusinessType.INSERT)
     @PostMapping
     public ResponseEntity<Integer> add(@RequestBody InventoryCheckDetail inventoryCheckDetail) {
@@ -76,7 +76,7 @@ public class InventoryCheckDetailController extends BaseController {
     }
 
     @ApiOperation("修改Quantity盘点单据详情")
-    @PreAuthorize("@ss.hasPermi('wms:inventoryCheckDetail:edit')")
+    //@PreAuthorize("@ss.hasPermi('wms:inventoryCheckDetail:edit')")
     @Log(title = "Quantity盘点单据详情", businessType = BusinessType.UPDATE)
     @PutMapping
     public ResponseEntity<Integer> edit(@RequestBody InventoryCheckDetail inventoryCheckDetail) {
@@ -84,7 +84,7 @@ public class InventoryCheckDetailController extends BaseController {
     }
 
     @ApiOperation("删除Quantity盘点单据详情")
-    @PreAuthorize("@ss.hasPermi('wms:inventoryCheckDetail:remove')")
+    //@PreAuthorize("@ss.hasPermi('wms:inventoryCheckDetail:remove')")
     @Log(title = "Quantity盘点单据详情", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{ids}")
     public ResponseEntity<Integer> remove(@PathVariable Long[] ids) {

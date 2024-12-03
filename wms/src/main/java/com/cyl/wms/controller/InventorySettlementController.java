@@ -37,7 +37,7 @@ public class InventorySettlementController extends BaseController {
     private InventorySettlementConvert convert;
 
     @ApiOperation("查询Quantity结算单列表")
-    @PreAuthorize("@ss.hasPermi('wms:inventorySettlement:list')")
+    //@PreAuthorize("@ss.hasPermi('wms:inventorySettlement:list')")
     @PostMapping("/list")
     public ResponseEntity<Page<InventorySettlement>> list(@RequestBody InventorySettlementQuery query, Pageable page) {
         List<InventorySettlement> list = service.selectList(query, page);
@@ -45,7 +45,7 @@ public class InventorySettlementController extends BaseController {
     }
 
     @ApiOperation("导出Quantity结算单列表")
-    @PreAuthorize("@ss.hasPermi('wms:inventorySettlement:export')")
+    //@PreAuthorize("@ss.hasPermi('wms:inventorySettlement:export')")
     @Log(title = "Quantity结算单", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
     public ResponseEntity<String> export(InventorySettlementQuery query) {
@@ -55,14 +55,14 @@ public class InventorySettlementController extends BaseController {
     }
 
     @ApiOperation("获取Quantity结算单详细信息")
-    @PreAuthorize("@ss.hasPermi('wms:inventorySettlement:query')")
+    //@PreAuthorize("@ss.hasPermi('wms:inventorySettlement:query')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<InventorySettlementFrom> getInfo(@PathVariable("id") Long id) {
         return ResponseEntity.ok(service.selectById(id));
     }
 
     @ApiOperation("新增Quantity结算单")
-    @PreAuthorize("@ss.hasPermi('wms:inventorySettlement:add')")
+    //@PreAuthorize("@ss.hasPermi('wms:inventorySettlement:add')")
     @Log(title = "Quantity结算单", businessType = BusinessType.INSERT)
     @PostMapping
     public ResponseEntity<Integer> add(@RequestBody InventorySettlement inventorySettlement) {
@@ -70,7 +70,7 @@ public class InventorySettlementController extends BaseController {
     }
 
     @ApiOperation("修改Quantity结算单")
-    @PreAuthorize("@ss.hasPermi('wms:inventorySettlement:edit')")
+    //@PreAuthorize("@ss.hasPermi('wms:inventorySettlement:edit')")
     @Log(title = "Quantity结算单", businessType = BusinessType.UPDATE)
     @PutMapping
     public ResponseEntity<Integer> edit(@RequestBody InventorySettlement inventorySettlement) {
@@ -78,14 +78,14 @@ public class InventorySettlementController extends BaseController {
     }
 
     @ApiOperation("删除Quantity结算单")
-    @PreAuthorize("@ss.hasPermi('wms:inventorySettlement:remove')")
+    //@PreAuthorize("@ss.hasPermi('wms:inventorySettlement:remove')")
     @Log(title = "Quantity结算单", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{ids}")
     public ResponseEntity<Integer> remove(@PathVariable Long[] ids) {
         return ResponseEntity.ok(service.deleteByIds(ids));
     }
     @ApiOperation("新增或更新结算单据以及结算单据明细")
-    @PreAuthorize("@ss.hasPermi('wms:inventorySettlement:edit')")
+    //@PreAuthorize("@ss.hasPermi('wms:inventorySettlement:edit')")
     @Log(title = "Quantity结算单据", businessType = BusinessType.INSERT)
     @PostMapping("add-or-update")
     public ResponseEntity<Integer> addOrUpdate(@RequestBody InventorySettlementFrom inventorySettlementFrom) {

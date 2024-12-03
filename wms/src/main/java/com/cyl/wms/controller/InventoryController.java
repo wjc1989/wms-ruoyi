@@ -38,21 +38,21 @@ public class InventoryController extends BaseController {
     private InventoryConvert convert;
 
     @ApiOperation("查询Quantity列表")
-    @PreAuthorize("@ss.hasPermi('wms:inventory:list')")
+    //@PreAuthorize("@ss.hasPermi('wms:inventory:list')")
     @PostMapping("/list")
     public ResponseEntity<Page<InventoryVO>> list(@RequestBody InventoryQuery query, Pageable page) {
         return ResponseEntity.ok(service.queryPage(query, page));
     }
 
     @ApiOperation("查询预警列表")
-    @PreAuthorize("@ss.hasPermi('wms:inventory:list')")
+    //@PreAuthorize("@ss.hasPermi('wms:inventory:list')")
     @PostMapping("/warnList")
     public ResponseEntity<Page<InventoryVO>> list(Pageable page) {
         return ResponseEntity.ok(service.queryWarning(page));
     }
 
     @ApiOperation("导出Quantity列表")
-    @PreAuthorize("@ss.hasPermi('wms:inventory:export')")
+    //@PreAuthorize("@ss.hasPermi('wms:inventory:export')")
     @Log(title = "Quantity", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
     public ResponseEntity<String> export(InventoryQuery query) {
@@ -66,14 +66,14 @@ public class InventoryController extends BaseController {
     }
 
     @ApiOperation("获取Quantity详细信息")
-    @PreAuthorize("@ss.hasPermi('wms:inventory:query')")
+    //@PreAuthorize("@ss.hasPermi('wms:inventory:query')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<Inventory> getInfo(@PathVariable("id") Long id) {
         return ResponseEntity.ok(service.selectById(id));
     }
 
     @ApiOperation("新增Quantity")
-    @PreAuthorize("@ss.hasPermi('wms:inventory:add')")
+    //@PreAuthorize("@ss.hasPermi('wms:inventory:add')")
     @Log(title = "Quantity", businessType = BusinessType.INSERT)
     @PostMapping
     public ResponseEntity<Integer> add(@RequestBody Inventory inventory) {
@@ -81,7 +81,7 @@ public class InventoryController extends BaseController {
     }
 
     @ApiOperation("修改Quantity")
-    @PreAuthorize("@ss.hasPermi('wms:inventory:edit')")
+    //@PreAuthorize("@ss.hasPermi('wms:inventory:edit')")
     @Log(title = "Quantity", businessType = BusinessType.UPDATE)
     @PutMapping
     public ResponseEntity<Integer> edit(@RequestBody Inventory inventory) {
@@ -89,14 +89,14 @@ public class InventoryController extends BaseController {
     }
 
     @ApiOperation("删除Quantity")
-    @PreAuthorize("@ss.hasPermi('wms:inventory:remove')")
+    //@PreAuthorize("@ss.hasPermi('wms:inventory:remove')")
     @Log(title = "Quantity", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{ids}")
     public ResponseEntity<Integer> remove(@PathVariable Long[] ids) {
         return ResponseEntity.ok(service.deleteByIds(ids));
     }
     @ApiOperation("删除Quantity")
-    @PreAuthorize("@ss.hasPermi('wms:inventory:remove')")
+    //@PreAuthorize("@ss.hasPermi('wms:inventory:remove')")
     @Log(title = "Quantity", businessType = BusinessType.DELETE)
     @DeleteMapping("/item/{ids}")
     public ResponseEntity<Integer> removeByItem(@PathVariable Long[] ids) {
@@ -104,7 +104,7 @@ public class InventoryController extends BaseController {
     }
 
     @ApiOperation("删除Quantity")
-    @PreAuthorize("@ss.hasPermi('wms:inventory:remove')")
+    //@PreAuthorize("@ss.hasPermi('wms:inventory:remove')")
     @Log(title = "Quantity", businessType = BusinessType.DELETE)
     @DeleteMapping("/warehouse/{ids}")
     public ResponseEntity<Integer> removeByWarehouse(@PathVariable Long[] ids) {
