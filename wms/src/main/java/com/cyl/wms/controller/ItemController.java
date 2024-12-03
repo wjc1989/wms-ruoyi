@@ -205,7 +205,7 @@ public class ItemController extends BaseController {
         return ResponseEntity.ok(1);
     }
 
-    private void checkChangeAndUpdate(Item item) {
+    private void checkChangeAndUpdate(Item item) throws FormatException, IOException, WriterException {
         if(item!=null){
             if(item.getId()!=null){
                 Item update=new Item();
@@ -237,7 +237,23 @@ public class ItemController extends BaseController {
                     update.setId(item.getId());
                 }
                 if(update.getId()!=null){
+                    item.setUpdateBy(getUserId());
+                    item.setUpdateTime(LocalDateTime.now());
                     this.service.updateEntity(update);
+                }
+            }else{
+                //新增
+                item.setCreateBy(getUserId());
+                item.setCreateTime(LocalDateTime.now());
+                this.service.insert(item);
+                String codePath=genGoodCode(item.genCode());
+                item.setCodePath(codePath);
+                if(codePath!=null){
+                    Item update=new Item();
+                    update.setItemNo(item.genCode());
+                    update.setId(item.getId());
+                    update.setCodePath(codePath);
+                    service.updateEntity(update);
                 }
             }
         }

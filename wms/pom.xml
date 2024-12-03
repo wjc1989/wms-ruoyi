@@ -18,6 +18,11 @@
     <dependencies>
         <dependency>
             <groupId>com.ruoyi</groupId>
+            <artifactId>ruoyi-framework</artifactId>
+            <version>${ruoyi.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ruoyi</groupId>
             <artifactId>ruoyi-common</artifactId>
             <version>${ruoyi.version}</version>
         </dependency>
@@ -79,10 +84,6 @@
                     <artifactId>mapstruct</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>com.ruoyi</groupId>
-            <artifactId>ruoyi-framework</artifactId>
         </dependency>
     </dependencies>
 

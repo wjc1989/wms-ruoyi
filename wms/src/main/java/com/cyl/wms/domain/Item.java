@@ -105,8 +105,13 @@ public class Item extends BaseAudit {
         if(id==null){
             return null;
         }
+
+        if(itemNo!=null&&itemNo.length()==13){
+            return itemNo;
+        }
         String dateTimeNow= DateUtils.dateTimeNow("yyMMdd");
         int idLength=(id+"").length();
+
         String code=null;
         //如果长度>6，拼日期超出13位(一维码最大长度)，就不拼日期了
         if(idLength>6){

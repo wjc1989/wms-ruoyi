@@ -173,13 +173,8 @@ public class BaseController
      */
     public Long getUserId()
     {
-        Long userId=8L;
-        try{
-            userId=getLoginUser().getUserId();
-        }catch (Exception e){
 
-        }
-        return userId;
+        return getLoginUser().getUserId();
     }
 
     /**
