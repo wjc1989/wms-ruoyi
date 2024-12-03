@@ -49,7 +49,11 @@ public class WarehouseController extends BaseController {
         List<Warehouse> list = service.selectList(query, page);
         return ResponseEntity.ok(new PageImpl<>(list, page, ((com.github.pagehelper.Page)list).getTotal()));
     }
-
+    @PostMapping("/listAll")
+    public ResponseEntity<List<Warehouse>> listAll(@RequestBody WarehouseQuery query) {
+        List<Warehouse> list = service.selectList(query, null);
+        return ResponseEntity.ok(list);
+    }
     @ApiOperation("导出仓库列表")
     //@PreAuthorize("@ss.hasPermi('wms:warehouse:export')")
     @Log(title = "仓库", businessType = BusinessType.EXPORT)

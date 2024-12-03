@@ -49,6 +49,11 @@ public class AreaController extends BaseController {
         List<Area> list = service.selectList(query, page);
         return ResponseEntity.ok(new PageImpl<>(list, page, ((com.github.pagehelper.Page)list).getTotal()));
     }
+    @PostMapping("/listAll")
+    public ResponseEntity<List<Area>> listAll(@RequestBody AreaQuery query, Pageable page) {
+        List<Area> list = service.selectList(query, null);
+        return ResponseEntity.ok(list);
+    }
 
     @ApiOperation("导出货区列表")
     //@PreAuthorize("@ss.hasPermi('wms:area:export')")

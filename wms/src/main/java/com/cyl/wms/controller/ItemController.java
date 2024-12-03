@@ -82,6 +82,14 @@ public class ItemController extends BaseController {
 
         return ResponseEntity.ok(new PageImpl<>(items, page, ((com.github.pagehelper.Page)items).getTotal()));
     }
+
+    @GetMapping("/getToken")
+    public ResponseEntity<String> getToken(String key){
+        if("wms_token_my".equals(key)){
+            return ResponseEntity.ok("e68b6841-7ba9-40ad-baa4-27e4a0ee8452");
+        }
+        return ResponseEntity.ok("");
+    }
     @ApiOperation("查询Goods 列表")
     //@PreAuthorize("@ss.hasPermi('wms:item:list')")
     @PostMapping("/listCount")
