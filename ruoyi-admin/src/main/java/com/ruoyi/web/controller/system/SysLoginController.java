@@ -21,7 +21,7 @@ import java.util.Set;
 
 /**
  * 登录验证
- * 
+ *
  * @author ruoyi
  */
 @RestController
@@ -43,12 +43,18 @@ public class SysLoginController {
     public AjaxResult login(@RequestBody LoginBody loginBody) {
         AjaxResult ajax = AjaxResult.success();
         // 生成令牌
-        String token = loginService.login(loginBody.getUsername(), loginBody.getPassword(), loginBody.getCode(),
-                loginBody.getUuid());
+        String token = loginService.login(loginBody.getUsername(), loginBody.getPassword(), loginBody.getCode(),loginBody.getUuid(),true);
         ajax.put(Constants.TOKEN, token);
         return ajax;
     }
-
+    @PostMapping("/mlogin")
+    public AjaxResult mlogin(@RequestBody LoginBody loginBody) {
+        AjaxResult ajax = AjaxResult.success();
+        // 生成令牌
+        String token = loginService.login(loginBody.getUsername(), loginBody.getPassword(), loginBody.getCode(),loginBody.getUuid(),false);
+        ajax.put(Constants.TOKEN, token);
+        return ajax;
+    }
     /**
      * 使用手机号登陆
      *
@@ -85,7 +91,7 @@ public class SysLoginController {
 
     /**
      * 获取路由信息
-     * 
+     *
      * @return 路由信息
      */
     @GetMapping("getRouters")
