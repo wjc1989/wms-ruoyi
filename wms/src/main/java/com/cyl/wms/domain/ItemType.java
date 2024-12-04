@@ -22,7 +22,8 @@ import java.util.List;
  */
 @ApiModel(description = "Goods")
 @TableName("wms_item_type")
-public class ItemType extends BaseAudit {
+public class
+ItemType extends BaseAudit {
 
     @ApiModelProperty("Goods Type ID")
     @TableId(value = "item_type_id", type = IdType.AUTO)

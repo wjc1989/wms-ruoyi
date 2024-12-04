@@ -47,7 +47,10 @@
             <if test="status != null  and status != ''">and status = #{status}</if>
         </where>
     </select>
-
+    <select id="selectByTypeName" parameterType="ItemType" resultMap="ItemTypeResult">
+        <include refid="selectItemTypeVo"/>
+        where type_name=#{typeName} limit 1
+    </select>
     <update id="updateDelFlagByIds">
         update wms_item_type set del_flag=1
         <where>

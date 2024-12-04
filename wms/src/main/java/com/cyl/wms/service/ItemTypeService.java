@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.stream.Collectors;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.cyl.wms.domain.Item;
 import com.cyl.wms.domain.ItemTypeTreeSelect;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -193,5 +194,10 @@ public class ItemTypeService {
      */
     private boolean hasChild(List<ItemType> list, ItemType t) {
         return getChildList(list, t).size() > 0 ? true : false;
+    }
+
+    public ItemType selectByItemName(String itemTypeName) {
+
+        return  this.itemTypeMapper.selectByTypeName(itemTypeName);
     }
 }

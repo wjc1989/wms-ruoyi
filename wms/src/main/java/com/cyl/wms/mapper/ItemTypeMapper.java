@@ -7,7 +7,7 @@ import com.cyl.wms.domain.ItemType;
 
 /**
  * Goods 类型表Mapper接口
- * 
+ *
  * @author zcc
  */
 public interface ItemTypeMapper extends BaseMapper<ItemType> {
@@ -25,4 +25,6 @@ public interface ItemTypeMapper extends BaseMapper<ItemType> {
      * @return
     */
     int updateDelFlagByIds(@Param("ids") Long[] ids);
+
+    ItemType selectByTypeName(@Param("typeName") String itemTypeName);
 }

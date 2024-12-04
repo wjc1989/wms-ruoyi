@@ -78,6 +78,7 @@ public class ItemController extends BaseController {
     private final InventoryHistoryService inventoryHistoryService;
     private final InventoryService inventoryService;
     private final ShipmentOrderDetailConvert detailConvert;
+    private final ItemTypeService itemTypeService;
     @Value("${token.secret}")
     private String secret;
     @ApiOperation("查询Goods 列表")
@@ -162,7 +163,6 @@ public class ItemController extends BaseController {
     }
     @PostMapping("/addIn")
     public ResponseEntity<Integer> addIn(@RequestBody Item item) throws IOException, FormatException, WriterException {
-
         checkChangeAndUpdate(item);
         ReceiptOrderForm receiptOrder=new ReceiptOrderForm();
         receiptOrder.setRemark(item.getRemark());
@@ -180,6 +180,7 @@ public class ItemController extends BaseController {
         receiptOrderDetail.setRealQuantity(new BigDecimal(item.getCount()));
         receiptOrderDetail.setOrderNo(item.getProject());
         receiptOrderDetail.setCreateBy(receiptOrder.getCreateBy());
+
         receiptOrder.setDetails(new ArrayList<>());
         receiptOrder.getDetails().add(receiptOrderDetail);
         receiptOrderService.add(receiptOrder);
@@ -206,6 +207,12 @@ public class ItemController extends BaseController {
 
     private void checkChangeAndUpdate(Item item) throws FormatException, IOException, WriterException {
         if(item!=null){
+            if(item.getItemTypeName()!=null){
+                ItemType itemType=this.itemTypeService.selectByItemName(item.getItemTypeName());
+                if(itemType!=null){
+                    item.setItemType(itemType.getItemTypeId()+"");
+                }
+            }
             if(item.getId()!=null){
                 Item update=new Item();
                 Item old=this.service.selectById(item.getId());
@@ -235,6 +242,12 @@ public class ItemController extends BaseController {
                     update.setPics(item.getPics());
                     update.setId(item.getId());
                 }
+                if(item.getItemType()!=null&&!StrUtil.equals(old.getItemType(),item.getItemType())){
+                    update.setItemType(item.getItemType());
+                    update.setItemTypeName(item.getItemTypeName());
+                    update.setId(item.getId());
+                }
+
                 if(update.getId()!=null){
                     item.setUpdateBy(getUserId());
                     item.setUpdateTime(LocalDateTime.now());
@@ -244,6 +257,7 @@ public class ItemController extends BaseController {
                 //新增
                 item.setCreateBy(getUserId());
                 item.setCreateTime(LocalDateTime.now());
+
                 this.service.insert(item);
                 String codePath=genGoodCode(item.genCode());
                 item.setCodePath(codePath);
@@ -292,6 +306,7 @@ public class ItemController extends BaseController {
         return ResponseEntity.ok(null);
 
     }
+
     @ApiOperation("新增Goods ")
     //@PreAuthorize("@ss.hasPermi('wms:item:add')")
     @Log(title = "Goods", businessType = BusinessType.INSERT)
