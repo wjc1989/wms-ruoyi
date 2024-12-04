@@ -42,8 +42,8 @@ public class BrQrCodeUtilTest {
   @Ignore
   public void brEncodeEan() throws IOException, WriterException {
     //自动补充校验码
-    BrQrCodeUtil.brEncode("2408290000010", BarcodeFormat.EAN_13, new File("D:\\ruoyi\\uploadPath\\upload\\qrcode\\2024\\08\\29\\2408290000012.jpg"));
-    BrQrCodeUtil.brEncode("1234567890128", BarcodeFormat.EAN_13, new File("d:/temp/EAN-13-1.jpg"), 150, 50);
+    BrQrCodeUtil.brEncode("2408290000010", BarcodeFormat.CODE_128, new File("D:\\ruoyi\\uploadPath\\upload\\qrcode\\2024\\08\\29\\2408290000012.jpg"));
+    BrQrCodeUtil.brEncode("1234567890128", BarcodeFormat.CODE_128, new File("d:/temp/EAN-13-1.jpg"), 150, 50);
     BrQrCodeUtil.brEncode("12345670", BarcodeFormat.EAN_8, new File("d:/temp/EAN-8.jpg"));
   }
 

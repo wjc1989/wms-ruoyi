@@ -318,18 +318,20 @@ public class ItemController extends BaseController {
         return ResponseEntity.ok(count);
     }
 
-    private String genGoodCode(String code) throws IOException, WriterException, FormatException {
+    private static String genGoodCode(String code) throws IOException, WriterException, FormatException {
 
         String uploadPath= RuoYiConfig.getUploadPath()+"/qrcode";
         String fileName= DateUtils.datePath() + "/" + code + ".jpg";
         File targetFile=new File(uploadPath+"/"+fileName);
         if(!targetFile.exists()){
-            BrQrCodeUtil.brEncode(code, BarcodeFormat.EAN_13,targetFile);
+            BrQrCodeUtil.brEncode(code, BarcodeFormat.CODE_128,targetFile);
         }
         return FileUploadUtils.getPathFileName(uploadPath,fileName);
     }
 
-
+    public static void main(String[] args) throws IOException, WriterException, FormatException {
+        System.out.println(genGoodCode("1231323232"));
+    }
 
 
     @ApiOperation("修改Goods ")

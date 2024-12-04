@@ -104,7 +104,22 @@ public class Item extends BaseAudit {
 //    public String genCode(){
 //
 //    }
-    public String genCode() throws FormatException {
+public String genCode() throws FormatException {
+    if(id==null){
+        return null;
+    }
+
+    if(itemNo!=null){
+        return itemNo;
+    }
+
+//         int typeLength=StrUtil.length(itemType);
+
+    //如果长度>6，拼日期超出13位(一维码最大长度)，就不拼日期了
+    String code=DateUtils.dateTimeNow("yyyyMMdd")+"-"+ StrUtil.nullToDefault(itemType,"")+"-"+id+"-";
+    return code;
+}
+    public String genCode13() throws FormatException {
         if(id==null){
             return null;
         }
