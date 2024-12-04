@@ -101,6 +101,9 @@ public class Item extends BaseAudit {
         }
         return count==null?0:count;
     }
+//    public String genCode(){
+//
+//    }
     public String genCode() throws FormatException {
         if(id==null){
             return null;

@@ -57,6 +57,10 @@ ItemType extends BaseAudit {
     @Excel(name = "Top")
     private String ancestors;
 
+    @ApiModelProperty("Code")
+    @Excel(name = "Code")
+    private String code;
+
     @ApiModelProperty("Goods Type Name")
     @Excel(name = "Goods Type Name")
     private String typeName;
@@ -138,6 +142,13 @@ ItemType extends BaseAudit {
         this.parentName = parentName;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
 
     @Override
     public String toString() {

@@ -20,12 +20,14 @@
         <result property="createTime" column="create_time"/>
         <result property="updateBy" column="update_by"/>
         <result property="updateTime" column="update_time"/>
+        <result property="code" column="code"/>
     </resultMap>
 
     <sql id="selectItemTypeVo">
         select item_type_id,
                parent_id,
                ancestors,
+               code,
                type_name,
                order_num,
                status,
@@ -44,6 +46,7 @@
             <if test="ancestors != null  and ancestors != ''">and ancestors = #{ancestors}</if>
             <if test="typeName != null  and typeName != ''">and type_name like concat('%', #{typeName}, '%')</if>
             <if test="orderNum != null ">and order_num = #{orderNum}</if>
+            <if test="code != null and code!=''">and code = #{code}</if>
             <if test="status != null  and status != ''">and status = #{status}</if>
         </where>
     </select>
