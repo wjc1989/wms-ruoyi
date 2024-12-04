@@ -211,6 +211,17 @@ public class ItemController extends BaseController {
                 ItemType itemType=this.itemTypeService.selectByItemName(item.getItemTypeName());
                 if(itemType!=null){
                     item.setItemType(itemType.getItemTypeId()+"");
+                }else{
+                    ItemType itemType1=new ItemType();
+                    itemType1.setTypeName(item.getItemTypeName());
+                    itemType1.setDelFlag("0");
+                    itemType1.setStatus("0");
+                    itemType1.setCreateBy(this.getUserId());
+                    itemType1.setCreateTime(LocalDateTime.now());
+                    itemType1.setParentId(0L);
+                    itemType1.setOrderNum("0");
+                    this.itemTypeService.insert(itemType1);
+                    item.setItemType(itemType1.getItemTypeId()+"");
                 }
             }
             if(item.getId()!=null){
