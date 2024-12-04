@@ -112,18 +112,19 @@ public class Item extends BaseAudit {
         if(itemNo!=null&&itemNo.length()==13){
             return itemNo;
         }
-        String dateTimeNow= DateUtils.dateTimeNow("yyMMdd");
-        int idLength=(id+"").length();
 
-        String code=null;
+         int typeLength=StrUtil.length(itemType);
+
         //如果长度>6，拼日期超出13位(一维码最大长度)，就不拼日期了
-        if(idLength>6){
-            code= StrUtil.fillBefore(id+"",'0',12);
-        }else{
-            code=dateTimeNow+StrUtil.fillBefore(id+"",'0',6);
-        }
-        ;
+        String code= StrUtil.nullToDefault(itemType,"")+"24"+StrUtil.fillBefore(id+"",'0',10-typeLength);
         return code+BrQrCodeUtil.getUpcEanChecksum(code);
+    }
+
+    public static void main(String[] args) throws FormatException {
+        Item item=new Item();
+        item.setId(1L);
+        item.setItemType("2");
+        System.out.println(item.genCode());
     }
 
 }
