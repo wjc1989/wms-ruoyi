@@ -184,24 +184,6 @@ public class ItemController extends BaseController {
         receiptOrder.setDetails(new ArrayList<>());
         receiptOrder.getDetails().add(receiptOrderDetail);
         receiptOrderService.add(receiptOrder);
-        LocalDateTime now=LocalDateTime.now();
-        List<InventoryHistory> adds = new ArrayList<>();
-        receiptOrder.getDetails().forEach(it->{
-            // 存入本次的库存数量变更
-            InventoryHistory h = receiptOrderDetailConvert.do2InventoryHistory(it);
-            h.setFormId(receiptOrder.getId());
-            h.setFormType(receiptOrder.getReceiptOrderType());
-            h.setQuantity(it.getRealQuantity());
-            h.setDelFlag(0);
-            h.setId(null);
-            h.setCreateTime(now);
-            h.setCreateBy(receiptOrder.getCreateBy());
-            adds.add(h);
-        });
-        if (adds.size() > 0) {
-            int add1 = inventoryHistoryService.batchInsert(adds);
-            int update1 = inventoryService.batchUpdate1(adds);
-        }
         return ResponseEntity.ok(1);
     }
 
