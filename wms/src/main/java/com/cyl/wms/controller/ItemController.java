@@ -124,12 +124,11 @@ public class ItemController extends BaseController {
     }
 
     @PostMapping("/addOut")
-    public ResponseEntity<Integer> addOut(@RequestBody List<ShipmentOrderDetailVO> items) {
+    public ResponseEntity<Integer> addOut(@RequestBody ShipmentOrderFrom shipmentOrderFrom) {
 
-        ShipmentOrderFrom shipmentOrderFrom=new ShipmentOrderFrom();
-        if(items!=null){
+        if(shipmentOrderFrom.getDetails()!=null){
             shipmentOrderFrom.setShipmentOrderNo(shipmentOrderFrom.genShipentmentOrder());
-            shipmentOrderFrom.setDetails(items);
+
             shipmentOrderFrom.setShipmentOrderType(ShipmentOrderConstant.OUTSOURCING);//Outbound
             shipmentOrderFrom.setShipmentOrderStatus(ShipmentOrderConstant.ALL_IN);//outbound finished
             shipmentOrderFrom.setCreateBy(this.getUserId());
