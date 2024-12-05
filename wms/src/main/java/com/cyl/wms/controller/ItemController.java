@@ -287,16 +287,15 @@ public class ItemController extends BaseController {
     @GetMapping(value = "/searchItemByNo/{itemNo}")
     public ResponseEntity<ItemVO> searchItemByNo(@PathVariable("itemNo") String itemNo) {
         Item item = service.selectByNo(itemNo);
-        ItemVO itemVO;
+        ItemVO itemVO=new ItemVO();
         if(item!=null){
             itemVO = service.toVo(item);
             if(ArrayUtil.isNotEmpty(itemVO.getPicsArr())){
                 itemVO.setPicsArr(itemVO.getPicsArr().stream().map(x-> serverConfig.getUrl()+x).collect(Collectors.toList()));
             }
-            return ResponseEntity.ok(itemVO);
         }
 
-        return ResponseEntity.ok(null);
+        return ResponseEntity.ok(itemVO);
 
     }
 
